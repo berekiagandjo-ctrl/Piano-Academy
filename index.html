@@ -1,0 +1,3917 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width,
+initial-scale=1.0,
+maximum-scale=1.0,
+user-scalable=no">
+
+<title>Piano Academy</title>
+
+<style>
+
+/* =====================================================
+   VARIABLES
+===================================================== */
+
+:root{
+
+    --primary:#7c3aed;
+    --primary2:#2563eb;
+
+    --bg:#0f172a;
+    --card:#1e293b;
+    --card2:#334155;
+
+    --text:#ffffff;
+    --muted:#94a3b8;
+
+    --border:#334155;
+
+    --success:#22c55e;
+    --danger:#ef4444;
+
+}
+
+
+/* =====================================================
+   MODE CLAIR
+===================================================== */
+
+body.light{
+
+    --bg:#f1f5f9;
+    --card:#ffffff;
+    --card2:#e2e8f0;
+
+    --text:#0f172a;
+    --muted:#64748b;
+
+    --border:#cbd5e1;
+
+}
+
+
+/* =====================================================
+   MODE COMPACT
+===================================================== */
+
+body.compact{
+
+    padding:12px;
+
+}
+
+body.compact .welcome{
+
+    padding:22px;
+
+}
+
+body.compact .course{
+
+    padding:14px;
+
+}
+
+body.compact .section-title{
+
+    margin:18px 0 12px;
+
+}
+
+
+/* =====================================================
+   BASE
+===================================================== */
+
+*{
+
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+
+}
+
+html{
+
+    scroll-behavior:smooth;
+
+}
+
+body{
+
+    font-family:
+    Arial,
+    sans-serif;
+
+    background:var(--bg);
+
+    color:var(--text);
+
+    min-height:100vh;
+
+    padding:20px;
+
+    transition:
+    background .3s,
+    color .3s;
+
+}
+
+.app{
+
+    width:100%;
+
+    max-width:620px;
+
+    margin:auto;
+
+}
+
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:25px;
+
+}
+
+.logo{
+
+    font-size:27px;
+
+    font-weight:bold;
+
+}
+
+.profile{
+
+    width:55px;
+
+    height:55px;
+
+    border-radius:50%;
+
+    background:
+    linear-gradient(
+        135deg,
+        var(--primary),
+        var(--primary2)
+    );
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:27px;
+
+    cursor:pointer;
+
+    box-shadow:
+    0 6px 18px
+    rgba(124,58,237,.35);
+
+    transition:.2s;
+
+}
+
+.profile:active{
+
+    transform:scale(.92);
+
+}
+
+
+/* =====================================================
+   BIENVENUE
+===================================================== */
+
+.welcome{
+
+    background:
+    linear-gradient(
+        135deg,
+        var(--primary),
+        var(--primary2)
+    );
+
+    padding:30px;
+
+    border-radius:28px;
+
+    margin-bottom:25px;
+
+}
+
+.welcome h1{
+
+    font-size:34px;
+
+    margin-bottom:12px;
+
+}
+
+.welcome p{
+
+    font-size:20px;
+
+    opacity:.92;
+
+}
+
+.progress{
+
+    margin-top:25px;
+
+}
+
+.progress-text{
+
+    margin-bottom:8px;
+
+}
+
+.progress-bar{
+
+    width:100%;
+
+    height:12px;
+
+    background:
+    rgba(255,255,255,.25);
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+}
+
+.progress-fill{
+
+    width:0%;
+
+    height:100%;
+
+    background:white;
+
+    transition:
+    width .5s ease;
+
+}
+
+
+/* =====================================================
+   TITRES
+===================================================== */
+
+.section-title{
+
+    margin:25px 0 15px;
+
+    font-size:27px;
+
+}
+
+
+/* =====================================================
+   COURS
+===================================================== */
+
+.course{
+
+    background:var(--card);
+
+    padding:20px;
+
+    border-radius:25px;
+
+    margin-bottom:15px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+    transition:.2s;
+
+}
+
+.course-icon{
+
+    width:70px;
+
+    height:70px;
+
+    background:var(--card2);
+
+    border-radius:20px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:32px;
+
+    flex-shrink:0;
+
+}
+
+.course-info{
+
+    flex:1;
+
+}
+
+.course-info h3{
+
+    font-size:23px;
+
+    margin-bottom:7px;
+
+}
+
+.course-info p{
+
+    color:var(--muted);
+
+    font-size:16px;
+
+    line-height:1.4;
+
+}
+
+.start{
+
+    background:var(--primary);
+
+    border:none;
+
+    color:white;
+
+    padding:14px 20px;
+
+    border-radius:15px;
+
+    font-size:17px;
+
+    cursor:pointer;
+
+}
+
+.start:active{
+
+    transform:scale(.96);
+
+}
+
+
+/* =====================================================
+   BOUTON PRATIQUE
+===================================================== */
+
+.practice-btn{
+
+    display:block;
+
+    width:100%;
+
+    margin:20px 0;
+
+    padding:17px 20px;
+
+    border:none;
+
+    border-radius:18px;
+
+    background:
+    linear-gradient(
+        135deg,
+        var(--primary),
+        #6d28d9
+    );
+
+    color:white;
+
+    font-size:18px;
+
+    font-weight:bold;
+
+    box-shadow:
+    0 8px 20px
+    rgba(124,58,237,.35);
+
+    cursor:pointer;
+
+}
+
+.practice-btn:active{
+
+    transform:scale(.97);
+
+}
+
+  /* =====================================================
+   GUIDE COMPLET
+===================================================== */
+
+.guide-card{
+
+    background:
+    linear-gradient(
+        135deg,
+        #312e81,
+        #581c87
+    );
+
+    padding:20px;
+
+    border-radius:25px;
+
+    margin-bottom:20px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+    box-shadow:
+    0 8px 25px
+    rgba(88,28,135,.25);
+
+}
+
+.guide-icon{
+
+    width:65px;
+
+    height:65px;
+
+    border-radius:20px;
+
+    background:
+    rgba(255,255,255,.15);
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:32px;
+
+    flex-shrink:0;
+
+}
+
+.guide-info{
+
+    flex:1;
+
+}
+
+.guide-info h3{
+
+    font-size:19px;
+
+    margin-bottom:6px;
+
+}
+
+.guide-info p{
+
+    color:#ddd6fe;
+
+    font-size:13px;
+
+    line-height:1.4;
+
+}
+
+.guide-btn{
+
+    background:white;
+
+    color:#581c87;
+
+    border:none;
+
+    padding:12px 15px;
+
+    border-radius:14px;
+
+    font-size:15px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+}
+
+.guide-btn:active{
+
+    transform:scale(.95);
+
+}
+
+
+/* =====================================================
+   PETITS TELEPHONES
+===================================================== */
+
+@media(max-width:380px){
+
+    .guide-card{
+
+        padding:16px;
+
+        gap:10px;
+
+    }
+
+    .guide-icon{
+
+        width:55px;
+
+        height:55px;
+
+        font-size:27px;
+
+    }
+
+    .guide-info h3{
+
+        font-size:16px;
+
+    }
+
+    .guide-info p{
+
+        font-size:12px;
+
+    }
+
+    .guide-btn{
+
+        padding:10px 12px;
+
+        font-size:13px;
+
+    }
+
+  }
+
+/* =====================================================
+   EXERCICE
+===================================================== */
+
+.exercise-card{
+
+    background:var(--card);
+
+    border-radius:25px;
+
+    padding:22px;
+
+    margin-top:35px;
+
+    margin-bottom:15px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:18px;
+
+}
+
+.exercise-icon{
+
+    width:70px;
+
+    height:70px;
+
+    background:var(--card2);
+
+    border-radius:20px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:35px;
+
+    flex-shrink:0;
+
+}
+
+.exercise-info{
+
+    flex:1;
+
+}
+
+.exercise-info h2{
+
+    font-size:24px;
+
+    line-height:1.15;
+
+    margin-bottom:7px;
+
+}
+
+.exercise-info p{
+
+    color:var(--muted);
+
+    font-size:16px;
+
+}
+
+.exercise-card .start{
+
+    padding:14px 18px;
+
+}
+
+
+/* =====================================================
+   SCORE
+===================================================== */
+
+.score-card{
+
+    background:var(--card);
+
+    border-radius:25px;
+
+    padding:28px 20px;
+
+    margin-bottom:25px;
+
+    text-align:center;
+
+}
+
+.target{
+
+    font-size:28px;
+
+    font-weight:bold;
+
+    margin-bottom:12px;
+
+}
+
+.score{
+
+    font-size:28px;
+
+    font-weight:bold;
+
+}
+
+.result{
+
+    min-height:25px;
+
+    margin:10px 0;
+
+    color:var(--muted);
+
+    font-size:16px;
+
+}
+
+
+/* =====================================================
+   PIANO
+===================================================== */
+
+.piano-title{
+
+    margin-top:5px;
+
+}
+
+.piano{
+
+    background:#020617;
+
+    padding:18px;
+
+    border-radius:25px;
+
+    overflow:hidden;
+
+    margin-bottom:30px;
+
+    touch-action:none;
+
+}
+
+.glissando-info{
+
+    text-align:center;
+
+    color:#94a3b8;
+
+    font-size:14px;
+
+    margin-bottom:14px;
+
+}
+
+.keys{
+
+    display:flex;
+
+    height:180px;
+
+    position:relative;
+
+    width:100%;
+
+    touch-action:none;
+
+    user-select:none;
+
+}
+
+.white{
+
+    flex:1;
+
+    background:white;
+
+    border:1px solid #111827;
+
+    border-radius:
+    0 0 10px 10px;
+
+    color:#111827;
+
+    display:flex;
+
+    align-items:flex-end;
+
+    justify-content:center;
+
+    padding-bottom:14px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    user-select:none;
+
+    touch-action:none;
+
+    position:relative;
+
+    z-index:1;
+
+}
+
+.white.active{
+
+    background:#cbd5e1;
+
+    transform:
+    translateY(3px);
+
+}
+
+.black{
+
+    position:absolute;
+
+    top:0;
+
+    width:10%;
+
+    height:110px;
+
+    background:#111827;
+
+    border-radius:
+    0 0 7px 7px;
+
+    z-index:3;
+
+    cursor:pointer;
+
+    touch-action:none;
+
+    user-select:none;
+
+}
+
+.black.active{
+
+    background:#475569;
+
+    transform:
+    translateY(3px);
+
+}
+
+.b1{left:10%;}
+.b2{left:24%;}
+.b3{left:52%;}
+.b4{left:67%;}
+.b5{left:81%;}
+
+.note{
+
+    text-align:center;
+
+    margin-top:15px;
+
+    color:#94a3b8;
+
+    font-size:16px;
+
+}
+
+
+/* =====================================================
+   PROFIL OVERLAY
+===================================================== */
+
+.profile-overlay{
+
+    position:fixed;
+
+    inset:0;
+
+    background:
+    rgba(2,6,23,.75);
+
+    backdrop-filter:
+    blur(8px);
+
+    z-index:1000;
+
+    display:none;
+
+    overflow-y:auto;
+
+    padding:20px;
+
+}
+
+.profile-overlay.show{
+
+    display:block;
+
+}
+
+.profile-panel{
+
+    width:100%;
+
+    max-width:620px;
+
+    margin:
+    10px auto 30px;
+
+    background:var(--bg);
+
+    border-radius:28px;
+
+    padding:20px;
+
+    min-height:90vh;
+
+}
+
+
+/* =====================================================
+   PROFILE HEADER
+===================================================== */
+
+.profile-header{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+    margin-bottom:20px;
+
+}
+
+.close-profile{
+
+    width:44px;
+
+    height:44px;
+
+    border:none;
+
+    border-radius:14px;
+
+    background:var(--card2);
+
+    color:var(--text);
+
+    font-size:22px;
+
+    cursor:pointer;
+
+}
+
+.profile-title{
+
+    flex:1;
+
+}
+
+.profile-title h2{
+
+    font-size:23px;
+
+}
+
+.profile-title p{
+
+    color:var(--muted);
+
+    margin-top:4px;
+
+}
+
+
+/* =====================================================
+   PROFILE HERO
+===================================================== */
+
+.profile-hero{
+
+    background:
+    linear-gradient(
+        135deg,
+        var(--primary),
+        var(--primary2)
+    );
+
+    padding:25px;
+
+    border-radius:25px;
+
+    margin-bottom:18px;
+
+}
+
+.avatar-large{
+
+    width:78px;
+
+    height:78px;
+
+    border-radius:50%;
+
+    background:
+    rgba(255,255,255,.2);
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:40px;
+
+    margin-bottom:15px;
+
+}
+
+.profile-hero h2{
+
+    font-size:28px;
+
+    margin-bottom:7px;
+
+}
+
+.profile-hero p{
+
+    opacity:.9;
+
+}
+
+
+/* =====================================================
+   STATISTIQUES
+===================================================== */
+
+.stats-grid{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(2,1fr);
+
+    gap:12px;
+
+    margin-bottom:18px;
+
+}
+
+.stat{
+
+    background:var(--card);
+
+    border-radius:20px;
+
+    padding:18px;
+
+}
+
+.stat-icon{
+
+    font-size:25px;
+
+    margin-bottom:8px;
+
+}
+
+.stat-value{
+
+    font-size:21px;
+
+    font-weight:bold;
+
+}
+
+.stat-label{
+
+    color:var(--muted);
+
+    font-size:13px;
+
+    margin-top:5px;
+
+}
+
+
+/* =====================================================
+   NIVEAUX
+===================================================== */
+
+.levels-card{
+
+    background:var(--card);
+
+    padding:20px;
+
+    border-radius:22px;
+
+    margin-bottom:18px;
+
+}
+
+.levels-card h3{
+
+    margin-bottom:15px;
+
+}
+
+.level{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    padding:14px;
+
+    border-radius:15px;
+
+    margin-bottom:9px;
+
+    background:var(--card2);
+
+}
+
+.level:last-child{
+
+    margin-bottom:0;
+
+}
+
+.level-icon{
+
+    font-size:25px;
+
+}
+
+.level-info{
+
+    flex:1;
+
+}
+
+.level-info strong{
+
+    display:block;
+
+    margin-bottom:4px;
+
+}
+
+.level-info span{
+
+    color:var(--muted);
+
+    font-size:13px;
+
+}
+
+.level-status{
+
+    font-size:20px;
+
+}
+
+
+/* =====================================================
+   REGLAGES
+===================================================== */
+
+.settings-card{
+
+    background:var(--card);
+
+    border-radius:22px;
+
+    overflow:hidden;
+
+    margin-bottom:18px;
+
+}
+
+.settings-title{
+
+    padding:18px;
+
+    font-size:18px;
+
+    font-weight:bold;
+
+    border-bottom:
+    1px solid var(--border);
+
+}
+
+.setting{
+
+    padding:16px 18px;
+
+    border-bottom:
+    1px solid var(--border);
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+}
+
+.setting:last-child{
+
+    border-bottom:none;
+
+}
+
+.setting-icon{
+
+    font-size:23px;
+
+    width:30px;
+
+}
+
+.setting-info{
+
+    flex:1;
+
+}
+
+.setting-info strong{
+
+    display:block;
+
+    margin-bottom:4px;
+
+}
+
+.setting-info span{
+
+    color:var(--muted);
+
+    font-size:12px;
+
+}
+
+.setting select{
+
+    background:var(--card2);
+
+    color:var(--text);
+
+    border:none;
+
+    padding:9px;
+
+    border-radius:10px;
+
+}
+
+.setting input[type="number"]{
+
+    width:70px;
+
+    background:var(--card2);
+
+    color:var(--text);
+
+    border:none;
+
+    padding:9px;
+
+    border-radius:10px;
+
+    text-align:center;
+
+}
+
+
+/* =====================================================
+   SWITCH
+===================================================== */
+
+.switch{
+
+    position:relative;
+
+    width:48px;
+
+    height:26px;
+
+}
+
+.switch input{
+
+    opacity:0;
+
+    width:0;
+
+    height:0;
+
+}
+
+.slider{
+
+    position:absolute;
+
+    inset:0;
+
+    background:#475569;
+
+    border-radius:30px;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.slider:before{
+
+    content:"";
+
+    position:absolute;
+
+    width:20px;
+
+    height:20px;
+
+    left:3px;
+
+    top:3px;
+
+    background:white;
+
+    border-radius:50%;
+
+    transition:.3s;
+
+}
+
+.switch input:checked + .slider{
+
+    background:var(--primary);
+
+}
+
+.switch input:checked + .slider:before{
+
+    transform:
+    translateX(22px);
+
+}
+
+
+/* =====================================================
+   BADGES
+===================================================== */
+
+.badges{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(4,1fr);
+
+    gap:10px;
+
+}
+
+.badge{
+
+    background:var(--card2);
+
+    border-radius:15px;
+
+    padding:14px 6px;
+
+    text-align:center;
+
+}
+
+.badge span{
+
+    display:block;
+
+    font-size:25px;
+
+    margin-bottom:6px;
+
+}
+
+.badge small{
+
+    color:var(--muted);
+
+    font-size:10px;
+
+}
+
+
+/* =====================================================
+   RESET
+===================================================== */
+
+.reset-btn{
+
+    width:100%;
+
+    padding:15px;
+
+    border:none;
+
+    border-radius:15px;
+
+    background:
+    rgba(239,68,68,.15);
+
+    color:#f87171;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    margin-bottom:15px;
+
+}
+
+
+/* =====================================================
+   ABOUT
+===================================================== */
+
+.about{
+
+    text-align:center;
+
+    color:var(--muted);
+
+    line-height:1.7;
+
+    padding:15px;
+
+}
+
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media(max-width:500px){
+
+    body{
+
+        padding:20px 14px;
+
+    }
+
+    .logo{
+
+        font-size:24px;
+
+    }
+
+    .welcome{
+
+        padding:27px 23px;
+
+    }
+
+    .welcome h1{
+
+        font-size:31px;
+
+    }
+
+    .welcome p{
+
+        font-size:19px;
+
+    }
+
+    .exercise-card{
+
+        padding:18px;
+
+        gap:13px;
+
+    }
+
+    .exercise-icon{
+
+        width:62px;
+
+        height:62px;
+
+        font-size:30px;
+
+    }
+
+    .exercise-info h2{
+
+        font-size:21px;
+
+    }
+
+    .exercise-info p{
+
+        font-size:14px;
+
+    }
+
+    .exercise-card .start{
+
+        padding:12px 15px;
+
+    }
+
+    .course{
+
+        padding:17px;
+
+    }
+
+    .course-icon{
+
+        width:62px;
+
+        height:62px;
+
+        font-size:28px;
+
+    }
+
+    .course-info h3{
+
+        font-size:20px;
+
+    }
+
+    .course-info p{
+
+        font-size:14px;
+
+    }
+
+    .start{
+
+        padding:12px 15px;
+
+        font-size:15px;
+
+    }
+
+    .target{
+
+        font-size:25px;
+
+    }
+
+    .score{
+
+        font-size:26px;
+
+    }
+
+}
+
+
+/* =====================================================
+   PETITS TELEPHONES
+===================================================== */
+
+@media(max-width:380px){
+
+    .exercise-card{
+
+        gap:9px;
+
+    }
+
+    .exercise-icon{
+
+        width:55px;
+
+        height:55px;
+
+        font-size:26px;
+
+    }
+
+    .exercise-info h2{
+
+        font-size:18px;
+
+    }
+
+    .exercise-card .start{
+
+        padding:10px 12px;
+
+        font-size:14px;
+
+    }
+
+    .stats-grid{
+
+        grid-template-columns:1fr 1fr;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+<div class="app">
+
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
+<header>
+
+    <div class="logo">
+        🎹 Piano Academy
+    </div>
+
+    <!-- PROFIL CLIQUABLE -->
+
+    <div
+        class="profile"
+        onclick="openProfile()">
+
+        👤
+
+    </div>
+
+</header>
+
+
+<!-- =====================================================
+     BIENVENUE
+===================================================== -->
+
+<div class="welcome">
+
+    <h1 id="welcomeName">
+        Bonjour 👋
+    </h1>
+
+    <p>
+        Apprends le piano étape par étape.
+    </p>
+
+    <div class="progress">
+
+        <p class="progress-text">
+
+            Progression :
+            <span id="homeProgress">
+                0
+            </span>%
+
+        </p>
+
+        <div class="progress-bar">
+
+            <div
+                class="progress-fill"
+                id="homeProgressFill">
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     MES COURS
+===================================================== -->
+
+<h2 class="section-title">
+
+    📚 Mes cours
+
+</h2>
+
+
+<div class="course">
+
+    <div class="course-icon">
+        📖
+    </div>
+
+    <div class="course-info">
+
+        <h3>
+            Les bases du piano
+        </h3>
+
+        <p>
+            Théorie avant la pratique
+        </p>
+
+    </div>
+
+    <button
+        class="start"
+        onclick="window.location.href='theorie.html'">
+
+        Commencer
+
+    </button>
+
+</div>
+
+  <!-- =====================================================
+     GUIDE
+===================================================== -->
+
+<div class="guide-card">
+
+    <div class="guide-icon">
+        📘
+    </div>
+
+    <div class="guide-info">
+
+        <h3>
+            Guide complet Piano Academy
+        </h3>
+
+        <p>
+            Découvre le guide complet de formation
+            Piano Academy.
+        </p>
+
+    </div>
+
+    <button
+        class="guide-btn"
+        onclick="window.location.href='guide.html'">
+
+        📖 Voir
+
+    </button>
+
+</div>
+
+<!-- =====================================================
+     PRATIQUE
+===================================================== -->
+
+<button
+    class="practice-btn"
+    onclick="window.location.href='pratique.html'">
+
+    🎹 PASSER À LA PRATIQUE
+
+</button>
+
+
+<!-- =====================================================
+     LIRE LES NOTES
+===================================================== -->
+
+<div class="course">
+
+    <div class="course-icon">
+        🎼
+    </div>
+
+    <div class="course-info">
+
+        <h3>
+            Lire les notes
+        </h3>
+
+        <p>
+            Do, Ré, Mi, Fa, Sol
+        </p>
+
+    </div>
+
+    <button
+        class="start"
+        onclick="window.location.href='lire-notes.html'">
+
+        Commencer
+
+    </button>
+
+</div>
+
+
+<!-- =====================================================
+     ENTRAINEMENT
+===================================================== -->
+
+<h2 class="section-title">
+
+    🎯 Entraînement
+
+</h2>
+
+
+<div class="exercise-card">
+
+    <div class="exercise-icon">
+        🎯
+    </div>
+
+    <div class="exercise-info">
+
+        <h2>
+            Exercice<br>
+            interactif
+        </h2>
+
+        <p>
+            Joue la bonne note
+        </p>
+
+    </div>
+
+    <button
+        class="start"
+        onclick="newExercise()">
+
+        Jouer
+
+    </button>
+
+</div>
+
+
+<!-- =====================================================
+     SCORE
+===================================================== -->
+
+<div class="score-card">
+
+    <div
+        class="target"
+        id="targetNote">
+
+        Appuie sur Jouer 🎯
+
+    </div>
+
+    <div
+        class="result"
+        id="result">
+    </div>
+
+    <div
+        class="score"
+        id="score">
+
+        Score : 0 ⭐
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     PIANO
+===================================================== -->
+
+<h2 class="section-title piano-title">
+
+    🎹 Petit piano
+
+</h2>
+
+
+<div class="piano">
+
+    <div class="glissando-info">
+
+        ☝️ Fais glisser ton doigt sur les touches
+        pour jouer en glissando
+
+    </div>
+
+
+    <div
+        class="keys"
+        id="pianoKeys">
+
+
+        <div
+            class="white"
+            data-note="Do"
+            data-freq="261.63">
+
+            Do
+
+        </div>
+
+        <div
+            class="white"
+            data-note="Ré"
+            data-freq="293.66">
+
+            Ré
+
+        </div>
+
+        <div
+            class="white"
+            data-note="Mi"
+            data-freq="329.63">
+
+            Mi
+
+        </div>
+
+        <div
+            class="white"
+            data-note="Fa"
+            data-freq="349.23">
+
+            Fa
+
+        </div>
+
+        <div
+            class="white"
+            data-note="Sol"
+            data-freq="392.00">
+
+            Sol
+
+        </div>
+
+        <div
+            class="white"
+            data-note="La"
+            data-freq="440.00">
+
+            La
+
+        </div>
+
+        <div
+            class="white"
+            data-note="Si"
+            data-freq="493.88">
+
+            Si
+
+        </div>
+
+
+        <div
+            class="black b1"
+            data-note="Do#"
+            data-freq="277.18">
+        </div>
+
+        <div
+            class="black b2"
+            data-note="Ré#"
+            data-freq="311.13">
+        </div>
+
+        <div
+            class="black b3"
+            data-note="Fa#"
+            data-freq="369.99">
+        </div>
+
+        <div
+            class="black b4"
+            data-note="Sol#"
+            data-freq="415.30">
+        </div>
+
+        <div
+            class="black b5"
+            data-note="La#"
+            data-freq="466.16">
+        </div>
+
+    </div>
+
+
+    <div
+        class="note"
+        id="note">
+
+        Appuie sur une touche 🎵
+
+    </div>
+
+</div>
+
+
+</div>
+
+
+<!-- =====================================================
+     PROFIL
+===================================================== -->
+
+<div
+    class="profile-overlay"
+    id="profileOverlay">
+
+
+<div class="profile-panel">
+
+
+<!-- PROFILE HEADER -->
+
+<div class="profile-header">
+
+    <button
+        class="close-profile"
+        onclick="closeProfile()">
+
+        ←
+
+    </button>
+
+    <div class="profile-title">
+
+        <h2>
+            👤 Mon profil
+        </h2>
+
+        <p>
+            Tableau de bord personnel
+        </p>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     HERO PROFIL
+===================================================== -->
+
+<div class="profile-hero">
+
+    <div class="avatar-large">
+        👤
+    </div>
+
+    <h2 id="profileName">
+        Bérékia
+    </h2>
+
+    <p id="currentLevelText">
+
+        Niveau 1 — Fondations
+
+    </p>
+
+</div>
+
+
+<!-- =====================================================
+     STATISTIQUES
+===================================================== -->
+
+<div class="stats-grid">
+
+
+    <div class="stat">
+
+        <div class="stat-icon">
+            📊
+        </div>
+
+        <div
+            class="stat-value"
+            id="profileProgress">
+
+            0%
+
+        </div>
+
+        <div class="stat-label">
+
+            Progression générale
+
+        </div>
+
+    </div>
+
+
+    <div class="stat">
+
+        <div class="stat-icon">
+            ⭐
+        </div>
+
+        <div
+            class="stat-value"
+            id="profileXP">
+
+            0 XP
+
+        </div>
+
+        <div class="stat-label">
+
+            Expérience
+
+        </div>
+
+    </div>
+
+
+    <div class="stat">
+
+        <div class="stat-icon">
+            🔥
+        </div>
+
+        <div
+            class="stat-value"
+            id="profileStreak">
+
+            0 jours
+
+        </div>
+
+        <div class="stat-label">
+
+            Série actuelle
+
+        </div>
+
+    </div>
+
+
+    <div class="stat">
+
+        <div class="stat-icon">
+            🎹
+        </div>
+
+        <div
+            class="stat-value"
+            id="profilePractice">
+
+            0 min
+
+        </div>
+
+        <div class="stat-label">
+
+            Temps de pratique
+
+        </div>
+
+    </div>
+
+
+    <div class="stat">
+
+        <div class="stat-icon">
+            🏆
+        </div>
+
+        <div
+            class="stat-value"
+            id="profileBadges">
+
+            0
+
+        </div>
+
+        <div class="stat-label">
+
+            Badges
+
+        </div>
+
+    </div>
+
+
+    <div class="stat">
+
+        <div class="stat-icon">
+            🎯
+        </div>
+
+        <div
+            class="stat-value"
+            id="profileExercises">
+
+            0
+
+        </div>
+
+        <div class="stat-label">
+
+            Exercices réussis
+
+        </div>
+
+    </div>
+
+
+</div>
+
+
+<!-- =====================================================
+     NIVEAUX
+===================================================== -->
+
+<div class="levels-card">
+
+    <h3>
+        🏆 Progression des niveaux
+    </h3>
+
+
+    <div class="level">
+
+        <div class="level-icon">
+            🎹
+        </div>
+
+        <div class="level-info">
+
+            <strong>
+                Niveau 1 — Fondations
+            </strong>
+
+            <span>
+                12 modules
+            </span>
+
+        </div>
+
+        <div
+            class="level-status"
+            id="level1Status">
+
+            🔓
+
+        </div>
+
+    </div>
+
+
+    <div class="level">
+
+        <div class="level-icon">
+            🎼
+        </div>
+
+        <div class="level-info">
+
+            <strong>
+                Niveau 2 — Débutant avancé
+            </strong>
+
+            <span>
+                12 modules
+            </span>
+
+        </div>
+
+        <div
+            class="level-status"
+            id="level2Status">
+
+            🔒
+
+        </div>
+
+    </div>
+
+
+    <div class="level">
+
+        <div class="level-icon">
+            🎹
+        </div>
+
+        <div class="level-info">
+
+            <strong>
+                Niveau 3 — Intermédiaire
+            </strong>
+
+            <span>
+                12 modules
+            </span>
+
+        </div>
+
+        <div
+            class="level-status"
+            id="level3Status">
+
+            🔒
+
+        </div>
+
+    </div>
+
+
+    <div class="level">
+
+        <div class="level-icon">
+            🎶
+        </div>
+
+        <div class="level-info">
+
+            <strong>
+                Niveau 4 — Intermédiaire avancé
+            </strong>
+
+            <span>
+                12 modules
+            </span>
+
+        </div>
+
+        <div
+            class="level-status"
+            id="level4Status">
+
+            🔒
+
+        </div>
+
+    </div>
+
+
+    <div class="level">
+
+        <div class="level-icon">
+            🏆
+        </div>
+
+        <div class="level-info">
+
+            <strong>
+                Niveau 5 — Pianiste avancé
+            </strong>
+
+            <span>
+                12 modules
+            </span>
+
+        </div>
+
+        <div
+            class="level-status"
+            id="level5Status">
+
+            🔒
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     MOTIVATION
+===================================================== -->
+
+<div class="levels-card">
+
+    <h3>
+        🏅 Mes badges
+    </h3>
+
+    <div class="badges">
+
+        <div class="badge">
+
+            <span>🌱</span>
+
+            <small>
+                Débutant
+            </small>
+
+        </div>
+
+        <div class="badge">
+
+            <span>🎹</span>
+
+            <small>
+                Pianiste
+            </small>
+
+        </div>
+
+        <div class="badge">
+
+            <span>🔥</span>
+
+            <small>
+                Régulier
+            </small>
+
+        </div>
+
+        <div class="badge">
+
+            <span>⭐</span>
+
+            <small>
+                Étoile
+            </small>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     REGLAGES APPARENCE
+===================================================== -->
+
+<div class="settings-card">
+
+    <div class="settings-title">
+
+        🎨 Apparence
+
+    </div>
+
+
+    <!-- MODE SOMBRE -->
+
+    <div class="setting">
+
+        <div class="setting-icon">
+            🌙
+        </div>
+
+        <div class="setting-info">
+
+            <strong>
+                Mode sombre
+            </strong>
+
+            <span>
+                Utiliser le thème sombre
+            </span>
+
+        </div>
+
+        <label class="switch">
+
+            <input
+                type="checkbox"
+                id="darkMode"
+                checked
+                onchange="toggleDarkMode()">
+
+            <span class="slider"></span>
+
+        </label>
+
+    </div>
+
+
+    <!-- COULEUR -->
+
+    <div class="setting">
+
+        <div class="setting-icon">
+            🎨
+        </div>
+
+        <div class="setting-info">
+
+            <strong>
+                Couleur principale
+            </strong>
+
+            <span>
+                Personnaliser l'application
+            </span>
+
+        </div>
+
+        <input
+            type="color"
+            id="accentColor"
+            value="#7c3aed"
+            onchange="changeAccent(this.value)">
+
+    </div>
+
+
+    <!-- COMPACT -->
+
+    <div class="setting">
+
+        <div class="setting-icon">
+            📱
+        </div>
+
+        <div class="setting-info">
+
+            <strong>
+                Mode compact
+            </strong>
+
+            <span>
+                Réduire les espaces
+            </span>
+
+        </div>
+
+        <label class="switch">
+
+            <input
+                type="checkbox"
+                id="compactMode"
+                onchange="toggleCompact()">
+
+            <span class="slider"></span>
+
+        </label>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     OBJECTIFS
+===================================================== -->
+
+<div class="settings-card">
+
+    <div class="settings-title">
+
+        🎯 Objectifs
+
+    </div>
+
+
+    <div class="setting">
+
+        <div class="setting-icon">
+            🎯
+        </div>
+
+        <div class="setting-info">
+
+            <strong>
+                Objectif quotidien
+            </strong>
+
+            <span>
+                Minutes de piano par jour
+            </span>
+
+        </div>
+
+        <input
+            type="number"
+            id="dailyGoal"
+            min="5"
+            max="300"
+            value="20"
+            onchange="saveSettings()">
+
+    </div>
+
+
+    <div class="setting">
+
+        <div class="setting-icon">
+            🔔
+        </div>
+
+        <div class="setting-info">
+
+            <strong>
+                Rappel de pratique
+            </strong>
+
+            <span>
+                Recevoir un rappel
+            </span>
+
+        </div>
+
+        <label class="switch">
+
+            <input
+                type="checkbox"
+                id="practiceReminder"
+                onchange="saveSettings()">
+
+            <span class="slider"></span>
+
+        </label>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     LANGUE
+===================================================== -->
+
+<div class="settings-card">
+
+    <div class="settings-title">
+
+        ⚙️ Général
+
+    </div>
+
+
+    <div class="setting">
+
+        <div class="setting-icon">
+            🌐
+        </div>
+
+        <div class="setting-info">
+
+            <strong>
+                Langue
+            </strong>
+
+            <span>
+                Langue de Piano Academy
+            </span>
+
+        </div>
+
+        <select
+            id="language"
+            onchange="changeLanguage()">
+
+            <option value="fr">
+                Français
+            </option>
+
+            <option value="en">
+                English
+            </option>
+
+        </select>
+
+    </div>
+
+
+    <div class="setting">
+
+        <div class="setting-icon">
+            ℹ️
+        </div>
+
+        <div class="setting-info">
+
+            <strong>
+                À propos
+            </strong>
+
+            <span>
+                Piano Academy — Formation piano
+            </span>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     RESET
+===================================================== -->
+
+<button
+    class="reset-btn"
+    onclick="resetProgress()">
+
+    🔄 Réinitialiser la progression
+
+</button>
+
+
+<div class="about">
+
+    🎹 <strong>Piano Academy</strong>
+
+    <br>
+
+    Apprends.
+    Pratique.
+    Progresse.
+
+    <br><br>
+
+    Version 1.0
+
+</div>
+
+
+</div>
+
+</div>
+
+
+<script>
+
+/* =====================================================
+   DONNEES UTILISATEUR
+===================================================== */
+
+let userData = {
+
+    name:"Bérékia",
+
+    xp:250,
+
+    streak:5,
+
+    practiceMinutes:155,
+
+    exercises:0,
+
+    dailyGoal:20,
+
+    reminder:false,
+
+    language:"fr"
+
+};
+
+
+/* =====================================================
+   CHARGER DONNEES
+===================================================== */
+
+function loadUserData(){
+
+    const saved =
+        localStorage.getItem(
+            "pianoUserData"
+        );
+
+    if(saved){
+
+        try{
+
+            userData =
+                Object.assign(
+                    userData,
+                    JSON.parse(saved)
+                );
+
+        }catch(error){
+
+            console.log(
+                "Données utilisateur invalides"
+            );
+
+        }
+
+    }
+
+}
+
+
+/* =====================================================
+   SAUVEGARDER
+===================================================== */
+
+function saveUserData(){
+
+    localStorage.setItem(
+        "pianoUserData",
+        JSON.stringify(userData)
+    );
+
+}
+
+
+/* =====================================================
+   CALCUL PROGRESSION
+===================================================== */
+
+function getProgress(){
+
+    let completed = 0;
+
+    /*
+       Niveau 1
+       12 modules
+    */
+
+    for(let i=1;i<=12;i++){
+
+        if(
+            localStorage.getItem(
+                "pianoModule"+i
+            ) === "completed"
+        ){
+
+            completed++;
+
+        }
+
+    }
+
+
+    /*
+       Niveaux 2 à 5
+       compatibles avec notre
+       futur système.
+    */
+
+    for(let level=2;level<=5;level++){
+
+        for(let module=1;module<=12;module++){
+
+            if(
+                localStorage.getItem(
+                    "pianoL"+level+"M"+module
+                ) === "completed"
+            ){
+
+                completed++;
+
+            }
+
+        }
+
+    }
+
+
+    return Math.round(
+        (completed / 60) * 100
+    );
+
+}
+
+
+/* =====================================================
+   DETERMINER NIVEAU
+===================================================== */
+
+function getCurrentLevel(){
+
+    const progress =
+        getProgress();
+
+    if(progress >= 80){
+
+        return 5;
+
+    }
+
+    if(progress >= 60){
+
+        return 4;
+
+    }
+
+    if(progress >= 40){
+
+        return 3;
+
+    }
+
+    if(progress >= 20){
+
+        return 2;
+
+    }
+
+    return 1;
+
+}
+
+
+/* =====================================================
+   METTRE A JOUR PROFIL
+===================================================== */
+
+function updateProfile(){
+
+    const progress =
+        getProgress();
+
+    const level =
+        getCurrentLevel();
+
+
+    /*
+       Accueil
+    */
+
+    document.getElementById(
+        "welcomeName"
+    ).innerText =
+        "Bonjour " +
+        userData.name +
+        " 👋";
+
+
+    document.getElementById(
+        "homeProgress"
+    ).innerText =
+        progress;
+
+
+    document.getElementById(
+        "homeProgressFill"
+    ).style.width =
+        progress + "%";
+
+
+    /*
+       Profil
+    */
+
+    document.getElementById(
+        "profileName"
+    ).innerText =
+        userData.name;
+
+
+    document.getElementById(
+        "currentLevelText"
+    ).innerText =
+        getLevelName(level);
+
+
+    document.getElementById(
+        "profileProgress"
+    ).innerText =
+        progress + "%";
+
+
+    document.getElementById(
+        "profileXP"
+    ).innerText =
+        userData.xp + " XP";
+
+
+    document.getElementById(
+        "profileStreak"
+    ).innerText =
+        userData.streak +
+        " jours";
+
+
+    document.getElementById(
+        "profilePractice"
+    ).innerText =
+        formatTime(
+            userData.practiceMinutes
+        );
+
+
+    document.getElementById(
+        "profileExercises"
+    ).innerText =
+        userData.exercises;
+
+
+    /*
+       Badges
+    */
+
+    document.getElementById(
+        "profileBadges"
+    ).innerText =
+        calculateBadges();
+
+
+    /*
+       Niveaux
+    */
+
+    for(let i=1;i<=5;i++){
+
+        const element =
+            document.getElementById(
+                "level"+i+"Status"
+            );
+
+        if(i < level){
+
+            element.innerText =
+                "✅";
+
+        }else if(i === level){
+
+            element.innerText =
+                "🔓";
+
+        }else{
+
+            element.innerText =
+                "🔒";
+
+        }
+
+    }
+
+}
+
+
+/* =====================================================
+   NOM DU NIVEAU
+===================================================== */
+
+function getLevelName(level){
+
+    const names = {
+
+        1:"Niveau 1 — Fondations",
+
+        2:"Niveau 2 — Débutant avancé",
+
+        3:"Niveau 3 — Intermédiaire",
+
+        4:"Niveau 4 — Intermédiaire avancé",
+
+        5:"Niveau 5 — Pianiste avancé"
+
+    };
+
+    return names[level];
+
+}
+
+
+/* =====================================================
+   BADGES
+===================================================== */
+
+function calculateBadges(){
+
+    let badges = 0;
+
+    if(userData.xp >= 100){
+        badges++;
+    }
+
+    if(userData.streak >= 3){
+        badges++;
+    }
+
+    if(userData.practiceMinutes >= 60){
+        badges++;
+    }
+
+    if(getProgress() >= 25){
+        badges++;
+    }
+
+    return badges;
+
+}
+
+
+/* =====================================================
+   TEMPS
+===================================================== */
+
+function formatTime(minutes){
+
+    if(minutes < 60){
+
+        return minutes + " min";
+
+    }
+
+    const hours =
+        Math.floor(
+            minutes / 60
+        );
+
+    const mins =
+        minutes % 60;
+
+    return (
+        hours +
+        " h " +
+        mins +
+        " min"
+    );
+
+}
+
+
+/* =====================================================
+   OUVRIR PROFIL
+===================================================== */
+
+function openProfile(){
+
+    updateProfile();
+
+    document.getElementById(
+        "profileOverlay"
+    ).classList.add("show");
+
+    document.body.style.overflow =
+        "hidden";
+
+}
+
+
+/* =====================================================
+   FERMER PROFIL
+===================================================== */
+
+function closeProfile(){
+
+    document.getElementById(
+        "profileOverlay"
+    ).classList.remove("show");
+
+    document.body.style.overflow =
+        "";
+
+}
+
+
+/* =====================================================
+   MODE SOMBRE
+===================================================== */
+
+function toggleDarkMode(){
+
+    const checkbox =
+        document.getElementById(
+            "darkMode"
+        );
+
+    if(checkbox.checked){
+
+        document.body.classList.remove(
+            "light"
+        );
+
+        localStorage.setItem(
+            "pianoTheme",
+            "dark"
+        );
+
+    }else{
+
+        document.body.classList.add(
+            "light"
+        );
+
+        localStorage.setItem(
+            "pianoTheme",
+            "light"
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   COULEUR PRINCIPALE
+===================================================== */
+
+function changeAccent(color){
+
+    document.documentElement
+        .style
+        .setProperty(
+            "--primary",
+            color
+        );
+
+    localStorage.setItem(
+        "pianoAccent",
+        color
+    );
+
+}
+
+
+/* =====================================================
+   MODE COMPACT
+===================================================== */
+
+function toggleCompact(){
+
+    const checkbox =
+        document.getElementById(
+            "compactMode"
+        );
+
+    if(checkbox.checked){
+
+        document.body.classList.add(
+            "compact"
+        );
+
+        localStorage.setItem(
+            "pianoCompact",
+            "true"
+        );
+
+    }else{
+
+        document.body.classList.remove(
+            "compact"
+        );
+
+        localStorage.setItem(
+            "pianoCompact",
+            "false"
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   REGLAGES
+===================================================== */
+
+function saveSettings(){
+
+    userData.dailyGoal =
+        parseInt(
+            document.getElementById(
+                "dailyGoal"
+            ).value
+        ) || 20;
+
+
+    userData.reminder =
+        document.getElementById(
+            "practiceReminder"
+        ).checked;
+
+
+    saveUserData();
+
+}
+
+
+/* =====================================================
+   LANGUE
+===================================================== */
+
+function changeLanguage(){
+
+    const language =
+        document.getElementById(
+            "language"
+        ).value;
+
+    userData.language =
+        language;
+
+    saveUserData();
+
+
+    if(language === "en"){
+
+        alert(
+            "English mode will be fully available in a future update."
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   RESET PROGRESSION
+===================================================== */
+
+function resetProgress(){
+
+    const confirmation =
+        confirm(
+            "⚠️ Voulez-vous vraiment réinitialiser votre progression ?"
+        );
+
+
+    if(!confirmation){
+
+        return;
+
+    }
+
+
+    /*
+       Supprimer les modules
+    */
+
+    for(let i=1;i<=12;i++){
+
+        localStorage.removeItem(
+            "pianoModule"+i
+        );
+
+    }
+
+
+    /*
+       Supprimer niveaux 2 à 5
+    */
+
+    for(let level=2;level<=5;level++){
+
+        for(let module=1;module<=12;module++){
+
+            localStorage.removeItem(
+                "pianoL"+level+"M"+module
+            );
+
+        }
+
+    }
+
+
+    userData.xp = 0;
+
+    userData.streak = 0;
+
+    userData.practiceMinutes = 0;
+
+    userData.exercises = 0;
+
+
+    saveUserData();
+
+    updateProfile();
+
+
+    alert(
+        "Progression réinitialisée."
+    );
+
+}
+
+
+/* =====================================================
+   CHARGER APPARENCE
+===================================================== */
+
+function loadAppearance(){
+
+    const theme =
+        localStorage.getItem(
+            "pianoTheme"
+        );
+
+
+    const accent =
+        localStorage.getItem(
+            "pianoAccent"
+        );
+
+
+    const compact =
+        localStorage.getItem(
+            "pianoCompact"
+        );
+
+
+    if(theme === "light"){
+
+        document.body.classList.add(
+            "light"
+        );
+
+        document.getElementById(
+            "darkMode"
+        ).checked = false;
+
+    }
+
+
+    if(accent){
+
+        document.documentElement
+            .style
+            .setProperty(
+                "--primary",
+                accent
+            );
+
+        document.getElementById(
+            "accentColor"
+        ).value = accent;
+
+    }
+
+
+    if(compact === "true"){
+
+        document.body.classList.add(
+            "compact"
+        );
+
+        document.getElementById(
+            "compactMode"
+        ).checked = true;
+
+    }
+
+}
+
+
+/* =====================================================
+   INITIALISATION PROFIL
+===================================================== */
+
+function initProfile(){
+
+    document.getElementById(
+        "dailyGoal"
+    ).value =
+        userData.dailyGoal;
+
+
+    document.getElementById(
+        "practiceReminder"
+    ).checked =
+        userData.reminder;
+
+
+    document.getElementById(
+        "language"
+    ).value =
+        userData.language;
+
+}
+
+
+/* =====================================================
+   AUDIO
+===================================================== */
+
+let audioContext = null;
+
+let target = "";
+
+let score = 0;
+
+
+function initAudio(){
+
+    if(audioContext === null){
+
+        audioContext =
+            new (
+                window.AudioContext ||
+                window.webkitAudioContext
+            )();
+
+    }
+
+    if(
+        audioContext.state ===
+        "suspended"
+    ){
+
+        audioContext.resume();
+
+    }
+
+}
+
+
+/* =====================================================
+   JOUER NOTE
+===================================================== */
+
+function playNote(freq,name){
+
+    initAudio();
+
+
+    const osc =
+        audioContext.createOscillator();
+
+    const gain =
+        audioContext.createGain();
+
+
+    osc.type =
+        "sine";
+
+    osc.frequency.value =
+        freq;
+
+
+    gain.gain.setValueAtTime(
+        0.001,
+        audioContext.currentTime
+    );
+
+
+    gain.gain.exponentialRampToValueAtTime(
+        0.30,
+        audioContext.currentTime + 0.01
+    );
+
+
+    gain.gain.exponentialRampToValueAtTime(
+        0.001,
+        audioContext.currentTime + 0.8
+    );
+
+
+    osc.connect(gain);
+
+    gain.connect(
+        audioContext.destination
+    );
+
+
+    osc.start();
+
+    osc.stop(
+        audioContext.currentTime + 0.8
+    );
+
+
+    document.getElementById(
+        "note"
+    ).innerText =
+        "🎵 " + name;
+
+
+    checkAnswer(name);
+
+}
+
+
+/* =====================================================
+   EXERCICE
+===================================================== */
+
+function newExercise(){
+
+    const notes = [
+
+        "Do",
+        "Ré",
+        "Mi",
+        "Fa",
+        "Sol",
+        "La",
+        "Si"
+
+    ];
+
+
+    target =
+        notes[
+            Math.floor(
+                Math.random() *
+                notes.length
+            )
+        ];
+
+
+    document.getElementById(
+        "targetNote"
+    ).innerText =
+        "Joue : " +
+        target +
+        " 🎯";
+
+
+    document.getElementById(
+        "result"
+    ).innerText = "";
+
+}
+
+
+/* =====================================================
+   REPONSE
+===================================================== */
+
+function checkAnswer(note){
+
+    if(target === ""){
+
+        return;
+
+    }
+
+
+    if(note === target){
+
+        score++;
+
+        userData.exercises++;
+
+        userData.xp += 10;
+
+        saveUserData();
+
+
+        document.getElementById(
+            "result"
+        ).innerText =
+            "Bonne réponse ✅ +10 XP";
+
+
+        document.getElementById(
+            "score"
+        ).innerText =
+            "Score : " +
+            score +
+            " ⭐";
+
+
+        updateProfile();
+
+
+        setTimeout(
+            newExercise,
+            800
+        );
+
+
+    }else{
+
+        document.getElementById(
+            "result"
+        ).innerText =
+            "Mauvaise note ❌";
+
+    }
+
+}
+
+
+/* =====================================================
+   GLISSANDO
+===================================================== */
+
+const pianoKeys =
+    document.getElementById(
+        "pianoKeys"
+    );
+
+
+let glissandoActive = false;
+
+let lastPlayedKey = null;
+
+
+function getKeyAtPoint(x,y){
+
+    let element =
+        document.elementFromPoint(
+            x,
+            y
+        );
+
+
+    if(!element){
+
+        return null;
+
+    }
+
+
+    const key =
+        element.closest(
+            ".white, .black"
+        );
+
+
+    if(!key){
+
+        return null;
+
+    }
+
+
+    if(
+        !pianoKeys.contains(key)
+    ){
+
+        return null;
+
+    }
+
+
+    return key;
+
+}
+
+
+function playGlissandoKey(key){
+
+    if(!key){
+
+        return;
+
+    }
+
+
+    if(lastPlayedKey === key){
+
+        return;
+
+    }
+
+
+    lastPlayedKey = key;
+
+
+    const freq =
+        parseFloat(
+            key.dataset.freq
+        );
+
+
+    const name =
+        key.dataset.note;
+
+
+    key.classList.add(
+        "active"
+    );
+
+
+    setTimeout(
+        function(){
+
+            key.classList.remove(
+                "active"
+            );
+
+        },
+        120
+    );
+
+
+    playNote(
+        freq,
+        name
+    );
+
+}
+
+
+pianoKeys.addEventListener(
+    "pointerdown",
+    function(event){
+
+        event.preventDefault();
+
+        initAudio();
+
+        glissandoActive =
+            true;
+
+        lastPlayedKey =
+            null;
+
+
+        if(
+            pianoKeys.setPointerCapture
+        ){
+
+            try{
+
+                pianoKeys.setPointerCapture(
+                    event.pointerId
+                );
+
+            }catch(e){}
+
+        }
+
+
+        const key =
+            getKeyAtPoint(
+                event.clientX,
+                event.clientY
+            );
+
+
+        playGlissandoKey(
+            key
+        );
+
+    }
+);
+
+
+pianoKeys.addEventListener(
+    "pointermove",
+    function(event){
+
+        if(!glissandoActive){
+
+            return;
+
+        }
+
+
+        event.preventDefault();
+
+
+        const key =
+            getKeyAtPoint(
+                event.clientX,
+                event.clientY
+            );
+
+
+        playGlissandoKey(
+            key
+        );
+
+    }
+);
+
+
+function stopGlissando(event){
+
+    glissandoActive =
+        false;
+
+    lastPlayedKey =
+        null;
+
+
+    if(
+        event &&
+        pianoKeys.releasePointerCapture
+    ){
+
+        try{
+
+            pianoKeys.releasePointerCapture(
+                event.pointerId
+            );
+
+        }catch(e){}
+
+    }
+
+}
+
+
+pianoKeys.addEventListener(
+    "pointerup",
+    stopGlissando
+);
+
+
+pianoKeys.addEventListener(
+    "pointercancel",
+    stopGlissando
+);
+
+
+pianoKeys.addEventListener(
+    "contextmenu",
+    function(event){
+
+        event.preventDefault();
+
+    }
+);
+
+
+/* =====================================================
+   INITIALISATION
+===================================================== */
+
+loadUserData();
+
+loadAppearance();
+
+initProfile();
+
+updateProfile();
+
+</script>
+
+</body>
+
+</html>
