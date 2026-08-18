@@ -1890,6 +1890,15 @@ header{
 
 </style>
 
+  <link rel="manifest" href="./manifest.json">
+
+<meta name="theme-color" content="#7c3aed">
+
+<link rel="icon"
+      type="image/png"
+      href="./icon-512.png">
+
+  
 </head>
 
 
@@ -4724,6 +4733,32 @@ updateProfile();
 
 checkFirstUse();
 
+  if ("serviceWorker" in navigator) {
+
+    window.addEventListener("load", () => {
+
+        navigator.serviceWorker
+            .register("./sw.js")
+            .then(() => {
+
+                console.log(
+                    "Piano Academy PWA activée"
+                );
+
+            })
+            .catch(error => {
+
+                console.error(
+                    "Erreur Service Worker :",
+                    error
+                );
+
+            });
+
+    });
+
+  }
+  
 </script>
 
 </body>
