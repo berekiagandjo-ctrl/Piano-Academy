@@ -124,6 +124,20 @@ body{
 
 }
 
+button,
+input,
+select{
+
+    font-family:inherit;
+
+}
+
+button{
+
+    -webkit-tap-highlight-color:transparent;
+
+}
+
 .app{
 
     width:100%;
@@ -430,8 +444,9 @@ header{
 
 }
 
-  /* =====================================================
-   GUIDE COMPLET
+
+/* =====================================================
+   GUIDE
 ===================================================== */
 
 .guide-card{
@@ -534,52 +549,6 @@ header{
 
 }
 
-
-/* =====================================================
-   PETITS TELEPHONES
-===================================================== */
-
-@media(max-width:380px){
-
-    .guide-card{
-
-        padding:16px;
-
-        gap:10px;
-
-    }
-
-    .guide-icon{
-
-        width:55px;
-
-        height:55px;
-
-        font-size:27px;
-
-    }
-
-    .guide-info h3{
-
-        font-size:16px;
-
-    }
-
-    .guide-info p{
-
-        font-size:12px;
-
-    }
-
-    .guide-btn{
-
-        padding:10px 12px;
-
-        font-size:13px;
-
-    }
-
-  }
 
 /* =====================================================
    EXERCICE
@@ -1027,6 +996,111 @@ header{
 
 
 /* =====================================================
+   INFORMATIONS UTILISATEUR
+===================================================== */
+
+.user-form{
+
+    background:var(--card);
+
+    border-radius:22px;
+
+    padding:20px;
+
+    margin-bottom:18px;
+
+}
+
+.user-form h3{
+
+    margin-bottom:8px;
+
+    font-size:19px;
+
+}
+
+.user-form p{
+
+    color:var(--muted);
+
+    font-size:13px;
+
+    line-height:1.5;
+
+    margin-bottom:15px;
+
+}
+
+.user-name-input{
+
+    width:100%;
+
+    padding:15px;
+
+    border:none;
+
+    border-radius:14px;
+
+    background:var(--card2);
+
+    color:var(--text);
+
+    outline:none;
+
+    font-size:16px;
+
+    margin-bottom:12px;
+
+}
+
+.user-name-input::placeholder{
+
+    color:var(--muted);
+
+}
+
+.save-name-btn{
+
+    width:100%;
+
+    padding:15px;
+
+    border:none;
+
+    border-radius:14px;
+
+    background:var(--primary);
+
+    color:white;
+
+    font-size:16px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+}
+
+.save-name-btn:active{
+
+    transform:scale(.97);
+
+}
+
+.name-message{
+
+    min-height:20px;
+
+    margin-top:10px;
+
+    text-align:center;
+
+    font-size:13px;
+
+}
+
+
+/* =====================================================
    STATISTIQUES
 ===================================================== */
 
@@ -1286,6 +1360,8 @@ header{
 
     height:26px;
 
+    flex-shrink:0;
+
 }
 
 .switch input{
@@ -1442,7 +1518,7 @@ header{
 
 
 /* =====================================================
-   RESPONSIVE
+   PETITS TELEPHONES
 ===================================================== */
 
 @media(max-width:500px){
@@ -1565,10 +1641,48 @@ header{
 
 
 /* =====================================================
-   PETITS TELEPHONES
+   TRES PETITS TELEPHONES
 ===================================================== */
 
 @media(max-width:380px){
+
+    .guide-card{
+
+        padding:16px;
+
+        gap:10px;
+
+    }
+
+    .guide-icon{
+
+        width:55px;
+
+        height:55px;
+
+        font-size:27px;
+
+    }
+
+    .guide-info h3{
+
+        font-size:16px;
+
+    }
+
+    .guide-info p{
+
+        font-size:12px;
+
+    }
+
+    .guide-btn{
+
+        padding:10px 12px;
+
+        font-size:13px;
+
+    }
 
     .exercise-card{
 
@@ -1602,11 +1716,177 @@ header{
 
     .stats-grid{
 
-        grid-template-columns:1fr 1fr;
+        grid-template-columns:
+        1fr 1fr;
+
+    }
+
+    .piano{
+
+        padding:12px;
+
+    }
+
+    .keys{
+
+        height:160px;
+
+    }
+
+    .black{
+
+        height:95px;
 
     }
 
 }
+
+
+/* =====================================================
+   MESSAGE PREMIERE UTILISATION
+===================================================== */
+
+.first-use{
+
+    position:fixed;
+
+    inset:0;
+
+    background:
+    rgba(2,6,23,.88);
+
+    backdrop-filter:
+    blur(10px);
+
+    z-index:2000;
+
+    display:none;
+
+    align-items:center;
+
+    justify-content:center;
+
+    padding:20px;
+
+}
+
+.first-use.show{
+
+    display:flex;
+
+}
+
+.first-use-card{
+
+    width:100%;
+
+    max-width:500px;
+
+    background:var(--card);
+
+    border-radius:28px;
+
+    padding:28px;
+
+    text-align:center;
+
+    box-shadow:
+    0 20px 60px
+    rgba(0,0,0,.35);
+
+}
+
+.first-use-icon{
+
+    font-size:55px;
+
+    margin-bottom:15px;
+
+}
+
+.first-use-card h2{
+
+    font-size:27px;
+
+    margin-bottom:10px;
+
+}
+
+.first-use-card p{
+
+    color:var(--muted);
+
+    line-height:1.5;
+
+    margin-bottom:20px;
+
+}
+
+.first-use-card input{
+
+    width:100%;
+
+    padding:16px;
+
+    border:none;
+
+    border-radius:15px;
+
+    background:var(--card2);
+
+    color:var(--text);
+
+    font-size:17px;
+
+    outline:none;
+
+    margin-bottom:12px;
+
+}
+
+.first-use-card button{
+
+    width:100%;
+
+    padding:16px;
+
+    border:none;
+
+    border-radius:15px;
+
+    background:
+    linear-gradient(
+        135deg,
+        var(--primary),
+        var(--primary2)
+    );
+
+    color:white;
+
+    font-size:17px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+}
+
+.first-use-card .error{
+
+    color:#f87171;
+
+    min-height:20px;
+
+    margin-bottom:8px;
+
+    font-size:13px;
+
+}
+
+
+/* =====================================================
+   FIN CSS
+===================================================== */
 
 </style>
 
@@ -1628,11 +1908,10 @@ header{
         🎹 Piano Academy
     </div>
 
-    <!-- PROFIL CLIQUABLE -->
-
     <div
         class="profile"
-        onclick="openProfile()">
+        onclick="openProfile()"
+        aria-label="Ouvrir mon profil">
 
         👤
 
@@ -1648,7 +1927,7 @@ header{
 <div class="welcome">
 
     <h1 id="welcomeName">
-        Bonjour 👋
+        Bienvenue 👋
     </h1>
 
     <p>
@@ -1685,9 +1964,7 @@ header{
 ===================================================== -->
 
 <h2 class="section-title">
-
     📚 Mes cours
-
 </h2>
 
 
@@ -1719,7 +1996,8 @@ header{
 
 </div>
 
-  <!-- =====================================================
+
+<!-- =====================================================
      GUIDE
 ===================================================== -->
 
@@ -1751,6 +2029,7 @@ header{
     </button>
 
 </div>
+
 
 <!-- =====================================================
      PRATIQUE
@@ -1803,9 +2082,7 @@ header{
 ===================================================== -->
 
 <h2 class="section-title">
-
     🎯 Entraînement
-
 </h2>
 
 
@@ -2015,713 +2292,772 @@ header{
     id="profileOverlay">
 
 
-<div class="profile-panel">
+    <div class="profile-panel">
 
 
-<!-- PROFILE HEADER -->
+        <!-- PROFILE HEADER -->
 
-<div class="profile-header">
+        <div class="profile-header">
 
-    <button
-        class="close-profile"
-        onclick="closeProfile()">
+            <button
+                class="close-profile"
+                onclick="closeProfile()">
 
-        ←
+                ←
 
-    </button>
+            </button>
 
-    <div class="profile-title">
+            <div class="profile-title">
+
+                <h2>
+                    👤 Mon profil
+                </h2>
+
+                <p>
+                    Tableau de bord personnel
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- PROFILE HERO -->
+
+        <div class="profile-hero">
+
+            <div class="avatar-large">
+                👤
+            </div>
+
+            <h2 id="profileName">
+                Mon profil
+            </h2>
+
+            <p id="currentLevelText">
+                Niveau 1 — Fondations
+            </p>
+
+        </div>
+
+
+        <!-- =================================================
+             INFORMATIONS UTILISATEUR
+        ================================================== -->
+
+        <div class="user-form">
+
+            <h3>
+                👤 Mes informations
+            </h3>
+
+            <p>
+                Entre ton prénom. Il sera utilisé uniquement
+                pour personnaliser ton expérience dans
+                Piano Academy sur cet appareil.
+            </p>
+
+            <input
+                type="text"
+                id="userName"
+                class="user-name-input"
+                maxlength="30"
+                autocomplete="off"
+                placeholder="Entre ton prénom">
+
+            <button
+                class="save-name-btn"
+                onclick="saveUserName()">
+
+                💾 Enregistrer mon profil
+
+            </button>
+
+            <div
+                class="name-message"
+                id="nameMessage">
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             STATISTIQUES
+        ================================================== -->
+
+        <div class="stats-grid">
+
+
+            <div class="stat">
+
+                <div class="stat-icon">
+                    📊
+                </div>
+
+                <div
+                    class="stat-value"
+                    id="profileProgress">
+
+                    0%
+
+                </div>
+
+                <div class="stat-label">
+                    Progression générale
+                </div>
+
+            </div>
+
+
+            <div class="stat">
+
+                <div class="stat-icon">
+                    ⭐
+                </div>
+
+                <div
+                    class="stat-value"
+                    id="profileXP">
+
+                    0 XP
+
+                </div>
+
+                <div class="stat-label">
+                    Expérience
+                </div>
+
+            </div>
+
+
+            <div class="stat">
+
+                <div class="stat-icon">
+                    🔥
+                </div>
+
+                <div
+                    class="stat-value"
+                    id="profileStreak">
+
+                    0 jours
+
+                </div>
+
+                <div class="stat-label">
+                    Série actuelle
+                </div>
+
+            </div>
+
+
+            <div class="stat">
+
+                <div class="stat-icon">
+                    🎹
+                </div>
+
+                <div
+                    class="stat-value"
+                    id="profilePractice">
+
+                    0 min
+
+                </div>
+
+                <div class="stat-label">
+                    Temps de pratique
+                </div>
+
+            </div>
+
+
+            <div class="stat">
+
+                <div class="stat-icon">
+                    🏆
+                </div>
+
+                <div
+                    class="stat-value"
+                    id="profileBadges">
+
+                    0
+
+                </div>
+
+                <div class="stat-label">
+                    Badges
+                </div>
+
+            </div>
+
+
+            <div class="stat">
+
+                <div class="stat-icon">
+                    🎯
+                </div>
+
+                <div
+                    class="stat-value"
+                    id="profileExercises">
+
+                    0
+
+                </div>
+
+                <div class="stat-label">
+                    Exercices réussis
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             NIVEAUX
+        ================================================== -->
+
+        <div class="levels-card">
+
+            <h3>
+                🏆 Progression des niveaux
+            </h3>
+
+
+            <div class="level">
+
+                <div class="level-icon">
+                    🎹
+                </div>
+
+                <div class="level-info">
+
+                    <strong>
+                        Niveau 1 — Fondations
+                    </strong>
+
+                    <span>
+                        12 modules
+                    </span>
+
+                </div>
+
+                <div
+                    class="level-status"
+                    id="level1Status">
+
+                    🔓
+
+                </div>
+
+            </div>
+
+
+            <div class="level">
+
+                <div class="level-icon">
+                    🎼
+                </div>
+
+                <div class="level-info">
+
+                    <strong>
+                        Niveau 2 — Débutant avancé
+                    </strong>
+
+                    <span>
+                        12 modules
+                    </span>
+
+                </div>
+
+                <div
+                    class="level-status"
+                    id="level2Status">
+
+                    🔒
+
+                </div>
+
+            </div>
+
+
+            <div class="level">
+
+                <div class="level-icon">
+                    🎹
+                </div>
+
+                <div class="level-info">
+
+                    <strong>
+                        Niveau 3 — Intermédiaire
+                    </strong>
+
+                    <span>
+                        12 modules
+                    </span>
+
+                </div>
+
+                <div
+                    class="level-status"
+                    id="level3Status">
+
+                    🔒
+
+                </div>
+
+            </div>
+
+
+            <div class="level">
+
+                <div class="level-icon">
+                    🎶
+                </div>
+
+                <div class="level-info">
+
+                    <strong>
+                        Niveau 4 — Intermédiaire avancé
+                    </strong>
+
+                    <span>
+                        12 modules
+                    </span>
+
+                </div>
+
+                <div
+                    class="level-status"
+                    id="level4Status">
+
+                    🔒
+
+                </div>
+
+            </div>
+
+
+            <div class="level">
+
+                <div class="level-icon">
+                    🏆
+                </div>
+
+                <div class="level-info">
+
+                    <strong>
+                        Niveau 5 — Pianiste avancé
+                    </strong>
+
+                    <span>
+                        12 modules
+                    </span>
+
+                </div>
+
+                <div
+                    class="level-status"
+                    id="level5Status">
+
+                    🔒
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             BADGES
+        ================================================== -->
+
+        <div class="levels-card">
+
+            <h3>
+                🏅 Mes badges
+            </h3>
+
+            <div class="badges">
+
+                <div class="badge">
+
+                    <span>🌱</span>
+
+                    <small>
+                        Débutant
+                    </small>
+
+                </div>
+
+                <div class="badge">
+
+                    <span>🎹</span>
+
+                    <small>
+                        Pianiste
+                    </small>
+
+                </div>
+
+                <div class="badge">
+
+                    <span>🔥</span>
+
+                    <small>
+                        Régulier
+                    </small>
+
+                </div>
+
+                <div class="badge">
+
+                    <span>⭐</span>
+
+                    <small>
+                        Étoile
+                    </small>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             APPARENCE
+        ================================================== -->
+
+        <div class="settings-card">
+
+            <div class="settings-title">
+                🎨 Apparence
+            </div>
+
+
+            <div class="setting">
+
+                <div class="setting-icon">
+                    🌙
+                </div>
+
+                <div class="setting-info">
+
+                    <strong>
+                        Mode sombre
+                    </strong>
+
+                    <span>
+                        Utiliser le thème sombre
+                    </span>
+
+                </div>
+
+                <label class="switch">
+
+                    <input
+                        type="checkbox"
+                        id="darkMode"
+                        checked
+                        onchange="toggleDarkMode()">
+
+                    <span class="slider"></span>
+
+                </label>
+
+            </div>
+
+
+            <div class="setting">
+
+                <div class="setting-icon">
+                    🎨
+                </div>
+
+                <div class="setting-info">
+
+                    <strong>
+                        Couleur principale
+                    </strong>
+
+                    <span>
+                        Personnaliser l'application
+                    </span>
+
+                </div>
+
+                <input
+                    type="color"
+                    id="accentColor"
+                    value="#7c3aed"
+                    onchange="changeAccent(this.value)">
+
+            </div>
+
+
+            <div class="setting">
+
+                <div class="setting-icon">
+                    📱
+                </div>
+
+                <div class="setting-info">
+
+                    <strong>
+                        Mode compact
+                    </strong>
+
+                    <span>
+                        Réduire les espaces
+                    </span>
+
+                </div>
+
+                <label class="switch">
+
+                    <input
+                        type="checkbox"
+                        id="compactMode"
+                        onchange="toggleCompact()">
+
+                    <span class="slider"></span>
+
+                </label>
+
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             OBJECTIFS
+        ================================================== -->
+
+        <div class="settings-card">
+
+            <div class="settings-title">
+                🎯 Objectifs
+            </div>
+
+
+            <div class="setting">
+
+                <div class="setting-icon">
+                    🎯
+                </div>
+
+                <div class="setting-info">
+
+                    <strong>
+                        Objectif quotidien
+                    </strong>
+
+                    <span>
+                        Minutes de piano par jour
+                    </span>
+
+                </div>
+
+                <input
+                    type="number"
+                    id="dailyGoal"
+                    min="5"
+                    max="300"
+                    value="20"
+                    onchange="saveSettings()">
+
+            </div>
+
+
+            <div class="setting">
+
+                <div class="setting-icon">
+                    🔔
+                </div>
+
+                <div class="setting-info">
+
+                    <strong>
+                        Rappel de pratique
+                    </strong>
+
+                    <span>
+                        Recevoir un rappel
+                    </span>
+
+                </div>
+
+                <label class="switch">
+
+                    <input
+                        type="checkbox"
+                        id="practiceReminder"
+                        onchange="saveSettings()">
+
+                    <span class="slider"></span>
+
+                </label>
+
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             LANGUE
+        ================================================== -->
+
+        <div class="settings-card">
+
+            <div class="settings-title">
+                ⚙️ Général
+            </div>
+
+
+            <div class="setting">
+
+                <div class="setting-icon">
+                    🌐
+                </div>
+
+                <div class="setting-info">
+
+                    <strong>
+                        Langue
+                    </strong>
+
+                    <span>
+                        Langue de Piano Academy
+                    </span>
+
+                </div>
+
+                <select
+                    id="language"
+                    onchange="changeLanguage()">
+
+                    <option value="fr">
+                        Français
+                    </option>
+
+                    <option value="en">
+                        English
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="setting">
+
+                <div class="setting-icon">
+                    ℹ️
+                </div>
+
+                <div class="setting-info">
+
+                    <strong>
+                        À propos
+                    </strong>
+
+                    <span>
+                        Piano Academy — Formation piano
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             RESET
+        ================================================== -->
+
+        <button
+            class="reset-btn"
+            onclick="resetProgress()">
+
+            🔄 Réinitialiser la progression
+
+        </button>
+
+
+        <div class="about">
+
+            🎹 <strong>Piano Academy</strong>
+
+            <br>
+
+            Apprends.
+            Pratique.
+            Progresse.
+
+            <br><br>
+
+            Version 1.0
+
+        </div>
+
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     PREMIERE UTILISATION
+===================================================== -->
+
+<div
+    class="first-use"
+    id="firstUse">
+
+
+    <div class="first-use-card">
+
+        <div class="first-use-icon">
+            🎹
+        </div>
 
         <h2>
-            👤 Mon profil
+            Bienvenue sur Piano Academy
         </h2>
 
         <p>
-            Tableau de bord personnel
+            Pour personnaliser ton expérience,
+            indique ton prénom.
         </p>
 
-    </div>
-
-</div>
-
-
-<!-- =====================================================
-     HERO PROFIL
-===================================================== -->
-
-<div class="profile-hero">
-
-    <div class="avatar-large">
-        👤
-    </div>
-
-    <h2 id="profileName">
-        Bérékia
-    </h2>
-
-    <p id="currentLevelText">
-
-        Niveau 1 — Fondations
-
-    </p>
-
-</div>
-
-
-<!-- =====================================================
-     STATISTIQUES
-===================================================== -->
-
-<div class="stats-grid">
-
-
-    <div class="stat">
-
-        <div class="stat-icon">
-            📊
-        </div>
-
         <div
-            class="stat-value"
-            id="profileProgress">
-
-            0%
-
-        </div>
-
-        <div class="stat-label">
-
-            Progression générale
-
-        </div>
-
-    </div>
-
-
-    <div class="stat">
-
-        <div class="stat-icon">
-            ⭐
-        </div>
-
-        <div
-            class="stat-value"
-            id="profileXP">
-
-            0 XP
-
-        </div>
-
-        <div class="stat-label">
-
-            Expérience
-
-        </div>
-
-    </div>
-
-
-    <div class="stat">
-
-        <div class="stat-icon">
-            🔥
-        </div>
-
-        <div
-            class="stat-value"
-            id="profileStreak">
-
-            0 jours
-
-        </div>
-
-        <div class="stat-label">
-
-            Série actuelle
-
-        </div>
-
-    </div>
-
-
-    <div class="stat">
-
-        <div class="stat-icon">
-            🎹
-        </div>
-
-        <div
-            class="stat-value"
-            id="profilePractice">
-
-            0 min
-
-        </div>
-
-        <div class="stat-label">
-
-            Temps de pratique
-
-        </div>
-
-    </div>
-
-
-    <div class="stat">
-
-        <div class="stat-icon">
-            🏆
-        </div>
-
-        <div
-            class="stat-value"
-            id="profileBadges">
-
-            0
-
-        </div>
-
-        <div class="stat-label">
-
-            Badges
-
-        </div>
-
-    </div>
-
-
-    <div class="stat">
-
-        <div class="stat-icon">
-            🎯
-        </div>
-
-        <div
-            class="stat-value"
-            id="profileExercises">
-
-            0
-
-        </div>
-
-        <div class="stat-label">
-
-            Exercices réussis
-
-        </div>
-
-    </div>
-
-
-</div>
-
-
-<!-- =====================================================
-     NIVEAUX
-===================================================== -->
-
-<div class="levels-card">
-
-    <h3>
-        🏆 Progression des niveaux
-    </h3>
-
-
-    <div class="level">
-
-        <div class="level-icon">
-            🎹
-        </div>
-
-        <div class="level-info">
-
-            <strong>
-                Niveau 1 — Fondations
-            </strong>
-
-            <span>
-                12 modules
-            </span>
-
-        </div>
-
-        <div
-            class="level-status"
-            id="level1Status">
-
-            🔓
-
-        </div>
-
-    </div>
-
-
-    <div class="level">
-
-        <div class="level-icon">
-            🎼
-        </div>
-
-        <div class="level-info">
-
-            <strong>
-                Niveau 2 — Débutant avancé
-            </strong>
-
-            <span>
-                12 modules
-            </span>
-
-        </div>
-
-        <div
-            class="level-status"
-            id="level2Status">
-
-            🔒
-
-        </div>
-
-    </div>
-
-
-    <div class="level">
-
-        <div class="level-icon">
-            🎹
-        </div>
-
-        <div class="level-info">
-
-            <strong>
-                Niveau 3 — Intermédiaire
-            </strong>
-
-            <span>
-                12 modules
-            </span>
-
-        </div>
-
-        <div
-            class="level-status"
-            id="level3Status">
-
-            🔒
-
-        </div>
-
-    </div>
-
-
-    <div class="level">
-
-        <div class="level-icon">
-            🎶
-        </div>
-
-        <div class="level-info">
-
-            <strong>
-                Niveau 4 — Intermédiaire avancé
-            </strong>
-
-            <span>
-                12 modules
-            </span>
-
-        </div>
-
-        <div
-            class="level-status"
-            id="level4Status">
-
-            🔒
-
-        </div>
-
-    </div>
-
-
-    <div class="level">
-
-        <div class="level-icon">
-            🏆
-        </div>
-
-        <div class="level-info">
-
-            <strong>
-                Niveau 5 — Pianiste avancé
-            </strong>
-
-            <span>
-                12 modules
-            </span>
-
-        </div>
-
-        <div
-            class="level-status"
-            id="level5Status">
-
-            🔒
-
-        </div>
-
-    </div>
-
-</div>
-
-
-<!-- =====================================================
-     MOTIVATION
-===================================================== -->
-
-<div class="levels-card">
-
-    <h3>
-        🏅 Mes badges
-    </h3>
-
-    <div class="badges">
-
-        <div class="badge">
-
-            <span>🌱</span>
-
-            <small>
-                Débutant
-            </small>
-
-        </div>
-
-        <div class="badge">
-
-            <span>🎹</span>
-
-            <small>
-                Pianiste
-            </small>
-
-        </div>
-
-        <div class="badge">
-
-            <span>🔥</span>
-
-            <small>
-                Régulier
-            </small>
-
-        </div>
-
-        <div class="badge">
-
-            <span>⭐</span>
-
-            <small>
-                Étoile
-            </small>
-
-        </div>
-
-    </div>
-
-</div>
-
-
-<!-- =====================================================
-     REGLAGES APPARENCE
-===================================================== -->
-
-<div class="settings-card">
-
-    <div class="settings-title">
-
-        🎨 Apparence
-
-    </div>
-
-
-    <!-- MODE SOMBRE -->
-
-    <div class="setting">
-
-        <div class="setting-icon">
-            🌙
-        </div>
-
-        <div class="setting-info">
-
-            <strong>
-                Mode sombre
-            </strong>
-
-            <span>
-                Utiliser le thème sombre
-            </span>
-
-        </div>
-
-        <label class="switch">
-
-            <input
-                type="checkbox"
-                id="darkMode"
-                checked
-                onchange="toggleDarkMode()">
-
-            <span class="slider"></span>
-
-        </label>
-
-    </div>
-
-
-    <!-- COULEUR -->
-
-    <div class="setting">
-
-        <div class="setting-icon">
-            🎨
-        </div>
-
-        <div class="setting-info">
-
-            <strong>
-                Couleur principale
-            </strong>
-
-            <span>
-                Personnaliser l'application
-            </span>
-
+            class="error"
+            id="firstUseError">
         </div>
 
         <input
-            type="color"
-            id="accentColor"
-            value="#7c3aed"
-            onchange="changeAccent(this.value)">
+            type="text"
+            id="firstNameInput"
+            maxlength="30"
+            autocomplete="off"
+            placeholder="Ton prénom">
+
+        <button
+            onclick="saveFirstName()">
+
+            Continuer 🎹
+
+        </button>
 
     </div>
-
-
-    <!-- COMPACT -->
-
-    <div class="setting">
-
-        <div class="setting-icon">
-            📱
-        </div>
-
-        <div class="setting-info">
-
-            <strong>
-                Mode compact
-            </strong>
-
-            <span>
-                Réduire les espaces
-            </span>
-
-        </div>
-
-        <label class="switch">
-
-            <input
-                type="checkbox"
-                id="compactMode"
-                onchange="toggleCompact()">
-
-            <span class="slider"></span>
-
-        </label>
-
-    </div>
-
-</div>
-
-
-<!-- =====================================================
-     OBJECTIFS
-===================================================== -->
-
-<div class="settings-card">
-
-    <div class="settings-title">
-
-        🎯 Objectifs
-
-    </div>
-
-
-    <div class="setting">
-
-        <div class="setting-icon">
-            🎯
-        </div>
-
-        <div class="setting-info">
-
-            <strong>
-                Objectif quotidien
-            </strong>
-
-            <span>
-                Minutes de piano par jour
-            </span>
-
-        </div>
-
-        <input
-            type="number"
-            id="dailyGoal"
-            min="5"
-            max="300"
-            value="20"
-            onchange="saveSettings()">
-
-    </div>
-
-
-    <div class="setting">
-
-        <div class="setting-icon">
-            🔔
-        </div>
-
-        <div class="setting-info">
-
-            <strong>
-                Rappel de pratique
-            </strong>
-
-            <span>
-                Recevoir un rappel
-            </span>
-
-        </div>
-
-        <label class="switch">
-
-            <input
-                type="checkbox"
-                id="practiceReminder"
-                onchange="saveSettings()">
-
-            <span class="slider"></span>
-
-        </label>
-
-    </div>
-
-</div>
-
-
-<!-- =====================================================
-     LANGUE
-===================================================== -->
-
-<div class="settings-card">
-
-    <div class="settings-title">
-
-        ⚙️ Général
-
-    </div>
-
-
-    <div class="setting">
-
-        <div class="setting-icon">
-            🌐
-        </div>
-
-        <div class="setting-info">
-
-            <strong>
-                Langue
-            </strong>
-
-            <span>
-                Langue de Piano Academy
-            </span>
-
-        </div>
-
-        <select
-            id="language"
-            onchange="changeLanguage()">
-
-            <option value="fr">
-                Français
-            </option>
-
-            <option value="en">
-                English
-            </option>
-
-        </select>
-
-    </div>
-
-
-    <div class="setting">
-
-        <div class="setting-icon">
-            ℹ️
-        </div>
-
-        <div class="setting-info">
-
-            <strong>
-                À propos
-            </strong>
-
-            <span>
-                Piano Academy — Formation piano
-            </span>
-
-        </div>
-
-    </div>
-
-</div>
-
-
-<!-- =====================================================
-     RESET
-===================================================== -->
-
-<button
-    class="reset-btn"
-    onclick="resetProgress()">
-
-    🔄 Réinitialiser la progression
-
-</button>
-
-
-<div class="about">
-
-    🎹 <strong>Piano Academy</strong>
-
-    <br>
-
-    Apprends.
-    Pratique.
-    Progresse.
-
-    <br><br>
-
-    Version 1.0
-
-</div>
-
-
-</div>
 
 </div>
 
@@ -2734,13 +3070,13 @@ header{
 
 let userData = {
 
-    name:"Bérékia",
+    name:"",
 
-    xp:250,
+    xp:0,
 
-    streak:5,
+    streak:0,
 
-    practiceMinutes:155,
+    practiceMinutes:0,
 
     exercises:0,
 
@@ -2751,6 +3087,21 @@ let userData = {
     language:"fr"
 
 };
+
+
+/* =====================================================
+   VARIABLES EXERCICE
+===================================================== */
+
+let audioContext = null;
+
+let target = "";
+
+let score = 0;
+
+let glissandoActive = false;
+
+let lastPlayedKey = null;
 
 
 /* =====================================================
@@ -2768,16 +3119,20 @@ function loadUserData(){
 
         try{
 
+            const parsed =
+                JSON.parse(saved);
+
             userData =
                 Object.assign(
+                    {},
                     userData,
-                    JSON.parse(saved)
+                    parsed
                 );
 
         }catch(error){
 
             console.log(
-                "Données utilisateur invalides"
+                "Données utilisateur invalides."
             );
 
         }
@@ -2802,6 +3157,158 @@ function saveUserData(){
 
 
 /* =====================================================
+   PREMIERE UTILISATION
+===================================================== */
+
+function checkFirstUse(){
+
+    if(
+        !userData.name ||
+        userData.name.trim() === ""
+    ){
+
+        document
+            .getElementById("firstUse")
+            .classList.add("show");
+
+        setTimeout(function(){
+
+            document
+                .getElementById("firstNameInput")
+                .focus();
+
+        },300);
+
+    }
+
+}
+
+
+/* =====================================================
+   ENREGISTRER PREMIER NOM
+===================================================== */
+
+function saveFirstName(){
+
+    const input =
+        document.getElementById(
+            "firstNameInput"
+        );
+
+    const error =
+        document.getElementById(
+            "firstUseError"
+        );
+
+    const name =
+        input.value.trim();
+
+
+    if(name === ""){
+
+        error.innerText =
+            "Veuillez entrer votre prénom.";
+
+        input.focus();
+
+        return;
+
+    }
+
+
+    if(name.length < 2){
+
+        error.innerText =
+            "Le prénom doit contenir au moins 2 caractères.";
+
+        input.focus();
+
+        return;
+
+    }
+
+
+    userData.name =
+        name;
+
+    saveUserData();
+
+
+    document
+        .getElementById("firstUse")
+        .classList.remove("show");
+
+
+    updateProfile();
+
+}
+
+
+/* =====================================================
+   NOM UTILISATEUR
+===================================================== */
+
+function saveUserName(){
+
+    const input =
+        document.getElementById(
+            "userName"
+        );
+
+    const message =
+        document.getElementById(
+            "nameMessage"
+        );
+
+    const name =
+        input.value.trim();
+
+
+    if(name === ""){
+
+        message.innerText =
+            "Veuillez entrer un prénom.";
+
+        message.style.color =
+            "#f87171";
+
+        return;
+
+    }
+
+
+    if(name.length < 2){
+
+        message.innerText =
+            "Le prénom doit contenir au moins 2 caractères.";
+
+        message.style.color =
+            "#f87171";
+
+        return;
+
+    }
+
+
+    userData.name =
+        name;
+
+
+    saveUserData();
+
+    updateProfile();
+
+
+    message.innerText =
+        "Profil enregistré avec succès ✅";
+
+    message.style.color =
+        "#22c55e";
+
+}
+
+
+/* =====================================================
    CALCUL PROGRESSION
 ===================================================== */
 
@@ -2809,8 +3316,9 @@ function getProgress(){
 
     let completed = 0;
 
+
     /*
-       Niveau 1
+       NIVEAU 1
        12 modules
     */
 
@@ -2830,18 +3338,27 @@ function getProgress(){
 
 
     /*
-       Niveaux 2 à 5
-       compatibles avec notre
-       futur système.
+       NIVEAUX 2 À 5
     */
 
-    for(let level=2;level<=5;level++){
+    for(
+        let level=2;
+        level<=5;
+        level++
+    ){
 
-        for(let module=1;module<=12;module++){
+        for(
+            let module=1;
+            module<=12;
+            module++
+        ){
 
             if(
                 localStorage.getItem(
-                    "pianoL"+level+"M"+module
+                    "pianoL"+
+                    level+
+                    "M"+
+                    module
                 ) === "completed"
             ){
 
@@ -2854,8 +3371,11 @@ function getProgress(){
     }
 
 
-    return Math.round(
-        (completed / 60) * 100
+    return Math.min(
+        100,
+        Math.round(
+            (completed / 60) * 100
+        )
     );
 
 }
@@ -2870,11 +3390,13 @@ function getCurrentLevel(){
     const progress =
         getProgress();
 
+
     if(progress >= 80){
 
         return 5;
 
     }
+
 
     if(progress >= 60){
 
@@ -2882,11 +3404,13 @@ function getCurrentLevel(){
 
     }
 
+
     if(progress >= 40){
 
         return 3;
 
     }
+
 
     if(progress >= 20){
 
@@ -2894,7 +3418,120 @@ function getCurrentLevel(){
 
     }
 
+
     return 1;
+
+}
+
+
+/* =====================================================
+   NOM DU NIVEAU
+===================================================== */
+
+function getLevelName(level){
+
+    const names = {
+
+        1:"Niveau 1 — Fondations",
+
+        2:"Niveau 2 — Débutant avancé",
+
+        3:"Niveau 3 — Intermédiaire",
+
+        4:"Niveau 4 — Intermédiaire avancé",
+
+        5:"Niveau 5 — Pianiste avancé"
+
+    };
+
+
+    return (
+        names[level] ||
+        names[1]
+    );
+
+}
+
+
+/* =====================================================
+   BADGES
+===================================================== */
+
+function calculateBadges(){
+
+    let badges = 0;
+
+
+    if(userData.xp >= 100){
+
+        badges++;
+
+    }
+
+
+    if(userData.streak >= 3){
+
+        badges++;
+
+    }
+
+
+    if(
+        userData.practiceMinutes >= 60
+    ){
+
+        badges++;
+
+    }
+
+
+    if(
+        getProgress() >= 25
+    ){
+
+        badges++;
+
+    }
+
+
+    return badges;
+
+}
+
+
+/* =====================================================
+   TEMPS
+===================================================== */
+
+function formatTime(minutes){
+
+    minutes =
+        parseInt(minutes) || 0;
+
+
+    if(minutes < 60){
+
+        return minutes + " min";
+
+    }
+
+
+    const hours =
+        Math.floor(
+            minutes / 60
+        );
+
+
+    const mins =
+        minutes % 60;
+
+
+    return (
+        hours +
+        " h " +
+        mins +
+        " min"
+    );
 
 }
 
@@ -2908,20 +3545,37 @@ function updateProfile(){
     const progress =
         getProgress();
 
+
     const level =
         getCurrentLevel();
 
 
     /*
-       Accueil
+       ACCUEIL
     */
 
-    document.getElementById(
-        "welcomeName"
-    ).innerText =
-        "Bonjour " +
-        userData.name +
-        " 👋";
+    const welcome =
+        document.getElementById(
+            "welcomeName"
+        );
+
+
+    if(
+        userData.name &&
+        userData.name.trim() !== ""
+    ){
+
+        welcome.innerText =
+            "Bonjour " +
+            userData.name +
+            " 👋";
+
+    }else{
+
+        welcome.innerText =
+            "Bienvenue 👋";
+
+    }
 
 
     document.getElementById(
@@ -2937,13 +3591,29 @@ function updateProfile(){
 
 
     /*
-       Profil
+       PROFIL
     */
 
-    document.getElementById(
-        "profileName"
-    ).innerText =
-        userData.name;
+    const profileName =
+        document.getElementById(
+            "profileName"
+        );
+
+
+    if(
+        userData.name &&
+        userData.name.trim() !== ""
+    ){
+
+        profileName.innerText =
+            userData.name;
+
+    }else{
+
+        profileName.innerText =
+            "Mon profil";
+
+    }
 
 
     document.getElementById(
@@ -2985,10 +3655,6 @@ function updateProfile(){
         userData.exercises;
 
 
-    /*
-       Badges
-    */
-
     document.getElementById(
         "profileBadges"
     ).innerText =
@@ -2996,15 +3662,20 @@ function updateProfile(){
 
 
     /*
-       Niveaux
+       NIVEAUX
     */
 
-    for(let i=1;i<=5;i++){
+    for(
+        let i=1;
+        i<=5;
+        i++
+    ){
 
         const element =
             document.getElementById(
                 "level"+i+"Status"
             );
+
 
         if(i < level){
 
@@ -3025,89 +3696,23 @@ function updateProfile(){
 
     }
 
-}
 
+    /*
+       CHAMP NOM
+    */
 
-/* =====================================================
-   NOM DU NIVEAU
-===================================================== */
-
-function getLevelName(level){
-
-    const names = {
-
-        1:"Niveau 1 — Fondations",
-
-        2:"Niveau 2 — Débutant avancé",
-
-        3:"Niveau 3 — Intermédiaire",
-
-        4:"Niveau 4 — Intermédiaire avancé",
-
-        5:"Niveau 5 — Pianiste avancé"
-
-    };
-
-    return names[level];
-
-}
-
-
-/* =====================================================
-   BADGES
-===================================================== */
-
-function calculateBadges(){
-
-    let badges = 0;
-
-    if(userData.xp >= 100){
-        badges++;
-    }
-
-    if(userData.streak >= 3){
-        badges++;
-    }
-
-    if(userData.practiceMinutes >= 60){
-        badges++;
-    }
-
-    if(getProgress() >= 25){
-        badges++;
-    }
-
-    return badges;
-
-}
-
-
-/* =====================================================
-   TEMPS
-===================================================== */
-
-function formatTime(minutes){
-
-    if(minutes < 60){
-
-        return minutes + " min";
-
-    }
-
-    const hours =
-        Math.floor(
-            minutes / 60
+    const userName =
+        document.getElementById(
+            "userName"
         );
 
-    const mins =
-        minutes % 60;
 
-    return (
-        hours +
-        " h " +
-        mins +
-        " min"
-    );
+    if(userName){
+
+        userName.value =
+            userData.name || "";
+
+    }
 
 }
 
@@ -3120,9 +3725,13 @@ function openProfile(){
 
     updateProfile();
 
-    document.getElementById(
-        "profileOverlay"
-    ).classList.add("show");
+
+    document
+        .getElementById(
+            "profileOverlay"
+        )
+        .classList.add("show");
+
 
     document.body.style.overflow =
         "hidden";
@@ -3136,14 +3745,35 @@ function openProfile(){
 
 function closeProfile(){
 
-    document.getElementById(
-        "profileOverlay"
-    ).classList.remove("show");
+    document
+        .getElementById(
+            "profileOverlay"
+        )
+        .classList.remove("show");
+
 
     document.body.style.overflow =
         "";
 
 }
+
+
+/* =====================================================
+   FERMER AVEC ESC
+===================================================== */
+
+document.addEventListener(
+    "keydown",
+    function(event){
+
+        if(event.key === "Escape"){
+
+            closeProfile();
+
+        }
+
+    }
+);
 
 
 /* =====================================================
@@ -3157,11 +3787,13 @@ function toggleDarkMode(){
             "darkMode"
         );
 
+
     if(checkbox.checked){
 
         document.body.classList.remove(
             "light"
         );
+
 
         localStorage.setItem(
             "pianoTheme",
@@ -3173,6 +3805,7 @@ function toggleDarkMode(){
         document.body.classList.add(
             "light"
         );
+
 
         localStorage.setItem(
             "pianoTheme",
@@ -3197,6 +3830,7 @@ function changeAccent(color){
             color
         );
 
+
     localStorage.setItem(
         "pianoAccent",
         color
@@ -3216,11 +3850,13 @@ function toggleCompact(){
             "compactMode"
         );
 
+
     if(checkbox.checked){
 
         document.body.classList.add(
             "compact"
         );
+
 
         localStorage.setItem(
             "pianoCompact",
@@ -3232,6 +3868,7 @@ function toggleCompact(){
         document.body.classList.remove(
             "compact"
         );
+
 
         localStorage.setItem(
             "pianoCompact",
@@ -3249,18 +3886,26 @@ function toggleCompact(){
 
 function saveSettings(){
 
+    const dailyGoal =
+        document.getElementById(
+            "dailyGoal"
+        );
+
+
+    const reminder =
+        document.getElementById(
+            "practiceReminder"
+        );
+
+
     userData.dailyGoal =
         parseInt(
-            document.getElementById(
-                "dailyGoal"
-            ).value
+            dailyGoal.value
         ) || 20;
 
 
     userData.reminder =
-        document.getElementById(
-            "practiceReminder"
-        ).checked;
+        reminder.checked;
 
 
     saveUserData();
@@ -3279,8 +3924,10 @@ function changeLanguage(){
             "language"
         ).value;
 
+
     userData.language =
         language;
+
 
     saveUserData();
 
@@ -3316,10 +3963,14 @@ function resetProgress(){
 
 
     /*
-       Supprimer les modules
+       MODULES NIVEAU 1
     */
 
-    for(let i=1;i<=12;i++){
+    for(
+        let i=1;
+        i<=12;
+        i++
+    ){
 
         localStorage.removeItem(
             "pianoModule"+i
@@ -3329,21 +3980,36 @@ function resetProgress(){
 
 
     /*
-       Supprimer niveaux 2 à 5
+       NIVEAUX 2 À 5
     */
 
-    for(let level=2;level<=5;level++){
+    for(
+        let level=2;
+        level<=5;
+        level++
+    ){
 
-        for(let module=1;module<=12;module++){
+        for(
+            let module=1;
+            module<=12;
+            module++
+        ){
 
             localStorage.removeItem(
-                "pianoL"+level+"M"+module
+                "pianoL"+
+                level+
+                "M"+
+                module
             );
 
         }
 
     }
 
+
+    /*
+       RESET STATISTIQUES
+    */
 
     userData.xp = 0;
 
@@ -3360,7 +4026,7 @@ function resetProgress(){
 
 
     alert(
-        "Progression réinitialisée."
+        "Progression réinitialisée. ✅"
     );
 
 }
@@ -3390,18 +4056,38 @@ function loadAppearance(){
         );
 
 
+    /*
+       THEME
+    */
+
     if(theme === "light"){
 
         document.body.classList.add(
             "light"
         );
 
+
         document.getElementById(
             "darkMode"
         ).checked = false;
 
+    }else{
+
+        document.body.classList.remove(
+            "light"
+        );
+
+
+        document.getElementById(
+            "darkMode"
+        ).checked = true;
+
     }
 
+
+    /*
+       ACCENT
+    */
 
     if(accent){
 
@@ -3412,18 +4098,25 @@ function loadAppearance(){
                 accent
             );
 
+
         document.getElementById(
             "accentColor"
-        ).value = accent;
+        ).value =
+            accent;
 
     }
 
+
+    /*
+       COMPACT
+    */
 
     if(compact === "true"){
 
         document.body.classList.add(
             "compact"
         );
+
 
         document.getElementById(
             "compactMode"
@@ -3441,6 +4134,12 @@ function loadAppearance(){
 function initProfile(){
 
     document.getElementById(
+        "userName"
+    ).value =
+        userData.name || "";
+
+
+    document.getElementById(
         "dailyGoal"
     ).value =
         userData.dailyGoal;
@@ -3455,7 +4154,7 @@ function initProfile(){
     document.getElementById(
         "language"
     ).value =
-        userData.language;
+        userData.language || "fr";
 
 }
 
@@ -3464,24 +4163,31 @@ function initProfile(){
    AUDIO
 ===================================================== */
 
-let audioContext = null;
-
-let target = "";
-
-let score = 0;
-
-
 function initAudio(){
 
     if(audioContext === null){
 
+        const AudioContext =
+            window.AudioContext ||
+            window.webkitAudioContext;
+
+
+        if(!AudioContext){
+
+            alert(
+                "Votre navigateur ne supporte pas l'audio."
+            );
+
+            return;
+
+        }
+
+
         audioContext =
-            new (
-                window.AudioContext ||
-                window.webkitAudioContext
-            )();
+            new AudioContext();
 
     }
+
 
     if(
         audioContext.state ===
@@ -3504,8 +4210,16 @@ function playNote(freq,name){
     initAudio();
 
 
+    if(!audioContext){
+
+        return;
+
+    }
+
+
     const osc =
         audioContext.createOscillator();
+
 
     const gain =
         audioContext.createGain();
@@ -3513,6 +4227,7 @@ function playNote(freq,name){
 
     osc.type =
         "sine";
+
 
     osc.frequency.value =
         freq;
@@ -3545,6 +4260,7 @@ function playNote(freq,name){
 
     osc.start();
 
+
     osc.stop(
         audioContext.currentTime + 0.8
     );
@@ -3562,7 +4278,7 @@ function playNote(freq,name){
 
 
 /* =====================================================
-   EXERCICE
+   NOUVEL EXERCICE
 ===================================================== */
 
 function newExercise(){
@@ -3605,7 +4321,7 @@ function newExercise(){
 
 
 /* =====================================================
-   REPONSE
+   REPONSE EXERCICE
 ===================================================== */
 
 function checkAnswer(note){
@@ -3621,9 +4337,12 @@ function checkAnswer(note){
 
         score++;
 
+
         userData.exercises++;
 
+
         userData.xp += 10;
+
 
         saveUserData();
 
@@ -3664,7 +4383,7 @@ function checkAnswer(note){
 
 
 /* =====================================================
-   GLISSANDO
+   PIANO / GLISSANDO
 ===================================================== */
 
 const pianoKeys =
@@ -3673,10 +4392,9 @@ const pianoKeys =
     );
 
 
-let glissandoActive = false;
-
-let lastPlayedKey = null;
-
+/* =====================================================
+   TROUVER TOUCHE
+===================================================== */
 
 function getKeyAtPoint(x,y){
 
@@ -3721,6 +4439,10 @@ function getKeyAtPoint(x,y){
 }
 
 
+/* =====================================================
+   JOUER TOUCHE GLISSANDO
+===================================================== */
+
 function playGlissandoKey(key){
 
     if(!key){
@@ -3737,7 +4459,8 @@ function playGlissandoKey(key){
     }
 
 
-    lastPlayedKey = key;
+    lastPlayedKey =
+        key;
 
 
     const freq =
@@ -3775,16 +4498,23 @@ function playGlissandoKey(key){
 }
 
 
+/* =====================================================
+   TOUCHER PIANO
+===================================================== */
+
 pianoKeys.addEventListener(
     "pointerdown",
     function(event){
 
         event.preventDefault();
 
+
         initAudio();
+
 
         glissandoActive =
             true;
+
 
         lastPlayedKey =
             null;
@@ -3800,7 +4530,7 @@ pianoKeys.addEventListener(
                     event.pointerId
                 );
 
-            }catch(e){}
+            }catch(error){}
 
         }
 
@@ -3819,6 +4549,10 @@ pianoKeys.addEventListener(
     }
 );
 
+
+/* =====================================================
+   GLISSEMENT
+===================================================== */
 
 pianoKeys.addEventListener(
     "pointermove",
@@ -3849,10 +4583,15 @@ pianoKeys.addEventListener(
 );
 
 
+/* =====================================================
+   ARRET GLISSANDO
+===================================================== */
+
 function stopGlissando(event){
 
     glissandoActive =
         false;
+
 
     lastPlayedKey =
         null;
@@ -3869,7 +4608,7 @@ function stopGlissando(event){
                 event.pointerId
             );
 
-        }catch(e){}
+        }catch(error){}
 
     }
 
@@ -3889,6 +4628,21 @@ pianoKeys.addEventListener(
 
 
 pianoKeys.addEventListener(
+    "pointerleave",
+    function(){
+
+        if(glissandoActive){
+
+            lastPlayedKey =
+                null;
+
+        }
+
+    }
+);
+
+
+pianoKeys.addEventListener(
     "contextmenu",
     function(event){
 
@@ -3899,7 +4653,65 @@ pianoKeys.addEventListener(
 
 
 /* =====================================================
-   INITIALISATION
+   ENTREE CLAVIER
+===================================================== */
+
+document.addEventListener(
+    "keydown",
+    function(event){
+
+        if(
+            event.target.tagName ===
+            "INPUT"
+        ){
+
+            return;
+
+        }
+
+
+        const keyboardNotes = {
+
+            a:["261.63","Do"],
+
+            s:["293.66","Ré"],
+
+            d:["329.63","Mi"],
+
+            f:["349.23","Fa"],
+
+            g:["392.00","Sol"],
+
+            h:["440.00","La"],
+
+            j:["493.88","Si"]
+
+        };
+
+
+        const key =
+            keyboardNotes[
+                event.key.toLowerCase()
+            ];
+
+
+        if(key){
+
+            event.preventDefault();
+
+            playNote(
+                parseFloat(key[0]),
+                key[1]
+            );
+
+        }
+
+    }
+);
+
+
+/* =====================================================
+   DEMARRAGE APPLICATION
 ===================================================== */
 
 loadUserData();
@@ -3909,6 +4721,8 @@ loadAppearance();
 initProfile();
 
 updateProfile();
+
+checkFirstUse();
 
 </script>
 
