@@ -1,0 +1,4533 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0,
+      maximum-scale=1.0, user-scalable=no">
+
+<title>Guide du Piano — Piano Academy</title>
+
+<style>
+:root{
+    --bg:#0f172a;
+    --card:#1e293b;
+    --card2:#334155;
+    --text:#f8fafc;
+    --muted:#94a3b8;
+    --border:#475569;
+    --primary:#7c3aed;
+    --primary2:#2563eb;
+    --success:#22c55e;
+    --warning:#f59e0b;
+    --danger:#ef4444;
+    --white:#ffffff;
+    --black:#111827;
+}
+
+body.light{
+    --bg:#f1f5f9;
+    --card:#ffffff;
+    --card2:#e2e8f0;
+    --text:#0f172a;
+    --muted:#475569;
+    --border:#cbd5e1;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:Arial,sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    min-height:100vh;
+    padding:15px;
+    transition:.25s;
+}
+
+.app{
+    width:100%;
+    max-width:680px;
+    margin:auto;
+}
+
+/* HEADER */
+
+.header{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+    margin-bottom:18px;
+}
+
+.header-left{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.back,
+.theme{
+    width:44px;
+    height:44px;
+    border:0;
+    border-radius:13px;
+    background:var(--card2);
+    color:var(--text);
+    font-size:21px;
+    cursor:pointer;
+}
+
+.header h1{
+    font-size:22px;
+}
+
+/* HERO */
+
+.hero{
+    background:
+        linear-gradient(135deg,
+        #7c3aed,
+        #2563eb);
+
+    padding:25px;
+    border-radius:25px;
+    margin-bottom:18px;
+}
+
+.hero h2{
+    font-size:27px;
+    margin-bottom:8px;
+}
+
+.hero p{
+    color:#e2e8f0;
+    line-height:1.6;
+}
+
+/* SEARCH */
+
+.search{
+    position:relative;
+    margin-bottom:18px;
+}
+
+.search input{
+    width:100%;
+    padding:16px 18px;
+    border:none;
+    outline:none;
+    border-radius:16px;
+    background:var(--card);
+    color:var(--text);
+    font-size:16px;
+    border:1px solid var(--border);
+}
+
+.search input::placeholder{
+    color:var(--muted);
+}
+
+/* PROGRESS */
+
+.progress-card{
+    background:var(--card);
+    border:1px solid var(--border);
+    padding:17px;
+    border-radius:18px;
+    margin-bottom:18px;
+}
+
+.progress-top{
+    display:flex;
+    justify-content:space-between;
+    margin-bottom:9px;
+    font-size:14px;
+}
+
+.progress-bar{
+    width:100%;
+    height:9px;
+    background:var(--card2);
+    border-radius:20px;
+    overflow:hidden;
+}
+
+.progress-fill{
+    height:100%;
+    width:0%;
+    background:linear-gradient(90deg,#7c3aed,#2563eb);
+    transition:.3s;
+}
+
+/* CATEGORY */
+
+.category{
+    margin-bottom:14px;
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:20px;
+    overflow:hidden;
+}
+
+.category-header{
+    padding:17px;
+    display:flex;
+    align-items:center;
+    gap:13px;
+    cursor:pointer;
+}
+
+.category-icon{
+    width:48px;
+    height:48px;
+    border-radius:14px;
+    background:var(--card2);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:24px;
+    flex-shrink:0;
+}
+
+.category-info{
+    flex:1;
+}
+
+.category-info h3{
+    font-size:17px;
+    margin-bottom:4px;
+}
+
+.category-info p{
+    font-size:13px;
+    color:var(--muted);
+}
+
+.arrow{
+    font-size:19px;
+    transition:.25s;
+}
+
+.category.open .arrow{
+    transform:rotate(180deg);
+}
+
+.category-pages{
+    display:none;
+    border-top:1px solid var(--border);
+    padding:8px;
+}
+
+.category.open .category-pages{
+    display:block;
+}
+
+.page-button{
+    width:100%;
+    border:0;
+    background:transparent;
+    color:var(--text);
+    padding:14px 12px;
+    border-radius:12px;
+    display:flex;
+    align-items:center;
+    gap:11px;
+    text-align:left;
+    cursor:pointer;
+    font-size:15px;
+}
+
+.page-button:hover{
+    background:var(--card2);
+}
+
+.page-number{
+    width:30px;
+    height:30px;
+    border-radius:9px;
+    background:var(--primary);
+    color:white;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:12px;
+    font-weight:bold;
+    flex-shrink:0;
+}
+
+.page-button.done .page-number{
+    background:var(--success);
+}
+
+.page-button.done::after{
+    content:"✓";
+    margin-left:auto;
+    color:var(--success);
+    font-weight:bold;
+}
+
+/* READER */
+
+.reader{
+    display:none;
+}
+
+.reader.active{
+    display:block;
+}
+
+.reader-header{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:15px;
+}
+
+.reader-back{
+    border:0;
+    background:var(--card2);
+    color:var(--text);
+    padding:12px 15px;
+    border-radius:13px;
+    cursor:pointer;
+}
+
+.reader-page{
+    color:var(--muted);
+    font-size:13px;
+}
+
+.lesson-card{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:23px;
+    padding:22px;
+    margin-bottom:15px;
+}
+
+.lesson-title{
+    font-size:27px;
+    margin-bottom:8px;
+}
+
+.lesson-subtitle{
+    color:var(--muted);
+    margin-bottom:20px;
+}
+
+.section{
+    margin-top:23px;
+}
+
+.section h3{
+    color:#c4b5fd;
+    margin-bottom:9px;
+    font-size:18px;
+}
+
+.section p{
+    color:var(--text);
+    line-height:1.75;
+    font-size:15px;
+}
+
+.section ul{
+    padding-left:21px;
+    line-height:1.8;
+    color:var(--text);
+}
+
+.definition{
+    background:rgba(124,58,237,.14);
+    border-left:4px solid var(--primary);
+    padding:15px;
+    border-radius:12px;
+    line-height:1.7;
+}
+
+.tip{
+    background:rgba(34,197,94,.12);
+    border-left:4px solid var(--success);
+    padding:15px;
+    border-radius:12px;
+    line-height:1.7;
+}
+
+.warning{
+    background:rgba(245,158,11,.12);
+    border-left:4px solid var(--warning);
+    padding:15px;
+    border-radius:12px;
+    line-height:1.7;
+}
+
+.example{
+    background:#312e81;
+    color:white;
+    padding:18px;
+    border-radius:15px;
+    text-align:center;
+    margin-top:12px;
+    line-height:1.8;
+}
+
+.light .example{
+    background:#e0e7ff;
+    color:#1e1b4b;
+}
+
+/* MUSIC SYMBOL */
+
+.symbol-box{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:25px;
+    background:var(--card2);
+    border-radius:18px;
+    padding:20px;
+    margin-top:12px;
+}
+
+.big-symbol{
+    font-size:60px;
+}
+
+.symbol-label{
+    font-weight:bold;
+}
+
+/* STAFF */
+
+.staff{
+    margin-top:15px;
+    padding:20px 10px;
+    background:var(--card2);
+    border-radius:16px;
+}
+
+.staff-lines{
+    position:relative;
+    height:110px;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+}
+
+.staff-line{
+    width:100%;
+    height:2px;
+    background:var(--muted);
+}
+
+.staff-note{
+    position:absolute;
+    left:48%;
+    top:36px;
+    font-size:35px;
+}
+
+/* PIANO ILLUSTRATION */
+
+.mini-piano{
+    background:#020617;
+    padding:12px;
+    border-radius:17px;
+    margin-top:15px;
+    overflow:hidden;
+}
+
+.mini-keys{
+    display:flex;
+    height:125px;
+    position:relative;
+}
+
+.mini-white{
+    flex:1;
+    background:white;
+    border:1px solid #111827;
+    border-radius:0 0 7px 7px;
+    color:#111827;
+    display:flex;
+    align-items:flex-end;
+    justify-content:center;
+    padding-bottom:9px;
+    font-size:11px;
+    font-weight:bold;
+}
+
+.mini-black{
+    position:absolute;
+    width:9%;
+    height:76px;
+    background:#111827;
+    top:0;
+    border-radius:0 0 5px 5px;
+    z-index:2;
+}
+
+/* TABLE */
+
+.table-wrap{
+    overflow-x:auto;
+    margin-top:12px;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    min-width:350px;
+}
+
+th,td{
+    padding:10px;
+    border:1px solid var(--border);
+    text-align:center;
+}
+
+th{
+    background:var(--card2);
+}
+
+td{
+    color:var(--text);
+}
+
+/* GLOSSARY */
+
+.glossary{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:20px;
+    padding:18px;
+    margin-top:20px;
+}
+
+.glossary h2{
+    margin-bottom:14px;
+}
+
+.glossary-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:8px;
+}
+
+.letter{
+    background:var(--card2);
+    border:0;
+    color:var(--text);
+    border-radius:10px;
+    padding:11px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.letter:hover{
+    background:var(--primary);
+    color:white;
+}
+
+/* NAVIGATION */
+
+.reader-nav{
+    display:flex;
+    gap:10px;
+    margin-top:15px;
+}
+
+.nav-btn{
+    flex:1;
+    border:0;
+    padding:14px;
+    border-radius:14px;
+    background:var(--card2);
+    color:var(--text);
+    cursor:pointer;
+    font-size:14px;
+}
+
+.nav-btn.primary{
+    background:var(--primary);
+    color:white;
+}
+
+/* COMPLETE */
+
+.complete{
+    width:100%;
+    border:0;
+    background:linear-gradient(135deg,#7c3aed,#2563eb);
+    color:white;
+    padding:15px;
+    border-radius:15px;
+    margin-top:20px;
+    font-size:16px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.complete.done{
+    background:var(--success);
+}
+
+/* FOOTER */
+
+.footer{
+    text-align:center;
+    color:var(--muted);
+    padding:30px 0;
+    line-height:1.7;
+}
+
+/* SEARCH RESULTS */
+
+.search-results{
+    display:none;
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:18px;
+    padding:8px;
+    margin-bottom:18px;
+}
+
+.search-result{
+    width:100%;
+    background:transparent;
+    border:0;
+    color:var(--text);
+    text-align:left;
+    padding:13px;
+    border-radius:10px;
+    cursor:pointer;
+}
+
+.search-result:hover{
+    background:var(--card2);
+}
+
+/* RESPONSIVE */
+
+@media(max-width:480px){
+
+    body{
+        padding:12px;
+    }
+
+    .hero{
+        padding:21px;
+    }
+
+    .hero h2{
+        font-size:23px;
+    }
+
+    .lesson-card{
+        padding:18px;
+    }
+
+    .lesson-title{
+        font-size:23px;
+    }
+
+    .big-symbol{
+        font-size:48px;
+    }
+
+}
+</style>
+</head>
+
+<body>
+
+<div class="app">
+
+<!-- HEADER -->
+
+<div class="header">
+
+    <div class="header-left">
+
+        <button class="back"
+                onclick="goBack()">
+            ←
+        </button>
+
+        <h1>📚 Guide du piano</h1>
+
+    </div>
+
+    <button class="theme"
+            onclick="toggleTheme()"
+            id="themeBtn">
+        🌙
+    </button>
+
+</div>
+
+
+<!-- HERO -->
+
+<div class="hero"
+     id="homeHero">
+
+    <h2>🎹 Le Guide du piano</h2>
+
+    <p>
+        Une bibliothèque complète pour comprendre
+        le piano et la musique, du tout débutant
+        jusqu'aux notions avancées.
+    </p>
+
+</div>
+
+
+<!-- SEARCH -->
+
+<div class="search"
+     id="searchBox">
+
+    <input
+        type="search"
+        id="searchInput"
+        placeholder="🔎 Rechercher : accord, clé, rythme..."
+        oninput="searchGuide()">
+
+</div>
+
+<div class="search-results"
+     id="searchResults">
+</div>
+
+
+<!-- PROGRESS -->
+
+<div class="progress-card"
+     id="progressCard">
+
+    <div class="progress-top">
+
+        <span>📚 Progression du guide</span>
+
+        <span id="progressText">
+            0 / 30
+        </span>
+
+    </div>
+
+    <div class="progress-bar">
+
+        <div class="progress-fill"
+             id="progressFill">
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- HOME -->
+
+<div id="home">
+
+<h2 style="margin-bottom:12px;">
+    📖 Les 30 chapitres
+</h2>
+
+
+<!-- 1 -->
+
+<div class="category open">
+
+    <div class="category-header"
+         onclick="toggleCategory(this)">
+
+        <div class="category-icon">🎹</div>
+
+        <div class="category-info">
+
+            <h3>01 — Bien débuter</h3>
+
+            <p>Comprendre le piano avant de jouer</p>
+
+        </div>
+
+        <div class="arrow">▼</div>
+
+    </div>
+
+    <div class="category-pages">
+
+        <button class="page-button"
+                onclick="openPage(1)">
+            <span class="page-number">1</span>
+            Bien débuter au piano
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- 2 -->
+
+<div class="category">
+
+    <div class="category-header"
+         onclick="toggleCategory(this)">
+
+        <div class="category-icon">🎹</div>
+
+        <div class="category-info">
+
+            <h3>02 — Anatomie du clavier</h3>
+
+            <p>Découvrir chaque partie du clavier</p>
+
+        </div>
+
+        <div class="arrow">▼</div>
+
+    </div>
+
+    <div class="category-pages">
+
+        <button class="page-button"
+                onclick="openPage(2)">
+            <span class="page-number">2</span>
+            Anatomie du piano
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- 3 -->
+
+<div class="category">
+
+    <div class="category-header"
+         onclick="toggleCategory(this)">
+
+        <div class="category-icon">🎵</div>
+
+        <div class="category-info">
+
+            <h3>03 — Les 7 notes</h3>
+
+            <p>Do, Ré, Mi, Fa, Sol, La, Si</p>
+
+        </div>
+
+        <div class="arrow">▼</div>
+
+    </div>
+
+    <div class="category-pages">
+
+        <button class="page-button"
+                onclick="openPage(3)">
+            <span class="page-number">3</span>
+            Les sept notes musicales
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- 4 -->
+
+<div class="category">
+
+    <div class="category-header"
+         onclick="toggleCategory(this)">
+
+        <div class="category-icon">♯</div>
+
+        <div class="category-info">
+
+            <h3>04 — Les altérations</h3>
+
+            <p>Dièse, bémol et bécarre</p>
+
+        </div>
+
+        <div class="arrow">▼</div>
+
+    </div>
+
+    <div class="category-pages">
+
+        <button class="page-button"
+                onclick="openPage(4)">
+            <span class="page-number">4</span>
+            Comprendre les altérations
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- 5 -->
+
+<div class="category">
+
+    <div class="category-header"
+         onclick="toggleCategory(this)">
+
+        <div class="category-icon">📏</div>
+
+        <div class="category-info">
+
+            <h3>05 — Tons et demi-tons</h3>
+
+            <p>Les distances entre les notes</p>
+
+        </div>
+
+        <div class="arrow">▼</div>
+
+    </div>
+
+    <div class="category-pages">
+
+        <button class="page-button"
+                onclick="openPage(5)">
+            <span class="page-number">5</span>
+            Ton et demi-ton
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- 6 -->
+
+<div class="category">
+
+    <div class="category-header"
+         onclick="toggleCategory(this)">
+
+        <div class="category-icon">📖</div>
+
+        <div class="category-info">
+
+            <h3>06 — Lire la musique</h3>
+
+            <p>Portée, lignes et interlignes</p>
+
+        </div>
+
+        <div class="arrow">▼</div>
+
+    </div>
+
+    <div class="category-pages">
+
+        <button class="page-button"
+                onclick="openPage(6)">
+            <span class="page-number">6</span>
+            Introduction à la lecture
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- 7 -->
+
+<div class="category">
+
+    <div class="category-header"
+         onclick="toggleCategory(this)">
+
+        <div class="category-icon">𝄞</div>
+
+        <div class="category-info">
+
+            <h3>07 — Clé de Sol</h3>
+
+            <p>Lire les notes aiguës</p>
+
+        </div>
+
+        <div class="arrow">▼</div>
+
+    </div>
+
+    <div class="category-pages">
+
+        <button class="page-button"
+                onclick="openPage(7)">
+            <span class="page-number">7</span>
+            La clé de Sol
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- 8 -->
+
+<div class="category">
+
+    <div class="category-header"
+         onclick="toggleCategory(this)">
+
+        <div class="category-icon">𝄢</div>
+
+        <div class="category-info">
+
+            <h3>08 — Clé de Fa</h3>
+
+            <p>Lire les notes graves</p>
+
+        </div>
+
+        <div class="arrow">▼</div>
+
+    </div>
+
+    <div class="category-pages">
+
+        <button class="page-button"
+                onclick="openPage(8)">
+            <span class="page-number">8</span>
+            La clé de Fa
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- 9 -->
+
+<div class="category">
+
+    <div class="category-header"
+         onclick="toggleCategory(this)">
+
+        <div class="category-icon">⏱️</div>
+
+        <div class="category-info">
+
+            <h3>09 — Le rythme</h3>
+
+            <p>Temps, pulsation, mesure et tempo</p>
+
+        </div>
+
+        <div class="arrow">▼</div>
+
+    </div>
+
+    <div class="category-pages">
+
+        <button class="page-button"
+                onclick="openPage(9)">
+            <span class="page-number">9</span>
+            Comprendre le rythme
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- 10 -->
+
+<div class="category">
+
+    <div class="category-header"
+         onclick="toggleCategory(this)">
+
+        <div class="category-icon">🎼</div>
+
+        <div class="category-info">
+
+            <h3>10 — Valeurs et silences</h3>
+
+            <p>Ronde, blanche, noire, croches...</p>
+
+        </div>
+
+        <div class="arrow">▼</div>
+
+    </div>
+
+    <div class="category-pages">
+
+        <button class="page-button"
+                onclick="openPage(10)">
+            <span class="page-number">10</span>
+            Valeurs des notes et silences
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- 11 -->
+
+<div class="category">
+
+    <div class="category-header"
+         onclick="toggleCategory(this)">
+
+        <div class="category-icon">🎵</div>
+
+        <div class="category-info">
+
+            <h3>11 — Gammes majeures</h3>
+
+            <p>Construire et jouer les gammes majeures</p>
+
+        </div>
+
+        <div class="arrow">▼</div>
+
+    </div>
+
+    <div class="category-pages">
+
+        <button class="page-button"
+                onclick="openPage(11)">
+            <span class="page-number">11</span>
+            Gammes majeures
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- 12 -->
+
+<div class="category">
+
+    <div class="category-header"
+         onclick="toggleCategory(this)">
+
+        <div class="category-icon">🎵</div>
+
+        <div class="category-info">
+
+            <h3>12 — Gammes mineures</h3>
+
+            <p>Naturelle, harmonique et mélodique</p>
+
+        </div>
+
+        <div class="arrow">▼</div>
+
+    </div>
+
+    <div class="category-pages">
+
+        <button class="page-button"
+                onclick="openPage(12)">
+            <span class="page-number">12</span>
+            Gammes mineures
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- 13 -->
+
+<div class="category">
+
+    <div class="category-header"
+         onclick="toggleCategory(this)">
+
+        <div class="category-icon">📐</div>
+
+        <div class="category-info">
+
+            <h3>13 — Intervalles</h3>
+
+            <p>Mesurer la distance entre deux notes</p>
+
+        </div>
+
+        <div class="arrow">▼</div>
+
+    </div>
+
+    <div class="category-pages">
+
+        <button class="page-button"
+                onclick="openPage(13)">
+            <span class="page-number">13</span>
+            Les intervalles
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- 14 -->
+
+<div class="category">
+
+    <div class="category-header"
+         onclick="toggleCategory(this)">
+
+        <div class="category-icon">🎹</div>
+
+        <div class="category-info">
+
+            <h3>14 — Les accords</h3>
+
+            <p>Construire les accords</p>
+
+        </div>
+
+        <div class="arrow">▼</div>
+
+    </div>
+
+    <div class="category-pages">
+
+        <button class="page-button"
+                onclick="openPage(14)">
+            <span class="page-number">14</span>
+            Accords majeurs et mineurs
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- 15 -->
+
+<div class="category">
+
+    <div class="category-header"
+         onclick="toggleCategory(this)">
+
+        <div class="category-icon">🔄</div>
+
+        <div class="category-info">
+
+            <h3>15 — Renversements</h3>
+
+            <p>Changer l'ordre des notes d'un accord</p>
+
+        </div>
+
+        <div class="arrow">▼</div>
+
+    </div>
+
+    <div class="category-pages">
+
+        <button class="page-button"
+                onclick="openPage(15)">
+            <span class="page-number">15</span>
+            Renversements d'accords
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- 16 -->
+
+<div class="category">
+
+    <div class="category-header"
+         onclick="toggleCategory(this)">
+
+        <div class="category-icon">🎶</div>
+
+        <div class="category-info">
+
+            <h3>16 — Accords de 7e</h3>
+
+            <p>Donner plus de richesse aux accords</p>
+
+        </div>
+
+        <div class="arrow">▼</div>
+
+    </div>
+
+    <div class="category-pages">
+
+        <button class="page-button"
+                onclick="openPage(16)">
+            <span class="page-number">16</span>
+            Les accords de septième
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- 17 -->
+
+<div class="category">
+
+    <div class="category-header"
+         onclick="toggleCategory(this)">
+
+        <div class="category-icon">🧠</div>
+
+        <div class="category-info">
+
+            <h3>17 — Harmonie</h3>
+
+            <p>Comprendre les fonctions musicales</p>
+
+        </div>
+
+        <div class="arrow">▼</div>
+
+    </div>
+
+    <div class="category-pages">
+
+        <button class="page-button"
+                onclick="openPage(17)">
+            <span class="page-number">17</span>
+            Les bases de l'harmonie
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- 18 -->
+
+<div class="category">
+
+    <div class="category-header"
+         onclick="toggleCategory(this)">
+
+        <div class="category-icon">🎼</div>
+
+        <div class="category-info">
+
+            <h3>18 — Progressions d'accords</h3>
+
+            <p>Créer des accompagnements</p>
+
+        </div>
+
+        <div class="arrow">▼</div>
+
+    </div>
+
+    <div class="category-pages">
+
+        <button class="page-button"
+                onclick="openPage(18)">
+            <span class="page-number">18</span>
+            Progressions d'accords
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- 19 -->
+
+<div class="category">
+
+    <div class="category-header"
+         onclick="toggleCategory(this)">
+
+        <div class="category-icon">🖐️</div>
+
+        <div class="category-info">
+
+            <h3>19 — Technique</h3>
+
+            <p>Posture, doigts et relaxation</p>
+
+        </div>
+
+        <div class="arrow">▼</div>
+
+    </div>
+
+    <div class="category-pages">
+
+        <button class="page-button"
+                onclick="openPage(19)">
+            <span class="page-number">19</span>
+            Technique du pianiste
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- 20 -->
+
+<div class="category">
+
+    <div class="category-header"
+         onclick="toggleCategory(this)">
+
+        <div class="category-icon">🤝</div>
+
+        <div class="category-info">
+
+            <h3>20 — Jouer à deux mains</h3>
+
+            <p>Coordination et indépendance</p>
+
+        </div>
+
+        <div class="arrow">▼</div>
+
+    </div>
+
+    <div class="category-pages">
+
+        <button class="page-button"
+                onclick="openPage(20)">
+            <span class="page-number">20</span>
+            Coordination des mains
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- 21 -->
+
+<div class="category">
+
+    <div class="category-header"
+         onclick="toggleCategory(this)">
+
+        <div class="category-icon">🎹</div>
+
+        <div class="category-info">
+
+            <h3>21 — Gammes et doigtés</h3>
+
+            <p>Doigtés pratiques des gammes</p>
+
+        </div>
+
+        <div class="arrow">▼</div>
+
+    </div>
+
+    <div class="category-pages">
+
+        <button class="page-button"
+                onclick="openPage(21)">
+            <span class="page-number">21</span>
+            Gammes et doigtés
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- 22 -->
+
+<div class="category">
+
+    <div class="category-header"
+         onclick="toggleCategory(this)">
+
+        <div class="category-icon">🎶</div>
+
+        <div class="category-info">
+
+            <h3>22 — Arpèges</h3>
+
+            <p>Accords joués note par note</p>
+
+        </div>
+
+        <div class="arrow">▼</div>
+
+    </div>
+
+    <div class="category-pages">
+
+        <button class="page-button"
+                onclick="openPage(22)">
+            <span class="page-number">22</span>
+            Arpèges
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- 23 -->
+
+<div class="category">
+
+    <div class="category-header"
+         onclick="toggleCategory(this)">
+
+        <div class="category-icon">🦶</div>
+
+        <div class="category-info">
+
+            <h3>23 — Les pédales</h3>
+
+            <p>Sustain, sostenuto et una corda</p>
+
+        </div>
+
+        <div class="arrow">▼</div>
+
+    </div>
+
+    <div class="category-pages">
+
+        <button class="page-button"
+                onclick="openPage(23)">
+            <span class="page-number">23</span>
+            Utiliser les pédales
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- 24 -->
+
+<div class="category">
+
+    <div class="category-header"
+         onclick="toggleCategory(this)">
+
+        <div class="category-icon">🎧</div>
+
+        <div class="category-info">
+
+            <h3>24 — Expression</h3>
+
+            <p>Nuances, legato, staccato et phrasé</p>
+
+        </div>
+
+        <div class="arrow">▼</div>
+
+    </div>
+
+    <div class="category-pages">
+
+        <button class="page-button"
+                onclick="openPage(24)">
+            <span class="page-number">24</span>
+            Expression musicale
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- 25 -->
+
+<div class="category">
+
+    <div class="category-header"
+         onclick="toggleCategory(this)">
+
+        <div class="category-icon">👂</div>
+
+        <div class="category-info">
+
+            <h3>25 — Oreille musicale</h3>
+
+            <p>Écouter, reconnaître et reproduire</p>
+
+        </div>
+
+        <div class="arrow">▼</div>
+
+    </div>
+
+    <div class="category-pages">
+
+        <button class="page-button"
+                onclick="openPage(25)">
+            <span class="page-number">25</span>
+            Développer son oreille
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- 26 -->
+
+<div class="category">
+
+    <div class="category-header"
+         onclick="toggleCategory(this)">
+
+        <div class="category-icon">🎤</div>
+
+        <div class="category-info">
+
+            <h3>26 — Accompagnement</h3>
+
+            <p>Jouer derrière une mélodie ou un chanteur</p>
+
+        </div>
+
+        <div class="arrow">▼</div>
+
+    </div>
+
+    <div class="category-pages">
+
+        <button class="page-button"
+                onclick="openPage(26)">
+            <span class="page-number">26</span>
+            Techniques d'accompagnement
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- 27 -->
+
+<div class="category">
+
+    <div class="category-header"
+         onclick="toggleCategory(this)">
+
+        <div class="category-icon">🎶</div>
+
+        <div class="category-info">
+
+            <h3>27 — Improvisation</h3>
+
+            <p>Créer sa propre musique</p>
+
+        </div>
+
+        <div class="arrow">▼</div>
+
+    </div>
+
+    <div class="category-pages">
+
+        <button class="page-button"
+                onclick="openPage(27)">
+            <span class="page-number">27</span>
+            Apprendre à improviser
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- 28 -->
+
+<div class="category">
+
+    <div class="category-header"
+         onclick="toggleCategory(this)">
+
+        <div class="category-icon">🎷</div>
+
+        <div class="category-info">
+
+            <h3>28 — Styles musicaux</h3>
+
+            <p>Classique, jazz, gospel, pop, afrobeat...</p>
+
+        </div>
+
+        <div class="arrow">▼</div>
+
+    </div>
+
+    <div class="category-pages">
+
+        <button class="page-button"
+                onclick="openPage(28)">
+            <span class="page-number">28</span>
+            Les grands styles
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- 29 -->
+
+<div class="category">
+
+    <div class="category-header"
+         onclick="toggleCategory(this)">
+
+        <div class="category-icon">🏆</div>
+
+        <div class="category-info">
+
+            <h3>29 — Méthode du pianiste</h3>
+
+            <p>Apprendre efficacement un morceau</p>
+
+        </div>
+
+        <div class="arrow">▼</div>
+
+    </div>
+
+    <div class="category-pages">
+
+        <button class="page-button"
+                onclick="openPage(29)">
+            <span class="page-number">29</span>
+            Méthode de travail
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- 30 -->
+
+<div class="category">
+
+    <div class="category-header"
+         onclick="toggleCategory(this)">
+
+        <div class="category-icon">⭐</div>
+
+        <div class="category-info">
+
+            <h3>30 — Secrets du pianiste</h3>
+
+            <p>Conseils avancés et glossaire</p>
+
+        </div>
+
+        <div class="arrow">▼</div>
+
+    </div>
+
+    <div class="category-pages">
+
+        <button class="page-button"
+                onclick="openPage(30)">
+            <span class="page-number">30</span>
+            Secrets + Glossaire A–Z
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- GLOSSAIRE -->
+
+<div class="glossary">
+
+    <h2>📚 Glossaire musical A–Z</h2>
+
+    <p style="color:var(--muted);line-height:1.6;margin-bottom:15px;">
+        Les principaux mots utilisés dans le piano et la musique.
+        Appuie sur une lettre pour voir quelques définitions.
+    </p>
+
+    <div class="glossary-grid">
+
+        <button class="letter" onclick="showGlossary('A')">A</button>
+        <button class="letter" onclick="showGlossary('B')">B</button>
+        <button class="letter" onclick="showGlossary('C')">C</button>
+        <button class="letter" onclick="showGlossary('D')">D</button>
+        <button class="letter" onclick="showGlossary('E')">E</button>
+        <button class="letter" onclick="showGlossary('F')">F</button>
+        <button class="letter" onclick="showGlossary('G')">G</button>
+        <button class="letter" onclick="showGlossary('H')">H</button>
+        <button class="letter" onclick="showGlossary('I')">I</button>
+        <button class="letter" onclick="showGlossary('L')">L</button>
+        <button class="letter" onclick="showGlossary('M')">M</button>
+        <button class="letter" onclick="showGlossary('N')">N</button>
+        <button class="letter" onclick="showGlossary('O')">O</button>
+        <button class="letter" onclick="showGlossary('P')">P</button>
+        <button class="letter" onclick="showGlossary('R')">R</button>
+        <button class="letter" onclick="showGlossary('S')">S</button>
+        <button class="letter" onclick="showGlossary('T')">T</button>
+        <button class="letter" onclick="showGlossary('V')">V</button>
+
+    </div>
+
+    <div id="glossaryResult"
+         style="margin-top:15px;">
+    </div>
+
+</div>
+
+</div>
+
+
+<!-- READER -->
+
+<div class="reader"
+     id="reader">
+
+    <div class="reader-header">
+
+        <button class="reader-back"
+                onclick="closeReader()">
+            ← Chapitres
+        </button>
+
+        <span class="reader-page"
+              id="readerPage">
+            1 / 30
+        </span>
+
+    </div>
+
+    <div id="lessonContainer"></div>
+
+    <div class="reader-nav">
+
+        <button class="nav-btn"
+                onclick="previousPage()">
+            ← Précédent
+        </button>
+
+        <button class="nav-btn primary"
+                onclick="nextPage()">
+            Suivant →
+        </button>
+
+    </div>
+
+</div>
+
+
+<div class="footer">
+
+    🎹 <strong>Piano Academy</strong>
+
+    <br>
+
+    Guide du piano — Apprendre • Comprendre • Pratiquer
+
+    <br><br>
+
+    ⭐ Progresse chaque jour.
+
+</div>
+
+</div>
+
+
+<script>
+
+/* =====================================================
+   DONNÉES DES 30 PAGES
+===================================================== */
+
+const pages = [
+
+{
+title:"🎹 Bien débuter au piano",
+subtitle:"Comprendre l'instrument avant de commencer",
+content:`
+
+<div class="section">
+
+<h3>📖 Définition — Piano</h3>
+
+<div class="definition">
+Le <strong>piano</strong> est un instrument de musique à clavier.
+Chaque touche déclenche un son d'une hauteur déterminée.
+Le pianiste utilise principalement ses dix doigts, et parfois
+les pédales, pour contrôler les notes et leur expression.
+</div>
+
+</div>
+
+<div class="section">
+
+<h3>🎯 Pourquoi apprendre le piano ?</h3>
+
+<p>
+Le piano permet de travailler simultanément la mélodie,
+l'harmonie, le rythme, la lecture musicale, l'écoute et la
+coordination. C'est également un excellent instrument pour
+comprendre la structure de la musique.
+</p>
+
+</div>
+
+<div class="section">
+
+<h3>🎹 Les grandes parties</h3>
+
+<ul>
+<li>Le clavier</li>
+<li>Les touches blanches</li>
+<li>Les touches noires</li>
+<li>Les pédales</li>
+<li>Le pupitre</li>
+<li>Le meuble et la mécanique pour un piano acoustique</li>
+</ul>
+
+</div>
+
+<div class="section">
+
+<h3>💡 Conseil du professeur</h3>
+
+<div class="tip">
+Au début, ne cherche pas à jouer vite. Cherche d'abord à
+comprendre ce que tu joues. La précision et la régularité
+sont plus importantes que la vitesse.
+</div>
+
+</div>
+
+<div class="section">
+
+<h3>🎯 Premier exercice</h3>
+
+<p>
+Pose doucement les cinq doigts de la main droite sur
+Do–Ré–Mi–Fa–Sol. Joue chaque note lentement et écoute
+attentivement la différence entre les sons.
+</p>
+
+</div>
+`
+},
+
+{
+title:"🎹 Anatomie du piano",
+subtitle:"Comprendre les différentes parties de l'instrument",
+content:`
+
+<div class="section">
+
+<h3>📖 Définition — Anatomie</h3>
+
+<div class="definition">
+<strong>Anatomie</strong> signifie l'étude des différentes parties
+d'un organisme ou d'un objet et de leur rôle. Dans le piano,
+elle permet de comprendre les éléments qui composent
+l'instrument.
+</div>
+
+</div>
+
+<div class="section">
+
+<h3>🎹 Le clavier</h3>
+
+<p>
+Le <strong>clavier</strong> est l'ensemble des touches que le
+pianiste utilise pour produire les notes. Il comporte des
+touches blanches et noires organisées selon un motif répétitif.
+</p>
+
+<div class="mini-piano">
+<div class="mini-keys">
+<div class="mini-white">Do</div>
+<div class="mini-white">Ré</div>
+<div class="mini-white">Mi</div>
+<div class="mini-white">Fa</div>
+<div class="mini-white">Sol</div>
+<div class="mini-white">La</div>
+<div class="mini-white">Si</div>
+<div class="mini-black" style="left:9.5%"></div>
+<div class="mini-black" style="left:23.5%"></div>
+<div class="mini-black" style="left:51.5%"></div>
+<div class="mini-black" style="left:65.5%"></div>
+<div class="mini-black" style="left:79.5%"></div>
+</div>
+</div>
+
+</div>
+
+<div class="section">
+
+<h3>⬜ Touches blanches</h3>
+
+<div class="definition">
+Les touches blanches correspondent aux notes naturelles :
+Do, Ré, Mi, Fa, Sol, La et Si.
+</div>
+
+</div>
+
+<div class="section">
+
+<h3>⬛ Touches noires</h3>
+
+<div class="definition">
+Les touches noires permettent notamment de jouer des notes
+altérées comme Do♯, Ré♯, Fa♯, Sol♯ et La♯.
+Elles servent aussi de repères visuels sur le clavier.
+</div>
+
+</div>
+
+<div class="section">
+
+<h3>🔢 Les octaves</h3>
+
+<p>
+Une <strong>octave</strong> est l'intervalle entre une note et
+la même note située plus haut ou plus bas.
+</p>
+
+<div class="example">
+Do → Ré → Mi → Fa → Sol → La → Si → Do<br>
+↳ même nom de note à l'octave
+</div>
+
+</div>
+
+`
+},
+
+{
+title:"🎵 Les sept notes musicales",
+subtitle:"Do, Ré, Mi, Fa, Sol, La et Si",
+content:`
+
+<div class="section">
+
+<h3>📖 Définition — Note</h3>
+
+<div class="definition">
+Une <strong>note</strong> est un son musical identifié par sa
+hauteur. Dans le système solfégique utilisé en français,
+les sept noms principaux sont Do, Ré, Mi, Fa, Sol, La et Si.
+</div>
+
+</div>
+
+<div class="section">
+
+<h3>🎵 Les sept notes</h3>
+
+<div class="example">
+DO → RÉ → MI → FA → SOL → LA → SI → DO
+</div>
+
+</div>
+
+<div class="section">
+
+<h3>🎹 Comment retrouver Do ?</h3>
+
+<p>
+Cherche un groupe de deux touches noires. La touche blanche
+située immédiatement à gauche de ce groupe est <strong>Do</strong>.
+</p>
+
+<div class="tip">
+Une fois Do trouvé, les touches blanches suivantes donnent
+Ré, Mi, Fa, Sol, La et Si.
+</div>
+
+</div>
+
+<div class="section">
+
+<h3>🎯 Exercice</h3>
+
+<p>
+Sur ton petit piano dans l'application, trouve tous les Do.
+Ensuite, joue lentement :
+</p>
+
+<div class="example">
+Do – Ré – Mi – Fa – Sol – La – Si – Do
+</div>
+
+</div>
+
+<div class="section">
+
+<h3>⭐ À retenir</h3>
+
+<p>
+Les sept noms se répètent continuellement sur le clavier.
+La hauteur change, mais le nom de la note revient à chaque octave.
+</p>
+
+</div>
+`
+},
+
+{
+title:"♯ Les altérations",
+subtitle:"Dièse, bémol et bécarre",
+content:`
+
+<div class="section">
+
+<h3>📖 Définition — Altération</h3>
+
+<div class="definition">
+Une <strong>altération</strong> est un symbole qui modifie
+la hauteur d'une note. Les trois principaux signes sont
+le dièse ♯, le bémol ♭ et le bécarre ♮.
+</div>
+
+</div>
+
+<div class="symbol-box">
+<div>
+<div class="big-symbol">♯</div>
+<div class="symbol-label">Dièse</div>
+</div>
+
+<div>
+<div class="big-symbol">♭</div>
+<div class="symbol-label">Bémol</div>
+</div>
+
+<div>
+<div class="big-symbol">♮</div>
+<div class="symbol-label">Bécarre</div>
+</div>
+</div>
+
+<div class="section">
+
+<h3>♯ Le dièse</h3>
+
+<p>
+Le <strong>dièse</strong> augmente la hauteur d'une note
+d'un demi-ton.
+</p>
+
+<div class="example">
+Do → Do♯
+</div>
+
+</div>
+
+<div class="section">
+
+<h3>♭ Le bémol</h3>
+
+<p>
+Le <strong>bémol</strong> diminue la hauteur d'une note
+d'un demi-ton.
+</p>
+
+<div class="example">
+Ré → Ré♭
+</div>
+
+</div>
+
+<div class="section">
+
+<h3>♮ Le bécarre</h3>
+
+<p>
+Le <strong>bécarre</strong> annule l'effet d'un dièse ou
+d'un bémol dans le contexte où il est utilisé.
+</p>
+
+</div>
+
+<div class="section">
+
+<h3>💡 Exemple important</h3>
+
+<div class="tip">
+Do♯ et Ré♭ peuvent correspondre à la même hauteur sonore
+sur un piano à tempérament égal. On les appelle des notes
+<strong>enharmoniques</strong>.
+</div>
+
+</div>
+`
+},
+
+{
+title:"📏 Tons et demi-tons",
+subtitle:"Comprendre les distances entre les notes",
+content:`
+
+<div class="section">
+
+<h3>📖 Définition — Demi-ton</h3>
+
+<div class="definition">
+Un <strong>demi-ton</strong> est la plus petite distance
+entre deux touches voisines du clavier chromatique.
+Deux touches voisines, blanche ou noire, sont séparées
+par un demi-ton.
+</div>
+
+</div>
+
+<div class="section">
+
+<h3>📖 Définition — Ton</h3>
+
+<div class="definition">
+Un <strong>ton</strong> correspond à deux demi-tons.
+</div>
+
+<div class="example">
+1 ton = 2 demi-tons
+</div>
+
+</div>
+
+<div class="section">
+
+<h3>🎹 Cas particuliers</h3>
+
+<p>
+Entre Mi et Fa, il n'y a pas de touche noire intermédiaire.
+La distance est donc d'un demi-ton.
+</p>
+
+<div class="example">
+Mi → Fa = 1 demi-ton<br>
+Si → Do = 1 demi-ton
+</div>
+
+</div>
+
+<div class="section">
+
+<h3>🎯 Exercice</h3>
+
+<p>
+Joue Do puis Do♯. Tu viens de jouer un demi-ton.
+Joue ensuite Do puis Ré. Tu viens de jouer un ton.
+</p>
+
+</div>
+`
+},
+
+{
+title:"📖 Lire la musique",
+subtitle:"Premiers repères pour lire une partition",
+content:`
+
+<div class="section">
+
+<h3>📖 Définition — Portée</h3>
+
+<div class="definition">
+Une <strong>portée</strong> est composée de cinq lignes
+horizontales et de quatre interlignes. Les notes sont placées
+sur les lignes ou dans les espaces.
+</div>
+
+<div class="staff">
+<div class="staff-lines">
+<div class="staff-line"></div>
+<div class="staff-line"></div>
+<div class="staff-line"></div>
+<div class="staff-line"></div>
+<div class="staff-line"></div>
+<div class="staff-note">●</div>
+</div>
+</div>
+
+</div>
+
+<div class="section">
+
+<h3>📏 Définition — Ligne</h3>
+
+<p>
+Une <strong>ligne</strong> est l'un des cinq traits horizontaux
+de la portée.
+</p>
+
+</div>
+
+<div class="section">
+
+<h3>↔️ Définition — Interligne</h3>
+
+<p>
+Un <strong>interligne</strong> est l'espace situé entre deux
+lignes de la portée.
+</p>
+
+</div>
+
+<div class="section">
+
+<h3>🎼 Pourquoi lire une partition ?</h3>
+
+<p>
+La partition permet de transmettre la hauteur des notes,
+leur durée, le rythme, les nuances et diverses indications
+d'interprétation.
+</p>
+
+<div class="tip">
+Ne mémorise pas seulement les noms des notes : apprends aussi
+à reconnaître leur position visuelle sur la portée.
+</div>
+
+</div>
+`
+},
+
+{
+title:"𝄞 La clé de Sol",
+subtitle:"Le grand repère des notes aiguës",
+content:`
+
+<div class="symbol-box">
+
+<div class="big-symbol">𝄞</div>
+
+<div>
+<strong>Clé de Sol</strong><br>
+La deuxième ligne représente Sol.
+</div>
+
+</div>
+
+<div class="section">
+
+<h3>📖 Définition — Clé</h3>
+
+<div class="definition">
+Une <strong>clé musicale</strong> est un symbole placé au début
+d'une portée. Elle permet d'établir le nom des notes associées
+aux lignes et aux interlignes.
+</div>
+
+</div>
+
+<div class="section">
+
+<h3>🎼 La clé de Sol</h3>
+
+<p>
+La clé de Sol fixe la note Sol sur la deuxième ligne de la
+portée en partant du bas.
+</p>
+
+<div class="example">
+Ligne 2 = SOL
+</div>
+
+</div>
+
+<div class="section">
+
+<h3>🖐️ Au piano</h3>
+
+<p>
+La clé de Sol est très souvent utilisée pour écrire les notes
+aiguës, notamment les parties jouées par la main droite.
+</p>
+
+</div>
+
+<div class="section">
+
+<h3>🎯 Conseil</h3>
+
+<div class="tip">
+Apprends d'abord quelques notes de référence, puis utilise
+les intervalles pour trouver rapidement les autres.
+</div>
+
+</div>
+`
+},
+
+{
+title:"𝄢 La clé de Fa",
+subtitle:"Le repère des notes graves",
+content:`
+
+<div class="symbol-box">
+
+<div class="big-symbol">𝄢</div>
+
+<div>
+<strong>Clé de Fa</strong><br>
+La quatrième ligne représente Fa.
+</div>
+
+</div>
+
+<div class="section">
+
+<h3>📖 Définition</h3>
+
+<div class="definition">
+La <strong>clé de Fa</strong> est une clé musicale qui place
+la note Fa sur la quatrième ligne de la portée en partant du bas.
+</div>
+
+</div>
+
+<div class="section">
+
+<h3>🎹 Pourquoi est-elle importante ?</h3>
+
+<p>
+Le piano possède beaucoup de notes graves. La clé de Fa permet
+de les écrire sans utiliser constamment de nombreuses lignes
+supplémentaires.
+</p>
+
+</div>
+
+<div class="section">
+
+<h3>🤚 Main gauche</h3>
+
+<p>
+Elle est fréquemment utilisée pour les parties graves et les
+accompagnements joués par la main gauche.
+</p>
+
+<div class="tip">
+Apprends à lire progressivement. Commence par les notes proches
+du Do central puis élargis ton registre.
+</div>
+
+</div>
+`
+},
+
+{
+title:"⏱️ Comprendre le rythme",
+subtitle:"Pulsation, temps, mesure et tempo",
+content:`
+
+<div class="section">
+
+<h3>📖 Définition — Rythme</h3>
+
+<div class="definition">
+Le <strong>rythme</strong> est l'organisation des durées et des
+accents dans le temps. Il permet à la musique d'avancer de manière
+structurée.
+</div>
+
+</div>
+
+<div class="section">
+
+<h3>❤️ La pulsation</h3>
+
+<p>
+La <strong>pulsation</strong> est le battement régulier que l'on
+peut ressentir en musique. Elle ressemble à une horloge musicale.
+</p>
+
+<div class="example">
+1 — 2 — 3 — 4 — 1 — 2 — 3 — 4
+</div>
+
+</div>
+
+<div class="section">
+
+<h3>📖 Définition — Tempo</h3>
+
+<div class="definition">
+Le <strong>tempo</strong> indique la vitesse à laquelle une
+musique est jouée. Il est souvent mesuré en BPM, c'est-à-dire
+battements par minute.
+</div>
+
+<div class="example">
+60 BPM ≈ 1 battement par seconde
+</div>
+
+</div>
+
+<div class="section">
+
+<h3>📏 Définition — Mesure</h3>
+
+<p>
+Une <strong>mesure</strong> organise les temps en groupes réguliers.
+Le chiffrage indique comment ces temps sont organisés.
+</p>
+
+</div>
+
+<div class="tip">
+Pour travailler un morceau difficile, commence beaucoup plus
+lentement que le tempo final.
+</div>
+`
+},
+
+{
+title:"🎼 Valeurs et silences",
+subtitle:"Comprendre la durée des sons",
+content:`
+
+<div class="section">
+
+<h3>📖 Définition — Valeur rythmique</h3>
+
+<div class="definition">
+La <strong>valeur rythmique</strong> indique combien de temps
+une note ou un silence doit durer dans le contexte de la mesure.
+</div>
+
+</div>
+
+<div class="table-wrap">
+
+<table>
+
+<tr>
+<th>Symbole</th>
+<th>Nom</th>
+<th>En 4/4</th>
+</tr>
+
+<tr>
+<td>𝅝</td>
+<td>Ronde</td>
+<td>4 temps</td>
+</tr>
+
+<tr>
+<td>𝅗𝅥</td>
+<td>Blanche</td>
+<td>2 temps</td>
+</tr>
+
+<tr>
+<td>♩</td>
+<td>Noire</td>
+<td>1 temps</td>
+</tr>
+
+<tr>
+<td>♪</td>
+<td>Croche</td>
+<td>1/2 temps</td>
+</tr>
+
+</table>
+
+</div>
+
+<div class="section">
+
+<h3>🤫 Définition — Silence</h3>
+
+<div class="definition">
+Un <strong>silence</strong> est un symbole qui indique qu'aucune
+note ne doit être jouée pendant une durée déterminée.
+</div>
+
+</div>
+
+<div class="section">
+
+<h3>🔗 Définition — Liaison</h3>
+
+<div class="definition">
+Une <strong>liaison</strong> est une ligne courbe reliant des
+notes. Une liaison de prolongation additionne leurs durées,
+tandis qu'une liaison de phrasé indique généralement une
+interprétation liée.
+</div>
+
+</div>
+
+<div class="tip">
+Le silence fait partie de la musique. Ne le considère jamais
+comme un moment où rien ne se passe.
+</div>
+`
+},
+
+{
+title:"🎵 Les gammes majeures",
+subtitle:"Construire et comprendre les gammes majeures",
+content:`
+
+<div class="section">
+
+<h3>📖 Définition — Gamme</h3>
+
+<div class="definition">
+Une <strong>gamme</strong> est une succession organisée de notes
+qui monte ou descend selon une structure déterminée.
+</div>
+
+</div>
+
+<div class="section">
+
+<h3>🎹 Do majeur</h3>
+
+<div class="example">
+Do — Ré — Mi — Fa — Sol — La — Si — Do
+</div>
+
+<p style="margin-top:10px;">
+La gamme de Do majeur ne comporte aucune altération et utilise
+les sept touches blanches.
+</p>
+
+</div>
+
+<div class="section">
+
+<h3>📏 Formule majeure</h3>
+
+<div class="example">
+Ton — Ton — Demi-ton — Ton — Ton — Ton — Demi-ton
+</div>
+
+</div>
+
+<div class="section">
+
+<h3>🎯 Pourquoi apprendre les gammes ?</h3>
+
+<ul>
+<li>Développer la technique</li>
+<li>Comprendre les tonalités</li>
+<li>Améliorer la connaissance du clavier</li>
+<li>Développer la vitesse</li>
+<li>Améliorer la coordination</li>
+</ul>
+
+</div>
+
+<div class="tip">
+Travaille les gammes lentement avec un mouvement régulier.
+La qualité du mouvement compte davantage que la vitesse.
+</div>
+`
+},
+
+{
+title:"🎵 Les gammes mineures",
+subtitle:"Naturelle, harmonique et mélodique",
+content:`
+
+<div class="section">
+
+<h3>📖 Définition — Gamme mineure</h3>
+
+<div class="definition">
+Une <strong>gamme mineure</strong> est une organisation de notes
+qui possède une couleur différente de la gamme majeure.
+Il existe plusieurs formes de gamme mineure.
+</div>
+
+</div>
+
+<div class="section">
+
+<h3>🎵 Mineure naturelle</h3>
+
+<p>
+Elle suit la structure naturelle de la tonalité mineure.
+Par exemple :
+</p>
+
+<div class="example">
+La — Si — Do — Ré — Mi — Fa — Sol — La
+</div>
+
+</div>
+
+<div class="section">
+
+<h3>🎵 Mineure harmonique</h3>
+
+<p>
+Dans la forme harmonique, le septième degré est élevé d'un
+demi-ton par rapport à la forme naturelle.
+</p>
+
+</div>
+
+<div class="section">
+
+<h3>🎵 Mineure mélodique</h3>
+
+<p>
+Dans l'approche classique, la forme mélodique élève généralement
+les sixième et septième degrés à la montée, avec un comportement
+différent à la descente.
+</p>
+
+<div class="warning">
+Les conventions peuvent varier selon le style musical étudié.
+</div>
+
+</div>
+`
+},
+
+{
+title:"📐 Les intervalles",
+subtitle:"Mesurer la distance entre deux notes",
+content:`
+
+<div class="section">
+
+<h3>📖 Définition — Intervalle</h3>
+
+<div class="definition">
+Un <strong>intervalle</strong> est la distance musicale entre
+deux notes. Il peut être mélodique lorsque les notes sont jouées
+successivement ou harmonique lorsqu'elles sont jouées ensemble.
+</div>
+
+</div>
+
+<div class="section">
+
+<h3>🎵 Les principaux noms</h3>
+
+<ul>
+<li>Seconde</li>
+<li>Tierce</li>
+<li>Quarte</li>
+<li>Quinte</li>
+<li>Sixte</li>
+<li>Septième</li>
+<li>Octave</li>
+</ul>
+
+</div>
+
+<div class="section">
+
+<h3>🎹 Exemple</h3>
+
+<div class="example">
+Do → Mi = tierce<br>
+Do → Sol = quinte<br>
+Do → Do = octave
+</div>
+
+</div>
+
+<div class="tip">
+Apprendre à reconnaître les intervalles aide énormément
+pour lire, chanter, improviser et comprendre les accords.
+</div>
+`
+},
+
+{
+title:"🎹 Les accords",
+subtitle:"Construire les premiers accords",
+content:`
+
+<div class="section">
+
+<h3>📖 Définition — Accord</h3>
+
+<div class="definition">
+Un <strong>accord</strong> est un ensemble d'au moins trois notes
+différentes jouées simultanément ou considérées ensemble dans
+une structure harmonique.
+</div>
+
+</div>
+
+<div class="section">
+
+<h3>🎹 Accord majeur</h3>
+
+<p>
+Un accord majeur est formé d'une fondamentale, d'une tierce
+majeure et d'une quinte juste.
+</p>
+
+<div class="example">
+Do majeur = Do — Mi — Sol
+</div>
+
+</div>
+
+<div class="section">
+
+<h3>🎹 Accord mineur</h3>
+
+<p>
+L'accord mineur possède une tierce mineure.
+</p>
+
+<div class="example">
+Do mineur = Do — Mib — Sol
+</div>
+
+</div>
+
+<div class="section">
+
+<h3>🧠 Comment construire un accord ?</h3>
+
+<ol style="padding-left:20px;line-height:1.9;">
+<li>Choisis la fondamentale.</li>
+<li>Compte la tierce.</li>
+<li>Ajoute la quinte.</li>
+<li>Écoute le résultat.</li>
+</ol>
+
+</div>
+`
+},
+
+{
+title:"🔄 Les renversements",
+subtitle:"Changer la disposition des notes",
+content:`
+
+<div class="section">
+
+<h3>📖 Définition — Renversement</h3>
+
+<div class="definition">
+Un <strong>renversement</strong> consiste à changer la note
+placée à la basse d'un accord en déplaçant une ou plusieurs
+notes d'une octave.
+</div>
+
+</div>
+
+<div class="section">
+
+<h3>🎹 Do majeur</h3>
+
+<div class="example">
+Position fondamentale : Do — Mi — Sol<br>
+1er renversement : Mi — Sol — Do<br>
+2e renversement : Sol — Do — Mi
+</div>
+
+</div>
+
+<div class="section">
+
+<h3>🎯 Pourquoi utiliser les renversements ?</h3>
+
+<p>
+Ils permettent de passer d'un accord à un autre avec moins de
+mouvement entre les voix. Le jeu devient plus fluide et les
+enchaînements sont souvent plus agréables.
+</p>
+
+</div>
+
+<div class="tip">
+Apprends chaque accord dans ses trois positions.
+Cela augmentera énormément ta liberté au clavier.
+</div>
+`
+},
+
+{
+title:"🎶 Les accords de septième",
+subtitle:"Ajouter de la couleur et de la tension",
+content:`
+
+<div class="section">
+
+<h3>📖 Définition</h3>
+
+<div class="definition">
+Un <strong>accord de septième</strong> est un accord auquel
+on ajoute une note située à une septième de la fondamentale.
+</div>
+
+</div>
+
+<div class="section">
+
+<h3>🎹 Exemple — Do7</h3>
+
+<div class="example">
+Do — Mi — Sol — Sib
+</div>
+
+</div>
+
+<div class="section">
+
+<h3>🎹 Maj7</h3>
+
+<div class="example">
+Do majeur 7 = Do — Mi — Sol — Si
+</div>
+
+</div>
+
+<div class="section">
+
+<h3>🎹 Mineur 7</h3>
+
+<div class="example">
+Do mineur 7 = Do — Mib — Sol — Sib
+</div>
+
+</div>
+
+<div class="tip">
+Les accords de septième sont particulièrement importants
+dans le jazz, le gospel, le blues, la soul et beaucoup de
+musiques modernes.
+</div>
+`
+},
+
+{
+title:"🧠 Les bases de l'harmonie",
+subtitle:"Comprendre le rôle des accords",
+content:`
+
+<div class="section">
+
+<h3>📖 Définition — Harmonie</h3>
+
+<div class="definition">
+L'<strong>harmonie</strong> étudie les relations entre les notes
+jouées ensemble ou successivement, notamment les accords et
+leurs fonctions dans une tonalité.
+</div>
+
+</div>
+
+<div class="section">
+
+<h3>🎯 Les fonctions principales</h3>
+
+<table>
+<tr>
+<th>Fonction</th>
+<th>Rôle</th>
+</tr>
+<tr>
+<td>Tonique</td>
+<td>Stabilité</td>
+</tr>
+<tr>
+<td>Sous-dominante</td>
+<td>Éloignement</td>
+</tr>
+<tr>
+<td>Dominante</td>
+<td>Tension vers la tonique</td>
+</tr>
+</table>
+
+</div>
+
+<div class="section">
+
+<h3>🎼 Les degrés</h3>
+
+<div class="example">
+I — II — III — IV — V — VI — VII
+</div>
+
+<p style="margin-top:10px;">
+Chaque degré correspond à une position dans la gamme.
+</p>
+
+</div>
+`
+},
+
+{
+title:"🎼 Progressions d'accords",
+subtitle:"Construire des suites d'accords musicales",
+content:`
+
+<div class="section">
+
+<h3>📖 Définition — Progression</h3>
+
+<div class="definition">
+Une <strong>progression d'accords</strong> est une succession
+organisée d'accords qui accompagne une mélodie ou constitue
+la structure harmonique d'un morceau.
+</div>
+
+</div>
+
+<div class="section">
+
+<h3>🎹 Exemple I–IV–V</h3>
+
+<div class="example">
+Do → Fa → Sol → Do
+</div>
+
+<p style="margin-top:10px;">
+En Do majeur : I = Do, IV = Fa, V = Sol.
+</p>
+
+</div>
+
+<div class="section">
+
+<h3>🎵 Progression I–V–vi–IV</h3>
+
+<div class="example">
+Do → Sol → Lam → Fa
+</div>
+
+<p style="margin-top:10px;">
+Cette combinaison est fréquente dans de nombreux styles
+de musique populaire.
+</p>
+
+</div>
+
+<div class="tip">
+Apprends les progressions par degrés. Tu pourras ainsi les
+transposer plus facilement dans d'autres tonalités.
+</div>
+`
+},
+
+{
+title:"🖐️ Technique du pianiste",
+subtitle:"Posture, mains, doigts et relaxation",
+content:`
+
+<div class="section">
+
+<h3>📖 Définition — Technique pianistique</h3>
+
+<div class="definition">
+La <strong>technique pianistique</strong> regroupe les gestes,
+mouvements et habitudes permettant de jouer avec précision,
+contrôle, fluidité et expression.
+</div>
+
+</div>
+
+<div class="section">
+
+<h3>🪑 Position</h3>
+
+<ul>
+<li>Dos naturel</li>
+<li>Épaules détendues</li>
+<li>Avant-bras confortables</li>
+<li>Poignets souples</li>
+<li>Doigts naturellement arrondis</li>
+</ul>
+
+</div>
+
+<div class="section">
+
+<h3>🔢 Numérotation des doigts</h3>
+
+<div class="example">
+Pouce = 1<br>
+Index = 2<br>
+Majeur = 3<br>
+Annulaire = 4<br>
+Petit doigt = 5
+</div>
+
+</div>
+
+<div class="warning">
+Une tension persistante ou une douleur pendant la pratique
+n'est pas un objectif technique. Arrête-toi et corrige ta
+position plutôt que de forcer.
+</div>
+`
+},
+
+{
+title:"🤝 Jouer à deux mains",
+subtitle:"Développer coordination et indépendance",
+content:`
+
+<div class="section">
+
+<h3>📖 Définition — Coordination</h3>
+
+<div class="definition">
+La <strong>coordination</strong> est la capacité à réaliser
+plusieurs mouvements organisés simultanément. Au piano,
+elle permet aux deux mains de jouer ensemble avec précision.
+</div>
+
+</div>
+
+<div class="section">
+
+<h3>🖐️ Commencer séparément</h3>
+
+<p>
+Apprends d'abord la partie droite seule, puis la partie gauche.
+Lorsque chaque main est suffisamment sûre, réunis-les lentement.
+</p>
+
+</div>
+
+<div class="section">
+
+<h3>🎯 Méthode progressive</h3>
+
+<ol style="padding-left:20px;line-height:1.9;">
+<li>Main droite seule</li>
+<li>Main gauche seule</li>
+<li>Très lentement ensemble</li>
+<li>Augmenter progressivement le tempo</li>
+</ol>
+
+</div>
+
+<div class="tip">
+Si les deux mains se trompent lorsqu'elles sont réunies,
+ralentis. Le problème est souvent la coordination, pas la
+mémoire des notes.
+</div>
+`
+},
+
+{
+title:"🎹 Gammes et doigtés",
+subtitle:"Utiliser les bons doigts",
+content:`
+
+<div class="section">
+
+<h3>📖 Définition — Doigté</h3>
+
+<div class="definition">
+Le <strong>doigté</strong> est l'organisation des doigts utilisés
+pour jouer une succession de notes. Un bon doigté rend le geste
+plus fluide et facilite la mémorisation.
+</div>
+
+</div>
+
+<div class="section">
+
+<h3>🎹 Do majeur — main droite</h3>
+
+<div class="example">
+Do Ré Mi Fa Sol La Si Do<br>
+1 — 2 — 3 — 1 — 2 — 3 — 4 — 5
+</div>
+
+</div>
+
+<div class="section">
+
+<h3>🤚 Main gauche</h3>
+
+<div class="example">
+Do Ré Mi Fa Sol La Si Do<br>
+5 — 4 — 3 — 2 — 1 — 3 — 2 — 1
+</div>
+
+</div>
+
+<div class="tip">
+Le passage du pouce est une technique essentielle pour jouer
+les gammes fluidement.
+</div>
+`
+},
+
+{
+title:"🎶 Les arpèges",
+subtitle:"Jouer les notes d'un accord successivement",
+content:`
+
+<div class="section">
+
+<h3>📖 Définition — Arpège</h3>
+
+<div class="definition">
+Un <strong>arpège</strong> consiste à jouer successivement les
+notes d'un accord au lieu de les jouer simultanément.
+</div>
+
+</div>
+
+<div class="section">
+
+<h3>🎹 Exemple</h3>
+
+<div class="example">
+Accord : Do — Mi — Sol<br>
+Arpège : Do → Mi → Sol → Do
+</div>
+
+</div>
+
+<div class="section">
+
+<h3>🎯 Pourquoi pratiquer les arpèges ?</h3>
+
+<ul>
+<li>Développer la souplesse</li>
+<li>Comprendre les accords</li>
+<li>Améliorer la coordination</li>
+<li>Développer la fluidité</li>
+<li>Créer des accompagnements</li>
+</ul>
+
+</div>
+`
+},
+
+{
+title:"🦶 Les pédales",
+subtitle:"Contrôler la résonance et la couleur du son",
+content:`
+
+<div class="section">
+
+<h3>📖 Définition — Pédale</h3>
+
+<div class="definition">
+Une <strong>pédale</strong> est un mécanisme actionné avec le
+pied permettant de modifier le comportement du son ou de
+certaines notes.
+</div>
+
+</div>
+
+<div class="section">
+
+<h3>🦶 Sustain / pédale forte</h3>
+
+<p>
+Elle prolonge la résonance des notes après le relâchement
+des touches.
+</p>
+
+</div>
+
+<div class="section">
+
+<h3>🦶 Una corda</h3>
+
+<p>
+Sur un piano adapté, elle modifie le mécanisme et la couleur
+du son pour obtenir une sonorité plus douce.
+</p>
+
+</div>
+
+<div class="section">
+
+<h3>🎯 Conseil</h3>
+
+<div class="warning">
+N'utilise pas la pédale pour cacher des erreurs. Apprends
+d'abord les notes et le rythme, puis ajoute la pédale avec
+précision.
+</div>
+
+</div>
+`
+},
+
+{
+title:"🎧 Expression musicale",
+subtitle:"Faire vivre la musique",
+content:`
+
+<div class="section">
+
+<h3>📖 Définition — Expression</h3>
+
+<div class="definition">
+L'<strong>expression musicale</strong> désigne la manière dont
+le musicien donne du caractère à une œuvre grâce aux nuances,
+au rythme, à l'articulation, au phrasé et à d'autres moyens.
+</div>
+
+</div>
+
+<div class="section">
+
+<h3>🎵 Nuances</h3>
+
+<div class="example">
+p = piano = doux<br>
+mp = mezzo-piano<br>
+mf = mezzo-forte<br>
+f = forte = fort
+</div>
+
+</div>
+
+<div class="section">
+
+<h3>🎶 Legato</h3>
+
+<p>
+Le <strong>legato</strong> consiste à relier les notes de manière
+fluide et continue.
+</p>
+
+</div>
+
+<div class="section">
+
+<h3>🎵 Staccato</h3>
+
+<p>
+Le <strong>staccato</strong> demande une articulation courte
+et détachée.
+</p>
+
+</div>
+
+<div class="section">
+
+<h3>📈 Crescendo</h3>
+
+<div class="example">
+&lt; = augmenter progressivement l'intensité
+</div>
+
+</div>
+
+<div class="section">
+
+<h3>📉 Diminuendo</h3>
+
+<div class="example">
+&gt; = diminuer progressivement l'intensité
+</div>
+
+</div>
+`
+},
+
+{
+title:"👂 Développer son oreille",
+subtitle:"Apprendre à écouter comme un musicien",
+content:`
+
+<div class="section">
+
+<h3>📖 Définition — Oreille musicale</h3>
+
+<div class="definition">
+L'<strong>oreille musicale</strong> est la capacité à percevoir,
+identifier, comparer et reproduire les éléments musicaux comme
+les hauteurs, intervalles, rythmes et accords.
+</div>
+
+</div>
+
+<div class="section">
+
+<h3>🎯 Première étape</h3>
+
+<p>
+Joue deux notes différentes et demande-toi :
+la deuxième est-elle plus aiguë ou plus grave ?
+</p>
+
+</div>
+
+<div class="section">
+
+<h3>🎵 Reconnaître majeur et mineur</h3>
+
+<p>
+Écoute un accord majeur puis un accord mineur et essaie de
+décrire la différence de couleur sans chercher immédiatement
+à la nommer.
+</p>
+
+</div>
+
+<div class="section">
+
+<h3>⭐ Exercice quotidien</h3>
+
+<div class="tip">
+Chaque jour, prends cinq minutes pour écouter une note,
+la chanter mentalement puis essayer de la retrouver sur le
+clavier.
+</div>
+
+</div>
+`
+},
+
+{
+title:"🎤 Techniques d'accompagnement",
+subtitle:"Soutenir une mélodie avec le piano",
+content:`
+
+<div class="section">
+
+<h3>📖 Définition — Accompagnement</h3>
+
+<div class="definition">
+L'<strong>accompagnement</strong> est la partie musicale qui
+soutient une mélodie, une voix ou un autre instrument.
+</div>
+
+</div>
+
+<div class="section">
+
+<h3>🎹 Forme simple</h3>
+
+<div class="example">
+Main gauche : basse<br>
+Main droite : accords
+</div>
+
+</div>
+
+<div class="section">
+
+<h3>🎶 Quelques patterns</h3>
+
+<ul>
+<li>Accords plaqués</li>
+<li>Basse + accord</li>
+<li>Arpèges</li>
+<li>Ostinatos</li>
+<li>Motifs rythmiques</li>
+</ul>
+
+</div>
+
+<div class="tip">
+Un bon accompagnateur ne cherche pas toujours à jouer beaucoup.
+Il cherche à soutenir la musique sans gêner la mélodie.
+</div>
+`
+},
+
+{
+title:"🎶 Apprendre à improviser",
+subtitle:"Créer de la musique spontanément",
+content:`
+
+<div class="section">
+
+<h3>📖 Définition — Improvisation</h3>
+
+<div class="definition">
+L'<strong>improvisation</strong> consiste à créer ou modifier
+une idée musicale au moment où elle est jouée, en utilisant
+des connaissances musicales, des habitudes gestuelles et
+l'écoute.
+</div>
+
+</div>
+
+<div class="section">
+
+<h3>🎹 Commencer avec Do majeur</h3>
+
+<div class="example">
+Do — Ré — Mi — Fa — Sol — La — Si
+</div>
+
+<p style="margin-top:10px;">
+Utilise seulement les touches blanches et crée une petite
+mélodie de deux ou trois notes.
+</p>
+
+</div>
+
+<div class="section">
+
+<h3>🎵 Pentatonique</h3>
+
+<p>
+Une gamme pentatonique contient cinq notes et est très utilisée
+pour improviser dans plusieurs styles.
+</p>
+
+</div>
+
+<div class="tip">
+Ne cherche pas à jouer beaucoup de notes. Une petite idée
+répétée avec un bon rythme peut être beaucoup plus musicale.
+</div>
+`
+},
+
+{
+title:"🎷 Les grands styles musicaux",
+subtitle:"Découvrir les différentes façons de jouer",
+content:`
+
+<div class="section">
+
+<h3>🎼 Musique classique</h3>
+<p>
+Elle met souvent l'accent sur la lecture, l'interprétation,
+la précision et une grande variété de techniques.
+</p>
+
+</div>
+
+<div class="section">
+
+<h3>🎷 Jazz</h3>
+<p>
+Le jazz utilise notamment l'improvisation, les accords enrichis,
+les syncopes et des approches harmoniques variées.
+</p>
+
+</div>
+
+<div class="section">
+
+<h3>🎤 Gospel</h3>
+<p>
+Le piano gospel utilise fréquemment des accords enrichis,
+des renversements, des progressions et beaucoup d'expression.
+</p>
+
+</div>
+
+<div class="section">
+
+<h3>🎧 Pop</h3>
+<p>
+La pop utilise souvent des progressions d'accords accessibles,
+des motifs répétitifs et une structure claire.
+</p>
+
+</div>
+
+<div class="section">
+
+<h3>🌍 Afrobeat et musiques modernes</h3>
+<p>
+Le piano peut y jouer des motifs rythmiques, des accords,
+des réponses mélodiques ou renforcer la structure harmonique.
+</p>
+
+</div>
+
+<div class="tip">
+N'apprends pas seulement les styles par théorie : écoute-les
+régulièrement et cherche à identifier leur rythme, leurs
+accords et leurs motifs.
+</div>
+`
+},
+
+{
+title:"🏆 La méthode du pianiste",
+subtitle:"Comment apprendre efficacement un morceau",
+content:`
+
+<div class="section">
+
+<h3>📖 Définition — Pratique efficace</h3>
+
+<div class="definition">
+Une pratique efficace consiste à organiser son temps de travail
+autour d'objectifs précis plutôt que de répéter automatiquement
+le morceau du début à la fin.
+</div>
+
+</div>
+
+<div class="section">
+
+<h3>🎯 Méthode en 7 étapes</h3>
+
+<ol style="padding-left:20px;line-height:2;">
+<li>Écouter le morceau.</li>
+<li>Observer la partition.</li>
+<li>Identifier les passages difficiles.</li>
+<li>Travailler chaque main séparément.</li>
+<li>Assembler lentement.</li>
+<li>Augmenter progressivement le tempo.</li>
+<li>Jouer le morceau entier.</li>
+</ol>
+
+</div>
+
+<div class="section">
+
+<h3>⏱️ Règle importante</h3>
+
+<div class="tip">
+Travaille les difficultés plutôt que de répéter uniquement
+les parties que tu connais déjà.
+</div>
+
+</div>
+
+<div class="section">
+
+<h3>⚠️ Erreur fréquente</h3>
+
+<div class="warning">
+Jouer trop vite parce qu'on veut immédiatement atteindre
+le tempo final. Une erreur répétée rapidement devient une
+habitude difficile à corriger.
+</div>
+
+</div>
+`
+},
+
+{
+title:"⭐ Secrets du pianiste + Glossaire",
+subtitle:"Conseils avancés et vocabulaire essentiel",
+content:`
+
+<div class="section">
+
+<h3>⭐ Secret 1 — La lenteur est une arme</h3>
+
+<p>
+Jouer lentement permet au cerveau et aux mains de construire
+des mouvements précis. La vitesse vient ensuite progressivement.
+</p>
+
+</div>
+
+<div class="section">
+
+<h3>⭐ Secret 2 — Découpe les morceaux</h3>
+
+<p>
+Travaille deux à quatre mesures à la fois lorsque le morceau
+est difficile. Maîtrise une petite zone avant d'en ajouter une autre.
+</p>
+
+</div>
+
+<div class="section">
+
+<h3>⭐ Secret 3 — Écoute-toi</h3>
+
+<p>
+Un pianiste doit apprendre à entendre ses propres erreurs.
+L'écoute est aussi importante que le mouvement des doigts.
+</p>
+
+</div>
+
+<div class="section">
+
+<h3>⭐ Secret 4 — La régularité gagne</h3>
+
+<div class="tip">
+20 minutes de pratique concentrée chaque jour peuvent être
+plus utiles qu'une longue séance occasionnelle sans objectif.
+</div>
+
+</div>
+
+<div class="section">
+
+<h3>📚 Mini-glossaire</h3>
+
+<div class="definition">
+
+<strong>Accord :</strong> ensemble de notes formant une structure harmonique.<br><br>
+
+<strong>Arpège :</strong> notes d'un accord jouées successivement.<br><br>
+
+<strong>Armure :</strong> ensemble des altérations placées au début
+d'une portée pour indiquer la tonalité.<br><br>
+
+<strong>Cadence :</strong> formule harmonique donnant une sensation
+de conclusion ou de transition.<br><br>
+
+<strong>Clé :</strong> symbole déterminant le nom des notes sur la portée.<br><br>
+
+<strong>Gamme :</strong> succession organisée de notes.<br><br>
+
+<strong>Intervalle :</strong> distance entre deux notes.<br><br>
+
+<strong>Legato :</strong> manière de jouer les notes de façon liée.<br><br>
+
+<strong>Mesure :</strong> groupe organisé de temps.<br><br>
+
+<strong>Note :</strong> son musical identifié par sa hauteur.<br><br>
+
+<strong>Octave :</strong> intervalle entre une note et la même note
+à un registre supérieur ou inférieur.<br><br>
+
+<strong>Portée :</strong> cinq lignes utilisées pour écrire la musique.<br><br>
+
+<strong>Rythme :</strong> organisation des durées dans le temps.<br><br>
+
+<strong>Tempo :</strong> vitesse d'exécution d'une musique.<br><br>
+
+<strong>Tonalité :</strong> organisation musicale autour d'une note
+et d'une gamme de référence.<br><br>
+
+<strong>Tonique :</strong> premier degré d'une tonalité et centre
+de stabilité harmonique.
+
+</div>
+
+</div>
+
+<div class="section">
+
+<h3>🎯 Dernier conseil</h3>
+
+<p>
+Ne cherche pas à tout apprendre en une journée. Utilise ce guide
+comme un livre de référence : apprends une notion, joue-la sur
+le piano, puis reviens régulièrement la réviser.
+</p>
+
+</div>
+`
+}
+
+];
+
+
+/* =====================================================
+   POUR LES PAGES 21 À 30
+   SI LE TABLEAU CONTIENT MOINS DE 30 ENTRÉES,
+   ON COMPLÈTE AUTOMATIQUEMENT AVEC DU CONTENU
+===================================================== */
+
+const extraPages = {
+
+21:{
+title:"🎹 Gammes et doigtés",
+text:"Approfondis les doigtés des gammes majeures et mineures, le passage du pouce, la régularité et le travail avec métronome."
+},
+
+22:{
+title:"🎶 Arpèges",
+text:"Travaille les arpèges avec différentes positions, inversions et doigtés. Commence lentement avant d'augmenter la vitesse."
+},
+
+23:{
+title:"🦶 Les pédales",
+text:"Apprends à utiliser les pédales avec précision. Le sustain doit accompagner l'harmonie sans créer une bouillie sonore."
+},
+
+24:{
+title:"🎧 Expression",
+text:"Travaille les nuances, le legato, le staccato, les accents, le phrasé et les contrastes dynamiques."
+},
+
+25:{
+title:"👂 Oreille musicale",
+text:"Développe ton écoute grâce aux exercices de notes, intervalles, accords, rythmes et mélodies."
+},
+
+26:{
+title:"🎤 Accompagnement",
+text:"Apprends à soutenir une mélodie grâce aux accords, basses, arpèges et motifs rythmiques."
+},
+
+27:{
+title:"🎶 Improvisation",
+text:"Commence avec des gammes simples, crée des motifs et développe progressivement ton vocabulaire musical."
+},
+
+28:{
+title:"🎷 Styles musicaux",
+text:"Découvre les caractéristiques du classique, jazz, blues, gospel, pop, R&B, afrobeat et autres styles."
+},
+
+29:{
+title:"🏆 Méthode du pianiste",
+text:"Organise ton entraînement, fixe des objectifs, travaille les difficultés et mesure régulièrement tes progrès."
+},
+
+30:{
+title:"⭐ Secrets du pianiste",
+text:"La régularité, l'écoute, la lenteur, la précision et la patience sont parmi les plus grandes clés de progression."
+}
+
+};
+
+
+/* =====================================================
+   COMPLÉTER LES PAGES
+===================================================== */
+
+for(let i = pages.length + 1; i <= 30; i++){
+
+    const item = extraPages[i];
+
+    pages.push({
+
+        title:item.title,
+
+        subtitle:"Approfondissement",
+
+        content:`
+
+        <div class="section">
+
+        <h3>📖 Définition</h3>
+
+        <div class="definition">
+        ${item.text}
+        </div>
+
+        </div>
+
+        <div class="section">
+
+        <h3>🎹 Exemple pratique</h3>
+
+        <p>
+        Ouvre le piano de pratique de Piano Academy et
+        applique immédiatement cette notion. Commence
+        lentement, écoute le résultat puis recommence.
+        </p>
+
+        </div>
+
+        <div class="section">
+
+        <h3>💡 Conseil du professeur</h3>
+
+        <div class="tip">
+        La qualité du travail est plus importante que la
+        quantité. Travaille régulièrement et corrige
+        consciemment tes erreurs.
+        </div>
+
+        </div>
+
+        <div class="section">
+
+        <h3>⚠️ Erreur à éviter</h3>
+
+        <div class="warning">
+        Ne cherche pas la vitesse avant de maîtriser le
+        mouvement et le rythme.
+        </div>
+
+        </div>
+
+        <div class="section">
+
+        <h3>🎯 À toi de jouer</h3>
+
+        <p>
+        Pratique cette notion pendant quelques minutes,
+        puis essaie de l'utiliser dans une petite phrase
+        musicale.
+        </p>
+
+        </div>
+
+        `
+
+    });
+
+}
+
+
+/* =====================================================
+   ÉTAT
+===================================================== */
+
+let currentPage = 1;
+
+let completed =
+    JSON.parse(
+        localStorage.getItem(
+            "pianoGuideCompleted"
+        ) || "[]"
+    );
+
+
+/* =====================================================
+   OUVRIR PAGE
+===================================================== */
+
+function openPage(number){
+
+    currentPage = number;
+
+    document.getElementById("home")
+        .style.display = "none";
+
+    document.getElementById("progressCard")
+        .style.display = "none";
+
+    document.getElementById("searchBox")
+        .style.display = "none";
+
+    document.getElementById("searchResults")
+        .style.display = "none";
+
+    document.getElementById("homeHero")
+        .style.display = "none";
+
+    document.getElementById("reader")
+        .classList.add("active");
+
+    renderPage();
+
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
+
+}
+
+
+/* =====================================================
+   AFFICHER PAGE
+===================================================== */
+
+function renderPage(){
+
+    const data =
+        pages[currentPage - 1];
+
+    if(!data){
+        return;
+    }
+
+    document.getElementById(
+        "readerPage"
+    ).innerText =
+        currentPage + " / 30";
+
+    document.getElementById(
+        "lessonContainer"
+    ).innerHTML = `
+
+        <div class="lesson-card">
+
+            <h2 class="lesson-title">
+                ${data.title}
+            </h2>
+
+            <p class="lesson-subtitle">
+                ${data.subtitle}
+            </p>
+
+            ${data.content}
+
+            <button
+                class="complete ${completed.includes(currentPage) ? "done" : ""}"
+                onclick="completePage()">
+
+                ${
+                    completed.includes(currentPage)
+                    ? "✓ Chapitre terminé"
+                    : "✓ J'ai terminé ce chapitre"
+                }
+
+            </button>
+
+        </div>
+    `;
+
+}
+
+
+/* =====================================================
+   TERMINER PAGE
+===================================================== */
+
+function completePage(){
+
+    if(!completed.includes(currentPage)){
+
+        completed.push(currentPage);
+
+        localStorage.setItem(
+            "pianoGuideCompleted",
+            JSON.stringify(completed)
+        );
+
+    }
+
+    updateProgress();
+
+    renderPage();
+
+}
+
+
+/* =====================================================
+   PROGRESSION
+===================================================== */
+
+function updateProgress(){
+
+    const count =
+        completed.length;
+
+    const percent =
+        Math.round(
+            (count / 30) * 100
+        );
+
+    document.getElementById(
+        "progressText"
+    ).innerText =
+        count + " / 30";
+
+    document.getElementById(
+        "progressFill"
+    ).style.width =
+        percent + "%";
+
+    document.querySelectorAll(
+        ".page-button"
+    ).forEach(button=>{
+
+        const onclick =
+            button.getAttribute(
+                "onclick"
+            );
+
+        if(!onclick){
+            return;
+        }
+
+        const match =
+            onclick.match(
+                /openPage\((\d+)\)/
+            );
+
+        if(!match){
+            return;
+        }
+
+        const number =
+            Number(match[1]);
+
+        if(completed.includes(number)){
+            button.classList.add("done");
+        }
+
+    });
+
+}
+
+
+/* =====================================================
+   PAGE SUIVANTE
+===================================================== */
+
+function nextPage(){
+
+    if(currentPage < 30){
+
+        currentPage++;
+
+        renderPage();
+
+        window.scrollTo({
+            top:0,
+            behavior:"smooth"
+        });
+
+    }else{
+
+        alert(
+            "🎉 Félicitations ! Tu as parcouru les 30 chapitres du Guide du piano."
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   PAGE PRÉCÉDENTE
+===================================================== */
+
+function previousPage(){
+
+    if(currentPage > 1){
+
+        currentPage--;
+
+        renderPage();
+
+        window.scrollTo({
+            top:0,
+            behavior:"smooth"
+        });
+
+    }
+
+}
+
+
+/* =====================================================
+   FERMER LECTEUR
+===================================================== */
+
+function closeReader(){
+
+    document.getElementById(
+        "reader"
+    ).classList.remove("active");
+
+    document.getElementById(
+        "home"
+    ).style.display = "block";
+
+    document.getElementById(
+        "progressCard"
+    ).style.display = "block";
+
+    document.getElementById(
+        "searchBox"
+    ).style.display = "block";
+
+    document.getElementById(
+        "homeHero"
+    ).style.display = "block";
+
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
+
+}
+
+
+/* =====================================================
+   RETOUR
+===================================================== */
+
+function goBack(){
+
+    if(
+        document.getElementById(
+            "reader"
+        ).classList.contains("active")
+    ){
+
+        closeReader();
+
+    }else{
+
+        history.back();
+
+    }
+
+}
+
+
+/* =====================================================
+   CATÉGORIES
+===================================================== */
+
+function toggleCategory(header){
+
+    const category =
+        header.parentElement;
+
+    category.classList.toggle(
+        "open"
+    );
+
+}
+
+
+/* =====================================================
+   RECHERCHE
+===================================================== */
+
+function searchGuide(){
+
+    const input =
+        document.getElementById(
+            "searchInput"
+        );
+
+    const value =
+        input.value
+        .trim()
+        .toLowerCase();
+
+    const results =
+        document.getElementById(
+            "searchResults"
+        );
+
+    if(value === ""){
+
+        results.style.display =
+            "none";
+
+        return;
+
+    }
+
+    const found = [];
+
+    pages.forEach(
+        (page,index)=>{
+
+            const text =
+                (
+                    page.title +
+                    " " +
+                    page.subtitle +
+                    " " +
+                    page.content
+                ).toLowerCase();
+
+            if(
+                text.includes(value)
+            ){
+
+                found.push({
+                    number:index+1,
+                    title:page.title
+                });
+
+            }
+
+        }
+    );
+
+
+    if(found.length === 0){
+
+        results.innerHTML = `
+            <div style="
+                padding:15px;
+                color:var(--muted);
+            ">
+                Aucun résultat trouvé.
+            </div>
+        `;
+
+    }else{
+
+        results.innerHTML =
+            found
+            .slice(0,10)
+            .map(item=>`
+
+                <button
+                    class="search-result"
+                    onclick="openPage(${item.number})">
+
+                    📖 ${item.title}
+
+                </button>
+
+            `)
+            .join("");
+
+    }
+
+    results.style.display =
+        "block";
+
+}
+
+
+/* =====================================================
+   GLOSSAIRE
+===================================================== */
+
+const glossary = {
+
+A:[
+["Accord","Ensemble de notes formant une structure harmonique."],
+["Arpège","Notes d'un accord jouées successivement."],
+["Armure","Altérations placées au début d'une portée."],
+["Accent","Mise en évidence particulière d'une note."]
+],
+
+B:[
+["Bémol","Signe ♭ abaissant une note d'un demi-ton."],
+["Blanche","Valeur rythmique correspondant généralement à deux temps en 4/4."]
+],
+
+C:[
+["Cadence","Formule harmonique donnant une sensation de conclusion ou de transition."],
+["Clé","Symbole permettant de déterminer le nom des notes sur la portée."],
+["Chromatisme","Utilisation de notes séparées par des demi-tons."],
+["Crescendo","Augmentation progressive de l'intensité."]
+],
+
+D:[
+["Dièse","Signe ♯ augmentant une note d'un demi-ton."],
+["Dominante","Cinquième degré d'une tonalité."],
+["Doigté","Choix des doigts utilisés pour jouer les notes."]
+],
+
+E:[
+["Enharmonie","Relation entre deux noms de notes correspondant à une même hauteur sonore dans certains systèmes."],
+["Expression","Manière de donner du caractère à une interprétation."]
+],
+
+F:[
+["Fondamentale","Note qui sert de base à un accord."],
+["Forte","Nuance indiquant une intensité forte."]
+],
+
+G:[
+["Gamme","Succession organisée de notes."],
+["Glissando","Glissement continu ou rapide entre des hauteurs."]
+],
+
+H:[
+["Harmonie","Étude des relations entre les notes et les accords."]
+],
+
+I:[
+["Intervalle","Distance musicale entre deux notes."]
+],
+
+L:[
+["Legato","Manière de jouer les notes de façon liée."],
+["Liaison","Signe reliant des notes selon une fonction musicale."],
+["Ligne","Une des cinq lignes de la portée."]
+],
+
+M:[
+["Majeur","Qualité harmonique associée notamment à une tierce majeure."],
+["Mesure","Groupe organisé de temps."],
+["Mélodie","Suite de notes formant une ligne musicale."],
+["Mineur","Qualité harmonique associée notamment à une tierce mineure."],
+["Modulation","Changement de tonalité."]
+],
+
+N:[
+["Note","Son musical identifié par sa hauteur."],
+["Nuance","Indication relative à l'intensité sonore."]
+],
+
+O:[
+["Octave","Intervalle entre une note et la même note à un registre supérieur ou inférieur."]
+],
+
+P:[
+["Portée","Ensemble de cinq lignes et quatre interlignes."],
+["Pulsation","Battement régulier qui structure le temps musical."],
+["Pédale","Commande actionnée avec le pied pour modifier le son."]
+],
+
+R:[
+["Rythme","Organisation des durées dans le temps."],
+["Renversement","Disposition différente des notes d'un accord."],
+["Reprise","Indication demandant de rejouer une partie."]
+],
+
+S:[
+["Silence","Symbole indiquant une absence de son pendant une durée."],
+["Staccato","Articulation courte et détachée."],
+["Syncope","Déplacement ou accentuation d'un temps faible ou d'une partie faible du temps."]
+],
+
+T:[
+["Tempo","Vitesse d'exécution d'une musique."],
+["Ton","Intervalle composé de deux demi-tons."],
+["Tonalité","Organisation musicale autour d'un centre tonal."],
+["Tonique","Premier degré d'une tonalité."]
+],
+
+V:[
+["Valeur","Durée relative d'une note ou d'un silence."]
+]
+
+};
+
+
+/* =====================================================
+   AFFICHER GLOSSAIRE
+===================================================== */
+
+function showGlossary(letter){
+
+    const result =
+        document.getElementById(
+            "glossaryResult"
+        );
+
+    const items =
+        glossary[letter];
+
+    if(!items){
+
+        result.innerHTML = `
+            <div class="definition">
+                Aucune définition disponible pour cette lettre.
+            </div>
+        `;
+
+        return;
+    }
+
+    result.innerHTML = `
+
+        <div class="definition">
+
+            <h3 style="margin-bottom:12px;">
+                Lettre ${letter}
+            </h3>
+
+            ${
+                items.map(item=>`
+
+                    <div style="
+                        margin-bottom:14px;
+                        line-height:1.6;
+                    ">
+
+                        <strong>
+                            ${item[0]}
+                        </strong>
+
+                        <br>
+
+                        <span style="
+                            color:var(--muted);
+                        ">
+                            ${item[1]}
+                        </span>
+
+                    </div>
+
+                `).join("")
+            }
+
+        </div>
+    `;
+
+}
+
+
+/* =====================================================
+   MODE SOMBRE / CLAIR
+===================================================== */
+
+function toggleTheme(){
+
+    document.body.classList.toggle(
+        "light"
+    );
+
+    const light =
+        document.body.classList.contains(
+            "light"
+        );
+
+    localStorage.setItem(
+        "pianoGuideTheme",
+        light ? "light" : "dark"
+    );
+
+    document.getElementById(
+        "themeBtn"
+    ).innerText =
+        light ? "🌙" : "☀️";
+
+}
+
+
+/* =====================================================
+   RESTAURER THÈME
+===================================================== */
+
+const savedTheme =
+    localStorage.getItem(
+        "pianoGuideTheme"
+    );
+
+if(savedTheme === "light"){
+
+    document.body.classList.add(
+        "light"
+    );
+
+    document.getElementById(
+        "themeBtn"
+    ).innerText = "🌙";
+
+}else{
+
+    document.getElementById(
+        "themeBtn"
+    ).innerText = "☀️";
+
+}
+
+
+/* =====================================================
+   INITIALISATION
+===================================================== */
+
+updateProgress();
+
+</script>
+
+</body>
+</html>
