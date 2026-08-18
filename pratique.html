@@ -1,0 +1,2307 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width,
+initial-scale=1.0,
+maximum-scale=1.0,
+user-scalable=no">
+
+<title>Piano Academy Pro</title>
+
+<style>
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+    user-select:none;
+    -webkit-user-select:none;
+    -webkit-tap-highlight-color:transparent;
+}
+
+html,body{
+    width:100%;
+    height:100%;
+    overflow:hidden;
+    background:#050911;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    touch-action:none;
+}
+
+button,select{
+    font-family:Arial,sans-serif;
+}
+
+/* ================= APP ================= */
+
+.app{
+    width:100vw;
+    height:100vh;
+    display:flex;
+    flex-direction:column;
+    overflow:hidden;
+    background:linear-gradient(135deg,#111b2b,#07101d);
+    color:white;
+}
+
+/* ================= HEADER ================= */
+
+.header{
+    height:64px;
+    flex-shrink:0;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    padding:6px 10px;
+    background:linear-gradient(#1d2a3d,#0b111c);
+    border-bottom:2px solid #26364c;
+}
+
+.logo{
+    width:170px;
+    flex-shrink:0;
+    font-size:19px;
+    font-weight:bold;
+    line-height:1.05;
+}
+
+.logo span{
+    color:#55ff92;
+}
+
+.main-display{
+    flex:1;
+    height:50px;
+    min-width:0;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    padding:5px 13px;
+    background:linear-gradient(135deg,#05291f,#001914);
+    border:1px solid #163f35;
+    border-radius:8px;
+    box-shadow:inset 0 0 20px rgba(0,0,0,.6),
+               0 4px 10px #000;
+}
+
+.display-top{
+    color:#54ff93;
+    font-size:10px;
+}
+
+.display-main{
+    color:white;
+    font-size:18px;
+    font-weight:bold;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+}
+
+.display-bottom{
+    color:#6ceca0;
+    font-size:10px;
+}
+
+.power{
+    width:46px;
+    height:46px;
+    flex-shrink:0;
+    border-radius:50%;
+    border:2px solid #45556d;
+    background:#111b29;
+    color:#25e477;
+    font-size:20px;
+}
+
+/* ================= MAIN ================= */
+
+.main{
+    flex:1;
+    min-height:0;
+    display:flex;
+    overflow:hidden;
+}
+
+/* ================= LEFT ================= */
+
+.left-panel{
+    width:230px;
+    flex-shrink:0;
+    display:flex;
+    flex-direction:column;
+    gap:7px;
+    padding:7px;
+    background:#0d1727;
+    border-right:2px solid #24344a;
+    overflow-y:auto;
+}
+
+.group{
+    border:1px solid #304159;
+    border-radius:11px;
+    padding:7px;
+    background:linear-gradient(#111d2e,#0b1422);
+    box-shadow:inset 0 0 15px rgba(0,0,0,.25);
+}
+
+.group-title{
+    color:#78879b;
+    font-size:11px;
+    margin-bottom:6px;
+    text-align:center;
+    letter-spacing:.5px;
+}
+
+.row{
+    display:flex;
+    gap:5px;
+}
+
+.control-btn{
+    flex:1;
+    min-height:46px;
+    background:linear-gradient(#26364c,#172438);
+    color:#f5f7fa;
+    border:2px solid #3c4d65;
+    border-radius:9px;
+    font-weight:bold;
+    font-size:10px;
+    box-shadow:0 3px 5px #05080d;
+    transition:transform .06s,background .06s;
+}
+
+.control-btn:active{
+    transform:translateY(2px);
+}
+
+.control-btn.active{
+    background:linear-gradient(#1b9d65,#08633e);
+    border-color:#4ce59a;
+    color:white;
+    box-shadow:0 0 10px rgba(50,255,145,.25);
+}
+
+/* ================= CENTER ================= */
+
+.center-panel{
+    flex:1;
+    min-width:0;
+    min-height:0;
+    display:flex;
+    flex-direction:column;
+    padding:7px;
+    gap:7px;
+    overflow:hidden;
+}
+
+.top-controls{
+    display:flex;
+    gap:7px;
+    flex-shrink:0;
+    overflow-x:auto;
+    scrollbar-width:none;
+}
+
+.top-controls::-webkit-scrollbar{
+    display:none;
+}
+
+.selector{
+    min-width:125px;
+    height:55px;
+    padding:5px;
+    background:linear-gradient(#26364b,#162235);
+    border:2px solid #3c4d65;
+    border-radius:10px;
+    flex-shrink:0;
+}
+
+.selector label{
+    display:block;
+    color:#b7c1ce;
+    font-size:9px;
+    text-align:center;
+    margin-bottom:4px;
+}
+
+.selector select{
+    width:100%;
+    height:29px;
+    border:0;
+    border-radius:6px;
+    padding:0 5px;
+    background:#0d1623;
+    color:white;
+    outline:none;
+    font-size:11px;
+}
+
+/* ================= SCREEN ================= */
+
+.screen{
+    flex:1;
+    min-height:100px;
+    border-radius:12px;
+    background:radial-gradient(
+        ellipse at center,
+        #064c3b,
+        #00271f 60%,
+        #001811
+    );
+    border:1px solid #0b5543;
+    box-shadow:inset 0 0 30px rgba(0,0,0,.7),
+               0 5px 10px #000;
+    padding:13px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+}
+
+.screen-title{
+    color:#59ff9b;
+    font-size:12px;
+}
+
+.screen-name{
+    font-size:27px;
+    font-weight:bold;
+    margin:4px 0;
+}
+
+.screen-info{
+    display:flex;
+    justify-content:space-between;
+    gap:10px;
+    color:#74e8a5;
+    font-size:11px;
+}
+
+/* ================= CONTROLS ================= */
+
+.right-controls{
+    display:flex;
+    gap:6px;
+    flex-wrap:wrap;
+    flex-shrink:0;
+}
+
+.small-btn{
+    flex:1;
+    min-width:85px;
+    height:48px;
+    background:linear-gradient(#26364b,#162235);
+    color:white;
+    border:2px solid #3c4d65;
+    border-radius:9px;
+    font-weight:bold;
+    font-size:10px;
+}
+
+.small-btn.active{
+    background:linear-gradient(#159c61,#087040);
+    border-color:#51f19b;
+}
+
+/* ================= PIANO ================= */
+
+.piano-section{
+    height:43%;
+    min-height:190px;
+    flex-shrink:0;
+    display:flex;
+    flex-direction:column;
+    background:#080e18;
+    border-top:2px solid #26364b;
+    padding:4px 5px 6px;
+}
+
+.piano-bar{
+    height:30px;
+    flex-shrink:0;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 7px;
+    color:#9eacbd;
+    font-size:10px;
+}
+
+/* ==================================================
+   ZONE GLISSER
+   IMPORTANT :
+   Cette zone sert UNIQUEMENT à déplacer le clavier.
+================================================== */
+
+#keyboardDrag{
+    cursor:grab;
+    touch-action:none;
+    padding:5px 15px;
+    border-radius:6px;
+    transition:.15s;
+}
+
+#keyboardDrag:active{
+    cursor:grabbing;
+    background:rgba(50,255,145,.08);
+}
+
+.piano-status{
+    color:#55ff92;
+    font-weight:bold;
+}
+
+/* ================= KEYBOARD WINDOW ================= */
+
+.keyboard-window{
+    flex:1;
+    min-height:0;
+    overflow-x:auto;
+    overflow-y:hidden;
+    background:#05080d;
+    border-radius:7px;
+    border:2px solid #29394e;
+    -webkit-overflow-scrolling:touch;
+    scrollbar-width:none;
+    touch-action:none;
+}
+
+.keyboard-window::-webkit-scrollbar{
+    display:none;
+}
+
+/* ================= KEYBOARD ================= */
+
+.keyboard{
+    position:relative;
+    height:100%;
+    width:max(100%,1296px);
+    min-width:1296px;
+    display:flex;
+    padding:0 5px 3px;
+    touch-action:none;
+}
+
+/* ================= WHITE ================= */
+
+.white{
+    position:relative;
+    flex:1;
+    height:100%;
+    background:linear-gradient(
+        to right,
+        #ffffff 0%,
+        #f5f5f5 65%,
+        #c1c1c1 100%
+    );
+    border-left:1px solid #444;
+    border-right:1px solid #444;
+    border-bottom:5px solid #858585;
+    border-radius:0 0 6px 6px;
+    display:flex;
+    justify-content:center;
+    align-items:flex-end;
+    padding-bottom:8px;
+    color:#111;
+    font-size:10px;
+    font-weight:bold;
+    box-shadow:
+        inset 0 -18px 18px rgba(0,0,0,.12),
+        0 4px 5px #000;
+    transition:
+        transform .045s ease,
+        background .045s ease;
+    touch-action:none;
+    z-index:1;
+    will-change:transform;
+}
+
+.white.active{
+    transform:translateY(7px);
+    background:linear-gradient(#d7d7d7,#999999);
+    border-bottom:2px solid #555;
+    box-shadow:inset 0 5px 10px rgba(0,0,0,.3);
+}
+
+/* ================= BLACK ================= */
+
+.black{
+    position:absolute;
+    top:0;
+    z-index:20;
+    width:25px;
+    height:62%;
+    background:linear-gradient(
+        to right,
+        #020202,
+        #202630 30%,
+        #666 50%,
+        #090909 100%
+    );
+    border-left:1px solid #666;
+    border-right:1px solid #000;
+    border-bottom:5px solid #000;
+    border-radius:0 0 6px 6px;
+    box-shadow:
+        0 7px 8px #000,
+        inset 2px 0 3px #777;
+    color:white;
+    display:flex;
+    align-items:flex-end;
+    justify-content:center;
+    padding-bottom:7px;
+    font-size:7px;
+    transition:
+        transform .045s ease,
+        background .045s ease;
+    touch-action:none;
+    will-change:transform;
+}
+
+.black.active{
+    transform:translateY(7px);
+    background:linear-gradient(
+        to right,
+        #202020,
+        #777,
+        #111
+    );
+    border-bottom:2px solid #000;
+    box-shadow:
+        0 1px 2px #000,
+        inset 0 4px 8px #000;
+}
+
+/* ================= LANDSCAPE ================= */
+
+@media(orientation:landscape){
+
+    .header{
+        height:52px;
+    }
+
+    .logo{
+        width:145px;
+        font-size:15px;
+    }
+
+    .left-panel{
+        width:210px;
+    }
+
+    .piano-section{
+        height:46%;
+        min-height:165px;
+    }
+
+    .screen{
+        min-height:80px;
+    }
+
+    .screen-name{
+        font-size:23px;
+    }
+}
+
+/* ================= PORTRAIT ================= */
+
+@media(orientation:portrait){
+
+    .header{
+        height:57px;
+    }
+
+    .logo{
+        width:90px;
+        font-size:12px;
+    }
+
+    .main-display{
+        height:47px;
+        padding:4px 9px;
+    }
+
+    .display-main{
+        font-size:14px;
+    }
+
+    .left-panel{
+        width:120px;
+        padding:5px;
+        gap:5px;
+    }
+
+    .group{
+        padding:5px;
+    }
+
+    .group-title{
+        font-size:9px;
+    }
+
+    .control-btn{
+        font-size:7px;
+        min-height:39px;
+    }
+
+    .center-panel{
+        padding:5px;
+        gap:5px;
+    }
+
+    .selector{
+        min-width:105px;
+        height:52px;
+    }
+
+    .screen{
+        min-height:90px;
+        padding:10px;
+    }
+
+    .screen-name{
+        font-size:21px;
+    }
+
+    .screen-info{
+        font-size:9px;
+    }
+
+    .small-btn{
+        min-width:70px;
+        height:43px;
+        font-size:8px;
+    }
+
+    .piano-section{
+        height:36%;
+        min-height:175px;
+        padding:3px 4px 5px;
+    }
+
+    .piano-bar{
+        height:30px;
+        font-size:8px;
+    }
+
+    #keyboardDrag{
+        padding:5px 8px;
+    }
+}
+
+/* ================= PETITS ECRANS ================= */
+
+@media(max-height:600px){
+
+    .piano-section{
+        height:44%;
+        min-height:145px;
+    }
+
+    .screen{
+        min-height:65px;
+    }
+
+    .screen-name{
+        font-size:20px;
+    }
+
+    .right-controls{
+        gap:4px;
+    }
+
+    .small-btn{
+        height:38px;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="app">
+
+<!-- ================= HEADER ================= -->
+
+<header class="header">
+
+    <div class="logo">
+        🎹 <span>Piano</span><br>
+        Academy Pro
+    </div>
+
+    <div class="main-display">
+
+        <div class="display-top">
+            MAIN
+        </div>
+
+        <div class="display-main" id="displayMain">
+            GRAND PIANO
+        </div>
+
+        <div class="display-bottom" id="displayBottom">
+            Voice: Grand Piano
+        </div>
+
+    </div>
+
+    <button class="power" id="powerBtn">
+        ⏻
+    </button>
+
+</header>
+
+<!-- ================= MAIN ================= -->
+
+<div class="main">
+
+<!-- ================= LEFT ================= -->
+
+<aside class="left-panel">
+
+    <!-- ACCOMPAGNEMENT -->
+
+    <div class="group">
+
+        <div class="group-title">
+            ACCOMPAGNEMENT
+        </div>
+
+        <div class="row">
+
+            <button class="control-btn" id="syncBtn">
+                SYNC<br>START
+            </button>
+
+            <button class="control-btn" id="startBtn">
+                ▶ START<br>STOP
+            </button>
+
+        </div>
+
+        <br>
+
+        <div class="row">
+
+            <button class="control-btn" id="introBtn">
+                INTRO
+            </button>
+
+            <button class="control-btn" id="endingBtn">
+                ENDING
+            </button>
+
+        </div>
+
+    </div>
+
+    <!-- NOUVELLES FONCTIONS -->
+
+    <div class="group">
+
+        <div class="group-title">
+            FUNCTIONS
+        </div>
+
+        <div class="row">
+
+            <button class="control-btn" id="leftSustainBtn">
+                SUSTAIN
+            </button>
+
+            <button class="control-btn" id="leftDualBtn">
+                DUAL
+            </button>
+
+        </div>
+
+        <br>
+
+        <div class="row">
+
+            <button class="control-btn" id="harmonyBtn">
+                HARMONIE
+            </button>
+
+            <button class="control-btn" id="metronomeBtn">
+                MÉTRONOME
+            </button>
+
+        </div>
+
+    </div>
+
+    <!-- TEMPO -->
+
+    <div class="group">
+
+        <div class="group-title">
+            TEMPO
+        </div>
+
+        <div class="row">
+
+            <button class="control-btn" id="tempoMinus">
+                −
+            </button>
+
+            <button class="control-btn" id="tempoValue">
+                80<br>BPM
+            </button>
+
+            <button class="control-btn" id="tempoPlus">
+                +
+            </button>
+
+        </div>
+
+    </div>
+
+</aside>
+
+<!-- ================= CENTER ================= -->
+
+<section class="center-panel">
+
+    <div class="top-controls">
+
+        <div class="selector">
+
+            <label>VOICE</label>
+
+            <select id="voice">
+
+                <option value="piano">
+                    Grand Piano
+                </option>
+
+                <option value="electric">
+                    Electric Piano
+                </option>
+
+                <option value="organ">
+                    Organ
+                </option>
+
+                <option value="strings">
+                    Strings
+                </option>
+
+                <option value="synth">
+                    Synth
+                </option>
+
+                <option value="bass">
+                    Bass
+                </option>
+
+            </select>
+
+        </div>
+
+        <div class="selector">
+
+            <label>STYLE</label>
+
+            <select id="style">
+
+                <option>Ballad</option>
+                <option>Pop</option>
+                <option>Rock</option>
+                <option>Jazz</option>
+                <option>Dance</option>
+                <option>Worship</option>
+
+            </select>
+
+        </div>
+
+        <div class="selector">
+
+            <label>MUSIC DATABASE</label>
+
+            <select id="song">
+
+                <option>Demo Song</option>
+                <option>Classic Piano</option>
+                <option>Ballad</option>
+                <option>Pop Piano</option>
+                <option>My Song</option>
+
+            </select>
+
+        </div>
+
+    </div>
+
+    <!-- SCREEN -->
+
+    <div class="screen">
+
+        <div class="screen-title">
+            MAIN
+        </div>
+
+        <div class="screen-name" id="screenName">
+            GRAND PIANO
+        </div>
+
+        <div class="screen-info">
+
+            <span id="voiceInfo">
+                Voice: Grand Piano
+            </span>
+
+            <span id="bpmInfo">
+                80 BPM
+            </span>
+
+            <span id="styleInfo">
+                Style: Ballad
+            </span>
+
+        </div>
+
+    </div>
+
+    <!-- COMMANDES -->
+
+    <div class="right-controls">
+
+        <button class="small-btn" id="dualBtn">
+            DUAL<br>OFF
+        </button>
+
+        <button class="small-btn" id="sustainBtn">
+            SUSTAIN<br>OFF
+        </button>
+
+        <button class="small-btn" id="harmonyCenterBtn">
+            HARMONIE<br>OFF
+        </button>
+
+        <button class="small-btn" id="metronomeCenterBtn">
+            METRO<br>OFF
+        </button>
+
+        <button class="small-btn" id="songBtn">
+            SONG<br>PLAYER
+        </button>
+
+        <button class="small-btn" id="recBtn">
+            ● REC<br>RECORD
+        </button>
+
+    </div>
+
+</section>
+
+</div>
+
+<!-- ================= PIANO ================= -->
+
+<section class="piano-section">
+
+    <div class="piano-bar">
+
+        <span>
+            🎹 5 OCTAVES
+        </span>
+
+        <span class="piano-status" id="pianoStatus">
+            C2 • GRAND PIANO
+        </span>
+
+        <!-- CETTE ZONE EST POUR LE DÉFILEMENT -->
+
+        <span id="keyboardDrag">
+            ← GLISSER →
+        </span>
+
+    </div>
+
+    <div class="keyboard-window" id="keyboardWindow">
+
+        <div class="keyboard" id="keyboard"></div>
+
+    </div>
+
+</section>
+
+</div>
+
+<script>
+
+/* =====================================================
+   AUDIO
+===================================================== */
+
+let audioContext=null;
+let masterGain=null;
+
+let volume=.7;
+let powered=true;
+
+let sustain=false;
+let dual=false;
+let harmony=false;
+
+let tempo=80;
+let recording=false;
+let metronome=false;
+
+let metronomeTimer=null;
+
+const activeNotes={};
+const pointerNotes={};
+
+/* =====================================================
+   VOICES
+===================================================== */
+
+const voices={
+
+    piano:{
+        wave:"sine",
+        volume:.72
+    },
+
+    electric:{
+        wave:"triangle",
+        volume:.55
+    },
+
+    organ:{
+        wave:"square",
+        volume:.25
+    },
+
+    strings:{
+        wave:"sawtooth",
+        volume:.18
+    },
+
+    synth:{
+        wave:"square",
+        volume:.25
+    },
+
+    bass:{
+        wave:"sine",
+        volume:.55
+    }
+
+};
+
+/* =====================================================
+   FREQUENCES
+===================================================== */
+
+const frequencies={
+
+    "C":261.6256,
+    "C#":277.1826,
+    "D":293.6648,
+    "D#":311.1270,
+    "E":329.6276,
+    "F":349.2282,
+    "F#":369.9944,
+    "G":391.9954,
+    "G#":415.3047,
+    "A":440,
+    "A#":466.1638,
+    "B":493.8833
+
+};
+
+/* =====================================================
+   AUDIO INIT
+===================================================== */
+
+function initAudio(){
+
+    if(!audioContext){
+
+        audioContext=
+        new(
+            window.AudioContext ||
+            window.webkitAudioContext
+        )();
+
+        masterGain=
+        audioContext.createGain();
+
+        masterGain.gain.value=volume;
+
+        masterGain.connect(
+            audioContext.destination
+        );
+
+    }
+
+    if(audioContext.state==="suspended"){
+        audioContext.resume();
+    }
+}
+
+/* =====================================================
+   FREQUENCE
+===================================================== */
+
+function getFrequency(note){
+
+    const match=note.match(/^([A-G]#?)(\d)$/);
+
+    if(!match) return 440;
+
+    const name=match[1];
+    const octave=parseInt(match[2]);
+
+    return frequencies[name]*
+    Math.pow(2,octave-4);
+}
+
+/* =====================================================
+   NOTE + INTERVALLE
+===================================================== */
+
+function noteWithSemitones(note,semitones){
+
+    const match=note.match(/^([A-G]#?)(\d)$/);
+
+    if(!match) return note;
+
+    const names=[
+        "C","C#","D","D#","E","F",
+        "F#","G","G#","A","A#","B"
+    ];
+
+    let index=
+    names.indexOf(match[1])+
+    semitones;
+
+    let octave=
+    parseInt(match[2]);
+
+    while(index>=12){
+        index-=12;
+        octave++;
+    }
+
+    while(index<0){
+        index+=12;
+        octave--;
+    }
+
+    return names[index]+octave;
+}
+
+/* =====================================================
+   CREATION DU PIANO
+===================================================== */
+
+function createPiano(){
+
+    const keyboard=
+    document.getElementById("keyboard");
+
+    keyboard.innerHTML="";
+
+    const whiteKeys=[];
+
+    /* 36 touches blanches */
+
+    for(let octave=2;octave<=6;octave++){
+
+        const whiteNames=[
+            "C","D","E","F","G","A","B"
+        ];
+
+        whiteNames.forEach(name=>{
+
+            const key=
+            document.createElement("div");
+
+            key.className="white";
+
+            key.dataset.note=
+            name+octave;
+
+            key.textContent=name;
+
+            keyboard.appendChild(key);
+
+            whiteKeys.push(key);
+
+        });
+
+    }
+
+    /* C7 */
+
+    const last=
+    document.createElement("div");
+
+    last.className="white";
+    last.dataset.note="C7";
+    last.textContent="C";
+
+    keyboard.appendChild(last);
+    whiteKeys.push(last);
+
+    /* TOUCHES NOIRES */
+
+    for(let octave=2;octave<=6;octave++){
+
+        const base=(octave-2)*7;
+
+        const positions=[
+
+            {name:"C#",after:0},
+            {name:"D#",after:1},
+            {name:"F#",after:3},
+            {name:"G#",after:4},
+            {name:"A#",after:5}
+
+        ];
+
+        positions.forEach(item=>{
+
+            const key=
+            document.createElement("div");
+
+            key.className="black";
+
+            key.dataset.note=
+            item.name+octave;
+
+            key.textContent=item.name;
+
+            const left=
+            (
+                (base+item.after+1)/36
+            )*100;
+
+            key.style.left=
+            `calc(${left}% - 12.5px)`;
+
+            keyboard.appendChild(key);
+
+        });
+
+    }
+
+    activateKeys();
+}
+
+/* =====================================================
+   VOICE
+===================================================== */
+
+function getVoice(){
+    return document.getElementById("voice").value;
+}
+
+/* =====================================================
+   DUAL VOICE
+===================================================== */
+
+function getDualVoice(){
+
+    const list=[
+        "piano",
+        "electric",
+        "organ",
+        "strings",
+        "synth",
+        "bass"
+    ];
+
+    const main=getVoice();
+
+    let index=list.indexOf(main);
+
+    index++;
+
+    if(index>=list.length)
+        index=0;
+
+    return list[index];
+}
+
+/* =====================================================
+   CREER UN SON
+===================================================== */
+
+function createSound(note,voiceName){
+
+    const voice=voices[voiceName];
+
+    if(!voice) return null;
+
+    const osc=
+    audioContext.createOscillator();
+
+    const gain=
+    audioContext.createGain();
+
+    osc.type=voice.wave;
+
+    osc.frequency.value=
+    getFrequency(note);
+
+    const now=
+    audioContext.currentTime;
+
+    gain.gain.setValueAtTime(0,now);
+
+    gain.gain.linearRampToValueAtTime(
+        voice.volume,
+        now+.025
+    );
+
+    osc.connect(gain);
+    gain.connect(masterGain);
+
+    osc.start();
+
+    return{
+        osc:osc,
+        gain:gain
+    };
+}
+
+/* =====================================================
+   JOUER NOTE
+===================================================== */
+
+function playNote(note,element){
+
+    if(!powered) return;
+
+    initAudio();
+
+    if(activeNotes[note])
+        return;
+
+    const sounds=[];
+
+    const main=
+    createSound(note,getVoice());
+
+    if(main)
+        sounds.push(main);
+
+    /* DUAL */
+
+    if(dual){
+
+        const second=
+        createSound(
+            note,
+            getDualVoice()
+        );
+
+        if(second)
+            sounds.push(second);
+    }
+
+    /* HARMONIE */
+
+    if(harmony){
+
+        const third=
+        noteWithSemitones(note,4);
+
+        const fifth=
+        noteWithSemitones(note,7);
+
+        const thirdSound=
+        createSound(third,getVoice());
+
+        const fifthSound=
+        createSound(fifth,getVoice());
+
+        if(thirdSound)
+            sounds.push(thirdSound);
+
+        if(fifthSound)
+            sounds.push(fifthSound);
+    }
+
+    activeNotes[note]={
+
+        sounds:sounds,
+
+        sustained:false,
+
+        element:element
+
+    };
+
+    element.classList.add("active");
+
+    const voiceName=
+    document
+    .getElementById("voice")
+    .selectedOptions[0].text;
+
+    document.getElementById(
+        "displayMain"
+    ).textContent=voiceName;
+
+    document.getElementById(
+        "voiceInfo"
+    ).textContent=
+    "Voice: "+voiceName;
+
+    document.getElementById(
+        "pianoStatus"
+    ).textContent=
+    note+
+    (harmony?" • HARMONIE":
+    dual?" • DUAL":
+    " • "+voiceName);
+}
+
+/* =====================================================
+   STOP NOTE
+===================================================== */
+
+function stopNote(note,element){
+
+    const active=
+    activeNotes[note];
+
+    if(!active)
+        return;
+
+    if(element){
+        element.classList.remove("active");
+    }
+
+    if(sustain){
+
+        active.sustained=true;
+
+        return;
+    }
+
+    releaseSound(note);
+}
+
+/* =====================================================
+   RELEASE
+===================================================== */
+
+function releaseSound(note){
+
+    const active=
+    activeNotes[note];
+
+    if(!active)
+        return;
+
+    const now=
+    audioContext.currentTime;
+
+    active.sounds.forEach(sound=>{
+
+        try{
+
+            sound.gain.gain.cancelScheduledValues(now);
+
+            sound.gain.gain.setValueAtTime(
+                sound.gain.gain.value,
+                now
+            );
+
+            sound.gain.gain.linearRampToValueAtTime(
+                0,
+                now+.12
+            );
+
+            sound.osc.stop(now+.14);
+
+        }catch(e){}
+
+    });
+
+    delete activeNotes[note];
+}
+
+/* =====================================================
+   SUSTAIN RELEASE
+===================================================== */
+
+function releaseAllSustain(){
+
+    Object.keys(activeNotes).forEach(note=>{
+
+        if(activeNotes[note].sustained){
+
+            releaseSound(note);
+
+        }
+
+    });
+}
+
+/* =====================================================
+   TROUVER TOUCHE
+===================================================== */
+
+function getKeyAtPosition(x,y){
+
+    const elements=
+    document.elementsFromPoint(x,y);
+
+    for(const element of elements){
+
+        if(
+            element.classList &&
+            (
+                element.classList.contains("black") ||
+                element.classList.contains("white")
+            )
+        ){
+            return element;
+        }
+
+    }
+
+    return null;
+}
+
+/* =====================================================
+   POINTER NOTE
+===================================================== */
+
+function startPointerNote(pointerId,key){
+
+    if(!key) return;
+
+    const note=key.dataset.note;
+
+    if(!note) return;
+
+    if(
+        pointerNotes[pointerId] &&
+        pointerNotes[pointerId].note===note
+    ){
+        return;
+    }
+
+    if(pointerNotes[pointerId]){
+
+        const old=
+        pointerNotes[pointerId];
+
+        stopNote(
+            old.note,
+            old.element
+        );
+    }
+
+    playNote(note,key);
+
+    pointerNotes[pointerId]={
+
+        note:note,
+        element:key
+
+    };
+}
+
+/* =====================================================
+   STOP POINTER
+===================================================== */
+
+function stopPointerNote(pointerId){
+
+    const current=
+    pointerNotes[pointerId];
+
+    if(!current) return;
+
+    stopNote(
+        current.note,
+        current.element
+    );
+
+    delete pointerNotes[pointerId];
+}
+
+/* =====================================================
+   TOUCHES DU PIANO
+===================================================== */
+
+function activateKeys(){
+
+    const keyboard=
+    document.getElementById("keyboard");
+
+    keyboard.addEventListener(
+        "pointerdown",
+        function(e){
+
+            e.preventDefault();
+
+            try{
+                keyboard.setPointerCapture(
+                    e.pointerId
+                );
+            }catch(err){}
+
+            const key=
+            getKeyAtPosition(
+                e.clientX,
+                e.clientY
+            );
+
+            if(!key) return;
+
+            startPointerNote(
+                e.pointerId,
+                key
+            );
+
+        }
+    );
+
+    /*
+       GLISSANDO UNIQUEMENT
+       SUR LES TOUCHES
+    */
+
+    keyboard.addEventListener(
+        "pointermove",
+        function(e){
+
+            e.preventDefault();
+
+            const key=
+            getKeyAtPosition(
+                e.clientX,
+                e.clientY
+            );
+
+            if(!key){
+
+                stopPointerNote(
+                    e.pointerId
+                );
+
+                return;
+            }
+
+            startPointerNote(
+                e.pointerId,
+                key
+            );
+
+        }
+    );
+
+    keyboard.addEventListener(
+        "pointerup",
+        function(e){
+
+            e.preventDefault();
+
+            stopPointerNote(
+                e.pointerId
+            );
+
+        }
+    );
+
+    keyboard.addEventListener(
+        "pointercancel",
+        function(e){
+
+            stopPointerNote(
+                e.pointerId
+            );
+
+        }
+    );
+}
+
+/* =====================================================
+   NAVIGATION DES OCTAVES
+   =====================================================
+
+   IMPORTANT :
+
+   Le doigt doit être placé sur
+   "← GLISSER →".
+
+   Cette zone déplace le clavier
+   horizontalement.
+
+   Elle ne joue AUCUNE note.
+===================================================== */
+
+const keyboardDrag=
+document.getElementById("keyboardDrag");
+
+const keyboardWindow=
+document.getElementById("keyboardWindow");
+
+let draggingKeyboard=false;
+let dragStartX=0;
+let dragStartScroll=0;
+
+keyboardDrag.addEventListener(
+    "pointerdown",
+    function(e){
+
+        e.preventDefault();
+
+        draggingKeyboard=true;
+
+        dragStartX=e.clientX;
+
+        dragStartScroll=
+        keyboardWindow.scrollLeft;
+
+        try{
+            keyboardDrag.setPointerCapture(
+                e.pointerId
+            );
+        }catch(err){}
+
+    }
+);
+
+keyboardDrag.addEventListener(
+    "pointermove",
+    function(e){
+
+        if(!draggingKeyboard)
+            return;
+
+        e.preventDefault();
+
+        const movement=
+        e.clientX-dragStartX;
+
+        keyboardWindow.scrollLeft=
+        dragStartScroll-movement;
+
+        updateOctaveDisplay();
+
+    }
+);
+
+keyboardDrag.addEventListener(
+    "pointerup",
+    function(e){
+
+        draggingKeyboard=false;
+
+        try{
+            keyboardDrag.releasePointerCapture(
+                e.pointerId
+            );
+        }catch(err){}
+
+    }
+);
+
+keyboardDrag.addEventListener(
+    "pointercancel",
+    function(){
+
+        draggingKeyboard=false;
+
+    }
+);
+
+/* =====================================================
+   AFFICHAGE OCTAVE
+===================================================== */
+
+function updateOctaveDisplay(){
+
+    const scroll=
+    keyboardWindow.scrollLeft;
+
+    const max=
+    keyboardWindow.scrollWidth-
+    keyboardWindow.clientWidth;
+
+    if(max<=0)
+        return;
+
+    const percentage=
+    scroll/max;
+
+    let octave=2;
+
+    if(percentage>.20)
+        octave=3;
+
+    if(percentage>.40)
+        octave=4;
+
+    if(percentage>.60)
+        octave=5;
+
+    if(percentage>.80)
+        octave=6;
+
+    document.getElementById(
+        "pianoStatus"
+    ).textContent=
+    "OCTAVE "+octave+" • GLISSER";
+
+}
+
+/* =====================================================
+   SUSTAIN
+===================================================== */
+
+function toggleSustain(){
+
+    sustain=!sustain;
+
+    document
+    .getElementById("sustainBtn")
+    .classList.toggle(
+        "active",
+        sustain
+    );
+
+    document
+    .getElementById("leftSustainBtn")
+    .classList.toggle(
+        "active",
+        sustain
+    );
+
+    document.getElementById(
+        "sustainBtn"
+    ).innerHTML=
+    sustain
+    ?"SUSTAIN<br>ON"
+    :"SUSTAIN<br>OFF";
+
+    document.getElementById(
+        "displayMain"
+    ).textContent=
+    sustain
+    ?"SUSTAIN ON"
+    :"GRAND PIANO";
+
+    if(!sustain)
+        releaseAllSustain();
+}
+
+document
+.getElementById("sustainBtn")
+.addEventListener(
+    "click",
+    toggleSustain
+);
+
+document
+.getElementById("leftSustainBtn")
+.addEventListener(
+    "click",
+    toggleSustain
+);
+
+/* =====================================================
+   DUAL
+===================================================== */
+
+function toggleDual(){
+
+    dual=!dual;
+
+    document
+    .getElementById("dualBtn")
+    .classList.toggle(
+        "active",
+        dual
+    );
+
+    document
+    .getElementById("leftDualBtn")
+    .classList.toggle(
+        "active",
+        dual
+    );
+
+    document.getElementById(
+        "dualBtn"
+    ).innerHTML=
+    dual
+    ?"DUAL<br>ON"
+    :"DUAL<br>OFF";
+
+    document.getElementById(
+        "displayMain"
+    ).textContent=
+    dual
+    ?"DUAL VOICE"
+    :"GRAND PIANO";
+}
+
+document
+.getElementById("dualBtn")
+.addEventListener(
+    "click",
+    toggleDual
+);
+
+document
+.getElementById("leftDualBtn")
+.addEventListener(
+    "click",
+    toggleDual
+);
+
+/* =====================================================
+   HARMONIE
+===================================================== */
+
+function toggleHarmony(){
+
+    harmony=!harmony;
+
+    document
+    .getElementById("harmonyCenterBtn")
+    .classList.toggle(
+        "active",
+        harmony
+    );
+
+    document
+    .getElementById("harmonyBtn")
+    .classList.toggle(
+        "active",
+        harmony
+    );
+
+    document.getElementById(
+        "harmonyCenterBtn"
+    ).innerHTML=
+    harmony
+    ?"HARMONIE<br>ON"
+    :"HARMONIE<br>OFF";
+
+    document.getElementById(
+        "displayMain"
+    ).textContent=
+    harmony
+    ?"HARMONIE ON"
+    :"GRAND PIANO";
+}
+
+document
+.getElementById("harmonyCenterBtn")
+.addEventListener(
+    "click",
+    toggleHarmony
+);
+
+document
+.getElementById("harmonyBtn")
+.addEventListener(
+    "click",
+    toggleHarmony
+);
+
+/* =====================================================
+   METRONOME
+===================================================== */
+
+function metronomeClick(){
+
+    if(!metronome)
+        return;
+
+    initAudio();
+
+    const osc=
+    audioContext.createOscillator();
+
+    const gain=
+    audioContext.createGain();
+
+    osc.frequency.value=1000;
+
+    gain.gain.value=.15;
+
+    osc.connect(gain);
+    gain.connect(masterGain);
+
+    osc.start();
+
+    osc.stop(
+        audioContext.currentTime+.06
+    );
+}
+
+function startMetronome(){
+
+    stopMetronome();
+
+    if(!metronome)
+        return;
+
+    const interval=
+    60000/tempo;
+
+    metronomeTimer=
+    setInterval(
+        metronomeClick,
+        interval
+    );
+
+    metronomeClick();
+}
+
+function stopMetronome(){
+
+    if(metronomeTimer){
+
+        clearInterval(
+            metronomeTimer
+        );
+
+        metronomeTimer=null;
+    }
+}
+
+function toggleMetronome(){
+
+    metronome=!metronome;
+
+    document
+    .getElementById("metronomeCenterBtn")
+    .classList.toggle(
+        "active",
+        metronome
+    );
+
+    document
+    .getElementById("metronomeBtn")
+    .classList.toggle(
+        "active",
+        metronome
+    );
+
+    document.getElementById(
+        "metronomeCenterBtn"
+    ).innerHTML=
+    metronome
+    ?"METRO<br>ON"
+    :"METRO<br>OFF";
+
+    document.getElementById(
+        "displayMain"
+    ).textContent=
+    metronome
+    ?"METRONOME ON"
+    :"GRAND PIANO";
+
+    if(metronome)
+        startMetronome();
+    else
+        stopMetronome();
+}
+
+document
+.getElementById("metronomeCenterBtn")
+.addEventListener(
+    "click",
+    toggleMetronome
+);
+
+document
+.getElementById("metronomeBtn")
+.addEventListener(
+    "click",
+    toggleMetronome
+);
+
+/* =====================================================
+   VOICE
+===================================================== */
+
+document
+.getElementById("voice")
+.addEventListener(
+    "change",
+    function(){
+
+        const name=
+        this.selectedOptions[0].text;
+
+        document.getElementById(
+            "displayMain"
+        ).textContent=name;
+
+        document.getElementById(
+            "displayBottom"
+        ).textContent=
+        "Voice: "+name;
+
+        document.getElementById(
+            "voiceInfo"
+        ).textContent=
+        "Voice: "+name;
+    }
+);
+
+/* =====================================================
+   STYLE
+===================================================== */
+
+document
+.getElementById("style")
+.addEventListener(
+    "change",
+    function(){
+
+        document.getElementById(
+            "styleInfo"
+        ).textContent=
+        "Style: "+this.value;
+
+    }
+);
+
+/* =====================================================
+   TEMPO
+===================================================== */
+
+function updateTempo(){
+
+    document.getElementById(
+        "tempoValue"
+    ).innerHTML=
+    tempo+"<br>BPM";
+
+    document.getElementById(
+        "bpmInfo"
+    ).textContent=
+    tempo+" BPM";
+
+    if(metronome)
+        startMetronome();
+}
+
+document
+.getElementById("tempoPlus")
+.addEventListener(
+    "click",
+    function(){
+
+        if(tempo<240)
+            tempo+=5;
+
+        updateTempo();
+    }
+);
+
+document
+.getElementById("tempoMinus")
+.addEventListener(
+    "click",
+    function(){
+
+        if(tempo>40)
+            tempo-=5;
+
+        updateTempo();
+    }
+);
+
+/* =====================================================
+   POWER
+===================================================== */
+
+document
+.getElementById("powerBtn")
+.addEventListener(
+    "click",
+    function(){
+
+        powered=!powered;
+
+        if(!powered){
+
+            Object.keys(activeNotes)
+            .forEach(note=>{
+                releaseSound(note);
+            });
+
+            this.style.color="#555";
+
+            document.getElementById(
+                "displayMain"
+            ).textContent="POWER OFF";
+
+        }else{
+
+            this.style.color="#25e477";
+
+            document.getElementById(
+                "displayMain"
+            ).textContent="GRAND PIANO";
+        }
+    }
+);
+
+/* =====================================================
+   SYNC
+===================================================== */
+
+document
+.getElementById("syncBtn")
+.addEventListener(
+    "click",
+    function(){
+
+        this.classList.toggle("active");
+
+    }
+);
+
+/* =====================================================
+   START STOP
+===================================================== */
+
+document
+.getElementById("startBtn")
+.addEventListener(
+    "click",
+    function(){
+
+        this.classList.toggle("active");
+
+        document.getElementById(
+            "displayMain"
+        ).textContent=
+        this.classList.contains("active")
+        ?"ACCOMPAGNEMENT"
+        :"READY";
+    }
+);
+
+/* =====================================================
+   INTRO
+===================================================== */
+
+document
+.getElementById("introBtn")
+.addEventListener(
+    "click",
+    function(){
+
+        this.classList.add("active");
+
+        document.getElementById(
+            "displayMain"
+        ).textContent="INTRO";
+
+        setTimeout(
+            ()=>{
+                this.classList.remove("active");
+            },
+            800
+        );
+    }
+);
+
+/* =====================================================
+   ENDING
+===================================================== */
+
+document
+.getElementById("endingBtn")
+.addEventListener(
+    "click",
+    function(){
+
+        this.classList.add("active");
+
+        document.getElementById(
+            "displayMain"
+        ).textContent="ENDING";
+
+        setTimeout(
+            ()=>{
+                this.classList.remove("active");
+            },
+            800
+        );
+    }
+);
+
+/* =====================================================
+   REC
+===================================================== */
+
+document
+.getElementById("recBtn")
+.addEventListener(
+    "click",
+    function(){
+
+        recording=!recording;
+
+        this.classList.toggle(
+            "active",
+            recording
+        );
+
+        this.innerHTML=
+        recording
+        ?"● REC<br>RECORDING"
+        :"● REC<br>RECORD";
+    }
+);
+
+/* =====================================================
+   SONG
+===================================================== */
+
+document
+.getElementById("songBtn")
+.addEventListener(
+    "click",
+    function(){
+
+        document.getElementById(
+            "displayMain"
+        ).textContent=
+        "SONG PLAYER";
+    }
+);
+
+/* =====================================================
+   INITIALISATION
+===================================================== */
+
+createPiano();
+
+updateTempo();
+
+</script>
+
+</body>
+</html>
