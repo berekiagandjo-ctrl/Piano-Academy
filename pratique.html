@@ -2303,5 +2303,44 @@ updateTempo();
 
 </script>
 
+  <script>
+/* ==========================================
+   ROTATION AUTOMATIQUE POUR LE MODE PIANO
+========================================== */
+
+async function lockLandscape(){
+
+    try{
+
+        if(screen.orientation &&
+           screen.orientation.lock){
+
+            await screen.orientation.lock("landscape");
+
+        }
+
+    }catch(error){
+
+        console.log(
+            "Rotation automatique non disponible :",
+            error
+        );
+
+    }
+
+}
+
+/* Demande le mode paysage après interaction */
+document.addEventListener(
+    "click",
+    function(){
+
+        lockLandscape();
+
+    },
+    {once:true}
+);
+  </script>
+  
 </body>
 </html>
