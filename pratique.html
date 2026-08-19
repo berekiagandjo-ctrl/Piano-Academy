@@ -2303,26 +2303,286 @@ updateTempo();
 
 </script>
 
-  <script>
+<!-- ==========================================
+     CONTROLE ORIENTATION PIANO
+========================================== -->
+
+<div id="orientationControl">
+
+    <button id="landscapeBtn">
+        ↔️ PAYSAGE
+    </button>
+
+</div>
+
+<style>
+
+#orientationControl{
+    position:fixed;
+    right:10px;
+    top:70px;
+    z-index:9999;
+}
+
+#landscapeBtn{
+    height:42px;
+    padding:0 12px;
+    border-radius:9px;
+    border:2px solid #3c4d65;
+    background:linear-gradient(#26364c,#172438);
+    color:white;
+    font-weight:bold;
+    font-size:10px;
+    box-shadow:0 3px 8px #000;
+}
+
+#landscapeBtn.active{
+    background:linear-gradient(#1b9d65,#08633e);
+    border-color:#4ce59a;
+}
+
+/* En paysage, le bouton reste petit */
+@media(orientation:landscape){
+
+    #orientationControl{
+        top:58px;
+        right:8px;
+    }
+
+    #landscapeBtn{
+        height:36px;
+        font-size:9px;
+        padding:0 9px;
+    }
+
+}
+
+</style>
+
+<script>
+
+const landscapeBtn =
+document.getElementById("landscapeBtn");
+
+let landscapeMode = false;
+
+
 /* ==========================================
-   ROTATION AUTOMATIQUE POUR LE MODE PIANO
+   PASSAGE PAYSAGE
 ========================================== */
 
-async function lockLandscape(){
+async function activateLandscape(){
+
+    landscapeMode = true;
+
+    landscapeBtn.classList.add("active");
+    landscapeBtn.textContent = "↔️ PAYSAGE ON";
 
     try{
 
-        if(screen.orientation &&
-           screen.orientation.lock){
+        if(
+            screen.orientation &&
+            screen.orientation.lock
+        ){
 
-            await screen.orientation.lock("landscape");
+            await screen.orientation.lock(
+                "landscape"
+            );
 
         }
 
     }catch(error){
 
         console.log(
-            "Rotation automatique non disponible :",
+            "Verrouillage paysage non disponible",
+            error
+        );
+
+    }
+
+    updateOrientationUI();
+
+}
+
+
+/* ==========================================
+   RETOUR PORTRAIT
+========================================== */
+
+async function activatePortrait(){
+
+    landscapeMode = false;
+
+    landscapeBtn.classList.remove("active");
+    landscapeBtn.textContent = "↔️ PAYSAGE";
+
+    try{
+
+        if(
+            screen.orientation &&
+            screen.orientation.unlock
+        ){
+
+            screen.orientation.unlock();
+
+        }
+
+    }catch(error){
+
+        console.log(
+            "Déverrouillage orientation impossible",
+            error
+        );
+
+    }
+
+    updateOrientationUI();
+
+}
+
+
+/* ==========================================
+   BOUTON
+========================================== */
+
+landscapeBtn.addEventListener(
+    "click",
+    async function(){
+
+        if(landscapeMode){
+
+            await activatePortrait();
+
+        }else{
+
+            await activateLandscape();
+
+        }
+
+    }
+);
+
+
+/* ==========================================
+   ADAPTATION INTERFACE
+========================================== */
+
+function updateOrientationUI(){
+
+    setTimeout(function(){
+
+        window.dispatchEvent(
+            new Event("resize")
+        );
+
+        updateOctaveDisplay();
+
+    },300);
+
+}
+
+
+/* ==========================================
+   DETECTION ROTATION MANUELLE
+========================================== */
+
+if(
+    screen.orientation
+){
+
+    screen.orientation.addEventListener(
+        "change",
+        function(){
+
+            const type =
+                screen.orientation.type;
+
+            if(
+                type.includes("landscape")
+            ){
+
+                landscapeMode = true;
+
+                landscapeBtn.classList.add(
+                    "active"
+                );
+
+                landscapeBtn.textContent =
+                    "↔️ PAYSAGE ON";
+
+            }else{
+
+                landscapeMode = false;
+
+                landscapeBtn.classList.remove(
+                    "active"
+                );
+
+                landscapeBtn.textContent =
+                    "↔️ PAYSAGE";
+
+            }
+
+            updateOrientationUI();
+
+        }
+    );
+
+}
+
+
+/* ==========================================
+   ORIENTATION INITIALE
+========================================== */
+
+function checkInitialOrientation(){
+
+    if(
+        screen.orientation &&
+        screen.orientation.type
+    ){
+
+        if(
+            screen.orientation.type
+            .includes("landscape")
+        ){
+
+            landscapeMode = true;
+
+            landscapeBtn.classList.add(
+                "active"
+            );
+
+            landscapeBtn.textContent =
+                "↔️ PAYSAGE ON";
+
+        }
+
+    }
+
+}
+
+checkInitialOrientation();
+
+  /* ==========================================
+   PRATIQUE : MODE PAYSAGE AUTOMATIQUE
+========================================== */
+
+async function forceLandscape(){
+
+    try {
+
+        if (screen.orientation &&
+            screen.orientation.lock) {
+
+            await screen.orientation.lock("landscape");
+
+        }
+
+    } catch (error) {
+
+        console.log(
+            "Orientation paysage non disponible :",
             error
         );
 
@@ -2330,17 +2590,11 @@ async function lockLandscape(){
 
 }
 
-/* Demande le mode paysage après interaction */
-document.addEventListener(
-    "click",
-    function(){
+forceLandscape();
+  
+</script>
 
-        lockLandscape();
-
-    },
-    {once:true}
-);
-  </script>
+  
   
 </body>
 </html>
