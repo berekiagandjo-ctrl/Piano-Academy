@@ -1,12 +1,26 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
 
   <title>Mon espace — Piano Academy</title>
 
+  <meta
+    name="description"
+    content="Votre espace personnel Piano Academy."
+  >
+
+  <!-- SUPABASE -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
   <style>
+
     * {
       margin: 0;
       padding: 0;
@@ -17,845 +31,1404 @@
       --primary: #6c5ce7;
       --primary-dark: #5848d6;
       --secondary: #00cec9;
+
       --background: #f5f6fa;
       --card: #ffffff;
+
       --text: #1e1e2f;
       --muted: #777b8a;
-      --border: #e5e6ed;
+
+      --border: #e2e4ec;
+
       --success: #00b894;
-      --warning: #fdcb6e;
       --danger: #e74c3c;
+
+      --shadow:
+        0 10px 30px rgba(25, 25, 50, 0.08);
     }
 
     body {
-      font-family: Arial, Helvetica, sans-serif;
-      background: var(--background);
-      color: var(--text);
       min-height: 100vh;
+
+      font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+      color: var(--text);
+
+      background:
+        radial-gradient(
+          circle at top left,
+          rgba(108, 92, 231, 0.10),
+          transparent 30%
+        ),
+        var(--background);
     }
 
+    button,
+    a {
+      font-family: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+
     /* =========================
-       SIDEBAR
+       HEADER
     ========================== */
 
-    .sidebar {
-      position: fixed;
+    .header {
+      position: sticky;
       top: 0;
-      left: 0;
-      bottom: 0;
-      width: 250px;
-      background: #ffffff;
-      border-right: 1px solid var(--border);
-      padding: 25px 15px;
-      z-index: 1000;
-      transition: transform 0.3s ease;
+      z-index: 100;
+
+      height: 72px;
+
+      background: rgba(255,255,255,0.96);
+
+      border-bottom:
+        1px solid var(--border);
+
+      backdrop-filter: blur(12px);
+    }
+
+    .header-inner {
+      width: 100%;
+      max-width: 1250px;
+
+      height: 100%;
+
+      margin: auto;
+
+      padding: 0 25px;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: space-between;
     }
 
     .brand {
       display: flex;
+
       align-items: center;
+
       gap: 11px;
-      padding: 0 10px;
-      margin-bottom: 35px;
     }
 
     .brand-icon {
-      width: 43px;
-      height: 43px;
+      width: 42px;
+      height: 42px;
+
       border-radius: 12px;
-      background: linear-gradient(
-        135deg,
-        var(--primary),
-        var(--primary-dark)
-      );
+
+      background:
+        linear-gradient(
+          135deg,
+          var(--primary),
+          var(--primary-dark)
+        );
+
+      color: white;
+
       display: flex;
+
       align-items: center;
+
       justify-content: center;
+
       font-size: 21px;
     }
 
     .brand-name {
-      font-size: 18px;
+      font-size: 19px;
+
       font-weight: 800;
     }
 
-    .menu-title {
-      font-size: 10px;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      color: #a0a2ad;
-      font-weight: 700;
-      padding: 0 12px;
-      margin-bottom: 10px;
-    }
-
-    .menu {
-      display: grid;
-      gap: 5px;
-    }
-
-    .menu a {
+    .header-actions {
       display: flex;
+
       align-items: center;
+
       gap: 12px;
-      min-height: 45px;
-      padding: 0 12px;
-      border-radius: 10px;
-      color: #666a79;
-      text-decoration: none;
-      font-size: 13px;
-      font-weight: 600;
-      transition: 0.2s;
     }
 
-    .menu a:hover {
-      background: #f4f2ff;
-      color: var(--primary);
-    }
-
-    .menu a.active {
-      background: #eeeaff;
-      color: var(--primary);
-    }
-
-    .menu-icon {
-      width: 25px;
-      text-align: center;
-      font-size: 17px;
-    }
-
-    .sidebar-bottom {
-      position: absolute;
-      left: 15px;
-      right: 15px;
-      bottom: 20px;
-    }
-
-    .premium-mini {
-      background:
-        linear-gradient(
-          135deg,
-          #6c5ce7,
-          #4834d4
-        );
-      border-radius: 15px;
-      padding: 17px;
-      color: white;
-      margin-bottom: 15px;
-    }
-
-    .premium-mini h3 {
-      font-size: 14px;
-      margin-bottom: 6px;
-    }
-
-    .premium-mini p {
-      font-size: 11px;
-      line-height: 1.5;
-      color: rgba(255,255,255,0.8);
-      margin-bottom: 12px;
-    }
-
-    .premium-mini a {
-      display: block;
-      background: white;
-      color: var(--primary);
-      text-align: center;
-      padding: 9px;
-      border-radius: 8px;
-      text-decoration: none;
-      font-size: 11px;
-      font-weight: 800;
-    }
-
-    /* =========================
-       MAIN
-    ========================== */
-
-    .main {
-      margin-left: 250px;
-      min-height: 100vh;
-    }
-
-    /* HEADER */
-
-    .topbar {
-      height: 72px;
-      background: rgba(255,255,255,0.94);
-      border-bottom: 1px solid var(--border);
+    .profile-mini {
       display: flex;
+
       align-items: center;
-      justify-content: space-between;
-      padding: 0 35px;
-      position: sticky;
-      top: 0;
-      z-index: 500;
-      backdrop-filter: blur(10px);
-    }
 
-    .mobile-menu {
-      display: none;
-      border: none;
-      background: transparent;
-      font-size: 25px;
-      cursor: pointer;
-    }
-
-    .topbar-right {
-      display: flex;
-      align-items: center;
-      gap: 15px;
-      margin-left: auto;
-    }
-
-    .notification {
-      width: 38px;
-      height: 38px;
-      border-radius: 10px;
-      border: 1px solid var(--border);
-      background: white;
-      cursor: pointer;
-      position: relative;
-      font-size: 17px;
-    }
-
-    .notification-dot {
-      position: absolute;
-      top: 7px;
-      right: 7px;
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: var(--danger);
-    }
-
-    .user-button {
-      border: none;
-      background: transparent;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 10px;
+      gap: 9px;
     }
 
     .avatar {
-      width: 39px;
-      height: 39px;
+      width: 38px;
+      height: 38px;
+
       border-radius: 50%;
-      background: linear-gradient(
-        135deg,
-        var(--primary),
-        var(--secondary)
-      );
+
+      background:
+        linear-gradient(
+          135deg,
+          var(--primary),
+          var(--secondary)
+        );
+
       color: white;
+
       display: flex;
+
       align-items: center;
+
       justify-content: center;
+
       font-weight: 800;
+
+      font-size: 14px;
+    }
+
+    .profile-mini-name {
       font-size: 13px;
+
+      font-weight: 700;
+
+      max-width: 150px;
+
+      white-space: nowrap;
+
+      overflow: hidden;
+
+      text-overflow: ellipsis;
     }
 
-    .user-info {
-      text-align: left;
-    }
+    .logout-button {
+      border: none;
 
-    .user-name {
+      background: #fff0ef;
+
+      color: #c0392b;
+
+      border-radius: 10px;
+
+      padding: 9px 13px;
+
       font-size: 12px;
-      font-weight: 800;
+
+      font-weight: 700;
     }
 
-    .user-plan {
-      font-size: 10px;
-      color: var(--muted);
-      margin-top: 2px;
+    .logout-button:hover {
+      background: #ffe3e0;
     }
 
-    /* CONTENT */
 
-    .content {
-      padding: 35px;
-      max-width: 1450px;
+    /* =========================
+       CONTENU
+    ========================== */
+
+    .container {
+      width: 100%;
+
+      max-width: 1250px;
+
       margin: auto;
+
+      padding: 35px 25px 60px;
     }
+
+
+    /* =========================
+       BIENVENUE
+    ========================== */
 
     .welcome {
-      margin-bottom: 25px;
+      margin-bottom: 28px;
     }
 
     .welcome h1 {
-      font-size: 27px;
-      margin-bottom: 7px;
+      font-size: 32px;
+
+      line-height: 1.2;
+
+      margin-bottom: 8px;
+    }
+
+    .welcome h1 span {
+      color: var(--primary);
     }
 
     .welcome p {
       color: var(--muted);
-      font-size: 13px;
+
+      font-size: 14px;
     }
 
-    /* PROGRESS */
 
-    .progress-card {
+    /* =========================
+       HERO
+    ========================== */
+
+    .hero {
+      position: relative;
+
+      overflow: hidden;
+
       background:
         linear-gradient(
           135deg,
           #6c5ce7,
-          #4834d4
+          #5848d6
         );
+
       color: white;
-      border-radius: 18px;
-      padding: 25px;
+
+      border-radius: 22px;
+
+      padding: 30px;
+
       margin-bottom: 25px;
-      display: grid;
-      grid-template-columns: 1fr 180px;
-      gap: 25px;
-      align-items: center;
-      overflow: hidden;
-      position: relative;
+
+      box-shadow:
+        0 15px 35px
+        rgba(108,92,231,0.22);
     }
 
-    .progress-card::after {
+    .hero::before {
       content: "";
+
       position: absolute;
-      width: 230px;
-      height: 230px;
+
+      width: 250px;
+      height: 250px;
+
       border-radius: 50%;
-      background: rgba(255,255,255,0.07);
-      right: -80px;
-      top: -100px;
-    }
 
-    .progress-label {
-      font-size: 11px;
-      color: rgba(255,255,255,0.75);
-      margin-bottom: 7px;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-
-    .progress-title {
-      font-size: 22px;
-      font-weight: 800;
-      margin-bottom: 17px;
-    }
-
-    .progress-track {
-      width: 100%;
-      height: 8px;
-      border-radius: 20px;
-      background: rgba(255,255,255,0.2);
-      overflow: hidden;
-    }
-
-    .progress-fill {
-      width: 34%;
-      height: 100%;
-      border-radius: 20px;
-      background: white;
-    }
-
-    .progress-text {
-      margin-top: 8px;
-      font-size: 11px;
-      color: rgba(255,255,255,0.75);
-    }
-
-    .progress-circle {
-      position: relative;
-      z-index: 2;
-      width: 130px;
-      height: 130px;
-      border-radius: 50%;
-      border: 10px solid rgba(255,255,255,0.18);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      margin: auto;
-    }
-
-    .progress-circle strong {
-      font-size: 27px;
-    }
-
-    .progress-circle span {
-      font-size: 10px;
-      color: rgba(255,255,255,0.75);
-    }
-
-    /* GRID */
-
-    .section-title {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 15px;
-    }
-
-    .section-title h2 {
-      font-size: 18px;
-    }
-
-    .section-title a {
-      font-size: 11px;
-      color: var(--primary);
-      font-weight: 700;
-      text-decoration: none;
-    }
-
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 15px;
-      margin-bottom: 28px;
-    }
-
-    .card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 15px;
-      padding: 20px;
-      transition: 0.2s;
-    }
-
-    .card:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 25px rgba(30,30,60,0.06);
-    }
-
-    .card-icon {
-      width: 43px;
-      height: 43px;
-      border-radius: 11px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: #f0eeff;
-      font-size: 20px;
-      margin-bottom: 15px;
-    }
-
-    .card h3 {
-      font-size: 15px;
-      margin-bottom: 7px;
-    }
-
-    .card p {
-      color: var(--muted);
-      font-size: 11px;
-      line-height: 1.5;
-      margin-bottom: 15px;
-    }
-
-    .card-button {
-      display: inline-block;
-      padding: 9px 13px;
-      border-radius: 8px;
-      background: #f0eeff;
-      color: var(--primary);
-      text-decoration: none;
-      font-size: 11px;
-      font-weight: 800;
-    }
-
-    .card-button:hover {
-      background: var(--primary);
-      color: white;
-    }
-
-    /* CONTINUER */
-
-    .continue-card {
-      background: white;
-      border: 1px solid var(--border);
-      border-radius: 15px;
-      padding: 20px;
-      margin-bottom: 28px;
-    }
-
-    .lesson {
-      display: flex;
-      align-items: center;
-      gap: 15px;
-    }
-
-    .lesson-image {
-      width: 70px;
-      height: 70px;
-      border-radius: 12px;
       background:
-        linear-gradient(
-          135deg,
-          #eeeaff,
-          #d9d4ff
-        );
-      display: flex;
+        rgba(255,255,255,0.07);
+
+      top: -120px;
+
+      right: -60px;
+    }
+
+    .hero-content {
+      position: relative;
+
+      z-index: 2;
+
+      max-width: 700px;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+
       align-items: center;
+
+      gap: 6px;
+
+      padding: 7px 11px;
+
+      border-radius: 20px;
+
+      background:
+        rgba(255,255,255,0.14);
+
+      font-size: 11px;
+
+      font-weight: 700;
+
+      margin-bottom: 15px;
+    }
+
+    .hero h2 {
+      font-size: 27px;
+
+      margin-bottom: 9px;
+    }
+
+    .hero p {
+      color:
+        rgba(255,255,255,0.82);
+
+      font-size: 14px;
+
+      line-height: 1.6;
+
+      margin-bottom: 20px;
+    }
+
+    .hero-button {
+      display: inline-flex;
+
+      align-items: center;
+
       justify-content: center;
-      font-size: 30px;
-      flex-shrink: 0;
-    }
 
-    .lesson-info {
-      flex: 1;
-    }
+      height: 43px;
 
-    .lesson-info small {
-      color: var(--primary);
-      font-size: 10px;
-      font-weight: 800;
-    }
+      padding: 0 18px;
 
-    .lesson-info h3 {
-      font-size: 15px;
-      margin: 4px 0;
-    }
+      border-radius: 10px;
 
-    .lesson-info p {
-      color: var(--muted);
-      font-size: 11px;
-    }
-
-    .continue-button {
-      display: inline-block;
-      background: var(--primary);
-      color: white;
-      padding: 11px 18px;
-      border-radius: 9px;
-      text-decoration: none;
-      font-size: 11px;
-      font-weight: 800;
-    }
-
-    /* STATS */
-
-    .stats {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 15px;
-    }
-
-    .stat {
       background: white;
-      border: 1px solid var(--border);
-      border-radius: 13px;
-      padding: 17px;
+
+      color: var(--primary);
+
+      text-decoration: none;
+
+      font-size: 13px;
+
+      font-weight: 800;
+    }
+
+    .hero-button:hover {
+      transform: translateY(-1px);
+    }
+
+
+    /* =========================
+       STATISTIQUES
+    ========================== */
+
+    .stats-grid {
+      display: grid;
+
+      grid-template-columns:
+        repeat(4, 1fr);
+
+      gap: 16px;
+
+      margin-bottom: 25px;
+    }
+
+    .stat-card {
+      background: var(--card);
+
+      border:
+        1px solid var(--border);
+
+      border-radius: 16px;
+
+      padding: 20px;
+
+      box-shadow: var(--shadow);
+    }
+
+    .stat-icon {
+      width: 38px;
+      height: 38px;
+
+      border-radius: 10px;
+
+      background: #f0edff;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+      font-size: 18px;
+
+      margin-bottom: 13px;
+    }
+
+    .stat-value {
+      font-size: 25px;
+
+      font-weight: 800;
+
+      margin-bottom: 4px;
     }
 
     .stat-label {
       color: var(--muted);
-      font-size: 10px;
-      margin-bottom: 8px;
+
+      font-size: 12px;
     }
 
-    .stat-value {
-      font-size: 23px;
+
+    /* =========================
+       GRILLE PRINCIPALE
+    ========================== */
+
+    .main-grid {
+      display: grid;
+
+      grid-template-columns:
+        1.5fr
+        1fr;
+
+      gap: 20px;
+
+      margin-bottom: 25px;
+    }
+
+    .card {
+      background: var(--card);
+
+      border:
+        1px solid var(--border);
+
+      border-radius: 18px;
+
+      padding: 22px;
+
+      box-shadow: var(--shadow);
+    }
+
+    .card-header {
+      display: flex;
+
+      align-items: center;
+
+      justify-content: space-between;
+
+      margin-bottom: 20px;
+    }
+
+    .card-header h3 {
+      font-size: 17px;
+    }
+
+    .card-link {
+      color: var(--primary);
+
+      font-size: 12px;
+
+      font-weight: 700;
+
+      text-decoration: none;
+    }
+
+
+    /* =========================
+       PROGRESSION
+    ========================== */
+
+    .progress-number {
+      display: flex;
+
+      align-items: flex-end;
+
+      justify-content: space-between;
+
+      margin-bottom: 10px;
+    }
+
+    .progress-number strong {
+      font-size: 30px;
+    }
+
+    .progress-number span {
+      color: var(--muted);
+
+      font-size: 12px;
+    }
+
+    .progress-bar {
+      width: 100%;
+
+      height: 10px;
+
+      border-radius: 20px;
+
+      background: #ecebf5;
+
+      overflow: hidden;
+
+      margin-bottom: 12px;
+    }
+
+    .progress-fill {
+      width: 0%;
+
+      height: 100%;
+
+      border-radius: 20px;
+
+      background:
+        linear-gradient(
+          90deg,
+          var(--primary),
+          var(--secondary)
+        );
+
+      transition:
+        width 0.6s ease;
+    }
+
+    .progress-description {
+      color: var(--muted);
+
+      font-size: 12px;
+
+      line-height: 1.5;
+    }
+
+
+    /* =========================
+       PLAN
+    ========================== */
+
+    .plan-card {
+      background:
+        linear-gradient(
+          145deg,
+          #fff,
+          #f8f7ff
+        );
+    }
+
+    .plan-top {
+      display: flex;
+
+      align-items: center;
+
+      justify-content: space-between;
+
+      margin-bottom: 15px;
+    }
+
+    .plan-name {
+      font-size: 22px;
+
       font-weight: 800;
     }
 
+    .plan-badge {
+      padding: 6px 10px;
+
+      border-radius: 20px;
+
+      background: #eeeaff;
+
+      color: var(--primary);
+
+      font-size: 11px;
+
+      font-weight: 800;
+
+      text-transform: uppercase;
+    }
+
+    .plan-description {
+      color: var(--muted);
+
+      font-size: 12px;
+
+      line-height: 1.6;
+
+      margin-bottom: 18px;
+    }
+
+    .premium-button {
+      width: 100%;
+
+      height: 44px;
+
+      border: none;
+
+      border-radius: 10px;
+
+      background:
+        linear-gradient(
+          135deg,
+          var(--primary),
+          var(--primary-dark)
+        );
+
+      color: white;
+
+      font-size: 13px;
+
+      font-weight: 800;
+    }
+
+    .premium-button:hover {
+      transform: translateY(-1px);
+    }
+
+
     /* =========================
-       MOBILE
+       COURS
     ========================== */
 
-    .overlay {
+    .courses-grid {
+      display: grid;
+
+      grid-template-columns:
+        repeat(3, 1fr);
+
+      gap: 15px;
+    }
+
+    .course {
+      border:
+        1px solid var(--border);
+
+      border-radius: 14px;
+
+      overflow: hidden;
+
+      background: white;
+    }
+
+    .course-top {
+      height: 105px;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+      background:
+        linear-gradient(
+          135deg,
+          #f0edff,
+          #e8fffd
+        );
+
+      font-size: 42px;
+    }
+
+    .course-content {
+      padding: 15px;
+    }
+
+    .course-content h4 {
+      font-size: 14px;
+
+      margin-bottom: 6px;
+    }
+
+    .course-content p {
+      color: var(--muted);
+
+      font-size: 11px;
+
+      line-height: 1.5;
+
+      margin-bottom: 12px;
+    }
+
+    .course-button {
+      display: flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+      width: 100%;
+
+      height: 36px;
+
+      border-radius: 8px;
+
+      background: #f0edff;
+
+      color: var(--primary);
+
+      text-decoration: none;
+
+      font-size: 11px;
+
+      font-weight: 800;
+    }
+
+    .course-button:hover {
+      background: var(--primary);
+
+      color: white;
+    }
+
+
+    /* =========================
+       OBJECTIFS
+    ========================== */
+
+    .goals {
+      display: grid;
+
+      gap: 12px;
+    }
+
+    .goal {
+      display: flex;
+
+      align-items: center;
+
+      gap: 12px;
+
+      padding: 12px;
+
+      border-radius: 12px;
+
+      background: #fafbfe;
+
+      border:
+        1px solid var(--border);
+    }
+
+    .goal-icon {
+      width: 38px;
+      height: 38px;
+
+      flex-shrink: 0;
+
+      border-radius: 10px;
+
+      background: #f0edff;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: center;
+    }
+
+    .goal-text {
+      flex: 1;
+    }
+
+    .goal-text strong {
+      display: block;
+
+      font-size: 12px;
+
+      margin-bottom: 4px;
+    }
+
+    .goal-text span {
+      color: var(--muted);
+
+      font-size: 10px;
+    }
+
+    .goal-check {
+      width: 25px;
+      height: 25px;
+
+      border-radius: 50%;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+      background: #e8faf5;
+
+      color: var(--success);
+
+      font-size: 12px;
+    }
+
+
+    /* =========================
+       PROFIL
+    ========================== */
+
+    .profile-card {
+      margin-bottom: 25px;
+    }
+
+    .profile-info {
+      display: grid;
+
+      grid-template-columns:
+        repeat(3, 1fr);
+
+      gap: 15px;
+    }
+
+    .profile-item {
+      padding: 14px;
+
+      border-radius: 12px;
+
+      background: #fafbfe;
+
+      border:
+        1px solid var(--border);
+    }
+
+    .profile-item small {
+      display: block;
+
+      color: var(--muted);
+
+      font-size: 10px;
+
+      margin-bottom: 6px;
+    }
+
+    .profile-item strong {
+      font-size: 13px;
+
+      word-break: break-word;
+    }
+
+
+    /* =========================
+       CHARGEMENT
+    ========================== */
+
+    .loading {
+      position: fixed;
+
+      inset: 0;
+
+      z-index: 999;
+
+      background:
+        rgba(255,255,255,0.97);
+
+      display: flex;
+
+      flex-direction: column;
+
+      align-items: center;
+
+      justify-content: center;
+
+      gap: 15px;
+    }
+
+    .loading-icon {
+      width: 55px;
+      height: 55px;
+
+      border-radius: 15px;
+
+      background:
+        linear-gradient(
+          135deg,
+          var(--primary),
+          var(--primary-dark)
+        );
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+      font-size: 27px;
+
+      animation:
+        pulse 1.2s infinite;
+    }
+
+    .loading-text {
+      color: var(--muted);
+
+      font-size: 13px;
+    }
+
+    @keyframes pulse {
+
+      0% {
+        transform: scale(1);
+      }
+
+      50% {
+        transform: scale(1.08);
+      }
+
+      100% {
+        transform: scale(1);
+      }
+
+    }
+
+
+    /* =========================
+       ERREUR
+    ========================== */
+
+    .error-screen {
       display: none;
+
+      min-height: 100vh;
+
+      align-items: center;
+
+      justify-content: center;
+
+      padding: 25px;
     }
 
-    @media (max-width: 1000px) {
+    .error-card {
+      width: 100%;
 
-      .cards {
-        grid-template-columns: repeat(2, 1fr);
-      }
+      max-width: 450px;
 
-      .stats {
-        grid-template-columns: repeat(2, 1fr);
-      }
+      background: white;
 
+      border-radius: 20px;
+
+      padding: 30px;
+
+      text-align: center;
+
+      box-shadow: var(--shadow);
     }
 
-    @media (max-width: 800px) {
+    .error-icon {
+      font-size: 45px;
 
-      .sidebar {
-        transform: translateX(-100%);
+      margin-bottom: 15px;
+    }
+
+    .error-card h2 {
+      margin-bottom: 10px;
+    }
+
+    .error-card p {
+      color: var(--muted);
+
+      font-size: 13px;
+
+      line-height: 1.6;
+
+      margin-bottom: 20px;
+    }
+
+    .error-button {
+      display: inline-flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+      height: 43px;
+
+      padding: 0 20px;
+
+      border-radius: 10px;
+
+      background: var(--primary);
+
+      color: white;
+
+      text-decoration: none;
+
+      font-size: 13px;
+
+      font-weight: 800;
+    }
+
+
+    /* =========================
+       RESPONSIVE
+    ========================== */
+
+    @media (max-width: 950px) {
+
+      .stats-grid {
+        grid-template-columns:
+          repeat(2, 1fr);
       }
 
-      .sidebar.open {
-        transform: translateX(0);
-      }
-
-      .main {
-        margin-left: 0;
-      }
-
-      .mobile-menu {
-        display: block;
-      }
-
-      .topbar {
-        padding: 0 18px;
-      }
-
-      .user-info {
-        display: none;
-      }
-
-      .content {
-        padding: 22px 17px 35px;
-      }
-
-      .progress-card {
+      .main-grid {
         grid-template-columns: 1fr;
       }
 
-      .progress-circle {
+    }
+
+
+    @media (max-width: 700px) {
+
+      .header-inner {
+        padding: 0 15px;
+      }
+
+      .profile-mini-name {
         display: none;
       }
 
-      .cards {
-        grid-template-columns: 1fr;
-      }
-
-      .stats {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .lesson {
-        align-items: flex-start;
-        flex-wrap: wrap;
-      }
-
-      .continue-button {
-        width: 100%;
-        text-align: center;
-      }
-
-      .overlay {
-        position: fixed;
-        inset: 0;
-        background: rgba(0,0,0,0.35);
-        z-index: 900;
-      }
-
-      .overlay.show {
-        display: block;
-      }
-
-    }
-
-    @media (max-width: 420px) {
-
-      .stats {
-        grid-template-columns: 1fr 1fr;
-        gap: 9px;
-      }
-
-      .stat {
-        padding: 13px;
-      }
-
-      .stat-value {
-        font-size: 19px;
+      .container {
+        padding:
+          25px 15px 45px;
       }
 
       .welcome h1 {
+        font-size: 27px;
+      }
+
+      .hero {
+        padding: 24px;
+      }
+
+      .hero h2 {
         font-size: 23px;
+      }
+
+      .courses-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .profile-info {
+        grid-template-columns: 1fr;
+      }
+
+    }
+
+
+    @media (max-width: 450px) {
+
+      .stats-grid {
+        grid-template-columns: 1fr 1fr;
+
+        gap: 10px;
+      }
+
+      .stat-card {
+        padding: 15px;
+      }
+
+      .stat-value {
+        font-size: 21px;
+      }
+
+      .logout-button {
+        padding:
+          8px 9px;
+
+        font-size: 11px;
+      }
+
+      .brand-name {
+        font-size: 16px;
       }
 
     }
 
   </style>
+
 </head>
+
 
 <body>
 
+
   <!-- =========================
-       SIDEBAR
+       CHARGEMENT
   ========================== -->
-
-  <aside class="sidebar" id="sidebar">
-
-    <div class="brand">
-      <div class="brand-icon">🎹</div>
-      <div class="brand-name">Piano Academy</div>
-    </div>
-
-    <div class="menu-title">
-      Mon espace
-    </div>
-
-    <nav class="menu">
-
-      <a href="dashboard.html" class="active">
-        <span class="menu-icon">🏠</span>
-        Tableau de bord
-      </a>
-
-      <a href="index.html">
-        <span class="menu-icon">🎹</span>
-        Mon piano
-      </a>
-
-      <a href="#">
-        <span class="menu-icon">📚</span>
-        Mes cours
-      </a>
-
-      <a href="#">
-        <span class="menu-icon">📊</span>
-        Ma progression
-      </a>
-
-      <a href="#">
-        <span class="menu-icon">📖</span>
-        Guide du piano
-      </a>
-
-    </nav>
-
-    <div class="menu-title" style="margin-top:25px;">
-      Compte
-    </div>
-
-    <nav class="menu">
-
-      <a href="profil.html">
-        <span class="menu-icon">👤</span>
-        Mon profil
-      </a>
-
-      <a href="premium.html">
-        <span class="menu-icon">⭐</span>
-        Premium
-      </a>
-
-    </nav>
-
-
-    <div class="sidebar-bottom">
-
-      <div class="premium-mini">
-
-        <h3>⭐ Piano Academy Premium</h3>
-
-        <p>
-          Débloque tous les niveaux et
-          profite de toutes les fonctionnalités.
-        </p>
-
-        <a href="premium.html">
-          Découvrir Premium
-        </a>
-
-      </div>
-
-    </div>
-
-  </aside>
-
 
   <div
-    class="overlay"
-    id="overlay"
-  ></div>
+    class="loading"
+    id="loading"
+  >
+
+    <div class="loading-icon">
+      🎹
+    </div>
+
+    <div class="loading-text">
+      Chargement de votre espace...
+    </div>
+
+  </div>
 
 
   <!-- =========================
-       CONTENU PRINCIPAL
+       ERREUR / NON CONNECTÉ
   ========================== -->
 
-  <main class="main">
+  <section
+    class="error-screen"
+    id="errorScreen"
+  >
 
-    <header class="topbar">
+    <div class="error-card">
 
-      <button
-        class="mobile-menu"
-        id="mobileMenu"
-        aria-label="Ouvrir le menu"
+      <div class="error-icon">
+        🔐
+      </div>
+
+      <h2>
+        Accès à votre espace
+      </h2>
+
+      <p id="errorText">
+        Vous devez être connecté pour accéder à votre dashboard.
+      </p>
+
+      <a
+        href="connexion.html"
+        class="error-button"
       >
-        ☰
-      </button>
+        Se connecter
+      </a>
+
+    </div>
+
+  </section>
 
 
-      <div class="topbar-right">
+  <!-- =========================
+       APPLICATION
+  ========================== -->
 
-        <button
-          class="notification"
-          title="Notifications"
-        >
-          🔔
-          <span class="notification-dot"></span>
-        </button>
+  <div id="app">
 
 
-        <button
-          class="user-button"
-          id="userButton"
-        >
+    <!-- =========================
+         HEADER
+    ========================== -->
 
-          <div
-            class="avatar"
-            id="avatar"
-          >
-            PA
+    <header class="header">
+
+      <div class="header-inner">
+
+
+        <div class="brand">
+
+          <div class="brand-icon">
+            🎹
           </div>
 
-          <div class="user-info">
+          <div class="brand-name">
+            Piano Academy
+          </div>
+
+        </div>
+
+
+        <div class="header-actions">
+
+
+          <div class="profile-mini">
 
             <div
-              class="user-name"
-              id="userName"
+              class="avatar"
+              id="avatar"
+            >
+              ?
+            </div>
+
+            <div
+              class="profile-mini-name"
+              id="headerName"
             >
               Utilisateur
             </div>
 
-            <div
-              class="user-plan"
-              id="userPlan"
-            >
-              Compte gratuit
-            </div>
-
           </div>
 
-        </button>
+
+          <button
+            class="logout-button"
+            id="logoutButton"
+          >
+            Déconnexion
+          </button>
+
+
+        </div>
 
       </div>
 
     </header>
 
 
-    <div class="content">
+    <!-- =========================
+         CONTENU
+    ========================== -->
+
+    <main class="container">
+
 
       <!-- BIENVENUE -->
 
       <section class="welcome">
 
-        <h1 id="welcomeTitle">
-          Bonjour 👋
+        <h1>
+
+          Bonjour
+          <span id="welcomeName">
+            !
+          </span>
+
         </h1>
 
         <p>
-          Continue ton apprentissage et progresse
-          chaque jour au piano.
+          Bienvenue dans ton espace personnel Piano Academy.
         </p>
 
       </section>
 
 
-      <!-- PROGRESSION -->
+      <!-- HERO -->
 
-      <section class="progress-card">
+      <section class="hero">
 
-        <div>
+        <div class="hero-content">
 
-          <div class="progress-label">
-            Ma progression
+          <div class="hero-badge">
+            🎹 Piano Academy
           </div>
 
-          <div class="progress-title">
-            Continue ton parcours 🎹
+          <h2>
+            Continue ton apprentissage
+          </h2>
+
+          <p>
+            Reprends tes cours là où tu les as laissés
+            et progresse chaque jour vers ton objectif
+            de devenir pianiste.
+          </p>
+
+          <a
+            href="index.html"
+            class="hero-button"
+          >
+            Continuer mes cours →
+          </a>
+
+        </div>
+
+      </section>
+
+
+      <!-- =========================
+           STATISTIQUES
+      ========================== -->
+
+      <section class="stats-grid">
+
+
+        <div class="stat-card">
+
+          <div class="stat-icon">
+            📊
           </div>
 
-          <div class="progress-track">
+          <div
+            class="stat-value"
+            id="progressValue"
+          >
+            0%
+          </div>
+
+          <div class="stat-label">
+            Progression
+          </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+          <div class="stat-icon">
+            📚
+          </div>
+
+          <div
+            class="stat-value"
+            id="lessonsValue"
+          >
+            0
+          </div>
+
+          <div class="stat-label">
+            Cours terminés
+          </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+          <div class="stat-icon">
+            ⭐
+          </div>
+
+          <div
+            class="stat-value"
+            id="planValue"
+          >
+            Free
+          </div>
+
+          <div class="stat-label">
+            Abonnement
+          </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+          <div class="stat-icon">
+            🎯
+          </div>
+
+          <div
+            class="stat-value"
+            id="goalValue"
+          >
+            0
+          </div>
+
+          <div class="stat-label">
+            Objectif
+          </div>
+
+        </div>
+
+
+      </section>
+
+
+      <!-- =========================
+           PROGRESSION + PLAN
+      ========================== -->
+
+      <section class="main-grid">
+
+
+        <!-- PROGRESSION -->
+
+        <div class="card">
+
+          <div class="card-header">
+
+            <h3>
+              Ma progression
+            </h3>
+
+            <span class="card-link">
+              Piano Academy
+            </span>
+
+          </div>
+
+
+          <div class="progress-number">
+
+            <strong
+              id="progressLarge"
+            >
+              0%
+            </strong>
+
+            <span>
+              progression globale
+            </span>
+
+          </div>
+
+
+          <div class="progress-bar">
 
             <div
               class="progress-fill"
@@ -864,167 +1437,287 @@
 
           </div>
 
-          <div
-            class="progress-text"
-            id="progressText"
-          >
-            34 % de ton parcours terminé
+
+          <p class="progress-description">
+
+            Continue régulièrement tes cours
+            pour augmenter ta progression.
+
+          </p>
+
+        </div>
+
+
+        <!-- PLAN -->
+
+        <div class="card plan-card">
+
+          <div class="card-header">
+
+            <h3>
+              Mon abonnement
+            </h3>
+
           </div>
 
+
+          <div class="plan-top">
+
+            <div
+              class="plan-name"
+              id="planName"
+            >
+              Free
+            </div>
+
+            <div
+              class="plan-badge"
+              id="planBadge"
+            >
+              Gratuit
+            </div>
+
+          </div>
+
+
+          <p
+            class="plan-description"
+            id="planDescription"
+          >
+            Tu utilises actuellement
+            le plan gratuit de Piano Academy.
+
+          </p>
+
+
+          <button
+            class="premium-button"
+            id="premiumButton"
+          >
+            Découvrir Premium
+          </button>
+
         </div>
 
-
-        <div class="progress-circle">
-
-          <strong id="progressCircle">
-            34%
-          </strong>
-
-          <span>Progression</span>
-
-        </div>
 
       </section>
 
 
-      <!-- CONTINUER -->
+      <!-- =========================
+           COURS
+      ========================== -->
 
-      <section>
+      <section class="card">
 
-        <div class="section-title">
+        <div class="card-header">
 
-          <h2>
-            Continuer mon apprentissage
-          </h2>
+          <h3>
+            Mes cours
+          </h3>
+
+          <a
+            href="index.html"
+            class="card-link"
+          >
+            Voir tous les cours
+          </a>
 
         </div>
 
 
-        <div class="continue-card">
+        <div class="courses-grid">
 
-          <div class="lesson">
 
-            <div class="lesson-image">
+          <!-- COURS 1 -->
+
+          <article class="course">
+
+            <div class="course-top">
               🎼
             </div>
 
-            <div class="lesson-info">
+            <div class="course-content">
 
-              <small>
-                NIVEAU 1
-              </small>
-
-              <h3>
-                Les premières notes du piano
-              </h3>
+              <h4>
+                Les bases du piano
+              </h4>
 
               <p>
-                Continue ta prochaine leçon.
+                Découvre les premières notions
+                indispensables pour commencer.
               </p>
+
+              <a
+                href="index.html"
+                class="course-button"
+              >
+                Commencer
+              </a>
 
             </div>
 
-            <a
-              href="index.html"
-              class="continue-button"
-            >
-              Continuer →
-            </a>
-
-          </div>
-
-        </div>
-
-      </section>
+          </article>
 
 
-      <!-- FONCTIONNALITÉS -->
+          <!-- COURS 2 -->
 
-      <section>
+          <article class="course">
 
-        <div class="section-title">
-
-          <h2>
-            Mon apprentissage
-          </h2>
-
-        </div>
-
-
-        <div class="cards">
-
-
-          <div class="card">
-
-            <div class="card-icon">
+            <div class="course-top">
               🎹
             </div>
 
-            <h3>
-              Piano interactif
-            </h3>
+            <div class="course-content">
 
-            <p>
-              Pratique les notes directement
-              avec ton piano virtuel.
-            </p>
+              <h4>
+                Les notes du piano
+              </h4>
 
-            <a
-              href="index.html"
-              class="card-button"
-            >
-              Jouer du piano
-            </a>
+              <p>
+                Apprends à reconnaître les notes
+                et leur position sur le clavier.
+              </p>
+
+              <a
+                href="index.html"
+                class="course-button"
+              >
+                Continuer
+              </a>
+
+            </div>
+
+          </article>
+
+
+          <!-- COURS 3 -->
+
+          <article class="course">
+
+            <div class="course-top">
+              🎵
+            </div>
+
+            <div class="course-content">
+
+              <h4>
+                Premiers accords
+              </h4>
+
+              <p>
+                Apprends tes premiers accords
+                et commence à jouer des morceaux.
+              </p>
+
+              <a
+                href="index.html"
+                class="course-button"
+              >
+                Découvrir
+              </a>
+
+            </div>
+
+          </article>
+
+
+        </div>
+
+      </section>
+
+
+      <!-- =========================
+           OBJECTIFS
+      ========================== -->
+
+      <section
+        class="card"
+        style="margin-top: 25px;"
+      >
+
+        <div class="card-header">
+
+          <h3>
+            Mes objectifs
+          </h3>
+
+        </div>
+
+
+        <div class="goals">
+
+
+          <div class="goal">
+
+            <div class="goal-icon">
+              🎹
+            </div>
+
+            <div class="goal-text">
+
+              <strong>
+                Apprendre les bases du piano
+              </strong>
+
+              <span>
+                Commence ton parcours Piano Academy.
+              </span>
+
+            </div>
+
+            <div class="goal-check">
+              ○
+            </div>
 
           </div>
 
 
-          <div class="card">
+          <div class="goal">
 
-            <div class="card-icon">
-              📚
+            <div class="goal-icon">
+              🎼
             </div>
 
-            <h3>
-              Mes cours
-            </h3>
+            <div class="goal-text">
 
-            <p>
-              Retrouve tes leçons et
-              exercices d'apprentissage.
-            </p>
+              <strong>
+                Terminer mon premier cours
+              </strong>
 
-            <a
-              href="#"
-              class="card-button"
-            >
-              Voir mes cours
-            </a>
+              <span>
+                Progresse étape par étape.
+              </span>
+
+            </div>
+
+            <div class="goal-check">
+              ○
+            </div>
 
           </div>
 
 
-          <div class="card">
+          <div class="goal">
 
-            <div class="card-icon">
-              📖
+            <div class="goal-icon">
+              🏆
             </div>
 
-            <h3>
-              Guide du piano
-            </h3>
+            <div class="goal-text">
 
-            <p>
-              Découvre les notions essentielles
-              pour progresser.
-            </p>
+              <strong>
+                Atteindre 100% de progression
+              </strong>
 
-            <a
-              href="#"
-              class="card-button"
-            >
-              Ouvrir le guide
-            </a>
+              <span>
+                Ton objectif ultime.
+              </span>
+
+            </div>
+
+            <div class="goal-check">
+              ○
+            </div>
 
           </div>
 
@@ -1034,82 +1727,59 @@
       </section>
 
 
-      <!-- STATISTIQUES -->
+      <!-- =========================
+           PROFIL
+      ========================== -->
 
-      <section>
+      <section class="card profile-card">
 
-        <div class="section-title">
+        <div class="card-header">
 
-          <h2>
-            Mes statistiques
-          </h2>
+          <h3>
+            Mon profil
+          </h3>
 
         </div>
 
 
-        <div class="stats">
+        <div class="profile-info">
 
 
-          <div class="stat">
+          <div class="profile-item">
 
-            <div class="stat-label">
-              Leçons terminées
-            </div>
+            <small>
+              Nom
+            </small>
 
-            <div
-              class="stat-value"
-              id="lessonsCompleted"
-            >
-              0
-            </div>
+            <strong id="profileName">
+              —
+            </strong>
 
           </div>
 
 
-          <div class="stat">
+          <div class="profile-item">
 
-            <div class="stat-label">
-              Niveaux terminés
-            </div>
+            <small>
+              Email
+            </small>
 
-            <div
-              class="stat-value"
-              id="levelsCompleted"
-            >
-              0
-            </div>
+            <strong id="profileEmail">
+              —
+            </strong>
 
           </div>
 
 
-          <div class="stat">
+          <div class="profile-item">
 
-            <div class="stat-label">
-              Jours d'apprentissage
-            </div>
+            <small>
+              Plan
+            </small>
 
-            <div
-              class="stat-value"
-              id="learningDays"
-            >
-              1
-            </div>
-
-          </div>
-
-
-          <div class="stat">
-
-            <div class="stat-label">
-              Score moyen
-            </div>
-
-            <div
-              class="stat-value"
-              id="averageScore"
-            >
-              0%
-            </div>
+            <strong id="profilePlan">
+              Free
+            </strong>
 
           </div>
 
@@ -1118,212 +1788,681 @@
 
       </section>
 
-    </div>
 
-  </main>
+    </main>
+
+  </div>
 
 
   <script>
 
-    /* =========================
-       CHARGER L'UTILISATEUR
-    ========================== */
 
-    let user = null;
+    /* =====================================================
+       CONFIGURATION SUPABASE
+    ===================================================== */
 
-    try {
 
-      const stored =
-        localStorage.getItem(
-          "pianoAcademyUser"
-        );
-
-      if (stored) {
-
-        user = JSON.parse(stored);
-
-      }
-
-    } catch (error) {
-
-      user = null;
-
-    }
+    const SUPABASE_URL =
+      "https://swsvnzjeipcobodntajs.supabase.co";
 
 
     /*
-      Si aucun compte n'existe,
-      retour vers l'inscription.
+      IMPORTANT :
+
+      Mets ici ta clé :
+
+      sb_publishable_...
+
+      Ne mets JAMAIS :
+
+      sb_secret_...
     */
 
-    if (!user) {
 
-      window.location.href =
-        "inscription.html";
+    const SUPABASE_KEY =
+      "sb_publishable_JrPeCn1LhCNHY3BJZ5iCEQ_mc2iqLpf";
+
+
+    /* =====================================================
+       INITIALISATION
+    ===================================================== */
+
+
+    const supabaseClient =
+      window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_KEY
+      );
+
+
+    /* =====================================================
+       ÉLÉMENTS
+    ===================================================== */
+
+
+    const loading =
+      document.getElementById(
+        "loading"
+      );
+
+
+    const app =
+      document.getElementById(
+        "app"
+      );
+
+
+    const errorScreen =
+      document.getElementById(
+        "errorScreen"
+      );
+
+
+    const errorText =
+      document.getElementById(
+        "errorText"
+      );
+
+
+    const logoutButton =
+      document.getElementById(
+        "logoutButton"
+      );
+
+
+    /* =====================================================
+       AFFICHAGE ERREUR
+    ===================================================== */
+
+
+    function showError(
+      text
+    ) {
+
+      loading.style.display =
+        "none";
+
+      app.style.display =
+        "none";
+
+      errorScreen.style.display =
+        "flex";
+
+      errorText.textContent =
+        text;
 
     }
 
 
-    /* =========================
-       DONNÉES UTILISATEUR
-    ========================== */
-
-    if (user) {
-
-      const name =
-        user.name || "Utilisateur";
-
-      const firstName =
-        name.split(" ")[0];
-
-      const progress =
-        Number(user.progress) || 0;
-
-      const plan =
-        user.plan || "free";
+    /* =====================================================
+       PREMIÈRE LETTRE
+    ===================================================== */
 
 
-      /*
-        Nom
-      */
+    function getInitial(
+      name
+    ) {
 
-      document.getElementById(
-        "userName"
-      ).textContent = name;
+      if (!name) {
 
+        return "?";
 
-      document.getElementById(
-        "welcomeTitle"
-      ).textContent =
-        "Bonjour " + firstName + " 👋";
+      }
 
+      return name
+        .trim()
+        .charAt(0)
+        .toUpperCase();
 
-      /*
-        Avatar
-      */
-
-      const initials =
-        name
-          .split(" ")
-          .map(word => word.charAt(0))
-          .join("")
-          .substring(0, 2)
-          .toUpperCase();
-
-      document.getElementById(
-        "avatar"
-      ).textContent =
-        initials || "PA";
+    }
 
 
-      /*
-        Plan
-      */
+    /* =====================================================
+       TEXTE PLAN
+    ===================================================== */
 
-      const planElement =
+
+    function updatePlan(
+      plan
+    ) {
+
+      const normalizedPlan =
+        String(
+          plan || "free"
+        ).toLowerCase();
+
+
+      const planValue =
         document.getElementById(
-          "userPlan"
+          "planValue"
         );
 
-      if (plan === "premium") {
 
-        planElement.textContent =
-          "⭐ Membre Premium";
+      const planName =
+        document.getElementById(
+          "planName"
+        );
+
+
+      const planBadge =
+        document.getElementById(
+          "planBadge"
+        );
+
+
+      const planDescription =
+        document.getElementById(
+          "planDescription"
+        );
+
+
+      const profilePlan =
+        document.getElementById(
+          "profilePlan"
+        );
+
+
+      if (
+        normalizedPlan ===
+        "premium"
+      ) {
+
+        planValue.textContent =
+          "Premium";
+
+        planName.textContent =
+          "Premium";
+
+        planBadge.textContent =
+          "Premium";
+
+        planDescription.textContent =
+          "Tu bénéficies actuellement des fonctionnalités Premium de Piano Academy.";
+
+        profilePlan.textContent =
+          "Premium";
 
       } else {
 
-        planElement.textContent =
-          "Compte gratuit";
+        planValue.textContent =
+          "Free";
+
+        planName.textContent =
+          "Free";
+
+        planBadge.textContent =
+          "Gratuit";
+
+        planDescription.textContent =
+          "Tu utilises actuellement le plan gratuit de Piano Academy.";
+
+        profilePlan.textContent =
+          "Free";
 
       }
-
-
-      /*
-        Progression
-      */
-
-      document.getElementById(
-        "progressFill"
-      ).style.width =
-        progress + "%";
-
-
-      document.getElementById(
-        "progressCircle"
-      ).textContent =
-        progress + "%";
-
-
-      document.getElementById(
-        "progressText"
-      ).textContent =
-        progress +
-        "% de ton parcours terminé";
 
     }
 
 
-    /* =========================
-       MENU MOBILE
-    ========================== */
-
-    const mobileMenu =
-      document.getElementById(
-        "mobileMenu"
-      );
-
-    const sidebar =
-      document.getElementById(
-        "sidebar"
-      );
-
-    const overlay =
-      document.getElementById(
-        "overlay"
-      );
+    /* =====================================================
+       CHARGER LE DASHBOARD
+    ===================================================== */
 
 
-    mobileMenu.addEventListener(
-      "click",
-      function () {
+    async function loadDashboard() {
 
-        sidebar.classList.add("open");
 
-        overlay.classList.add("show");
+      try {
+
+
+        /* =========================
+           SESSION
+        ========================== */
+
+
+        const {
+          data: sessionData,
+          error: sessionError
+        } =
+          await supabaseClient.auth.getSession();
+
+
+        if (
+          sessionError
+        ) {
+
+          throw sessionError;
+
+        }
+
+
+        const session =
+          sessionData.session;
+
+
+        /* =========================
+           PAS CONNECTÉ
+        ========================== */
+
+
+        if (!session) {
+
+          showError(
+            "Vous devez être connecté pour accéder à votre espace."
+          );
+
+          return;
+
+        }
+
+
+        const user =
+          session.user;
+
+
+        /* =========================
+           INFORMATIONS AUTH
+        ========================== */
+
+
+        const metadata =
+          user.user_metadata || {};
+
+
+        const authName =
+          metadata.name ||
+          metadata.full_name ||
+          "";
+
+
+        /* =========================
+           RÉCUPÉRER PROFILE
+        ========================== */
+
+
+        const {
+          data: profile,
+          error: profileError
+        } =
+          await supabaseClient
+
+            .from("profiles")
+
+            .select(
+              "id, name, email, plan, progress, lessons_completed"
+            )
+
+            .eq(
+              "id",
+              user.id
+            )
+
+            .maybeSingle();
+
+
+        /*
+          Si le profil n'existe pas encore,
+          on utilise les informations Auth.
+        */
+
+
+        if (
+          profileError
+        ) {
+
+          console.warn(
+            "Profil non récupéré :",
+            profileError
+          );
+
+        }
+
+
+        /* =========================
+           NOM
+        ========================== */
+
+
+        const name =
+          profile?.name ||
+          authName ||
+          "Pianiste";
+
+
+        /* =========================
+           EMAIL
+        ========================== */
+
+
+        const email =
+          profile?.email ||
+          user.email ||
+          "—";
+
+
+        /* =========================
+           PLAN
+        ========================== */
+
+
+        const plan =
+          profile?.plan ||
+          "free";
+
+
+        /* =========================
+           PROGRESSION
+        ========================== */
+
+
+        let progress =
+          Number(
+            profile?.progress || 0
+          );
+
+
+        if (
+          Number.isNaN(progress)
+        ) {
+
+          progress = 0;
+
+        }
+
+
+        progress =
+          Math.max(
+            0,
+            Math.min(
+              100,
+              progress
+            )
+          );
+
+
+        /* =========================
+           COURS TERMINÉS
+        ========================== */
+
+
+        const lessonsCompleted =
+          Number(
+            profile?.lessons_completed || 0
+          );
+
+
+        /* =========================
+           AFFICHER NOM
+        ========================== */
+
+
+        document.getElementById(
+          "welcomeName"
+        ).textContent =
+          name + " !";
+
+
+        document.getElementById(
+          "headerName"
+        ).textContent =
+          name;
+
+
+        document.getElementById(
+          "avatar"
+        ).textContent =
+          getInitial(name);
+
+
+        /* =========================
+           PROFIL
+        ========================== */
+
+
+        document.getElementById(
+          "profileName"
+        ).textContent =
+          name;
+
+
+        document.getElementById(
+          "profileEmail"
+        ).textContent =
+          email;
+
+
+        /* =========================
+           PROGRESSION
+        ========================== */
+
+
+        document.getElementById(
+          "progressValue"
+        ).textContent =
+          progress + "%";
+
+
+        document.getElementById(
+          "progressLarge"
+        ).textContent =
+          progress + "%";
+
+
+        document.getElementById(
+          "progressFill"
+        ).style.width =
+          progress + "%";
+
+
+        /* =========================
+           COURS
+        ========================== */
+
+
+        document.getElementById(
+          "lessonsValue"
+        ).textContent =
+          lessonsCompleted;
+
+
+        /* =========================
+           OBJECTIF
+        ========================== */
+
+
+        document.getElementById(
+          "goalValue"
+        ).textContent =
+          Math.round(
+            progress
+          ) + "%";
+
+
+        /* =========================
+           PLAN
+        ========================== */
+
+
+        updatePlan(
+          plan
+        );
+
+
+        /* =========================
+           AFFICHAGE
+        ========================== */
+
+
+        loading.style.display =
+          "none";
+
+
+        app.style.display =
+          "block";
+
 
       }
+
+
+      catch (error) {
+
+
+        console.error(
+          "Erreur dashboard:",
+          error
+        );
+
+
+        showError(
+
+          "Impossible de charger votre espace. " +
+          (
+            error?.message ||
+            "Veuillez réessayer."
+          )
+
+        );
+
+      }
+
+    }
+
+
+    /* =====================================================
+       DÉCONNEXION
+    ===================================================== */
+
+
+    logoutButton.addEventListener(
+
+      "click",
+
+      async function () {
+
+
+        logoutButton.disabled =
+          true;
+
+
+        logoutButton.textContent =
+          "Déconnexion...";
+
+
+        try {
+
+
+          const {
+            error
+          } =
+            await supabaseClient.auth.signOut();
+
+
+          if (
+            error
+          ) {
+
+            throw error;
+
+          }
+
+
+          window.location.href =
+            "connexion.html";
+
+
+        }
+
+
+        catch (error) {
+
+
+          console.error(
+            "Erreur déconnexion:",
+            error
+          );
+
+
+          logoutButton.disabled =
+            false;
+
+
+          logoutButton.textContent =
+            "Déconnexion";
+
+
+          alert(
+            "Impossible de vous déconnecter. Veuillez réessayer."
+          );
+
+        }
+
+      }
+
     );
 
 
-    overlay.addEventListener(
-      "click",
-      function () {
+    /* =====================================================
+       SURVEILLER LA SESSION
+    ===================================================== */
 
-        sidebar.classList.remove("open");
 
-        overlay.classList.remove("show");
+    supabaseClient.auth.onAuthStateChange(
+
+      function (
+        event,
+        session
+      ) {
+
+
+        if (
+          event ===
+          "SIGNED_OUT"
+        ) {
+
+          window.location.href =
+            "connexion.html";
+
+        }
 
       }
+
     );
 
 
-    /* =========================
-       PROFIL
-    ========================== */
+    /* =====================================================
+       BOUTON PREMIUM
+    ===================================================== */
 
-    document.getElementById(
-      "userButton"
-    ).addEventListener(
-      "click",
-      function () {
 
-        window.location.href =
-          "profil.html";
+    document
+      .getElementById(
+        "premiumButton"
+      )
+      .addEventListener(
 
-      }
-    );
+        "click",
+
+        function () {
+
+          alert(
+            "La section Premium sera disponible dans la prochaine étape."
+          );
+
+        }
+
+      );
+
+
+    /* =====================================================
+       DÉMARRAGE
+    ===================================================== */
+
+
+    loadDashboard();
+
 
   </script>
 
 </body>
+
 </html>
