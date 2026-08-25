@@ -1,2468 +1,2364 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-
-  <meta charset="UTF-8">
-
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  >
-
-  <title>Mon espace — Piano Academy</title>
-
-  <meta
-    name="description"
-    content="Votre espace personnel Piano Academy."
-  >
-
-  <!-- SUPABASE -->
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
-  <style>
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    :root {
-      --primary: #6c5ce7;
-      --primary-dark: #5848d6;
-      --secondary: #00cec9;
-
-      --background: #f5f6fa;
-      --card: #ffffff;
-
-      --text: #1e1e2f;
-      --muted: #777b8a;
-
-      --border: #e2e4ec;
-
-      --success: #00b894;
-      --danger: #e74c3c;
-
-      --shadow:
-        0 10px 30px rgba(25, 25, 50, 0.08);
-    }
-
-    body {
-      min-height: 100vh;
-
-      font-family:
-        Arial,
-        Helvetica,
-        sans-serif;
-
-      color: var(--text);
-
-      background:
-        radial-gradient(
-          circle at top left,
-          rgba(108, 92, 231, 0.10),
-          transparent 30%
-        ),
-        var(--background);
-    }
-
-    button,
-    a {
-      font-family: inherit;
-    }
-
-    button {
-      cursor: pointer;
-    }
-
-
-    /* =========================
-       HEADER
-    ========================== */
-
-    .header {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-
-      height: 72px;
-
-      background: rgba(255,255,255,0.96);
-
-      border-bottom:
-        1px solid var(--border);
-
-      backdrop-filter: blur(12px);
-    }
-
-    .header-inner {
-      width: 100%;
-      max-width: 1250px;
-
-      height: 100%;
-
-      margin: auto;
-
-      padding: 0 25px;
-
-      display: flex;
-
-      align-items: center;
-
-      justify-content: space-between;
-    }
-
-    .brand {
-      display: flex;
-
-      align-items: center;
-
-      gap: 11px;
-    }
-
-    .brand-icon {
-      width: 42px;
-      height: 42px;
-
-      border-radius: 12px;
-
-      background:
-        linear-gradient(
-          135deg,
-          var(--primary),
-          var(--primary-dark)
-        );
-
-      color: white;
-
-      display: flex;
-
-      align-items: center;
-
-      justify-content: center;
-
-      font-size: 21px;
-    }
-
-    .brand-name {
-      font-size: 19px;
-
-      font-weight: 800;
-    }
-
-    .header-actions {
-      display: flex;
-
-      align-items: center;
-
-      gap: 12px;
-    }
-
-    .profile-mini {
-      display: flex;
-
-      align-items: center;
-
-      gap: 9px;
-    }
-
-    .avatar {
-      width: 38px;
-      height: 38px;
-
-      border-radius: 50%;
-
-      background:
-        linear-gradient(
-          135deg,
-          var(--primary),
-          var(--secondary)
-        );
-
-      color: white;
-
-      display: flex;
-
-      align-items: center;
-
-      justify-content: center;
-
-      font-weight: 800;
-
-      font-size: 14px;
-    }
-
-    .profile-mini-name {
-      font-size: 13px;
-
-      font-weight: 700;
-
-      max-width: 150px;
-
-      white-space: nowrap;
-
-      overflow: hidden;
-
-      text-overflow: ellipsis;
-    }
-
-    .logout-button {
-      border: none;
-
-      background: #fff0ef;
-
-      color: #c0392b;
-
-      border-radius: 10px;
-
-      padding: 9px 13px;
-
-      font-size: 12px;
-
-      font-weight: 700;
-    }
-
-    .logout-button:hover {
-      background: #ffe3e0;
-    }
-
-
-    /* =========================
-       CONTENU
-    ========================== */
-
-    .container {
-      width: 100%;
-
-      max-width: 1250px;
-
-      margin: auto;
-
-      padding: 35px 25px 60px;
-    }
-
-
-    /* =========================
-       BIENVENUE
-    ========================== */
-
-    .welcome {
-      margin-bottom: 28px;
-    }
-
-    .welcome h1 {
-      font-size: 32px;
-
-      line-height: 1.2;
-
-      margin-bottom: 8px;
-    }
-
-    .welcome h1 span {
-      color: var(--primary);
-    }
-
-    .welcome p {
-      color: var(--muted);
-
-      font-size: 14px;
-    }
-
-
-    /* =========================
-       HERO
-    ========================== */
-
-    .hero {
-      position: relative;
-
-      overflow: hidden;
-
-      background:
-        linear-gradient(
-          135deg,
-          #6c5ce7,
-          #5848d6
-        );
-
-      color: white;
-
-      border-radius: 22px;
-
-      padding: 30px;
-
-      margin-bottom: 25px;
-
-      box-shadow:
-        0 15px 35px
-        rgba(108,92,231,0.22);
-    }
-
-    .hero::before {
-      content: "";
-
-      position: absolute;
-
-      width: 250px;
-      height: 250px;
-
-      border-radius: 50%;
-
-      background:
-        rgba(255,255,255,0.07);
-
-      top: -120px;
-
-      right: -60px;
-    }
-
-    .hero-content {
-      position: relative;
-
-      z-index: 2;
-
-      max-width: 700px;
-    }
-
-    .hero-badge {
-      display: inline-flex;
-
-      align-items: center;
-
-      gap: 6px;
-
-      padding: 7px 11px;
-
-      border-radius: 20px;
-
-      background:
-        rgba(255,255,255,0.14);
-
-      font-size: 11px;
-
-      font-weight: 700;
-
-      margin-bottom: 15px;
-    }
-
-    .hero h2 {
-      font-size: 27px;
-
-      margin-bottom: 9px;
-    }
-
-    .hero p {
-      color:
-        rgba(255,255,255,0.82);
-
-      font-size: 14px;
-
-      line-height: 1.6;
-
-      margin-bottom: 20px;
-    }
-
-    .hero-button {
-      display: inline-flex;
-
-      align-items: center;
-
-      justify-content: center;
-
-      height: 43px;
-
-      padding: 0 18px;
-
-      border-radius: 10px;
-
-      background: white;
-
-      color: var(--primary);
-
-      text-decoration: none;
-
-      font-size: 13px;
-
-      font-weight: 800;
-    }
-
-    .hero-button:hover {
-      transform: translateY(-1px);
-    }
-
-
-    /* =========================
-       STATISTIQUES
-    ========================== */
-
-    .stats-grid {
-      display: grid;
-
-      grid-template-columns:
-        repeat(4, 1fr);
-
-      gap: 16px;
-
-      margin-bottom: 25px;
-    }
-
-    .stat-card {
-      background: var(--card);
-
-      border:
-        1px solid var(--border);
-
-      border-radius: 16px;
-
-      padding: 20px;
-
-      box-shadow: var(--shadow);
-    }
-
-    .stat-icon {
-      width: 38px;
-      height: 38px;
-
-      border-radius: 10px;
-
-      background: #f0edff;
-
-      display: flex;
-
-      align-items: center;
-
-      justify-content: center;
-
-      font-size: 18px;
-
-      margin-bottom: 13px;
-    }
-
-    .stat-value {
-      font-size: 25px;
-
-      font-weight: 800;
-
-      margin-bottom: 4px;
-    }
-
-    .stat-label {
-      color: var(--muted);
-
-      font-size: 12px;
-    }
-
-
-    /* =========================
-       GRILLE PRINCIPALE
-    ========================== */
-
-    .main-grid {
-      display: grid;
-
-      grid-template-columns:
-        1.5fr
-        1fr;
-
-      gap: 20px;
-
-      margin-bottom: 25px;
-    }
-
-    .card {
-      background: var(--card);
-
-      border:
-        1px solid var(--border);
-
-      border-radius: 18px;
-
-      padding: 22px;
-
-      box-shadow: var(--shadow);
-    }
-
-    .card-header {
-      display: flex;
-
-      align-items: center;
-
-      justify-content: space-between;
-
-      margin-bottom: 20px;
-    }
-
-    .card-header h3 {
-      font-size: 17px;
-    }
-
-    .card-link {
-      color: var(--primary);
-
-      font-size: 12px;
-
-      font-weight: 700;
-
-      text-decoration: none;
-    }
-
-
-    /* =========================
-       PROGRESSION
-    ========================== */
-
-    .progress-number {
-      display: flex;
-
-      align-items: flex-end;
-
-      justify-content: space-between;
-
-      margin-bottom: 10px;
-    }
-
-    .progress-number strong {
-      font-size: 30px;
-    }
-
-    .progress-number span {
-      color: var(--muted);
-
-      font-size: 12px;
-    }
-
-    .progress-bar {
-      width: 100%;
-
-      height: 10px;
-
-      border-radius: 20px;
-
-      background: #ecebf5;
-
-      overflow: hidden;
-
-      margin-bottom: 12px;
-    }
-
-    .progress-fill {
-      width: 0%;
-
-      height: 100%;
-
-      border-radius: 20px;
-
-      background:
-        linear-gradient(
-          90deg,
-          var(--primary),
-          var(--secondary)
-        );
-
-      transition:
-        width 0.6s ease;
-    }
-
-    .progress-description {
-      color: var(--muted);
-
-      font-size: 12px;
-
-      line-height: 1.5;
-    }
-
-
-    /* =========================
-       PLAN
-    ========================== */
-
-    .plan-card {
-      background:
-        linear-gradient(
-          145deg,
-          #fff,
-          #f8f7ff
-        );
-    }
-
-    .plan-top {
-      display: flex;
-
-      align-items: center;
-
-      justify-content: space-between;
-
-      margin-bottom: 15px;
-    }
-
-    .plan-name {
-      font-size: 22px;
-
-      font-weight: 800;
-    }
-
-    .plan-badge {
-      padding: 6px 10px;
-
-      border-radius: 20px;
-
-      background: #eeeaff;
-
-      color: var(--primary);
-
-      font-size: 11px;
-
-      font-weight: 800;
-
-      text-transform: uppercase;
-    }
-
-    .plan-description {
-      color: var(--muted);
-
-      font-size: 12px;
-
-      line-height: 1.6;
-
-      margin-bottom: 18px;
-    }
-
-    .premium-button {
-      width: 100%;
-
-      height: 44px;
-
-      border: none;
-
-      border-radius: 10px;
-
-      background:
-        linear-gradient(
-          135deg,
-          var(--primary),
-          var(--primary-dark)
-        );
-
-      color: white;
-
-      font-size: 13px;
-
-      font-weight: 800;
-    }
-
-    .premium-button:hover {
-      transform: translateY(-1px);
-    }
-
-
-    /* =========================
-       COURS
-    ========================== */
-
-    .courses-grid {
-      display: grid;
-
-      grid-template-columns:
-        repeat(3, 1fr);
-
-      gap: 15px;
-    }
-
-    .course {
-      border:
-        1px solid var(--border);
-
-      border-radius: 14px;
-
-      overflow: hidden;
-
-      background: white;
-    }
-
-    .course-top {
-      height: 105px;
-
-      display: flex;
-
-      align-items: center;
-
-      justify-content: center;
-
-      background:
-        linear-gradient(
-          135deg,
-          #f0edff,
-          #e8fffd
-        );
-
-      font-size: 42px;
-    }
-
-    .course-content {
-      padding: 15px;
-    }
-
-    .course-content h4 {
-      font-size: 14px;
-
-      margin-bottom: 6px;
-    }
-
-    .course-content p {
-      color: var(--muted);
-
-      font-size: 11px;
-
-      line-height: 1.5;
-
-      margin-bottom: 12px;
-    }
-
-    .course-button {
-      display: flex;
-
-      align-items: center;
-
-      justify-content: center;
-
-      width: 100%;
-
-      height: 36px;
-
-      border-radius: 8px;
-
-      background: #f0edff;
-
-      color: var(--primary);
-
-      text-decoration: none;
-
-      font-size: 11px;
-
-      font-weight: 800;
-    }
-
-    .course-button:hover {
-      background: var(--primary);
-
-      color: white;
-    }
-
-
-    /* =========================
-       OBJECTIFS
-    ========================== */
-
-    .goals {
-      display: grid;
-
-      gap: 12px;
-    }
-
-    .goal {
-      display: flex;
-
-      align-items: center;
-
-      gap: 12px;
-
-      padding: 12px;
-
-      border-radius: 12px;
-
-      background: #fafbfe;
-
-      border:
-        1px solid var(--border);
-    }
-
-    .goal-icon {
-      width: 38px;
-      height: 38px;
-
-      flex-shrink: 0;
-
-      border-radius: 10px;
-
-      background: #f0edff;
-
-      display: flex;
-
-      align-items: center;
-
-      justify-content: center;
-    }
-
-    .goal-text {
-      flex: 1;
-    }
-
-    .goal-text strong {
-      display: block;
-
-      font-size: 12px;
-
-      margin-bottom: 4px;
-    }
-
-    .goal-text span {
-      color: var(--muted);
-
-      font-size: 10px;
-    }
-
-    .goal-check {
-      width: 25px;
-      height: 25px;
-
-      border-radius: 50%;
-
-      display: flex;
-
-      align-items: center;
-
-      justify-content: center;
-
-      background: #e8faf5;
-
-      color: var(--success);
-
-      font-size: 12px;
-    }
-
-
-    /* =========================
-       PROFIL
-    ========================== */
-
-    .profile-card {
-      margin-bottom: 25px;
-    }
-
-    .profile-info {
-      display: grid;
-
-      grid-template-columns:
-        repeat(3, 1fr);
-
-      gap: 15px;
-    }
-
-    .profile-item {
-      padding: 14px;
-
-      border-radius: 12px;
-
-      background: #fafbfe;
-
-      border:
-        1px solid var(--border);
-    }
-
-    .profile-item small {
-      display: block;
-
-      color: var(--muted);
-
-      font-size: 10px;
-
-      margin-bottom: 6px;
-    }
-
-    .profile-item strong {
-      font-size: 13px;
-
-      word-break: break-word;
-    }
-
-
-    /* =========================
-       CHARGEMENT
-    ========================== */
-
-    .loading {
-      position: fixed;
-
-      inset: 0;
-
-      z-index: 999;
-
-      background:
-        rgba(255,255,255,0.97);
-
-      display: flex;
-
-      flex-direction: column;
-
-      align-items: center;
-
-      justify-content: center;
-
-      gap: 15px;
-    }
-
-    .loading-icon {
-      width: 55px;
-      height: 55px;
-
-      border-radius: 15px;
-
-      background:
-        linear-gradient(
-          135deg,
-          var(--primary),
-          var(--primary-dark)
-        );
-
-      display: flex;
-
-      align-items: center;
-
-      justify-content: center;
-
-      font-size: 27px;
-
-      animation:
-        pulse 1.2s infinite;
-    }
-
-    .loading-text {
-      color: var(--muted);
-
-      font-size: 13px;
-    }
-
-    @keyframes pulse {
-
-      0% {
-        transform: scale(1);
-      }
-
-      50% {
-        transform: scale(1.08);
-      }
-
-      100% {
-        transform: scale(1);
-      }
-
-    }
-
-
-    /* =========================
-       ERREUR
-    ========================== */
-
-    .error-screen {
-      display: none;
-
-      min-height: 100vh;
-
-      align-items: center;
-
-      justify-content: center;
-
-      padding: 25px;
-    }
-
-    .error-card {
-      width: 100%;
-
-      max-width: 450px;
-
-      background: white;
-
-      border-radius: 20px;
-
-      padding: 30px;
-
-      text-align: center;
-
-      box-shadow: var(--shadow);
-    }
-
-    .error-icon {
-      font-size: 45px;
-
-      margin-bottom: 15px;
-    }
-
-    .error-card h2 {
-      margin-bottom: 10px;
-    }
-
-    .error-card p {
-      color: var(--muted);
-
-      font-size: 13px;
-
-      line-height: 1.6;
-
-      margin-bottom: 20px;
-    }
-
-    .error-button {
-      display: inline-flex;
-
-      align-items: center;
-
-      justify-content: center;
-
-      height: 43px;
-
-      padding: 0 20px;
-
-      border-radius: 10px;
-
-      background: var(--primary);
-
-      color: white;
-
-      text-decoration: none;
-
-      font-size: 13px;
-
-      font-weight: 800;
-    }
-
-
-    /* =========================
-       RESPONSIVE
-    ========================== */
-
-    @media (max-width: 950px) {
-
-      .stats-grid {
-        grid-template-columns:
-          repeat(2, 1fr);
-      }
-
-      .main-grid {
-        grid-template-columns: 1fr;
-      }
-
-    }
-
-
-    @media (max-width: 700px) {
-
-      .header-inner {
-        padding: 0 15px;
-      }
-
-      .profile-mini-name {
-        display: none;
-      }
-
-      .container {
-        padding:
-          25px 15px 45px;
-      }
-
-      .welcome h1 {
-        font-size: 27px;
-      }
-
-      .hero {
-        padding: 24px;
-      }
-
-      .hero h2 {
-        font-size: 23px;
-      }
-
-      .courses-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .profile-info {
-        grid-template-columns: 1fr;
-      }
-
-    }
-
-
-    @media (max-width: 450px) {
-
-      .stats-grid {
-        grid-template-columns: 1fr 1fr;
-
-        gap: 10px;
-      }
-
-      .stat-card {
-        padding: 15px;
-      }
-
-      .stat-value {
-        font-size: 21px;
-      }
-
-      .logout-button {
-        padding:
-          8px 9px;
-
-        font-size: 11px;
-      }
-
-      .brand-name {
-        font-size: 16px;
-      }
-
-    }
-
-  </style>
-
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Mon espace — Piano Academy</title>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<style>
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+:root{
+  --primary:#6c5ce7;
+  --primary-dark:#5848d6;
+  --secondary:#00cec9;
+  --bg:#f5f6fa;
+  --card:#ffffff;
+  --text:#1e1e2f;
+  --muted:#777b8a;
+  --border:#e2e4ec;
+  --soft:#fafbfe;
+  --shadow:0 10px 30px rgba(25,25,50,.08);
+}
+
+body.dark{
+  --bg:#11121a;
+  --card:#1b1d28;
+  --text:#f5f5fa;
+  --muted:#a7a9b7;
+  --border:#303342;
+  --soft:#222531;
+  --shadow:0 10px 30px rgba(0,0,0,.25);
+}
+
+body{
+  min-height:100vh;
+  font-family:Arial,Helvetica,sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  transition:.25s;
+}
+
+button,a{
+  font-family:inherit;
+}
+
+button{
+  cursor:pointer;
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+.header{
+  position:sticky;
+  top:0;
+  z-index:100;
+  height:70px;
+  background:var(--card);
+  border-bottom:1px solid var(--border);
+}
+
+.header-inner{
+  max-width:1250px;
+  height:100%;
+  margin:auto;
+  padding:0 20px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+
+.header-left{
+  display:flex;
+  align-items:center;
+  gap:13px;
+}
+
+.menu-button{
+  width:42px;
+  height:42px;
+  border:none;
+  border-radius:11px;
+  background:var(--soft);
+  color:var(--text);
+  font-size:22px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.menu-button:hover{
+  background:#eeeaff;
+  color:var(--primary);
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.brand-icon{
+  width:40px;
+  height:40px;
+  border-radius:11px;
+  background:linear-gradient(135deg,var(--primary),var(--primary-dark));
+  color:white;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:20px;
+}
+
+.brand-name{
+  font-size:18px;
+  font-weight:800;
+}
+
+.theme-button{
+  width:42px;
+  height:42px;
+  border:none;
+  border-radius:11px;
+  background:var(--soft);
+  color:var(--text);
+  font-size:20px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.theme-button:hover{
+  background:#eeeaff;
+}
+
+
+/* =========================
+   MENU
+========================= */
+
+.menu-overlay{
+  position:fixed;
+  inset:0;
+  z-index:199;
+  background:rgba(0,0,0,.45);
+  display:none;
+}
+
+.menu-overlay.active{
+  display:block;
+}
+
+.side-menu{
+  position:fixed;
+  top:0;
+  left:-310px;
+  z-index:200;
+  width:290px;
+  height:100vh;
+  background:var(--card);
+  border-right:1px solid var(--border);
+  box-shadow:10px 0 35px rgba(0,0,0,.15);
+  transition:left .25s ease;
+  display:flex;
+  flex-direction:column;
+}
+
+.side-menu.open{
+  left:0;
+}
+
+.menu-header{
+  height:80px;
+  padding:0 20px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  border-bottom:1px solid var(--border);
+}
+
+.menu-brand{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.menu-brand-icon{
+  width:40px;
+  height:40px;
+  border-radius:11px;
+  background:linear-gradient(135deg,var(--primary),var(--primary-dark));
+  color:white;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:20px;
+}
+
+.menu-brand strong{
+  font-size:16px;
+}
+
+.close-menu{
+  width:38px;
+  height:38px;
+  border:none;
+  border-radius:10px;
+  background:var(--soft);
+  color:var(--text);
+  font-size:21px;
+}
+
+.menu-user{
+  padding:20px;
+  border-bottom:1px solid var(--border);
+}
+
+.menu-user-avatar{
+  width:45px;
+  height:45px;
+  border-radius:50%;
+  background:linear-gradient(135deg,var(--primary),var(--secondary));
+  color:white;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:800;
+  margin-bottom:9px;
+}
+
+.menu-user-name{
+  font-weight:800;
+  font-size:14px;
+  margin-bottom:3px;
+}
+
+.menu-user-email{
+  color:var(--muted);
+  font-size:11px;
+  word-break:break-all;
+}
+
+.menu-items{
+  padding:15px 12px;
+  display:grid;
+  gap:5px;
+}
+
+.menu-item{
+  width:100%;
+  min-height:46px;
+  border:none;
+  border-radius:10px;
+  background:transparent;
+  color:var(--text);
+  display:flex;
+  align-items:center;
+  gap:13px;
+  padding:0 13px;
+  text-align:left;
+  font-size:13px;
+  font-weight:600;
+}
+
+.menu-item:hover{
+  background:#eeeaff;
+  color:var(--primary);
+}
+
+.menu-item .menu-icon{
+  width:25px;
+  text-align:center;
+  font-size:17px;
+}
+
+.menu-bottom{
+  margin-top:auto;
+  padding:15px 12px 20px;
+  border-top:1px solid var(--border);
+}
+
+.logout-item{
+  color:#e74c3c;
+}
+
+.logout-item:hover{
+  background:#fff0ef;
+  color:#c0392b;
+}
+
+
+/* =========================
+   CONTENU
+========================= */
+
+.container{
+  width:100%;
+  max-width:1250px;
+  margin:auto;
+  padding:35px 20px 60px;
+}
+
+.welcome{
+  margin-bottom:25px;
+}
+
+.welcome h1{
+  font-size:31px;
+  margin-bottom:8px;
+}
+
+.welcome h1 span{
+  color:var(--primary);
+}
+
+.welcome p{
+  color:var(--muted);
+  font-size:14px;
+}
+
+
+/* =========================
+   HERO
+========================= */
+
+.hero{
+  position:relative;
+  overflow:hidden;
+  background:linear-gradient(135deg,#6c5ce7,#5848d6);
+  color:white;
+  border-radius:22px;
+  padding:30px;
+  margin-bottom:25px;
+  box-shadow:0 15px 35px rgba(108,92,231,.22);
+}
+
+.hero:after{
+  content:"";
+  position:absolute;
+  width:280px;
+  height:280px;
+  border-radius:50%;
+  background:rgba(255,255,255,.07);
+  right:-90px;
+  top:-150px;
+}
+
+.hero-content{
+  position:relative;
+  z-index:2;
+  max-width:700px;
+}
+
+.hero-badge{
+  display:inline-flex;
+  padding:7px 11px;
+  border-radius:20px;
+  background:rgba(255,255,255,.14);
+  font-size:11px;
+  font-weight:700;
+  margin-bottom:14px;
+}
+
+.hero h2{
+  font-size:27px;
+  margin-bottom:9px;
+}
+
+.hero p{
+  color:rgba(255,255,255,.82);
+  font-size:14px;
+  line-height:1.6;
+  margin-bottom:20px;
+}
+
+.hero-button{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  height:43px;
+  padding:0 18px;
+  border-radius:10px;
+  background:white;
+  color:var(--primary);
+  text-decoration:none;
+  font-size:13px;
+  font-weight:800;
+}
+
+
+/* =========================
+   STATS
+========================= */
+
+.stats-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:15px;
+  margin-bottom:25px;
+}
+
+.stat-card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:20px;
+  box-shadow:var(--shadow);
+}
+
+.stat-icon{
+  width:38px;
+  height:38px;
+  border-radius:10px;
+  background:#eeeaff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin-bottom:12px;
+}
+
+.stat-value{
+  font-size:25px;
+  font-weight:800;
+  margin-bottom:4px;
+}
+
+.stat-label{
+  color:var(--muted);
+  font-size:12px;
+}
+
+
+/* =========================
+   CARTES
+========================= */
+
+.main-grid{
+  display:grid;
+  grid-template-columns:1.5fr 1fr;
+  gap:20px;
+  margin-bottom:25px;
+}
+
+.card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:18px;
+  padding:22px;
+  box-shadow:var(--shadow);
+}
+
+.card-header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:20px;
+}
+
+.card-header h3{
+  font-size:17px;
+}
+
+.card-link{
+  color:var(--primary);
+  font-size:12px;
+  font-weight:700;
+  text-decoration:none;
+}
+
+
+/* =========================
+   PROGRESSION
+========================= */
+
+.progress-number{
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+  margin-bottom:10px;
+}
+
+.progress-number strong{
+  font-size:30px;
+}
+
+.progress-number span{
+  color:var(--muted);
+  font-size:12px;
+}
+
+.progress-bar{
+  width:100%;
+  height:10px;
+  border-radius:20px;
+  background:#e8e7ef;
+  overflow:hidden;
+  margin-bottom:12px;
+}
+
+.progress-fill{
+  width:0;
+  height:100%;
+  border-radius:20px;
+  background:linear-gradient(90deg,var(--primary),var(--secondary));
+  transition:width .7s ease;
+}
+
+.progress-description{
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.5;
+}
+
+
+/* =========================
+   PLAN
+========================= */
+
+.plan-top{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:15px;
+}
+
+.plan-name{
+  font-size:22px;
+  font-weight:800;
+}
+
+.plan-badge{
+  padding:6px 10px;
+  border-radius:20px;
+  background:#eeeaff;
+  color:var(--primary);
+  font-size:10px;
+  font-weight:800;
+}
+
+.plan-description{
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.6;
+  margin-bottom:18px;
+}
+
+.premium-button{
+  width:100%;
+  height:44px;
+  border:none;
+  border-radius:10px;
+  background:linear-gradient(135deg,var(--primary),var(--primary-dark));
+  color:white;
+  font-size:13px;
+  font-weight:800;
+}
+
+
+/* =========================
+   COURS
+========================= */
+
+.courses-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:15px;
+}
+
+.course{
+  border:1px solid var(--border);
+  border-radius:14px;
+  overflow:hidden;
+  background:var(--card);
+}
+
+.course-top{
+  height:105px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:linear-gradient(135deg,#f0edff,#e8fffd);
+  font-size:42px;
+}
+
+.course-content{
+  padding:15px;
+}
+
+.course-content h4{
+  font-size:14px;
+  margin-bottom:6px;
+}
+
+.course-content p{
+  color:var(--muted);
+  font-size:11px;
+  line-height:1.5;
+  margin-bottom:12px;
+}
+
+.course-button{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  width:100%;
+  height:36px;
+  border-radius:8px;
+  background:#eeeaff;
+  color:var(--primary);
+  text-decoration:none;
+  font-size:11px;
+  font-weight:800;
+}
+
+
+/* =========================
+   OBJECTIFS
+========================= */
+
+.goals{
+  display:grid;
+  gap:12px;
+}
+
+.goal{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:12px;
+  border-radius:12px;
+  background:var(--soft);
+  border:1px solid var(--border);
+}
+
+.goal-icon{
+  width:38px;
+  height:38px;
+  border-radius:10px;
+  background:#eeeaff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-shrink:0;
+}
+
+.goal-text{
+  flex:1;
+}
+
+.goal-text strong{
+  display:block;
+  font-size:12px;
+  margin-bottom:4px;
+}
+
+.goal-text span{
+  color:var(--muted);
+  font-size:10px;
+}
+
+.goal-check{
+  color:var(--success);
+}
+
+
+/* =========================
+   PROFIL
+========================= */
+
+.profile-info{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:15px;
+}
+
+.profile-item{
+  padding:14px;
+  border-radius:12px;
+  background:var(--soft);
+  border:1px solid var(--border);
+}
+
+.profile-item small{
+  display:block;
+  color:var(--muted);
+  font-size:10px;
+  margin-bottom:6px;
+}
+
+.profile-item strong{
+  font-size:13px;
+  word-break:break-word;
+}
+
+
+/* =========================
+   LOADING
+========================= */
+
+.loading{
+  position:fixed;
+  inset:0;
+  z-index:999;
+  background:var(--bg);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:15px;
+}
+
+.loading-icon{
+  width:55px;
+  height:55px;
+  border-radius:15px;
+  background:linear-gradient(135deg,var(--primary),var(--primary-dark));
+  color:white;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:27px;
+}
+
+.loading-text{
+  color:var(--muted);
+  font-size:13px;
+}
+
+
+/* =========================
+   ERREUR
+========================= */
+
+.error-screen{
+  display:none;
+  min-height:100vh;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+}
+
+.error-card{
+  max-width:430px;
+  width:100%;
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:20px;
+  padding:30px;
+  text-align:center;
+  box-shadow:var(--shadow);
+}
+
+.error-icon{
+  font-size:45px;
+  margin-bottom:15px;
+}
+
+.error-card h2{
+  margin-bottom:10px;
+}
+
+.error-card p{
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.6;
+  margin-bottom:20px;
+}
+
+.error-button{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  height:43px;
+  padding:0 20px;
+  border-radius:10px;
+  background:var(--primary);
+  color:white;
+  text-decoration:none;
+  font-size:13px;
+  font-weight:800;
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width:950px){
+
+  .stats-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .main-grid{
+    grid-template-columns:1fr;
+  }
+
+}
+
+@media(max-width:700px){
+
+  .brand-name{
+    font-size:16px;
+  }
+
+  .container{
+    padding:25px 15px 45px;
+  }
+
+  .welcome h1{
+    font-size:27px;
+  }
+
+  .hero{
+    padding:24px;
+  }
+
+  .hero h2{
+    font-size:23px;
+  }
+
+  .courses-grid{
+    grid-template-columns:1fr;
+  }
+
+  .profile-info{
+    grid-template-columns:1fr;
+  }
+
+}
+
+@media(max-width:430px){
+
+  .header-inner{
+    padding:0 12px;
+  }
+
+  .stats-grid{
+    gap:10px;
+  }
+
+  .stat-card{
+    padding:15px;
+  }
+
+  .stat-value{
+    font-size:21px;
+  }
+
+}
+
+</style>
 </head>
 
 
 <body>
 
 
-  <!-- =========================
-       CHARGEMENT
-  ========================== -->
+<!-- =========================
+     CHARGEMENT
+========================= -->
+
+<div class="loading" id="loading">
+
+  <div class="loading-icon">
+    🎹
+  </div>
+
+  <div class="loading-text">
+    Chargement de votre espace...
+  </div>
+
+</div>
+
+
+<!-- =========================
+     MENU
+========================= -->
+
+<div
+  class="menu-overlay"
+  id="menuOverlay">
+</div>
+
+
+<aside
+  class="side-menu"
+  id="sideMenu">
+
+
+  <div class="menu-header">
+
+    <div class="menu-brand">
+
+      <div class="menu-brand-icon">
+        🎹
+      </div>
+
+      <strong>
+        Piano Academy
+      </strong>
+
+    </div>
+
+    <button
+      class="close-menu"
+      id="closeMenu">
+      ×
+    </button>
+
+  </div>
+
+
+  <div class="menu-user">
+
+    <div
+      class="menu-user-avatar"
+      id="menuAvatar">
+      ?
+    </div>
+
+    <div
+      class="menu-user-name"
+      id="menuName">
+      Utilisateur
+    </div>
+
+    <div
+      class="menu-user-email"
+      id="menuEmail">
+      —
+    </div>
+
+  </div>
+
+
+  <nav class="menu-items">
+
+
+    <button
+      class="menu-item"
+      onclick="goTo('index.html')">
+
+      <span class="menu-icon">
+        🏠
+      </span>
+
+      Accueil
+
+    </button>
+
+
+    <button
+      class="menu-item"
+      onclick="goTo('index.html')">
+
+      <span class="menu-icon">
+        📚
+      </span>
+
+      Mes cours
+
+    </button>
+
+
+    <button
+      class="menu-item"
+      onclick="closeMenu()">
+
+      <span class="menu-icon">
+        📊
+      </span>
+
+      Ma progression
+
+    </button>
+
+
+    <button
+      class="menu-item"
+      onclick="showPremium()">
+
+      <span class="menu-icon">
+        ⭐
+      </span>
+
+      Premium
+
+    </button>
+
+
+    <button
+      class="menu-item"
+      onclick="closeMenu()">
+
+      <span class="menu-icon">
+        👤
+      </span>
+
+      Mon profil
+
+    </button>
+
+
+    <button
+      class="menu-item"
+      onclick="showSettings()">
+
+      <span class="menu-icon">
+        ⚙️
+      </span>
+
+      Paramètres
+
+    </button>
+
+
+  </nav>
+
+
+  <div class="menu-bottom">
+
+    <button
+      class="menu-item logout-item"
+      id="logoutButton">
+
+      <span class="menu-icon">
+        🚪
+      </span>
+
+      Déconnexion
+
+    </button>
+
+  </div>
+
+</aside>
+
+
+<!-- =========================
+     ERREUR
+========================= -->
+
+<section
+  class="error-screen"
+  id="errorScreen">
+
+  <div class="error-card">
+
+    <div class="error-icon">
+      🔐
+    </div>
+
+    <h2>
+      Accès refusé
+    </h2>
+
+    <p id="errorText">
+      Vous devez être connecté pour accéder à votre espace.
+    </p>
+
+    <a
+      href="connexion.html"
+      class="error-button">
+      Se connecter
+    </a>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     APPLICATION
+========================= -->
+
+<div id="app">
+
+
+<header class="header">
+
+  <div class="header-inner">
+
+
+    <div class="header-left">
+
+
+      <button
+        class="menu-button"
+        id="menuButton"
+        aria-label="Ouvrir le menu">
+
+        ☰
+
+      </button>
+
+
+      <div class="brand">
+
+        <div class="brand-icon">
+          🎹
+        </div>
+
+        <div class="brand-name">
+          Piano Academy
+        </div>
+
+      </div>
+
+
+    </div>
+
+
+    <!-- MODE SOMBRE -->
+
+    <button
+      class="theme-button"
+      id="themeButton"
+      aria-label="Mode sombre">
+
+      🌙
+
+    </button>
+
+
+  </div>
+
+</header>
+
+
+<main class="container">
+
+
+<!-- =========================
+     BIENVENUE
+========================= -->
+
+<section class="welcome">
+
+  <h1>
+
+    Bonjour
+    <span id="welcomeName">
+      !
+    </span>
+
+  </h1>
+
+  <p>
+    Bienvenue dans ton espace personnel Piano Academy.
+  </p>
+
+</section>
+
+
+<!-- =========================
+     HERO
+========================= -->
+
+<section class="hero">
+
+  <div class="hero-content">
+
+    <div class="hero-badge">
+      🎹 Piano Academy
+    </div>
+
+    <h2>
+      Continue ton apprentissage
+    </h2>
+
+    <p>
+      Reprends tes cours là où tu les as laissés
+      et progresse chaque jour vers ton objectif
+      de devenir pianiste.
+    </p>
+
+    <a
+      href="index.html"
+      class="hero-button">
+
+      Continuer mes cours →
+
+    </a>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     STATISTIQUES
+========================= -->
+
+<section class="stats-grid">
+
+
+<div class="stat-card">
+
+  <div class="stat-icon">
+    📊
+  </div>
 
   <div
-    class="loading"
-    id="loading"
-  >
+    class="stat-value"
+    id="progressValue">
+    0%
+  </div>
 
-    <div class="loading-icon">
-      🎹
-    </div>
+  <div class="stat-label">
+    Progression
+  </div>
 
-    <div class="loading-text">
-      Chargement de votre espace...
+</div>
+
+
+<div class="stat-card">
+
+  <div class="stat-icon">
+    📚
+  </div>
+
+  <div
+    class="stat-value"
+    id="lessonsValue">
+    0
+  </div>
+
+  <div class="stat-label">
+    Cours terminés
+  </div>
+
+</div>
+
+
+<div class="stat-card">
+
+  <div class="stat-icon">
+    ⭐
+  </div>
+
+  <div
+    class="stat-value"
+    id="planValue">
+    Free
+  </div>
+
+  <div class="stat-label">
+    Abonnement
+  </div>
+
+</div>
+
+
+<div class="stat-card">
+
+  <div class="stat-icon">
+    🎯
+  </div>
+
+  <div
+    class="stat-value"
+    id="goalValue">
+    0%
+  </div>
+
+  <div class="stat-label">
+    Objectif
+  </div>
+
+</div>
+
+
+</section>
+
+
+<!-- =========================
+     PROGRESSION + PLAN
+========================= -->
+
+<section class="main-grid">
+
+
+<div class="card">
+
+  <div class="card-header">
+
+    <h3>
+      Ma progression
+    </h3>
+
+    <span class="card-link">
+      Piano Academy
+    </span>
+
+  </div>
+
+
+  <div class="progress-number">
+
+    <strong id="progressLarge">
+      0%
+    </strong>
+
+    <span>
+      progression globale
+    </span>
+
+  </div>
+
+
+  <div class="progress-bar">
+
+    <div
+      class="progress-fill"
+      id="progressFill">
     </div>
 
   </div>
 
 
-  <!-- =========================
-       ERREUR / NON CONNECTÉ
-  ========================== -->
+  <p class="progress-description">
+    Continue régulièrement tes cours
+    pour augmenter ta progression.
+  </p>
 
-  <section
-    class="error-screen"
-    id="errorScreen"
-  >
+</div>
 
-    <div class="error-card">
 
-      <div class="error-icon">
-        🔐
-      </div>
+<div class="card">
 
-      <h2>
-        Accès à votre espace
-      </h2>
+  <div class="card-header">
 
-      <p id="errorText">
-        Vous devez être connecté pour accéder à votre dashboard.
-      </p>
+    <h3>
+      Mon abonnement
+    </h3>
 
-      <a
-        href="connexion.html"
-        class="error-button"
-      >
-        Se connecter
-      </a>
+  </div>
 
+
+  <div class="plan-top">
+
+    <div
+      class="plan-name"
+      id="planName">
+      Free
     </div>
 
-  </section>
+    <div
+      class="plan-badge"
+      id="planBadge">
+      Gratuit
+    </div>
+
+  </div>
 
 
-  <!-- =========================
-       APPLICATION
-  ========================== -->
+  <p
+    class="plan-description"
+    id="planDescription">
 
-  <div id="app">
+    Tu utilises actuellement
+    le plan gratuit de Piano Academy.
 
-
-    <!-- =========================
-         HEADER
-    ========================== -->
-
-    <header class="header">
-
-      <div class="header-inner">
+  </p>
 
 
-        <div class="brand">
+  <button
+    class="premium-button"
+    onclick="showPremium()">
 
-          <div class="brand-icon">
-            🎹
-          </div>
+    Découvrir Premium
 
-          <div class="brand-name">
-            Piano Academy
-          </div>
+  </button>
 
-        </div>
+</div>
 
 
-        <div class="header-actions">
+</section>
 
 
-          <div class="profile-mini">
+<!-- =========================
+     COURS
+========================= -->
 
-            <div
-              class="avatar"
-              id="avatar"
-            >
-              ?
-            </div>
+<section class="card">
 
-            <div
-              class="profile-mini-name"
-              id="headerName"
-            >
-              Utilisateur
-            </div>
+  <div class="card-header">
 
-          </div>
+    <h3>
+      Mes cours
+    </h3>
 
+    <a
+      href="index.html"
+      class="card-link">
 
-          <button
-            class="logout-button"
-            id="logoutButton"
-          >
-            Déconnexion
-          </button>
+      Voir tous les cours
+
+    </a>
+
+  </div>
 
 
-        </div>
+  <div class="courses-grid">
 
+
+    <article class="course">
+
+      <div class="course-top">
+        🎼
       </div>
 
-    </header>
+      <div class="course-content">
 
-
-    <!-- =========================
-         CONTENU
-    ========================== -->
-
-    <main class="container">
-
-
-      <!-- BIENVENUE -->
-
-      <section class="welcome">
-
-        <h1>
-
-          Bonjour
-          <span id="welcomeName">
-            !
-          </span>
-
-        </h1>
+        <h4>
+          Les bases du piano
+        </h4>
 
         <p>
-          Bienvenue dans ton espace personnel Piano Academy.
+          Découvre les premières notions
+          indispensables pour commencer.
         </p>
 
-      </section>
+        <a
+          href="index.html"
+          class="course-button">
 
+          Commencer
 
-      <!-- HERO -->
+        </a>
 
-      <section class="hero">
+      </div>
 
-        <div class="hero-content">
+    </article>
 
-          <div class="hero-badge">
-            🎹 Piano Academy
-          </div>
 
-          <h2>
-            Continue ton apprentissage
-          </h2>
+    <article class="course">
 
-          <p>
-            Reprends tes cours là où tu les as laissés
-            et progresse chaque jour vers ton objectif
-            de devenir pianiste.
-          </p>
+      <div class="course-top">
+        🎹
+      </div>
 
-          <a
-            href="index.html"
-            class="hero-button"
-          >
-            Continuer mes cours →
-          </a>
+      <div class="course-content">
 
-        </div>
+        <h4>
+          Les notes du piano
+        </h4>
 
-      </section>
+        <p>
+          Apprends à reconnaître les notes
+          et leur position sur le clavier.
+        </p>
 
+        <a
+          href="index.html"
+          class="course-button">
 
-      <!-- =========================
-           STATISTIQUES
-      ========================== -->
+          Continuer
 
-      <section class="stats-grid">
+        </a>
 
+      </div>
 
-        <div class="stat-card">
+    </article>
 
-          <div class="stat-icon">
-            📊
-          </div>
 
-          <div
-            class="stat-value"
-            id="progressValue"
-          >
-            0%
-          </div>
+    <article class="course">
 
-          <div class="stat-label">
-            Progression
-          </div>
+      <div class="course-top">
+        🎵
+      </div>
 
-        </div>
+      <div class="course-content">
 
+        <h4>
+          Premiers accords
+        </h4>
 
-        <div class="stat-card">
+        <p>
+          Apprends tes premiers accords
+          et commence à jouer des morceaux.
+        </p>
 
-          <div class="stat-icon">
-            📚
-          </div>
+        <a
+          href="index.html"
+          class="course-button">
 
-          <div
-            class="stat-value"
-            id="lessonsValue"
-          >
-            0
-          </div>
+          Découvrir
 
-          <div class="stat-label">
-            Cours terminés
-          </div>
+        </a>
 
-        </div>
+      </div>
 
+    </article>
 
-        <div class="stat-card">
 
-          <div class="stat-icon">
-            ⭐
-          </div>
+  </div>
 
-          <div
-            class="stat-value"
-            id="planValue"
-          >
-            Free
-          </div>
+</section>
 
-          <div class="stat-label">
-            Abonnement
-          </div>
 
-        </div>
+<!-- =========================
+     OBJECTIFS
+========================= -->
 
+<section
+  class="card"
+  style="margin-top:25px;">
 
-        <div class="stat-card">
+  <div class="card-header">
 
-          <div class="stat-icon">
-            🎯
-          </div>
-
-          <div
-            class="stat-value"
-            id="goalValue"
-          >
-            0
-          </div>
-
-          <div class="stat-label">
-            Objectif
-          </div>
-
-        </div>
-
-
-      </section>
-
-
-      <!-- =========================
-           PROGRESSION + PLAN
-      ========================== -->
-
-      <section class="main-grid">
-
-
-        <!-- PROGRESSION -->
-
-        <div class="card">
-
-          <div class="card-header">
-
-            <h3>
-              Ma progression
-            </h3>
-
-            <span class="card-link">
-              Piano Academy
-            </span>
-
-          </div>
-
-
-          <div class="progress-number">
-
-            <strong
-              id="progressLarge"
-            >
-              0%
-            </strong>
-
-            <span>
-              progression globale
-            </span>
-
-          </div>
-
-
-          <div class="progress-bar">
-
-            <div
-              class="progress-fill"
-              id="progressFill"
-            ></div>
-
-          </div>
-
-
-          <p class="progress-description">
-
-            Continue régulièrement tes cours
-            pour augmenter ta progression.
-
-          </p>
-
-        </div>
-
-
-        <!-- PLAN -->
-
-        <div class="card plan-card">
-
-          <div class="card-header">
-
-            <h3>
-              Mon abonnement
-            </h3>
-
-          </div>
-
-
-          <div class="plan-top">
-
-            <div
-              class="plan-name"
-              id="planName"
-            >
-              Free
-            </div>
-
-            <div
-              class="plan-badge"
-              id="planBadge"
-            >
-              Gratuit
-            </div>
-
-          </div>
-
-
-          <p
-            class="plan-description"
-            id="planDescription"
-          >
-            Tu utilises actuellement
-            le plan gratuit de Piano Academy.
-
-          </p>
-
-
-          <button
-            class="premium-button"
-            id="premiumButton"
-          >
-            Découvrir Premium
-          </button>
-
-        </div>
-
-
-      </section>
-
-
-      <!-- =========================
-           COURS
-      ========================== -->
-
-      <section class="card">
-
-        <div class="card-header">
-
-          <h3>
-            Mes cours
-          </h3>
-
-          <a
-            href="index.html"
-            class="card-link"
-          >
-            Voir tous les cours
-          </a>
-
-        </div>
-
-
-        <div class="courses-grid">
-
-
-          <!-- COURS 1 -->
-
-          <article class="course">
-
-            <div class="course-top">
-              🎼
-            </div>
-
-            <div class="course-content">
-
-              <h4>
-                Les bases du piano
-              </h4>
-
-              <p>
-                Découvre les premières notions
-                indispensables pour commencer.
-              </p>
-
-              <a
-                href="index.html"
-                class="course-button"
-              >
-                Commencer
-              </a>
-
-            </div>
-
-          </article>
-
-
-          <!-- COURS 2 -->
-
-          <article class="course">
-
-            <div class="course-top">
-              🎹
-            </div>
-
-            <div class="course-content">
-
-              <h4>
-                Les notes du piano
-              </h4>
-
-              <p>
-                Apprends à reconnaître les notes
-                et leur position sur le clavier.
-              </p>
-
-              <a
-                href="index.html"
-                class="course-button"
-              >
-                Continuer
-              </a>
-
-            </div>
-
-          </article>
-
-
-          <!-- COURS 3 -->
-
-          <article class="course">
-
-            <div class="course-top">
-              🎵
-            </div>
-
-            <div class="course-content">
-
-              <h4>
-                Premiers accords
-              </h4>
-
-              <p>
-                Apprends tes premiers accords
-                et commence à jouer des morceaux.
-              </p>
-
-              <a
-                href="index.html"
-                class="course-button"
-              >
-                Découvrir
-              </a>
-
-            </div>
-
-          </article>
-
-
-        </div>
-
-      </section>
-
-
-      <!-- =========================
-           OBJECTIFS
-      ========================== -->
-
-      <section
-        class="card"
-        style="margin-top: 25px;"
-      >
-
-        <div class="card-header">
-
-          <h3>
-            Mes objectifs
-          </h3>
-
-        </div>
-
-
-        <div class="goals">
-
-
-          <div class="goal">
-
-            <div class="goal-icon">
-              🎹
-            </div>
-
-            <div class="goal-text">
-
-              <strong>
-                Apprendre les bases du piano
-              </strong>
-
-              <span>
-                Commence ton parcours Piano Academy.
-              </span>
-
-            </div>
-
-            <div class="goal-check">
-              ○
-            </div>
-
-          </div>
-
-
-          <div class="goal">
-
-            <div class="goal-icon">
-              🎼
-            </div>
-
-            <div class="goal-text">
-
-              <strong>
-                Terminer mon premier cours
-              </strong>
-
-              <span>
-                Progresse étape par étape.
-              </span>
-
-            </div>
-
-            <div class="goal-check">
-              ○
-            </div>
-
-          </div>
-
-
-          <div class="goal">
-
-            <div class="goal-icon">
-              🏆
-            </div>
-
-            <div class="goal-text">
-
-              <strong>
-                Atteindre 100% de progression
-              </strong>
-
-              <span>
-                Ton objectif ultime.
-              </span>
-
-            </div>
-
-            <div class="goal-check">
-              ○
-            </div>
-
-          </div>
-
-
-        </div>
-
-      </section>
-
-
-      <!-- =========================
-           PROFIL
-      ========================== -->
-
-      <section class="card profile-card">
-
-        <div class="card-header">
-
-          <h3>
-            Mon profil
-          </h3>
-
-        </div>
-
-
-        <div class="profile-info">
-
-
-          <div class="profile-item">
-
-            <small>
-              Nom
-            </small>
-
-            <strong id="profileName">
-              —
-            </strong>
-
-          </div>
-
-
-          <div class="profile-item">
-
-            <small>
-              Email
-            </small>
-
-            <strong id="profileEmail">
-              —
-            </strong>
-
-          </div>
-
-
-          <div class="profile-item">
-
-            <small>
-              Plan
-            </small>
-
-            <strong id="profilePlan">
-              Free
-            </strong>
-
-          </div>
-
-
-        </div>
-
-      </section>
-
-
-    </main>
+    <h3>
+      Mes objectifs
+    </h3>
 
   </div>
 
 
-  <script>
+  <div class="goals">
 
 
-    /* =====================================================
-       CONFIGURATION SUPABASE
-    ===================================================== */
+    <div class="goal">
 
+      <div class="goal-icon">
+        🎹
+      </div>
 
-    const SUPABASE_URL =
-      "https://swsvnzjeipcobodntajs.supabase.co";
+      <div class="goal-text">
 
+        <strong>
+          Apprendre les bases du piano
+        </strong>
 
-    /*
-      IMPORTANT :
+        <span>
+          Commence ton parcours Piano Academy.
+        </span>
 
-      Mets ici ta clé :
+      </div>
 
-      sb_publishable_...
+      <div class="goal-check">
+        ○
+      </div>
 
-      Ne mets JAMAIS :
+    </div>
 
-      sb_secret_...
-    */
 
+    <div class="goal">
 
-    const SUPABASE_KEY =
-      "sb_publishable_JrPeCn1LhCNHY3BJZ5iCEQ_mc2iqLpf";
+      <div class="goal-icon">
+        🎼
+      </div>
 
+      <div class="goal-text">
 
-    /* =====================================================
-       INITIALISATION
-    ===================================================== */
+        <strong>
+          Terminer mon premier cours
+        </strong>
 
+        <span>
+          Progresse étape par étape.
+        </span>
 
-    const supabaseClient =
-      window.supabase.createClient(
-        SUPABASE_URL,
-        SUPABASE_KEY
-      );
+      </div>
 
+      <div class="goal-check">
+        ○
+      </div>
 
-    /* =====================================================
-       ÉLÉMENTS
-    ===================================================== */
+    </div>
 
 
-    const loading =
-      document.getElementById(
-        "loading"
-      );
+    <div class="goal">
 
+      <div class="goal-icon">
+        🏆
+      </div>
 
-    const app =
-      document.getElementById(
-        "app"
-      );
+      <div class="goal-text">
 
+        <strong>
+          Atteindre 100% de progression
+        </strong>
 
-    const errorScreen =
-      document.getElementById(
-        "errorScreen"
-      );
+        <span>
+          Ton objectif ultime.
+        </span>
 
+      </div>
 
-    const errorText =
-      document.getElementById(
-        "errorText"
-      );
+      <div class="goal-check">
+        ○
+      </div>
 
+    </div>
 
-    const logoutButton =
-      document.getElementById(
-        "logoutButton"
-      );
 
+  </div>
 
-    /* =====================================================
-       AFFICHAGE ERREUR
-    ===================================================== */
+</section>
 
 
-    function showError(
-      text
-    ) {
+<!-- =========================
+     PROFIL
+========================= -->
 
-      loading.style.display =
-        "none";
+<section
+  class="card"
+  style="margin-top:25px;">
 
-      app.style.display =
-        "none";
+  <div class="card-header">
 
-      errorScreen.style.display =
-        "flex";
+    <h3>
+      Mon profil
+    </h3>
 
-      errorText.textContent =
-        text;
+  </div>
 
-    }
 
+  <div class="profile-info">
 
-    /* =====================================================
-       PREMIÈRE LETTRE
-    ===================================================== */
 
+    <div class="profile-item">
 
-    function getInitial(
-      name
-    ) {
+      <small>
+        Nom
+      </small>
 
-      if (!name) {
+      <strong id="profileName">
+        —
+      </strong>
 
-        return "?";
+    </div>
 
-      }
 
-      return name
-        .trim()
-        .charAt(0)
-        .toUpperCase();
+    <div class="profile-item">
 
-    }
+      <small>
+        Email
+      </small>
 
+      <strong id="profileEmail">
+        —
+      </strong>
 
-    /* =====================================================
-       TEXTE PLAN
-    ===================================================== */
+    </div>
 
 
-    function updatePlan(
-      plan
-    ) {
+    <div class="profile-item">
 
-      const normalizedPlan =
-        String(
-          plan || "free"
-        ).toLowerCase();
+      <small>
+        Plan
+      </small>
 
+      <strong id="profilePlan">
+        Free
+      </strong>
 
-      const planValue =
-        document.getElementById(
-          "planValue"
-        );
+    </div>
 
 
-      const planName =
-        document.getElementById(
-          "planName"
-        );
+  </div>
 
+</section>
 
-      const planBadge =
-        document.getElementById(
-          "planBadge"
-        );
 
+</main>
 
-      const planDescription =
-        document.getElementById(
-          "planDescription"
-        );
+</div>
 
 
-      const profilePlan =
-        document.getElementById(
-          "profilePlan"
-        );
+<script>
 
 
-      if (
-        normalizedPlan ===
-        "premium"
-      ) {
+/* =====================================================
+   SUPABASE
+===================================================== */
 
-        planValue.textContent =
-          "Premium";
+const SUPABASE_URL =
+  "https://swsvnzjeipcobodntajs.supabase.co";
 
-        planName.textContent =
-          "Premium";
 
-        planBadge.textContent =
-          "Premium";
+const SUPABASE_KEY =
+  "sb_publishable_JrPeCn1LhCNHY3BJZ5iCEQ_mc2iqLpf";
 
-        planDescription.textContent =
-          "Tu bénéficies actuellement des fonctionnalités Premium de Piano Academy.";
 
-        profilePlan.textContent =
-          "Premium";
+const supabaseClient =
+  window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+  );
 
-      } else {
 
-        planValue.textContent =
-          "Free";
+/* =====================================================
+   ÉLÉMENTS
+===================================================== */
 
-        planName.textContent =
-          "Free";
+const loading =
+  document.getElementById("loading");
 
-        planBadge.textContent =
-          "Gratuit";
+const app =
+  document.getElementById("app");
 
-        planDescription.textContent =
-          "Tu utilises actuellement le plan gratuit de Piano Academy.";
+const errorScreen =
+  document.getElementById("errorScreen");
 
-        profilePlan.textContent =
-          "Free";
+const errorText =
+  document.getElementById("errorText");
 
-      }
 
-    }
+/* =====================================================
+   MENU
+===================================================== */
 
+const sideMenu =
+  document.getElementById("sideMenu");
 
-    /* =====================================================
-       CHARGER LE DASHBOARD
-    ===================================================== */
+const menuOverlay =
+  document.getElementById("menuOverlay");
 
+const menuButton =
+  document.getElementById("menuButton");
 
-    async function loadDashboard() {
+const closeMenuButton =
+  document.getElementById("closeMenu");
 
 
-      try {
+function openMenu(){
 
+  sideMenu.classList.add("open");
 
-        /* =========================
-           SESSION
-        ========================== */
+  menuOverlay.classList.add("active");
 
+}
 
-        const {
-          data: sessionData,
-          error: sessionError
-        } =
-          await supabaseClient.auth.getSession();
 
+function closeMenu(){
 
-        if (
-          sessionError
-        ) {
+  sideMenu.classList.remove("open");
 
-          throw sessionError;
+  menuOverlay.classList.remove("active");
 
-        }
+}
 
 
-        const session =
-          sessionData.session;
+menuButton.addEventListener(
+  "click",
+  openMenu
+);
 
 
-        /* =========================
-           PAS CONNECTÉ
-        ========================== */
+closeMenuButton.addEventListener(
+  "click",
+  closeMenu
+);
 
 
-        if (!session) {
+menuOverlay.addEventListener(
+  "click",
+  closeMenu
+);
 
-          showError(
-            "Vous devez être connecté pour accéder à votre espace."
-          );
 
-          return;
+/* =====================================================
+   NAVIGATION MENU
+===================================================== */
 
-        }
+function goTo(page){
 
+  closeMenu();
 
-        const user =
-          session.user;
+  window.location.href = page;
 
+}
 
-        /* =========================
-           INFORMATIONS AUTH
-        ========================== */
 
+/* =====================================================
+   MODE SOMBRE
+===================================================== */
 
-        const metadata =
-          user.user_metadata || {};
+const themeButton =
+  document.getElementById("themeButton");
 
 
-        const authName =
-          metadata.name ||
-          metadata.full_name ||
-          "";
+function applyTheme(){
 
-
-        /* =========================
-           RÉCUPÉRER PROFILE
-        ========================== */
-
-
-        const {
-          data: profile,
-          error: profileError
-        } =
-          await supabaseClient
-
-            .from("profiles")
-
-            .select(
-              "id, name, email, plan, progress, lessons_completed"
-            )
-
-            .eq(
-              "id",
-              user.id
-            )
-
-            .maybeSingle();
-
-
-        /*
-          Si le profil n'existe pas encore,
-          on utilise les informations Auth.
-        */
-
-
-        if (
-          profileError
-        ) {
-
-          console.warn(
-            "Profil non récupéré :",
-            profileError
-          );
-
-        }
-
-
-        /* =========================
-           NOM
-        ========================== */
-
-
-        const name =
-          profile?.name ||
-          authName ||
-          "Pianiste";
-
-
-        /* =========================
-           EMAIL
-        ========================== */
-
-
-        const email =
-          profile?.email ||
-          user.email ||
-          "—";
-
-
-        /* =========================
-           PLAN
-        ========================== */
-
-
-        const plan =
-          profile?.plan ||
-          "free";
-
-
-        /* =========================
-           PROGRESSION
-        ========================== */
-
-
-        let progress =
-          Number(
-            profile?.progress || 0
-          );
-
-
-        if (
-          Number.isNaN(progress)
-        ) {
-
-          progress = 0;
-
-        }
-
-
-        progress =
-          Math.max(
-            0,
-            Math.min(
-              100,
-              progress
-            )
-          );
-
-
-        /* =========================
-           COURS TERMINÉS
-        ========================== */
-
-
-        const lessonsCompleted =
-          Number(
-            profile?.lessons_completed || 0
-          );
-
-
-        /* =========================
-           AFFICHER NOM
-        ========================== */
-
-
-        document.getElementById(
-          "welcomeName"
-        ).textContent =
-          name + " !";
-
-
-        document.getElementById(
-          "headerName"
-        ).textContent =
-          name;
-
-
-        document.getElementById(
-          "avatar"
-        ).textContent =
-          getInitial(name);
-
-
-        /* =========================
-           PROFIL
-        ========================== */
-
-
-        document.getElementById(
-          "profileName"
-        ).textContent =
-          name;
-
-
-        document.getElementById(
-          "profileEmail"
-        ).textContent =
-          email;
-
-
-        /* =========================
-           PROGRESSION
-        ========================== */
-
-
-        document.getElementById(
-          "progressValue"
-        ).textContent =
-          progress + "%";
-
-
-        document.getElementById(
-          "progressLarge"
-        ).textContent =
-          progress + "%";
-
-
-        document.getElementById(
-          "progressFill"
-        ).style.width =
-          progress + "%";
-
-
-        /* =========================
-           COURS
-        ========================== */
-
-
-        document.getElementById(
-          "lessonsValue"
-        ).textContent =
-          lessonsCompleted;
-
-
-        /* =========================
-           OBJECTIF
-        ========================== */
-
-
-        document.getElementById(
-          "goalValue"
-        ).textContent =
-          Math.round(
-            progress
-          ) + "%";
-
-
-        /* =========================
-           PLAN
-        ========================== */
-
-
-        updatePlan(
-          plan
-        );
-
-
-        /* =========================
-           AFFICHAGE
-        ========================== */
-
-
-        loading.style.display =
-          "none";
-
-
-        app.style.display =
-          "block";
-
-
-      }
-
-
-      catch (error) {
-
-
-        console.error(
-          "Erreur dashboard:",
-          error
-        );
-
-
-        showError(
-
-          "Impossible de charger votre espace. " +
-          (
-            error?.message ||
-            "Veuillez réessayer."
-          )
-
-        );
-
-      }
-
-    }
-
-
-    /* =====================================================
-       DÉCONNEXION
-    ===================================================== */
-
-
-    logoutButton.addEventListener(
-
-      "click",
-
-      async function () {
-
-
-        logoutButton.disabled =
-          true;
-
-
-        logoutButton.textContent =
-          "Déconnexion...";
-
-
-        try {
-
-
-          const {
-            error
-          } =
-            await supabaseClient.auth.signOut();
-
-
-          if (
-            error
-          ) {
-
-            throw error;
-
-          }
-
-
-          window.location.href =
-            "connexion.html";
-
-
-        }
-
-
-        catch (error) {
-
-
-          console.error(
-            "Erreur déconnexion:",
-            error
-          );
-
-
-          logoutButton.disabled =
-            false;
-
-
-          logoutButton.textContent =
-            "Déconnexion";
-
-
-          alert(
-            "Impossible de vous déconnecter. Veuillez réessayer."
-          );
-
-        }
-
-      }
-
+  const theme =
+    localStorage.getItem(
+      "pianoAcademyTheme"
     );
 
 
-    /* =====================================================
-       SURVEILLER LA SESSION
-    ===================================================== */
+  if(theme === "dark"){
+
+    document.body.classList.add("dark");
+
+    themeButton.textContent = "☀️";
+
+  }else{
+
+    document.body.classList.remove("dark");
+
+    themeButton.textContent = "🌙";
+
+  }
+
+}
 
 
-    supabaseClient.auth.onAuthStateChange(
+themeButton.addEventListener(
+  "click",
+  function(){
 
-      function (
-        event,
-        session
-      ) {
+    const isDark =
+      document.body.classList.contains("dark");
 
 
-        if (
-          event ===
-          "SIGNED_OUT"
-        ) {
+    if(isDark){
 
-          window.location.href =
-            "connexion.html";
+      document.body.classList.remove("dark");
 
-        }
+      localStorage.setItem(
+        "pianoAcademyTheme",
+        "light"
+      );
 
-      }
+      themeButton.textContent =
+        "🌙";
 
+    }else{
+
+      document.body.classList.add("dark");
+
+      localStorage.setItem(
+        "pianoAcademyTheme",
+        "dark"
+      );
+
+      themeButton.textContent =
+        "☀️";
+
+    }
+
+  }
+);
+
+
+applyTheme();
+
+
+/* =====================================================
+   INITIALISATION DU THÈME AVANT CHARGEMENT
+===================================================== */
+
+
+/* =====================================================
+   UTILITAIRE
+===================================================== */
+
+function getInitial(name){
+
+  if(!name){
+    return "?";
+  }
+
+  return name
+    .trim()
+    .charAt(0)
+    .toUpperCase();
+
+}
+
+
+/* =====================================================
+   AFFICHER ERREUR
+===================================================== */
+
+function showError(text){
+
+  loading.style.display =
+    "none";
+
+  app.style.display =
+    "none";
+
+  errorScreen.style.display =
+    "flex";
+
+  errorText.textContent =
+    text;
+
+}
+
+
+/* =====================================================
+   PLAN
+===================================================== */
+
+function updatePlan(plan){
+
+  const currentPlan =
+    String(
+      plan || "free"
+    ).toLowerCase();
+
+
+  const planValue =
+    document.getElementById(
+      "planValue"
+    );
+
+  const planName =
+    document.getElementById(
+      "planName"
+    );
+
+  const planBadge =
+    document.getElementById(
+      "planBadge"
+    );
+
+  const planDescription =
+    document.getElementById(
+      "planDescription"
+    );
+
+  const profilePlan =
+    document.getElementById(
+      "profilePlan"
     );
 
 
-    /* =====================================================
-       BOUTON PREMIUM
-    ===================================================== */
+  if(
+    currentPlan === "premium"
+  ){
+
+    planValue.textContent =
+      "Premium";
+
+    planName.textContent =
+      "Premium";
+
+    planBadge.textContent =
+      "Premium";
+
+    planDescription.textContent =
+      "Tu bénéficies actuellement des fonctionnalités Premium de Piano Academy.";
+
+    profilePlan.textContent =
+      "Premium";
+
+  }else{
+
+    planValue.textContent =
+      "Free";
+
+    planName.textContent =
+      "Free";
+
+    planBadge.textContent =
+      "Gratuit";
+
+    planDescription.textContent =
+      "Tu utilises actuellement le plan gratuit de Piano Academy.";
+
+    profilePlan.textContent =
+      "Free";
+
+  }
+
+}
 
 
-    document
-      .getElementById(
-        "premiumButton"
+/* =====================================================
+   CHARGER DASHBOARD
+===================================================== */
+
+async function loadDashboard(){
+
+  try{
+
+
+    /* SESSION */
+
+    const {
+      data:sessionData,
+      error:sessionError
+    } =
+      await supabaseClient.auth.getSession();
+
+
+    if(sessionError){
+
+      throw sessionError;
+
+    }
+
+
+    const session =
+      sessionData.session;
+
+
+    if(!session){
+
+      showError(
+        "Vous devez être connecté pour accéder à votre espace."
+      );
+
+      return;
+
+    }
+
+
+    const user =
+      session.user;
+
+
+    /* MÉTADONNÉES */
+
+    const metadata =
+      user.user_metadata || {};
+
+
+    const authName =
+      metadata.name ||
+      metadata.full_name ||
+      "";
+
+
+    /* PROFIL */
+
+    const {
+      data:profile,
+      error:profileError
+    } =
+      await supabaseClient
+
+      .from("profiles")
+
+      .select(
+        "id,name,email,plan,progress,lessons_completed"
       )
-      .addEventListener(
 
-        "click",
+      .eq(
+        "id",
+        user.id
+      )
 
-        function () {
+      .maybeSingle();
 
-          alert(
-            "La section Premium sera disponible dans la prochaine étape."
-          );
 
-        }
+    if(profileError){
 
+      console.warn(
+        "Profil :",
+        profileError
+      );
+
+    }
+
+
+    const name =
+      profile?.name ||
+      authName ||
+      "Pianiste";
+
+
+    const email =
+      profile?.email ||
+      user.email ||
+      "—";
+
+
+    const plan =
+      profile?.plan ||
+      "free";
+
+
+    let progress =
+      Number(
+        profile?.progress || 0
       );
 
 
-    /* =====================================================
-       DÉMARRAGE
-    ===================================================== */
+    if(Number.isNaN(progress)){
+
+      progress = 0;
+
+    }
 
 
-    loadDashboard();
+    progress =
+      Math.max(
+        0,
+        Math.min(
+          100,
+          progress
+        )
+      );
 
 
-  </script>
+    const lessons =
+      Number(
+        profile?.lessons_completed || 0
+      );
+
+
+    /* HEADER */
+
+    document.getElementById(
+      "welcomeName"
+    ).textContent =
+      name + " !";
+
+
+    /* MENU */
+
+    document.getElementById(
+      "menuName"
+    ).textContent =
+      name;
+
+
+    document.getElementById(
+      "menuEmail"
+    ).textContent =
+      email;
+
+
+    document.getElementById(
+      "menuAvatar"
+    ).textContent =
+      getInitial(name);
+
+
+    /* PROGRESSION */
+
+    document.getElementById(
+      "progressValue"
+    ).textContent =
+      progress + "%";
+
+
+    document.getElementById(
+      "progressLarge"
+    ).textContent =
+      progress + "%";
+
+
+    document.getElementById(
+      "progressFill"
+    ).style.width =
+      progress + "%";
+
+
+    /* COURS */
+
+    document.getElementById(
+      "lessonsValue"
+    ).textContent =
+      lessons;
+
+
+    /* OBJECTIF */
+
+    document.getElementById(
+      "goalValue"
+    ).textContent =
+      progress + "%";
+
+
+    /* PROFIL */
+
+    document.getElementById(
+      "profileName"
+    ).textContent =
+      name;
+
+
+    document.getElementById(
+      "profileEmail"
+    ).textContent =
+      email;
+
+
+    /* PLAN */
+
+    updatePlan(plan);
+
+
+    /* AFFICHER */
+
+    loading.style.display =
+      "none";
+
+    app.style.display =
+      "block";
+
+
+  }catch(error){
+
+    console.error(
+      "Erreur dashboard:",
+      error
+    );
+
+
+    showError(
+      "Impossible de charger votre espace. " +
+      (
+        error?.message ||
+        "Veuillez réessayer."
+      )
+    );
+
+  }
+
+}
+
+
+/* =====================================================
+   DÉCONNEXION
+===================================================== */
+
+document
+.getElementById("logoutButton")
+.addEventListener(
+  "click",
+  async function(){
+
+    const confirmed =
+      confirm(
+        "Voulez-vous vraiment vous déconnecter ?"
+      );
+
+
+    if(!confirmed){
+
+      return;
+
+    }
+
+
+    this.disabled =
+      true;
+
+    this.textContent =
+      "Déconnexion...";
+
+
+    try{
+
+      const {
+        error
+      } =
+        await supabaseClient.auth.signOut();
+
+
+      if(error){
+
+        throw error;
+
+      }
+
+
+      window.location.href =
+        "connexion.html";
+
+
+    }catch(error){
+
+      console.error(
+        "Erreur déconnexion:",
+        error
+      );
+
+
+      this.disabled =
+        false;
+
+      this.textContent =
+        "🚪 Déconnexion";
+
+
+      alert(
+        "Impossible de vous déconnecter. Veuillez réessayer."
+      );
+
+    }
+
+  }
+);
+
+
+/* =====================================================
+   PREMIUM
+===================================================== */
+
+function showPremium(){
+
+  closeMenu();
+
+  alert(
+    "La section Premium de Piano Academy sera disponible prochainement."
+  );
+
+}
+
+
+/* =====================================================
+   PARAMÈTRES
+===================================================== */
+
+function showSettings(){
+
+  closeMenu();
+
+  alert(
+    "Les paramètres du compte seront disponibles prochainement."
+  );
+
+}
+
+
+/* =====================================================
+   SESSION
+===================================================== */
+
+supabaseClient.auth.onAuthStateChange(
+  function(event,session){
+
+    if(
+      event === "SIGNED_OUT"
+    ){
+
+      window.location.href =
+        "connexion.html";
+
+    }
+
+  }
+);
+
+
+/* =====================================================
+   DÉMARRAGE
+===================================================== */
+
+loadDashboard();
+
+</script>
 
 </body>
-
 </html>
