@@ -1205,19 +1205,44 @@
           }
 
 
-          showMessage(
-            errorMessage,
-            "error"
-          );
+          } catch (error) {
 
+  console.error(
+    "ERREUR SUPABASE COMPLETE :",
+    error
+  );
 
-          submitButton.disabled =
-            false;
+  console.error(
+    "Message :",
+    error?.message
+  );
 
-          submitButton.textContent =
-            "Créer mon compte";
+  console.error(
+    "Details :",
+    error?.details
+  );
 
-        }
+  console.error(
+    "Hint :",
+    error?.hint
+  );
+
+  const errorMessage =
+    error?.message ||
+    error?.details ||
+    "Erreur inconnue lors de la création du compte.";
+
+  showMessage(
+    errorMessage,
+    "error"
+  );
+
+  submitButton.disabled = false;
+
+  submitButton.textContent =
+    "Créer mon compte";
+
+          }
 
       }
     );
