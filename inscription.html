@@ -6,7 +6,13 @@
 
   <title>Créer un compte — Piano Academy</title>
 
-  <meta name="description" content="Créez votre compte Piano Academy et commencez votre apprentissage du piano.">
+  <meta
+    name="description"
+    content="Créez votre compte Piano Academy et commencez votre apprentissage du piano."
+  >
+
+  <!-- Supabase JS -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
   <style>
     * {
@@ -31,60 +37,96 @@
     body {
       min-height: 100vh;
       font-family: Arial, Helvetica, sans-serif;
+
       background:
-        radial-gradient(circle at top left, rgba(108, 92, 231, 0.16), transparent 35%),
-        radial-gradient(circle at bottom right, rgba(0, 206, 201, 0.12), transparent 35%),
+        radial-gradient(
+          circle at top left,
+          rgba(108, 92, 231, 0.16),
+          transparent 35%
+        ),
+        radial-gradient(
+          circle at bottom right,
+          rgba(0, 206, 201, 0.12),
+          transparent 35%
+        ),
         var(--background);
+
       color: var(--text);
+
       display: flex;
       align-items: center;
       justify-content: center;
+
       padding: 25px 15px;
     }
 
     .page {
       width: 100%;
       max-width: 1050px;
+
       display: grid;
       grid-template-columns: 1fr 1fr;
+
       background: var(--card);
+
       border-radius: 24px;
       overflow: hidden;
-      box-shadow: 0 20px 60px rgba(25, 25, 50, 0.15);
+
+      box-shadow:
+        0 20px 60px rgba(25, 25, 50, 0.15);
     }
+
+    /* =========================
+       PANNEAU GAUCHE
+    ========================== */
 
     .presentation {
       position: relative;
+
       min-height: 700px;
+
       padding: 55px 45px;
+
       color: white;
+
       background:
         linear-gradient(
           145deg,
           rgba(108, 92, 231, 0.97),
           rgba(72, 52, 180, 0.97)
         );
+
       overflow: hidden;
     }
 
     .presentation::before {
       content: "";
+
       position: absolute;
+
       width: 320px;
       height: 320px;
+
       border-radius: 50%;
+
       background: rgba(255,255,255,0.08);
+
       top: -120px;
       left: -100px;
     }
 
     .presentation::after {
       content: "";
+
       position: absolute;
+
       width: 400px;
       height: 400px;
+
       border-radius: 50%;
+
       background: rgba(0,206,201,0.08);
+
       bottom: -220px;
       right: -180px;
     }
@@ -92,27 +134,36 @@
     .brand {
       position: relative;
       z-index: 2;
+
       display: flex;
       align-items: center;
+
       gap: 12px;
+
       margin-bottom: 55px;
     }
 
     .brand-icon {
       width: 48px;
       height: 48px;
+
       border-radius: 14px;
+
       background: rgba(255,255,255,0.16);
+
       display: flex;
       align-items: center;
       justify-content: center;
+
       font-size: 25px;
+
       backdrop-filter: blur(8px);
     }
 
     .brand-name {
       font-size: 21px;
       font-weight: 800;
+
       letter-spacing: 0.2px;
     }
 
@@ -124,6 +175,7 @@
     .presentation h1 {
       font-size: 42px;
       line-height: 1.12;
+
       margin-bottom: 20px;
     }
 
@@ -133,69 +185,102 @@
 
     .presentation-description {
       color: rgba(255,255,255,0.82);
+
       line-height: 1.7;
+
       font-size: 16px;
+
       max-width: 420px;
+
       margin-bottom: 35px;
     }
 
     .features {
       list-style: none;
+
       display: grid;
+
       gap: 17px;
     }
 
     .features li {
       display: flex;
       align-items: center;
+
       gap: 13px;
+
       color: rgba(255,255,255,0.94);
+
       font-size: 15px;
     }
 
     .check {
       width: 28px;
       height: 28px;
+
       border-radius: 50%;
+
       background: rgba(255,255,255,0.13);
+
       display: flex;
       align-items: center;
       justify-content: center;
+
       flex-shrink: 0;
+
       color: #a7fff9;
+
       font-weight: bold;
     }
 
     .piano-decoration {
       position: absolute;
+
       bottom: 35px;
       left: 45px;
       right: 45px;
+
       height: 70px;
+
       display: flex;
+
       gap: 4px;
+
       opacity: 0.45;
     }
 
     .piano-key {
       flex: 1;
+
       background: white;
+
       border-radius: 0 0 7px 7px;
     }
 
     .piano-key.black {
       max-width: 18px;
+
       height: 45px;
+
       background: #171725;
+
       margin: 0 -9px;
+
       z-index: 2;
+
       border-radius: 0 0 4px 4px;
     }
 
+    /* =========================
+       FORMULAIRE
+    ========================== */
+
     .form-section {
       padding: 45px;
+
       display: flex;
       flex-direction: column;
+
       justify-content: center;
     }
 
@@ -205,12 +290,15 @@
 
     .form-header h2 {
       font-size: 30px;
+
       margin-bottom: 8px;
     }
 
     .form-header p {
       color: var(--muted);
+
       font-size: 14px;
+
       line-height: 1.5;
     }
 
@@ -220,8 +308,11 @@
 
     .form-group label {
       display: block;
+
       font-size: 13px;
+
       font-weight: 700;
+
       margin-bottom: 8px;
     }
 
@@ -231,93 +322,138 @@
 
     .input-icon {
       position: absolute;
+
       left: 15px;
       top: 50%;
+
       transform: translateY(-50%);
+
       font-size: 17px;
+
       opacity: 0.65;
+
       pointer-events: none;
     }
 
     .form-group input {
       width: 100%;
       height: 52px;
+
       border: 1px solid var(--border);
+
       border-radius: 12px;
+
       outline: none;
-      padding: 0 45px 0 45px;
+
+      padding: 0 45px;
+
       font-size: 15px;
+
       color: var(--text);
+
       background: #fafbfe;
+
       transition: 0.2s;
     }
 
     .form-group input:focus {
       border-color: var(--primary);
+
       background: white;
-      box-shadow: 0 0 0 4px rgba(108, 92, 231, 0.09);
+
+      box-shadow:
+        0 0 0 4px rgba(108, 92, 231, 0.09);
     }
 
     .password-toggle {
       position: absolute;
+
       right: 13px;
       top: 50%;
+
       transform: translateY(-50%);
+
       border: none;
+
       background: transparent;
+
       cursor: pointer;
+
       font-size: 18px;
+
       padding: 5px;
+
       color: var(--muted);
     }
 
     .password-strength {
       margin-top: 7px;
+
       display: none;
     }
 
     .strength-bar {
       height: 5px;
+
       width: 100%;
+
       border-radius: 10px;
+
       background: #e9e9ef;
+
       overflow: hidden;
     }
 
     .strength-fill {
       width: 0;
+
       height: 100%;
+
       border-radius: 10px;
+
       transition: 0.25s;
     }
 
     .strength-text {
       font-size: 11px;
+
       color: var(--muted);
+
       margin-top: 5px;
     }
 
     .terms {
       display: flex;
+
       align-items: flex-start;
+
       gap: 9px;
+
       margin: 18px 0;
+
       font-size: 12px;
+
       line-height: 1.5;
+
       color: var(--muted);
     }
 
     .terms input {
       width: 17px;
       height: 17px;
+
       margin-top: 1px;
+
       accent-color: var(--primary);
+
       flex-shrink: 0;
     }
 
     .terms a {
       color: var(--primary);
+
       text-decoration: none;
+
       font-weight: 700;
     }
 
@@ -328,20 +464,37 @@
     .submit-button {
       width: 100%;
       height: 53px;
+
       border: none;
+
       border-radius: 12px;
-      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+
+      background:
+        linear-gradient(
+          135deg,
+          var(--primary),
+          var(--primary-dark)
+        );
+
       color: white;
+
       font-size: 15px;
+
       font-weight: 800;
+
       cursor: pointer;
+
       transition: 0.2s;
-      box-shadow: 0 8px 20px rgba(108, 92, 231, 0.22);
+
+      box-shadow:
+        0 8px 20px rgba(108, 92, 231, 0.22);
     }
 
     .submit-button:hover {
       transform: translateY(-1px);
-      box-shadow: 0 10px 25px rgba(108, 92, 231, 0.3);
+
+      box-shadow:
+        0 10px 25px rgba(108, 92, 231, 0.3);
     }
 
     .submit-button:active {
@@ -350,43 +503,63 @@
 
     .submit-button:disabled {
       opacity: 0.65;
+
       cursor: not-allowed;
+
       transform: none;
     }
 
     .message {
       display: none;
+
       padding: 12px 14px;
+
       border-radius: 10px;
+
       margin-bottom: 17px;
+
       font-size: 13px;
+
       line-height: 1.5;
+
+      word-break: break-word;
     }
 
     .message.error {
       display: block;
+
       background: #fff0ef;
+
       color: #c0392b;
+
       border: 1px solid #ffd5d1;
     }
 
     .message.success {
       display: block;
+
       background: #edfff8;
+
       color: #008f70;
+
       border: 1px solid #c9f5e6;
     }
 
     .login-link {
       text-align: center;
+
       margin-top: 22px;
+
       font-size: 13px;
+
       color: var(--muted);
     }
 
     .login-link a {
       color: var(--primary);
+
       text-decoration: none;
+
       font-weight: 800;
     }
 
@@ -396,12 +569,15 @@
 
     .back-home {
       text-align: center;
+
       margin-top: 14px;
     }
 
     .back-home a {
       color: var(--muted);
+
       font-size: 12px;
+
       text-decoration: none;
     }
 
@@ -409,20 +585,29 @@
       color: var(--primary);
     }
 
+    /* =========================
+       RESPONSIVE
+    ========================== */
+
     @media (max-width: 800px) {
+
       body {
         padding: 0;
+
         align-items: stretch;
       }
 
       .page {
         min-height: 100vh;
+
         border-radius: 0;
+
         display: block;
       }
 
       .presentation {
         min-height: auto;
+
         padding: 30px 25px 35px;
       }
 
@@ -452,6 +637,7 @@
     }
 
     @media (max-width: 400px) {
+
       .presentation {
         padding: 25px 18px 30px;
       }
@@ -475,12 +661,24 @@
 
   <main class="page">
 
+    <!-- =========================
+         PRÉSENTATION
+    ========================== -->
+
     <section class="presentation">
 
       <div class="brand">
-        <div class="brand-icon">🎹</div>
-        <div class="brand-name">Piano Academy</div>
+
+        <div class="brand-icon">
+          🎹
+        </div>
+
+        <div class="brand-name">
+          Piano Academy
+        </div>
+
       </div>
+
 
       <div class="presentation-content">
 
@@ -525,43 +723,77 @@
 
       </div>
 
+
       <div class="piano-decoration">
+
         <div class="piano-key"></div>
         <div class="piano-key"></div>
+
         <div class="piano-key black"></div>
+
         <div class="piano-key"></div>
         <div class="piano-key"></div>
         <div class="piano-key"></div>
+
         <div class="piano-key black"></div>
+
         <div class="piano-key"></div>
         <div class="piano-key"></div>
+
         <div class="piano-key black"></div>
+
         <div class="piano-key"></div>
         <div class="piano-key"></div>
         <div class="piano-key"></div>
+
       </div>
 
     </section>
 
 
+    <!-- =========================
+         INSCRIPTION
+    ========================== -->
+
     <section class="form-section">
 
       <div class="form-header">
-        <h2>Créer un compte</h2>
+
+        <h2>
+          Créer un compte
+        </h2>
+
         <p>
           Rejoins Piano Academy gratuitement et commence ton apprentissage.
         </p>
+
       </div>
 
-      <div id="message" class="message"></div>
 
-      <form id="registerForm" novalidate>
+      <div
+        id="message"
+        class="message"
+      ></div>
+
+
+      <form
+        id="registerForm"
+        novalidate
+      >
+
+        <!-- NOM -->
 
         <div class="form-group">
-          <label for="name">Nom complet</label>
+
+          <label for="name">
+            Nom complet
+          </label>
 
           <div class="input-wrapper">
-            <span class="input-icon">👤</span>
+
+            <span class="input-icon">
+              👤
+            </span>
 
             <input
               type="text"
@@ -571,14 +803,25 @@
               autocomplete="name"
               required
             >
+
           </div>
+
         </div>
 
+
+        <!-- EMAIL -->
+
         <div class="form-group">
-          <label for="email">Adresse email</label>
+
+          <label for="email">
+            Adresse email
+          </label>
 
           <div class="input-wrapper">
-            <span class="input-icon">✉️</span>
+
+            <span class="input-icon">
+              ✉️
+            </span>
 
             <input
               type="email"
@@ -588,15 +831,25 @@
               autocomplete="email"
               required
             >
+
           </div>
+
         </div>
 
+
+        <!-- MOT DE PASSE -->
+
         <div class="form-group">
-          <label for="password">Mot de passe</label>
+
+          <label for="password">
+            Mot de passe
+          </label>
 
           <div class="input-wrapper">
 
-            <span class="input-icon">🔒</span>
+            <span class="input-icon">
+              🔒
+            </span>
 
             <input
               type="password"
@@ -618,13 +871,19 @@
 
           </div>
 
-          <div class="password-strength" id="passwordStrength">
+
+          <div
+            class="password-strength"
+            id="passwordStrength"
+          >
 
             <div class="strength-bar">
+
               <div
                 class="strength-fill"
                 id="strengthFill"
               ></div>
+
             </div>
 
             <div
@@ -636,12 +895,20 @@
 
         </div>
 
+
+        <!-- CONFIRMATION -->
+
         <div class="form-group">
-          <label for="confirmPassword">Confirmer le mot de passe</label>
+
+          <label for="confirmPassword">
+            Confirmer le mot de passe
+          </label>
 
           <div class="input-wrapper">
 
-            <span class="input-icon">🔐</span>
+            <span class="input-icon">
+              🔐
+            </span>
 
             <input
               type="password"
@@ -665,6 +932,9 @@
 
         </div>
 
+
+        <!-- CONDITIONS -->
+
         <label class="terms">
 
           <input
@@ -674,18 +944,33 @@
           >
 
           <span>
+
             J'accepte les
-            <a href="#" onclick="return false;">
+
+            <a
+              href="#"
+              onclick="return false;"
+            >
               conditions d'utilisation
             </a>
+
             et la
-            <a href="#" onclick="return false;">
+
+            <a
+              href="#"
+              onclick="return false;"
+            >
               politique de confidentialité
             </a>
+
             de Piano Academy.
+
           </span>
 
         </label>
+
+
+        <!-- BOUTON -->
 
         <button
           type="submit"
@@ -697,15 +982,28 @@
 
       </form>
 
+
+      <!-- CONNEXION -->
+
       <div class="login-link">
+
         Tu as déjà un compte ?
-        <a href="connexion.html">Se connecter</a>
+
+        <a href="connexion.html">
+          Se connecter
+        </a>
+
       </div>
 
+
+      <!-- RETOUR -->
+
       <div class="back-home">
+
         <a href="index.html">
           ← Retour à Piano Academy
         </a>
+
       </div>
 
     </section>
@@ -713,25 +1011,34 @@
   </main>
 
 
-  <!-- =====================================================
-       SUPABASE
-  ====================================================== -->
-
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
-
   <script>
 
     /* =====================================================
        CONFIGURATION SUPABASE
-    ====================================================== */
+    ===================================================== */
 
     const SUPABASE_URL =
-      "https://swsvnzjeipcobodntajs.supabase.co" 
+      "https://swsvnzjeipcobodntajs.supabase.co";
+
+
+    /*
+      IMPORTANT :
+
+      Mets ici UNIQUEMENT ta clé :
+
+      sb_publishable_...
+
+      Ne mets JAMAIS :
+      sb_secret_...
+    */
 
     const SUPABASE_KEY =
       "sb_publishable_JrPeCn1LhCNHY3BJZ5iCEQ_mc2iqLpf";
 
+
+    /* =====================================================
+       INITIALISATION SUPABASE
+    ===================================================== */
 
     const supabaseClient =
       window.supabase.createClient(
@@ -740,67 +1047,102 @@
       );
 
 
-    /* =========================
+    /* =====================================================
        ÉLÉMENTS
-    ========================== */
+    ===================================================== */
 
     const form =
-      document.getElementById("registerForm");
+      document.getElementById(
+        "registerForm"
+      );
 
     const nameInput =
-      document.getElementById("name");
+      document.getElementById(
+        "name"
+      );
 
     const emailInput =
-      document.getElementById("email");
+      document.getElementById(
+        "email"
+      );
 
     const passwordInput =
-      document.getElementById("password");
+      document.getElementById(
+        "password"
+      );
 
     const confirmPasswordInput =
-      document.getElementById("confirmPassword");
+      document.getElementById(
+        "confirmPassword"
+      );
 
     const termsInput =
-      document.getElementById("terms");
+      document.getElementById(
+        "terms"
+      );
 
     const message =
-      document.getElementById("message");
+      document.getElementById(
+        "message"
+      );
 
     const submitButton =
-      document.getElementById("submitButton");
+      document.getElementById(
+        "submitButton"
+      );
 
     const togglePassword =
-      document.getElementById("togglePassword");
+      document.getElementById(
+        "togglePassword"
+      );
 
     const toggleConfirmPassword =
-      document.getElementById("toggleConfirmPassword");
+      document.getElementById(
+        "toggleConfirmPassword"
+      );
 
     const passwordStrength =
-      document.getElementById("passwordStrength");
+      document.getElementById(
+        "passwordStrength"
+      );
 
     const strengthFill =
-      document.getElementById("strengthFill");
+      document.getElementById(
+        "strengthFill"
+      );
 
     const strengthText =
-      document.getElementById("strengthText");
+      document.getElementById(
+        "strengthText"
+      );
 
 
-    /* =========================
-       MOT DE PASSE
-    ========================== */
+    /* =====================================================
+       AFFICHER / MASQUER MOT DE PASSE
+    ===================================================== */
 
     togglePassword.addEventListener(
       "click",
       function () {
 
-        if (passwordInput.type === "password") {
+        if (
+          passwordInput.type ===
+          "password"
+        ) {
 
-          passwordInput.type = "text";
-          togglePassword.textContent = "🙈";
+          passwordInput.type =
+            "text";
+
+          togglePassword.textContent =
+            "🙈";
 
         } else {
 
-          passwordInput.type = "password";
-          togglePassword.textContent = "👁️";
+          passwordInput.type =
+            "password";
+
+          togglePassword.textContent =
+            "👁️";
 
         }
 
@@ -812,15 +1154,24 @@
       "click",
       function () {
 
-        if (confirmPasswordInput.type === "password") {
+        if (
+          confirmPasswordInput.type ===
+          "password"
+        ) {
 
-          confirmPasswordInput.type = "text";
-          toggleConfirmPassword.textContent = "🙈";
+          confirmPasswordInput.type =
+            "text";
+
+          toggleConfirmPassword.textContent =
+            "🙈";
 
         } else {
 
-          confirmPasswordInput.type = "password";
-          toggleConfirmPassword.textContent = "👁️";
+          confirmPasswordInput.type =
+            "password";
+
+          toggleConfirmPassword.textContent =
+            "👁️";
 
         }
 
@@ -828,9 +1179,9 @@
     );
 
 
-    /* =========================
-       FORCE MOT DE PASSE
-    ========================== */
+    /* =====================================================
+       FORCE DU MOT DE PASSE
+    ===================================================== */
 
     passwordInput.addEventListener(
       "input",
@@ -839,31 +1190,62 @@
         const password =
           passwordInput.value;
 
+
         if (!password) {
 
           passwordStrength.style.display =
             "none";
 
           return;
+
         }
+
 
         passwordStrength.style.display =
           "block";
 
+
         let score = 0;
 
-        if (password.length >= 8) score++;
 
-        if (/[A-Z]/.test(password)) score++;
+        if (
+          password.length >= 8
+        ) {
+          score++;
+        }
 
-        if (/[a-z]/.test(password)) score++;
 
-        if (/[0-9]/.test(password)) score++;
+        if (
+          /[A-Z]/.test(password)
+        ) {
+          score++;
+        }
 
-        if (/[^A-Za-z0-9]/.test(password)) score++;
+
+        if (
+          /[a-z]/.test(password)
+        ) {
+          score++;
+        }
+
+
+        if (
+          /[0-9]/.test(password)
+        ) {
+          score++;
+        }
+
+
+        if (
+          /[^A-Za-z0-9]/.test(password)
+        ) {
+          score++;
+        }
+
 
         const percentage =
           (score / 5) * 100;
+
 
         strengthFill.style.width =
           percentage + "%";
@@ -900,11 +1282,14 @@
     );
 
 
-    /* =========================
-       MESSAGES
-    ========================== */
+    /* =====================================================
+       MESSAGE
+    ===================================================== */
 
-    function showMessage(text, type) {
+    function showMessage(
+      text,
+      type
+    ) {
 
       message.textContent =
         text;
@@ -922,7 +1307,8 @@
 
     function clearMessage() {
 
-      message.textContent = "";
+      message.textContent =
+        "";
 
       message.className =
         "message";
@@ -930,11 +1316,13 @@
     }
 
 
-    /* =========================
-       EMAIL
-    ========================== */
+    /* =====================================================
+       VALIDATION EMAIL
+    ===================================================== */
 
-    function isValidEmail(email) {
+    function isValidEmail(
+      email
+    ) {
 
       return /^[^\s@]+@[^\s@]+\.[^\s@]+$/
         .test(email);
@@ -943,8 +1331,8 @@
 
 
     /* =====================================================
-       INSCRIPTION SUPABASE
-    ====================================================== */
+       INSCRIPTION
+    ===================================================== */
 
     form.addEventListener(
       "submit",
@@ -958,21 +1346,28 @@
         const name =
           nameInput.value.trim();
 
+
         const email =
           emailInput.value
             .trim()
             .toLowerCase();
 
+
         const password =
           passwordInput.value;
+
 
         const confirmPassword =
           confirmPasswordInput.value;
 
 
-        /* NOM */
+        /* =========================
+           NOM
+        ========================== */
 
-        if (name.length < 2) {
+        if (
+          name.length < 2
+        ) {
 
           showMessage(
             "Veuillez entrer votre nom complet.",
@@ -986,9 +1381,13 @@
         }
 
 
-        /* EMAIL */
+        /* =========================
+           EMAIL
+        ========================== */
 
-        if (!isValidEmail(email)) {
+        if (
+          !isValidEmail(email)
+        ) {
 
           showMessage(
             "Veuillez entrer une adresse email valide.",
@@ -1002,9 +1401,13 @@
         }
 
 
-        /* MOT DE PASSE */
+        /* =========================
+           MOT DE PASSE
+        ========================== */
 
-        if (password.length < 8) {
+        if (
+          password.length < 8
+        ) {
 
           showMessage(
             "Le mot de passe doit contenir au moins 8 caractères.",
@@ -1018,9 +1421,14 @@
         }
 
 
-        /* CONFIRMATION */
+        /* =========================
+           CONFIRMATION
+        ========================== */
 
-        if (password !== confirmPassword) {
+        if (
+          password !==
+          confirmPassword
+        ) {
 
           showMessage(
             "Les deux mots de passe ne correspondent pas.",
@@ -1034,9 +1442,13 @@
         }
 
 
-        /* CONDITIONS */
+        /* =========================
+           CONDITIONS
+        ========================== */
 
-        if (!termsInput.checked) {
+        if (
+          !termsInput.checked
+        ) {
 
           showMessage(
             "Veuillez accepter les conditions d'utilisation.",
@@ -1052,17 +1464,18 @@
            BOUTON
         ========================== */
 
-        submitButton.disabled = true;
+        submitButton.disabled =
+          true;
 
         submitButton.textContent =
           "Création du compte...";
 
 
-        try {
+        /* =================================================
+           CRÉATION DU COMPTE SUPABASE
+        ================================================= */
 
-          /* =========================
-             CRÉATION DU COMPTE AUTH
-          ========================== */
+        try {
 
           const {
             data,
@@ -1070,20 +1483,29 @@
           } =
             await supabaseClient.auth.signUp({
 
-              email: email,
+              email:
+                email,
 
-              password: password,
+              password:
+                password,
 
               options: {
 
                 data: {
-                  name: name
+
+                  name:
+                    name
+
                 }
 
               }
 
             });
 
+
+          /* =========================
+             ERREUR SUPABASE
+          ========================== */
 
           if (error) {
 
@@ -1092,7 +1514,14 @@
           }
 
 
-          if (!data.user) {
+          /* =========================
+             VÉRIFICATION UTILISATEUR
+          ========================== */
+
+          if (
+            !data ||
+            !data.user
+          ) {
 
             throw new Error(
               "Impossible de créer le compte."
@@ -1103,7 +1532,7 @@
 
           /*
             Le trigger PostgreSQL créé
-            précédemment va automatiquement
+            précédemment doit automatiquement
             créer la ligne correspondante
             dans public.profiles.
           */
@@ -1123,26 +1552,6 @@
           );
 
 
-          /*
-            IMPORTANT :
-
-            Nous ne sauvegardons PAS le mot
-            de passe dans localStorage.
-
-            Supabase Auth s'occupe de
-            l'authentification.
-          */
-
-
-          /*
-            Si Supabase confirme automatiquement
-            l'utilisateur, une session existe.
-
-            Sinon, l'utilisateur doit confirmer
-            son adresse email.
-          */
-
-
           setTimeout(
             function () {
 
@@ -1156,6 +1565,10 @@
 
         } catch (error) {
 
+          /* =========================
+             ERREUR
+          ========================== */
+
           console.error(
             "Erreur inscription Supabase:",
             error
@@ -1168,7 +1581,8 @@
 
           const errorText =
             String(
-              error.message || ""
+              error?.message ||
+              ""
             ).toLowerCase();
 
 
@@ -1178,11 +1592,15 @@
             ) ||
             errorText.includes(
               "already exists"
+            ) ||
+            errorText.includes(
+              "user already registered"
             )
           ) {
 
             errorMessage =
               "Cette adresse email possède déjà un compte.";
+
 
           } else if (
             errorText.includes(
@@ -1193,6 +1611,7 @@
             errorMessage =
               "L'adresse email n'est pas valide.";
 
+
           } else if (
             errorText.includes(
               "password"
@@ -1202,47 +1621,67 @@
             errorMessage =
               "Le mot de passe ne respecte pas les règles requises.";
 
+
+          } else if (
+            errorText.includes(
+              "failed to fetch"
+            )
+          ) {
+
+            errorMessage =
+              "Impossible de contacter Supabase. Vérifie ta connexion Internet.";
+
+
+          } else if (
+            errorText.includes(
+              "api key"
+            )
+          ) {
+
+            errorMessage =
+              "La clé Supabase utilisée est incorrecte.";
+
+
+          } else if (
+            errorText.includes(
+              "not found"
+            )
+          ) {
+
+            errorMessage =
+              "Le projet Supabase est introuvable. Vérifie l'URL du projet.";
+
+
+          } else if (
+            error.message
+          ) {
+
+            /*
+              Affichage temporaire de l'erreur
+              réelle pour faciliter le diagnostic.
+            */
+
+            errorMessage =
+              "Erreur Supabase : " +
+              error.message;
+
           }
 
 
-          } catch (error) {
+          showMessage(
+            errorMessage,
+            "error"
+          );
 
-  console.error(
-    "ERREUR SUPABASE COMPLETE :",
-    error
-  );
 
-  console.error(
-    "Message :",
-    error?.message
-  );
+          submitButton.disabled =
+            false;
 
-  console.error(
-    "Details :",
-    error?.details
-  );
 
-  console.error(
-    "Hint :",
-    error?.hint
-  );
+          submitButton.textContent =
+            "Créer mon compte";
 
-  const errorMessage =
-    error?.message ||
-    error?.details ||
-    "Erreur inconnue lors de la création du compte.";
-
-  showMessage(
-    errorMessage,
-    "error"
-  );
-
-  submitButton.disabled = false;
-
-  submitButton.textContent =
-    "Créer mon compte";
-
-          }
+        }
 
       }
     );
