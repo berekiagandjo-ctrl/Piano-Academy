@@ -1,0 +1,1228 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Créer un compte — Piano Academy</title>
+
+  <meta name="description" content="Créez votre compte Piano Academy et commencez votre apprentissage du piano.">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --primary: #6c5ce7;
+      --primary-dark: #5848d6;
+      --secondary: #00cec9;
+      --background: #f5f6fa;
+      --card: #ffffff;
+      --text: #1e1e2f;
+      --muted: #777b8a;
+      --border: #e2e4ec;
+      --danger: #e74c3c;
+      --success: #00b894;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: Arial, Helvetica, sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(108, 92, 231, 0.16), transparent 35%),
+        radial-gradient(circle at bottom right, rgba(0, 206, 201, 0.12), transparent 35%),
+        var(--background);
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 25px 15px;
+    }
+
+    .page {
+      width: 100%;
+      max-width: 1050px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      background: var(--card);
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(25, 25, 50, 0.15);
+    }
+
+    .presentation {
+      position: relative;
+      min-height: 700px;
+      padding: 55px 45px;
+      color: white;
+      background:
+        linear-gradient(
+          145deg,
+          rgba(108, 92, 231, 0.97),
+          rgba(72, 52, 180, 0.97)
+        );
+      overflow: hidden;
+    }
+
+    .presentation::before {
+      content: "";
+      position: absolute;
+      width: 320px;
+      height: 320px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.08);
+      top: -120px;
+      left: -100px;
+    }
+
+    .presentation::after {
+      content: "";
+      position: absolute;
+      width: 400px;
+      height: 400px;
+      border-radius: 50%;
+      background: rgba(0,206,201,0.08);
+      bottom: -220px;
+      right: -180px;
+    }
+
+    .brand {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 55px;
+    }
+
+    .brand-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
+      background: rgba(255,255,255,0.16);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 25px;
+      backdrop-filter: blur(8px);
+    }
+
+    .brand-name {
+      font-size: 21px;
+      font-weight: 800;
+      letter-spacing: 0.2px;
+    }
+
+    .presentation-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .presentation h1 {
+      font-size: 42px;
+      line-height: 1.12;
+      margin-bottom: 20px;
+    }
+
+    .presentation h1 span {
+      color: #a7fff9;
+    }
+
+    .presentation-description {
+      color: rgba(255,255,255,0.82);
+      line-height: 1.7;
+      font-size: 16px;
+      max-width: 420px;
+      margin-bottom: 35px;
+    }
+
+    .features {
+      list-style: none;
+      display: grid;
+      gap: 17px;
+    }
+
+    .features li {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      color: rgba(255,255,255,0.94);
+      font-size: 15px;
+    }
+
+    .check {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.13);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      color: #a7fff9;
+      font-weight: bold;
+    }
+
+    .piano-decoration {
+      position: absolute;
+      bottom: 35px;
+      left: 45px;
+      right: 45px;
+      height: 70px;
+      display: flex;
+      gap: 4px;
+      opacity: 0.45;
+    }
+
+    .piano-key {
+      flex: 1;
+      background: white;
+      border-radius: 0 0 7px 7px;
+    }
+
+    .piano-key.black {
+      max-width: 18px;
+      height: 45px;
+      background: #171725;
+      margin: 0 -9px;
+      z-index: 2;
+      border-radius: 0 0 4px 4px;
+    }
+
+    .form-section {
+      padding: 45px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .form-header {
+      margin-bottom: 28px;
+    }
+
+    .form-header h2 {
+      font-size: 30px;
+      margin-bottom: 8px;
+    }
+
+    .form-header p {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .form-group {
+      margin-bottom: 17px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .input-wrapper {
+      position: relative;
+    }
+
+    .input-icon {
+      position: absolute;
+      left: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 17px;
+      opacity: 0.65;
+      pointer-events: none;
+    }
+
+    .form-group input {
+      width: 100%;
+      height: 52px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      outline: none;
+      padding: 0 45px 0 45px;
+      font-size: 15px;
+      color: var(--text);
+      background: #fafbfe;
+      transition: 0.2s;
+    }
+
+    .form-group input:focus {
+      border-color: var(--primary);
+      background: white;
+      box-shadow: 0 0 0 4px rgba(108, 92, 231, 0.09);
+    }
+
+    .password-toggle {
+      position: absolute;
+      right: 13px;
+      top: 50%;
+      transform: translateY(-50%);
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      font-size: 18px;
+      padding: 5px;
+      color: var(--muted);
+    }
+
+    .password-strength {
+      margin-top: 7px;
+      display: none;
+    }
+
+    .strength-bar {
+      height: 5px;
+      width: 100%;
+      border-radius: 10px;
+      background: #e9e9ef;
+      overflow: hidden;
+    }
+
+    .strength-fill {
+      width: 0;
+      height: 100%;
+      border-radius: 10px;
+      transition: 0.25s;
+    }
+
+    .strength-text {
+      font-size: 11px;
+      color: var(--muted);
+      margin-top: 5px;
+    }
+
+    .terms {
+      display: flex;
+      align-items: flex-start;
+      gap: 9px;
+      margin: 18px 0;
+      font-size: 12px;
+      line-height: 1.5;
+      color: var(--muted);
+    }
+
+    .terms input {
+      width: 17px;
+      height: 17px;
+      margin-top: 1px;
+      accent-color: var(--primary);
+      flex-shrink: 0;
+    }
+
+    .terms a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    .terms a:hover {
+      text-decoration: underline;
+    }
+
+    .submit-button {
+      width: 100%;
+      height: 53px;
+      border: none;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: white;
+      font-size: 15px;
+      font-weight: 800;
+      cursor: pointer;
+      transition: 0.2s;
+      box-shadow: 0 8px 20px rgba(108, 92, 231, 0.22);
+    }
+
+    .submit-button:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 10px 25px rgba(108, 92, 231, 0.3);
+    }
+
+    .submit-button:active {
+      transform: translateY(0);
+    }
+
+    .submit-button:disabled {
+      opacity: 0.65;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .message {
+      display: none;
+      padding: 12px 14px;
+      border-radius: 10px;
+      margin-bottom: 17px;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .message.error {
+      display: block;
+      background: #fff0ef;
+      color: #c0392b;
+      border: 1px solid #ffd5d1;
+    }
+
+    .message.success {
+      display: block;
+      background: #edfff8;
+      color: #008f70;
+      border: 1px solid #c9f5e6;
+    }
+
+    .login-link {
+      text-align: center;
+      margin-top: 22px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .login-link a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 800;
+    }
+
+    .login-link a:hover {
+      text-decoration: underline;
+    }
+
+    .back-home {
+      text-align: center;
+      margin-top: 14px;
+    }
+
+    .back-home a {
+      color: var(--muted);
+      font-size: 12px;
+      text-decoration: none;
+    }
+
+    .back-home a:hover {
+      color: var(--primary);
+    }
+
+    @media (max-width: 800px) {
+      body {
+        padding: 0;
+        align-items: stretch;
+      }
+
+      .page {
+        min-height: 100vh;
+        border-radius: 0;
+        display: block;
+      }
+
+      .presentation {
+        min-height: auto;
+        padding: 30px 25px 35px;
+      }
+
+      .brand {
+        margin-bottom: 35px;
+      }
+
+      .presentation h1 {
+        font-size: 32px;
+      }
+
+      .presentation-description {
+        margin-bottom: 25px;
+      }
+
+      .features {
+        gap: 12px;
+      }
+
+      .piano-decoration {
+        display: none;
+      }
+
+      .form-section {
+        padding: 35px 25px 45px;
+      }
+    }
+
+    @media (max-width: 400px) {
+      .presentation {
+        padding: 25px 18px 30px;
+      }
+
+      .form-section {
+        padding: 30px 18px 40px;
+      }
+
+      .presentation h1 {
+        font-size: 28px;
+      }
+
+      .form-header h2 {
+        font-size: 26px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <main class="page">
+
+    <section class="presentation">
+
+      <div class="brand">
+        <div class="brand-icon">🎹</div>
+        <div class="brand-name">Piano Academy</div>
+      </div>
+
+      <div class="presentation-content">
+
+        <h1>
+          Commence ton<br>
+          aventure <span>musicale.</span>
+        </h1>
+
+        <p class="presentation-description">
+          Crée ton compte gratuitement et commence à apprendre
+          le piano à ton propre rythme avec Piano Academy.
+        </p>
+
+        <ul class="features">
+
+          <li>
+            <span class="check">✓</span>
+            Apprends les bases du piano progressivement
+          </li>
+
+          <li>
+            <span class="check">✓</span>
+            Accède à tes cours et exercices
+          </li>
+
+          <li>
+            <span class="check">✓</span>
+            Suis ta progression
+          </li>
+
+          <li>
+            <span class="check">✓</span>
+            Retrouve ton apprentissage sur tes appareils
+          </li>
+
+          <li>
+            <span class="check">✓</span>
+            Découvre les fonctionnalités Premium
+          </li>
+
+        </ul>
+
+      </div>
+
+      <div class="piano-decoration">
+        <div class="piano-key"></div>
+        <div class="piano-key"></div>
+        <div class="piano-key black"></div>
+        <div class="piano-key"></div>
+        <div class="piano-key"></div>
+        <div class="piano-key"></div>
+        <div class="piano-key black"></div>
+        <div class="piano-key"></div>
+        <div class="piano-key"></div>
+        <div class="piano-key black"></div>
+        <div class="piano-key"></div>
+        <div class="piano-key"></div>
+        <div class="piano-key"></div>
+      </div>
+
+    </section>
+
+
+    <section class="form-section">
+
+      <div class="form-header">
+        <h2>Créer un compte</h2>
+        <p>
+          Rejoins Piano Academy gratuitement et commence ton apprentissage.
+        </p>
+      </div>
+
+      <div id="message" class="message"></div>
+
+      <form id="registerForm" novalidate>
+
+        <div class="form-group">
+          <label for="name">Nom complet</label>
+
+          <div class="input-wrapper">
+            <span class="input-icon">👤</span>
+
+            <input
+              type="text"
+              id="name"
+              name="name"
+              placeholder="Ton nom complet"
+              autocomplete="name"
+              required
+            >
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Adresse email</label>
+
+          <div class="input-wrapper">
+            <span class="input-icon">✉️</span>
+
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="exemple@email.com"
+              autocomplete="email"
+              required
+            >
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="password">Mot de passe</label>
+
+          <div class="input-wrapper">
+
+            <span class="input-icon">🔒</span>
+
+            <input
+              type="password"
+              id="password"
+              name="password"
+              placeholder="Créer un mot de passe"
+              autocomplete="new-password"
+              required
+            >
+
+            <button
+              type="button"
+              class="password-toggle"
+              id="togglePassword"
+              aria-label="Afficher le mot de passe"
+            >
+              👁️
+            </button>
+
+          </div>
+
+          <div class="password-strength" id="passwordStrength">
+
+            <div class="strength-bar">
+              <div
+                class="strength-fill"
+                id="strengthFill"
+              ></div>
+            </div>
+
+            <div
+              class="strength-text"
+              id="strengthText"
+            ></div>
+
+          </div>
+
+        </div>
+
+        <div class="form-group">
+          <label for="confirmPassword">Confirmer le mot de passe</label>
+
+          <div class="input-wrapper">
+
+            <span class="input-icon">🔐</span>
+
+            <input
+              type="password"
+              id="confirmPassword"
+              name="confirmPassword"
+              placeholder="Confirmer ton mot de passe"
+              autocomplete="new-password"
+              required
+            >
+
+            <button
+              type="button"
+              class="password-toggle"
+              id="toggleConfirmPassword"
+              aria-label="Afficher la confirmation du mot de passe"
+            >
+              👁️
+            </button>
+
+          </div>
+
+        </div>
+
+        <label class="terms">
+
+          <input
+            type="checkbox"
+            id="terms"
+            name="terms"
+          >
+
+          <span>
+            J'accepte les
+            <a href="#" onclick="return false;">
+              conditions d'utilisation
+            </a>
+            et la
+            <a href="#" onclick="return false;">
+              politique de confidentialité
+            </a>
+            de Piano Academy.
+          </span>
+
+        </label>
+
+        <button
+          type="submit"
+          class="submit-button"
+          id="submitButton"
+        >
+          Créer mon compte
+        </button>
+
+      </form>
+
+      <div class="login-link">
+        Tu as déjà un compte ?
+        <a href="connexion.html">Se connecter</a>
+      </div>
+
+      <div class="back-home">
+        <a href="index.html">
+          ← Retour à Piano Academy
+        </a>
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- =====================================================
+       SUPABASE
+  ====================================================== -->
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+
+  <script>
+
+    /* =====================================================
+       CONFIGURATION SUPABASE
+    ====================================================== */
+
+    const SUPABASE_URL =
+      "https://swsvnzjeipcobodntajs.supabase.co" 
+
+    const SUPABASE_KEY =
+      "sb_publishable_JrPeCn1LhCNHY3BJZ5iCEQ_mc2iqLpf";
+
+
+    const supabaseClient =
+      window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_KEY
+      );
+
+
+    /* =========================
+       ÉLÉMENTS
+    ========================== */
+
+    const form =
+      document.getElementById("registerForm");
+
+    const nameInput =
+      document.getElementById("name");
+
+    const emailInput =
+      document.getElementById("email");
+
+    const passwordInput =
+      document.getElementById("password");
+
+    const confirmPasswordInput =
+      document.getElementById("confirmPassword");
+
+    const termsInput =
+      document.getElementById("terms");
+
+    const message =
+      document.getElementById("message");
+
+    const submitButton =
+      document.getElementById("submitButton");
+
+    const togglePassword =
+      document.getElementById("togglePassword");
+
+    const toggleConfirmPassword =
+      document.getElementById("toggleConfirmPassword");
+
+    const passwordStrength =
+      document.getElementById("passwordStrength");
+
+    const strengthFill =
+      document.getElementById("strengthFill");
+
+    const strengthText =
+      document.getElementById("strengthText");
+
+
+    /* =========================
+       MOT DE PASSE
+    ========================== */
+
+    togglePassword.addEventListener(
+      "click",
+      function () {
+
+        if (passwordInput.type === "password") {
+
+          passwordInput.type = "text";
+          togglePassword.textContent = "🙈";
+
+        } else {
+
+          passwordInput.type = "password";
+          togglePassword.textContent = "👁️";
+
+        }
+
+      }
+    );
+
+
+    toggleConfirmPassword.addEventListener(
+      "click",
+      function () {
+
+        if (confirmPasswordInput.type === "password") {
+
+          confirmPasswordInput.type = "text";
+          toggleConfirmPassword.textContent = "🙈";
+
+        } else {
+
+          confirmPasswordInput.type = "password";
+          toggleConfirmPassword.textContent = "👁️";
+
+        }
+
+      }
+    );
+
+
+    /* =========================
+       FORCE MOT DE PASSE
+    ========================== */
+
+    passwordInput.addEventListener(
+      "input",
+      function () {
+
+        const password =
+          passwordInput.value;
+
+        if (!password) {
+
+          passwordStrength.style.display =
+            "none";
+
+          return;
+        }
+
+        passwordStrength.style.display =
+          "block";
+
+        let score = 0;
+
+        if (password.length >= 8) score++;
+
+        if (/[A-Z]/.test(password)) score++;
+
+        if (/[a-z]/.test(password)) score++;
+
+        if (/[0-9]/.test(password)) score++;
+
+        if (/[^A-Za-z0-9]/.test(password)) score++;
+
+        const percentage =
+          (score / 5) * 100;
+
+        strengthFill.style.width =
+          percentage + "%";
+
+
+        if (score <= 1) {
+
+          strengthText.textContent =
+            "Mot de passe très faible";
+
+        } else if (score === 2) {
+
+          strengthText.textContent =
+            "Mot de passe faible";
+
+        } else if (score === 3) {
+
+          strengthText.textContent =
+            "Mot de passe moyen";
+
+        } else if (score === 4) {
+
+          strengthText.textContent =
+            "Bon mot de passe";
+
+        } else {
+
+          strengthText.textContent =
+            "Mot de passe très sécurisé";
+
+        }
+
+      }
+    );
+
+
+    /* =========================
+       MESSAGES
+    ========================== */
+
+    function showMessage(text, type) {
+
+      message.textContent =
+        text;
+
+      message.className =
+        "message " + type;
+
+      message.scrollIntoView({
+        behavior: "smooth",
+        block: "nearest"
+      });
+
+    }
+
+
+    function clearMessage() {
+
+      message.textContent = "";
+
+      message.className =
+        "message";
+
+    }
+
+
+    /* =========================
+       EMAIL
+    ========================== */
+
+    function isValidEmail(email) {
+
+      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+        .test(email);
+
+    }
+
+
+    /* =====================================================
+       INSCRIPTION SUPABASE
+    ====================================================== */
+
+    form.addEventListener(
+      "submit",
+      async function (event) {
+
+        event.preventDefault();
+
+        clearMessage();
+
+
+        const name =
+          nameInput.value.trim();
+
+        const email =
+          emailInput.value
+            .trim()
+            .toLowerCase();
+
+        const password =
+          passwordInput.value;
+
+        const confirmPassword =
+          confirmPasswordInput.value;
+
+
+        /* NOM */
+
+        if (name.length < 2) {
+
+          showMessage(
+            "Veuillez entrer votre nom complet.",
+            "error"
+          );
+
+          nameInput.focus();
+
+          return;
+
+        }
+
+
+        /* EMAIL */
+
+        if (!isValidEmail(email)) {
+
+          showMessage(
+            "Veuillez entrer une adresse email valide.",
+            "error"
+          );
+
+          emailInput.focus();
+
+          return;
+
+        }
+
+
+        /* MOT DE PASSE */
+
+        if (password.length < 8) {
+
+          showMessage(
+            "Le mot de passe doit contenir au moins 8 caractères.",
+            "error"
+          );
+
+          passwordInput.focus();
+
+          return;
+
+        }
+
+
+        /* CONFIRMATION */
+
+        if (password !== confirmPassword) {
+
+          showMessage(
+            "Les deux mots de passe ne correspondent pas.",
+            "error"
+          );
+
+          confirmPasswordInput.focus();
+
+          return;
+
+        }
+
+
+        /* CONDITIONS */
+
+        if (!termsInput.checked) {
+
+          showMessage(
+            "Veuillez accepter les conditions d'utilisation.",
+            "error"
+          );
+
+          return;
+
+        }
+
+
+        /* =========================
+           BOUTON
+        ========================== */
+
+        submitButton.disabled = true;
+
+        submitButton.textContent =
+          "Création du compte...";
+
+
+        try {
+
+          /* =========================
+             CRÉATION DU COMPTE AUTH
+          ========================== */
+
+          const {
+            data,
+            error
+          } =
+            await supabaseClient.auth.signUp({
+
+              email: email,
+
+              password: password,
+
+              options: {
+
+                data: {
+                  name: name
+                }
+
+              }
+
+            });
+
+
+          if (error) {
+
+            throw error;
+
+          }
+
+
+          if (!data.user) {
+
+            throw new Error(
+              "Impossible de créer le compte."
+            );
+
+          }
+
+
+          /*
+            Le trigger PostgreSQL créé
+            précédemment va automatiquement
+            créer la ligne correspondante
+            dans public.profiles.
+          */
+
+
+          /* =========================
+             SUCCÈS
+          ========================== */
+
+          submitButton.textContent =
+            "Compte créé ✓";
+
+
+          showMessage(
+            "Compte créé avec succès ! Vérifie ton adresse email si une confirmation est demandée.",
+            "success"
+          );
+
+
+          /*
+            IMPORTANT :
+
+            Nous ne sauvegardons PAS le mot
+            de passe dans localStorage.
+
+            Supabase Auth s'occupe de
+            l'authentification.
+          */
+
+
+          /*
+            Si Supabase confirme automatiquement
+            l'utilisateur, une session existe.
+
+            Sinon, l'utilisateur doit confirmer
+            son adresse email.
+          */
+
+
+          setTimeout(
+            function () {
+
+              window.location.href =
+                "dashboard.html";
+
+            },
+            1800
+          );
+
+
+        } catch (error) {
+
+          console.error(
+            "Erreur inscription Supabase:",
+            error
+          );
+
+
+          let errorMessage =
+            "Une erreur est survenue lors de la création du compte.";
+
+
+          const errorText =
+            String(
+              error.message || ""
+            ).toLowerCase();
+
+
+          if (
+            errorText.includes(
+              "already registered"
+            ) ||
+            errorText.includes(
+              "already exists"
+            )
+          ) {
+
+            errorMessage =
+              "Cette adresse email possède déjà un compte.";
+
+          } else if (
+            errorText.includes(
+              "invalid email"
+            )
+          ) {
+
+            errorMessage =
+              "L'adresse email n'est pas valide.";
+
+          } else if (
+            errorText.includes(
+              "password"
+            )
+          ) {
+
+            errorMessage =
+              "Le mot de passe ne respecte pas les règles requises.";
+
+          }
+
+
+          showMessage(
+            errorMessage,
+            "error"
+          );
+
+
+          submitButton.disabled =
+            false;
+
+          submitButton.textContent =
+            "Créer mon compte";
+
+        }
+
+      }
+    );
+
+  </script>
+
+</body>
+</html>
