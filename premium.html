@@ -1,0 +1,2909 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Piano Academy Premium</title>
+
+<meta
+  name="description"
+  content="Piano Academy Premium — débloquez toutes les fonctionnalités."
+>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<style>
+
+/* =========================
+   RESET
+========================= */
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+:root{
+
+  --primary:#6c5ce7;
+  --primary-dark:#5848d6;
+  --secondary:#00cec9;
+
+  --gold:#f5b942;
+  --gold-dark:#d99a20;
+
+  --background:#f5f6fa;
+  --card:#ffffff;
+  --soft:#fafbfe;
+
+  --text:#1e1e2f;
+  --muted:#777b8a;
+
+  --border:#e2e4ec;
+
+  --success:#00b894;
+  --danger:#e74c3c;
+
+  --shadow:
+    0 12px 35px rgba(25,25,50,.08);
+
+}
+
+
+/* =========================
+   MODE SOMBRE
+========================= */
+
+body.dark{
+
+  --background:#11121a;
+  --card:#1b1d28;
+  --soft:#222531;
+
+  --text:#f5f5fa;
+  --muted:#a7a9b7;
+
+  --border:#303342;
+
+  --shadow:
+    0 12px 35px rgba(0,0,0,.25);
+
+}
+
+
+/* =========================
+   BODY
+========================= */
+
+body{
+
+  min-height:100vh;
+
+  font-family:
+    Arial,
+    Helvetica,
+    sans-serif;
+
+  background:var(--background);
+
+  color:var(--text);
+
+  transition:.25s;
+
+}
+
+
+button{
+
+  font-family:inherit;
+  cursor:pointer;
+
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+.header{
+
+  position:sticky;
+
+  top:0;
+
+  z-index:100;
+
+  height:70px;
+
+  background:var(--card);
+
+  border-bottom:
+    1px solid var(--border);
+
+}
+
+
+.header-inner{
+
+  width:100%;
+
+  max-width:1150px;
+
+  height:100%;
+
+  margin:auto;
+
+  padding:
+    0 20px;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:space-between;
+
+}
+
+
+.header-left{
+
+  display:flex;
+
+  align-items:center;
+
+  gap:13px;
+
+}
+
+
+.menu-button,
+.theme-button{
+
+  width:42px;
+  height:42px;
+
+  border:none;
+
+  border-radius:11px;
+
+  background:var(--soft);
+
+  color:var(--text);
+
+  font-size:20px;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+}
+
+
+.menu-button:hover,
+.theme-button:hover{
+
+  background:#eeeaff;
+
+  color:var(--primary);
+
+}
+
+
+.brand{
+
+  display:flex;
+
+  align-items:center;
+
+  gap:10px;
+
+}
+
+
+.brand-icon{
+
+  width:40px;
+  height:40px;
+
+  border-radius:11px;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--primary),
+      var(--primary-dark)
+    );
+
+  color:white;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  font-size:20px;
+
+}
+
+
+.brand-name{
+
+  font-size:18px;
+
+  font-weight:800;
+
+}
+
+
+/* =========================
+   MENU
+========================= */
+
+.menu-overlay{
+
+  position:fixed;
+
+  inset:0;
+
+  z-index:199;
+
+  background:
+    rgba(0,0,0,.45);
+
+  display:none;
+
+}
+
+
+.menu-overlay.active{
+
+  display:block;
+
+}
+
+
+.side-menu{
+
+  position:fixed;
+
+  top:0;
+
+  left:-310px;
+
+  z-index:200;
+
+  width:290px;
+
+  height:100vh;
+
+  background:var(--card);
+
+  border-right:
+    1px solid var(--border);
+
+  box-shadow:
+    10px 0 35px rgba(0,0,0,.15);
+
+  transition:
+    left .25s ease;
+
+  display:flex;
+
+  flex-direction:column;
+
+}
+
+
+.side-menu.open{
+
+  left:0;
+
+}
+
+
+.menu-header{
+
+  height:80px;
+
+  padding:
+    0 20px;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:space-between;
+
+  border-bottom:
+    1px solid var(--border);
+
+}
+
+
+.menu-brand{
+
+  display:flex;
+
+  align-items:center;
+
+  gap:10px;
+
+}
+
+
+.menu-brand-icon{
+
+  width:40px;
+  height:40px;
+
+  border-radius:11px;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--primary),
+      var(--primary-dark)
+    );
+
+  color:white;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  font-size:20px;
+
+}
+
+
+.menu-brand strong{
+
+  font-size:16px;
+
+}
+
+
+.close-menu{
+
+  width:38px;
+  height:38px;
+
+  border:none;
+
+  border-radius:10px;
+
+  background:var(--soft);
+
+  color:var(--text);
+
+  font-size:21px;
+
+}
+
+
+.menu-user{
+
+  padding:20px;
+
+  border-bottom:
+    1px solid var(--border);
+
+}
+
+
+.menu-user-avatar{
+
+  width:45px;
+  height:45px;
+
+  border-radius:50%;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--primary),
+      var(--secondary)
+    );
+
+  color:white;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  font-weight:800;
+
+  margin-bottom:9px;
+
+}
+
+
+.menu-user-name{
+
+  font-weight:800;
+
+  font-size:14px;
+
+  margin-bottom:3px;
+
+}
+
+
+.menu-user-email{
+
+  color:var(--muted);
+
+  font-size:11px;
+
+  word-break:break-all;
+
+}
+
+
+.menu-items{
+
+  padding:15px 12px;
+
+  display:grid;
+
+  gap:5px;
+
+}
+
+
+.menu-item{
+
+  width:100%;
+
+  min-height:46px;
+
+  border:none;
+
+  border-radius:10px;
+
+  background:transparent;
+
+  color:var(--text);
+
+  display:flex;
+
+  align-items:center;
+
+  gap:13px;
+
+  padding:
+    0 13px;
+
+  text-align:left;
+
+  font-size:13px;
+
+  font-weight:600;
+
+}
+
+
+.menu-item:hover{
+
+  background:#eeeaff;
+
+  color:var(--primary);
+
+}
+
+
+.menu-icon{
+
+  width:25px;
+
+  text-align:center;
+
+  font-size:17px;
+
+}
+
+
+.menu-bottom{
+
+  margin-top:auto;
+
+  padding:
+    15px 12px 20px;
+
+  border-top:
+    1px solid var(--border);
+
+}
+
+
+.logout-item{
+
+  color:var(--danger);
+
+}
+
+
+.logout-item:hover{
+
+  background:#fff0ef;
+
+  color:#c0392b;
+
+}
+
+
+/* =========================
+   MAIN
+========================= */
+
+.container{
+
+  width:100%;
+
+  max-width:1100px;
+
+  margin:auto;
+
+  padding:
+    35px 20px 65px;
+
+}
+
+
+/* =========================
+   HERO PREMIUM
+========================= */
+
+.hero{
+
+  position:relative;
+
+  overflow:hidden;
+
+  border-radius:24px;
+
+  padding:
+    45px 35px;
+
+  color:white;
+
+  background:
+    linear-gradient(
+      135deg,
+      #6c5ce7,
+      #4834b4
+    );
+
+  box-shadow:
+    0 18px 45px
+    rgba(108,92,231,.25);
+
+  margin-bottom:25px;
+
+}
+
+
+.hero::before{
+
+  content:"";
+
+  position:absolute;
+
+  width:300px;
+  height:300px;
+
+  border-radius:50%;
+
+  background:
+    rgba(255,255,255,.07);
+
+  top:-150px;
+  right:-80px;
+
+}
+
+
+.hero::after{
+
+  content:"";
+
+  position:absolute;
+
+  width:250px;
+  height:250px;
+
+  border-radius:50%;
+
+  background:
+    rgba(0,206,201,.08);
+
+  bottom:-150px;
+  left:-70px;
+
+}
+
+
+.hero-content{
+
+  position:relative;
+
+  z-index:2;
+
+  max-width:700px;
+
+}
+
+
+.premium-badge{
+
+  display:inline-flex;
+
+  align-items:center;
+
+  gap:7px;
+
+  padding:
+    8px 13px;
+
+  border-radius:30px;
+
+  background:
+    rgba(255,255,255,.14);
+
+  border:
+    1px solid
+    rgba(255,255,255,.16);
+
+  font-size:12px;
+
+  font-weight:800;
+
+  margin-bottom:18px;
+
+}
+
+
+.hero h1{
+
+  font-size:42px;
+
+  line-height:1.12;
+
+  margin-bottom:15px;
+
+}
+
+
+.hero h1 span{
+
+  color:#ffe29a;
+
+}
+
+
+.hero p{
+
+  color:
+    rgba(255,255,255,.84);
+
+  line-height:1.7;
+
+  font-size:15px;
+
+  max-width:650px;
+
+}
+
+
+/* =========================
+   PLAN ACTUEL
+========================= */
+
+.current-plan{
+
+  margin-top:25px;
+
+  padding:14px 16px;
+
+  border-radius:13px;
+
+  background:
+    rgba(255,255,255,.12);
+
+  display:inline-flex;
+
+  align-items:center;
+
+  gap:10px;
+
+  font-size:13px;
+
+}
+
+
+.current-plan strong{
+
+  color:#ffe29a;
+
+}
+
+
+/* =========================
+   SECTION TITLE
+========================= */
+
+.section-title{
+
+  text-align:center;
+
+  margin:
+    35px 0 20px;
+
+}
+
+
+.section-title h2{
+
+  font-size:26px;
+
+  margin-bottom:7px;
+
+}
+
+
+.section-title p{
+
+  color:var(--muted);
+
+  font-size:13px;
+
+}
+
+
+/* =========================
+   PLANS
+========================= */
+
+.plans{
+
+  display:grid;
+
+  grid-template-columns:
+    repeat(2,1fr);
+
+  gap:20px;
+
+}
+
+
+/* =========================
+   PLAN CARD
+========================= */
+
+.plan-card{
+
+  position:relative;
+
+  background:var(--card);
+
+  border:
+    1px solid var(--border);
+
+  border-radius:20px;
+
+  padding:28px;
+
+  box-shadow:var(--shadow);
+
+}
+
+
+.plan-card.premium{
+
+  border:
+    2px solid var(--gold);
+
+  box-shadow:
+    0 15px 40px
+    rgba(245,185,66,.15);
+
+}
+
+
+.popular{
+
+  position:absolute;
+
+  top:-12px;
+
+  right:20px;
+
+  padding:
+    6px 12px;
+
+  border-radius:20px;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--gold),
+      var(--gold-dark)
+    );
+
+  color:white;
+
+  font-size:10px;
+
+  font-weight:800;
+
+}
+
+
+.plan-header{
+
+  display:flex;
+
+  align-items:center;
+
+  gap:13px;
+
+  margin-bottom:20px;
+
+}
+
+
+.plan-icon{
+
+  width:48px;
+  height:48px;
+
+  border-radius:13px;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  font-size:23px;
+
+  background:var(--soft);
+
+}
+
+
+.premium .plan-icon{
+
+  background:
+    rgba(245,185,66,.13);
+
+}
+
+
+.plan-name{
+
+  font-size:20px;
+
+  font-weight:800;
+
+}
+
+
+.plan-description{
+
+  color:var(--muted);
+
+  font-size:12px;
+
+  margin-top:3px;
+
+}
+
+
+.plan-price{
+
+  margin-bottom:23px;
+
+}
+
+
+.price{
+
+  font-size:32px;
+
+  font-weight:900;
+
+}
+
+
+.price-small{
+
+  color:var(--muted);
+
+  font-size:12px;
+
+}
+
+
+.features{
+
+  list-style:none;
+
+  display:grid;
+
+  gap:13px;
+
+  margin-bottom:25px;
+
+}
+
+
+.features li{
+
+  display:flex;
+
+  align-items:flex-start;
+
+  gap:10px;
+
+  font-size:13px;
+
+  line-height:1.5;
+
+}
+
+
+.check{
+
+  width:23px;
+  height:23px;
+
+  flex-shrink:0;
+
+  border-radius:50%;
+
+  background:
+    rgba(0,184,148,.12);
+
+  color:var(--success);
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  font-size:12px;
+
+  font-weight:900;
+
+}
+
+
+.premium .check{
+
+  background:
+    rgba(245,185,66,.14);
+
+  color:
+    var(--gold-dark);
+
+}
+
+
+.disabled-feature{
+
+  color:var(--muted);
+
+}
+
+
+.disabled-feature .check{
+
+  background:
+    rgba(119,123,138,.10);
+
+  color:var(--muted);
+
+}
+
+
+/* =========================
+   BUTTONS
+========================= */
+
+.plan-button{
+
+  width:100%;
+
+  height:52px;
+
+  border:none;
+
+  border-radius:12px;
+
+  font-size:14px;
+
+  font-weight:800;
+
+}
+
+
+.free-button{
+
+  background:var(--soft);
+
+  color:var(--text);
+
+  border:
+    1px solid var(--border);
+
+}
+
+
+.premium-button{
+
+  color:white;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--gold),
+      var(--gold-dark)
+    );
+
+  box-shadow:
+    0 8px 20px
+    rgba(245,185,66,.22);
+
+}
+
+
+.premium-button:hover{
+
+  transform:translateY(-1px);
+
+}
+
+
+.premium-button:disabled{
+
+  opacity:.65;
+
+  cursor:not-allowed;
+
+  transform:none;
+
+}
+
+
+/* =========================
+   FEATURES PREMIUM
+========================= */
+
+.advanced-section{
+
+  margin-top:25px;
+
+  background:var(--card);
+
+  border:
+    1px solid var(--border);
+
+  border-radius:20px;
+
+  padding:28px;
+
+  box-shadow:var(--shadow);
+
+}
+
+
+.advanced-grid{
+
+  display:grid;
+
+  grid-template-columns:
+    repeat(4,1fr);
+
+  gap:13px;
+
+}
+
+
+.advanced-item{
+
+  padding:20px 15px;
+
+  border-radius:14px;
+
+  background:var(--soft);
+
+  border:
+    1px solid var(--border);
+
+  text-align:center;
+
+}
+
+
+.advanced-icon{
+
+  font-size:28px;
+
+  margin-bottom:10px;
+
+}
+
+
+.advanced-item h3{
+
+  font-size:13px;
+
+  margin-bottom:5px;
+
+}
+
+
+.advanced-item p{
+
+  color:var(--muted);
+
+  font-size:11px;
+
+  line-height:1.5;
+
+}
+
+
+/* =========================
+   GUIDE
+========================= */
+
+.guide-card{
+
+  margin-top:25px;
+
+  border-radius:20px;
+
+  padding:30px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(108,92,231,.10),
+      rgba(0,206,201,.07)
+    );
+
+  border:
+    1px solid
+    rgba(108,92,231,.18);
+
+}
+
+
+.guide-content{
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:space-between;
+
+  gap:25px;
+
+}
+
+
+.guide-left{
+
+  display:flex;
+
+  align-items:center;
+
+  gap:18px;
+
+}
+
+
+.guide-icon{
+
+  width:65px;
+  height:65px;
+
+  flex-shrink:0;
+
+  border-radius:17px;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--primary),
+      var(--primary-dark)
+    );
+
+  color:white;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  font-size:31px;
+
+}
+
+
+.guide-text h3{
+
+  font-size:18px;
+
+  margin-bottom:6px;
+
+}
+
+
+.guide-text p{
+
+  color:var(--muted);
+
+  font-size:12px;
+
+  line-height:1.5;
+
+}
+
+
+.guide-button{
+
+  height:45px;
+
+  padding:
+    0 18px;
+
+  border:none;
+
+  border-radius:10px;
+
+  background:var(--primary);
+
+  color:white;
+
+  font-size:12px;
+
+  font-weight:800;
+
+  white-space:nowrap;
+
+}
+
+
+/* =========================
+   MESSAGE
+========================= */
+
+.message{
+
+  display:none;
+
+  margin-bottom:20px;
+
+  padding:
+    13px 15px;
+
+  border-radius:11px;
+
+  font-size:13px;
+
+  line-height:1.5;
+
+}
+
+
+.message.success{
+
+  display:block;
+
+  background:#edfff8;
+
+  color:#008f70;
+
+  border:
+    1px solid #c9f5e6;
+
+}
+
+
+.message.error{
+
+  display:block;
+
+  background:#fff0ef;
+
+  color:#c0392b;
+
+  border:
+    1px solid #ffd5d1;
+
+}
+
+
+/* =========================
+   LOADING
+========================= */
+
+.loading{
+
+  position:fixed;
+
+  inset:0;
+
+  z-index:999;
+
+  background:var(--background);
+
+  display:flex;
+
+  flex-direction:column;
+
+  align-items:center;
+
+  justify-content:center;
+
+  gap:15px;
+
+}
+
+
+.loading-icon{
+
+  width:55px;
+  height:55px;
+
+  border-radius:15px;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--primary),
+      var(--primary-dark)
+    );
+
+  color:white;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  font-size:27px;
+
+}
+
+
+.loading-text{
+
+  color:var(--muted);
+
+  font-size:13px;
+
+}
+
+
+/* =========================
+   ACCESS MESSAGE
+========================= */
+
+.locked-message{
+
+  display:none;
+
+  padding:
+    20px;
+
+  border-radius:14px;
+
+  background:
+    rgba(245,185,66,.10);
+
+  border:
+    1px solid
+    rgba(245,185,66,.25);
+
+  color:var(--text);
+
+  font-size:13px;
+
+  line-height:1.6;
+
+  margin-top:20px;
+
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width:800px){
+
+  .plans{
+
+    grid-template-columns:1fr;
+
+  }
+
+
+  .advanced-grid{
+
+    grid-template-columns:
+      repeat(2,1fr);
+
+  }
+
+
+  .hero h1{
+
+    font-size:34px;
+
+  }
+
+
+  .guide-content{
+
+    align-items:flex-start;
+
+    flex-direction:column;
+
+  }
+
+
+  .guide-button{
+
+    width:100%;
+
+  }
+
+}
+
+
+@media(max-width:500px){
+
+  .container{
+
+    padding:
+      25px 15px 50px;
+
+  }
+
+
+  .hero{
+
+    padding:32px 23px;
+
+  }
+
+
+  .hero h1{
+
+    font-size:29px;
+
+  }
+
+
+  .hero p{
+
+    font-size:13px;
+
+  }
+
+
+  .plan-card{
+
+    padding:22px;
+
+  }
+
+
+  .advanced-grid{
+
+    grid-template-columns:1fr;
+
+  }
+
+
+  .advanced-section{
+
+    padding:22px;
+
+  }
+
+
+  .guide-card{
+
+    padding:22px;
+
+  }
+
+
+  .guide-left{
+
+    align-items:flex-start;
+
+  }
+
+
+  .brand-name{
+
+    font-size:16px;
+
+  }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     LOADING
+========================= -->
+
+<div
+  class="loading"
+  id="loading">
+
+  <div class="loading-icon">
+    🎹
+  </div>
+
+  <div class="loading-text">
+    Chargement de Piano Academy Premium...
+  </div>
+
+</div>
+
+
+<!-- =========================
+     MENU OVERLAY
+========================= -->
+
+<div
+  class="menu-overlay"
+  id="menuOverlay">
+</div>
+
+
+<!-- =========================
+     MENU
+========================= -->
+
+<aside
+  class="side-menu"
+  id="sideMenu">
+
+
+  <div class="menu-header">
+
+    <div class="menu-brand">
+
+      <div class="menu-brand-icon">
+        🎹
+      </div>
+
+      <strong>
+        Piano Academy
+      </strong>
+
+    </div>
+
+
+    <button
+      class="close-menu"
+      id="closeMenu">
+
+      ×
+
+    </button>
+
+  </div>
+
+
+  <div class="menu-user">
+
+    <div
+      class="menu-user-avatar"
+      id="menuAvatar">
+
+      ?
+
+    </div>
+
+
+    <div
+      class="menu-user-name"
+      id="menuName">
+
+      Utilisateur
+
+    </div>
+
+
+    <div
+      class="menu-user-email"
+      id="menuEmail">
+
+      —
+
+    </div>
+
+  </div>
+
+
+  <nav class="menu-items">
+
+
+    <button
+      class="menu-item"
+      onclick="goTo('dashboard.html')">
+
+      <span class="menu-icon">
+        🏠
+      </span>
+
+      Accueil
+
+    </button>
+
+
+    <button
+      class="menu-item"
+      onclick="goTo('index.html')">
+
+      <span class="menu-icon">
+        📚
+      </span>
+
+      Mes cours
+
+    </button>
+
+
+    <button
+      class="menu-item"
+      onclick="goTo('dashboard.html')">
+
+      <span class="menu-icon">
+        📊
+      </span>
+
+      Ma progression
+
+    </button>
+
+
+    <button
+      class="menu-item"
+      onclick="closeMenu()">
+
+      <span class="menu-icon">
+        ⭐
+      </span>
+
+      Premium
+
+    </button>
+
+
+    <button
+      class="menu-item"
+      onclick="goTo('profil.html')">
+
+      <span class="menu-icon">
+        👤
+      </span>
+
+      Mon profil
+
+    </button>
+
+
+  </nav>
+
+
+  <div class="menu-bottom">
+
+    <button
+      class="menu-item logout-item"
+      id="logoutButton">
+
+      <span class="menu-icon">
+        🚪
+      </span>
+
+      Déconnexion
+
+    </button>
+
+  </div>
+
+</aside>
+
+
+<!-- =========================
+     APPLICATION
+========================= -->
+
+<div id="app">
+
+
+<!-- =========================
+     HEADER
+========================= -->
+
+<header class="header">
+
+  <div class="header-inner">
+
+
+    <div class="header-left">
+
+
+      <button
+        class="menu-button"
+        id="menuButton">
+
+        ☰
+
+      </button>
+
+
+      <div class="brand">
+
+        <div class="brand-icon">
+          🎹
+        </div>
+
+        <div class="brand-name">
+          Piano Academy
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <button
+      class="theme-button"
+      id="themeButton">
+
+      🌙
+
+    </button>
+
+
+  </div>
+
+</header>
+
+
+<!-- =========================
+     CONTENU
+========================= -->
+
+<main class="container">
+
+
+<!-- HERO -->
+
+<section class="hero">
+
+  <div class="hero-content">
+
+
+    <div class="premium-badge">
+
+      ⭐ Piano Academy Premium
+
+    </div>
+
+
+    <h1>
+
+      Passe au niveau
+      <span>supérieur.</span>
+
+    </h1>
+
+
+    <p>
+
+      Débloque toute l'expérience Piano Academy :
+      le guide complet du piano, les fonctionnalités
+      avancées et tous les contenus réservés aux abonnés.
+
+    </p>
+
+
+    <div class="current-plan">
+
+      Ton plan actuel :
+
+      <strong id="currentPlan">
+        Chargement...
+      </strong>
+
+    </div>
+
+
+  </div>
+
+</section>
+
+
+<!-- MESSAGE -->
+
+<div
+  class="message"
+  id="message">
+</div>
+
+
+<!-- PLANS -->
+
+<div class="section-title">
+
+  <h2>
+    Choisis ton expérience
+  </h2>
+
+  <p>
+    Commence gratuitement ou débloque toute l'Académie.
+  </p>
+
+</div>
+
+
+<section class="plans">
+
+
+<!-- FREE -->
+
+<article class="plan-card">
+
+  <div class="plan-header">
+
+    <div class="plan-icon">
+      🆓
+    </div>
+
+    <div>
+
+      <div class="plan-name">
+        Free
+      </div>
+
+      <div class="plan-description">
+        Pour commencer
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <div class="plan-price">
+
+    <span class="price">
+      Gratuit
+    </span>
+
+  </div>
+
+
+  <ul class="features">
+
+
+    <li>
+
+      <span class="check">
+        ✓
+      </span>
+
+      Fonctions gratuites
+
+    </li>
+
+
+    <li>
+
+      <span class="check">
+        ✓
+      </span>
+
+      Progression sauvegardée
+
+    </li>
+
+
+    <li>
+
+      <span class="check">
+        ✓
+      </span>
+
+      Profil utilisateur
+
+    </li>
+
+
+    <li>
+
+      <span class="check">
+        ✓
+      </span>
+
+      Cours gratuits limités
+
+    </li>
+
+
+    <li class="disabled-feature">
+
+      <span class="check">
+        —
+      </span>
+
+      Guide complet du piano
+
+    </li>
+
+
+    <li class="disabled-feature">
+
+      <span class="check">
+        —
+      </span>
+
+      Fonctionnalités avancées
+
+    </li>
+
+
+    <li class="disabled-feature">
+
+      <span class="check">
+        —
+      </span>
+
+      Contenu réservé aux abonnés
+
+    </li>
+
+
+  </ul>
+
+
+  <button
+    class="plan-button free-button"
+    id="freeButton">
+
+    Plan actuel
+
+  </button>
+
+</article>
+
+
+<!-- PREMIUM -->
+
+<article class="plan-card premium">
+
+
+  <div class="popular">
+    RECOMMANDÉ
+  </div>
+
+
+  <div class="plan-header">
+
+    <div class="plan-icon">
+      ⭐
+    </div>
+
+    <div>
+
+      <div class="plan-name">
+        Premium
+      </div>
+
+      <div class="plan-description">
+        Pour apprendre sans limites
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <div class="plan-price">
+
+    <span class="price">
+      Premium
+    </span>
+
+    <span class="price-small">
+      accès complet
+    </span>
+
+  </div>
+
+
+  <ul class="features">
+
+
+    <li>
+
+      <span class="check">
+        ✓
+      </span>
+
+      Toutes les fonctionnalités
+
+    </li>
+
+
+    <li>
+
+      <span class="check">
+        ✓
+      </span>
+
+      Guide complet du piano
+
+    </li>
+
+
+    <li>
+
+      <span class="check">
+        ✓
+      </span>
+
+      Fonctionnalités avancées
+
+    </li>
+
+
+    <li>
+
+      <span class="check">
+        ✓
+      </span>
+
+      Contenu réservé aux abonnés
+
+    </li>
+
+
+    <li>
+
+      <span class="check">
+        ✓
+      </span>
+
+      Progression complète
+
+    </li>
+
+
+    <li>
+
+      <span class="check">
+        ✓
+      </span>
+
+      Expérience Piano Academy complète
+
+    </li>
+
+
+  </ul>
+
+
+  <button
+    class="plan-button premium-button"
+    id="premiumButton">
+
+    ⭐ Passer à Premium
+
+  </button>
+
+
+  <div
+    class="locked-message"
+    id="lockedMessage">
+
+    Le paiement Premium sera connecté
+    dans la prochaine étape. Ton compte reste
+    actuellement sur le plan Free.
+
+  </div>
+
+
+</article>
+
+
+</section>
+
+
+<!-- =========================
+     FONCTIONNALITÉS AVANCÉES
+========================= -->
+
+<section class="advanced-section">
+
+
+  <div class="section-title">
+
+    <h2>
+      Ce que Premium débloque
+    </h2>
+
+    <p>
+      Une expérience complète pour progresser au piano.
+    </p>
+
+  </div>
+
+
+  <div class="advanced-grid">
+
+
+    <div class="advanced-item">
+
+      <div class="advanced-icon">
+        📖
+      </div>
+
+      <h3>
+        Guide complet
+      </h3>
+
+      <p>
+        Accède au guide complet
+        du piano.
+      </p>
+
+    </div>
+
+
+    <div class="advanced-item">
+
+      <div class="advanced-icon">
+        🎹
+      </div>
+
+      <h3>
+        Cours complets
+      </h3>
+
+      <p>
+        Débloque les contenus
+        réservés aux abonnés.
+      </p>
+
+    </div>
+
+
+    <div class="advanced-item">
+
+      <div class="advanced-icon">
+        📊
+      </div>
+
+      <h3>
+        Progression avancée
+      </h3>
+
+      <p>
+        Suis ton apprentissage
+        de manière approfondie.
+      </p>
+
+    </div>
+
+
+    <div class="advanced-item">
+
+      <div class="advanced-icon">
+        🚀
+      </div>
+
+      <h3>
+        Fonctionnalités Pro
+      </h3>
+
+      <p>
+        Utilise les fonctionnalités
+        avancées de Piano Academy.
+      </p>
+
+    </div>
+
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     GUIDE COMPLET
+========================= -->
+
+<section class="guide-card">
+
+
+  <div class="guide-content">
+
+
+    <div class="guide-left">
+
+
+      <div class="guide-icon">
+        📚
+      </div>
+
+
+      <div class="guide-text">
+
+        <h3>
+          Guide complet du piano
+        </h3>
+
+        <p>
+
+          Un parcours structuré pour apprendre
+          progressivement la théorie et la pratique
+          du piano.
+
+        </p>
+
+      </div>
+
+
+    </div>
+
+
+    <button
+      class="guide-button"
+      id="guideButton">
+
+      🔒 Réservé Premium
+
+    </button>
+
+
+  </div>
+
+</section>
+
+
+</main>
+
+</div>
+
+
+<script>
+
+/* =====================================================
+   SUPABASE
+===================================================== */
+
+const SUPABASE_URL =
+  "https://swsvnzjeipcobodntajs.supabase.co";
+
+
+const SUPABASE_KEY =
+  "sb_publishable_JrPeCn1LhCNHY3BJZ5iCEQ_mc2iqLpf";
+
+
+const supabaseClient =
+  window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+  );
+
+
+/* =====================================================
+   ÉLÉMENTS
+===================================================== */
+
+const loading =
+  document.getElementById("loading");
+
+const app =
+  document.getElementById("app");
+
+const currentPlan =
+  document.getElementById("currentPlan");
+
+const premiumButton =
+  document.getElementById("premiumButton");
+
+const freeButton =
+  document.getElementById("freeButton");
+
+const message =
+  document.getElementById("message");
+
+const lockedMessage =
+  document.getElementById("lockedMessage");
+
+
+let currentUser = null;
+
+let userPlan = "free";
+
+
+/* =====================================================
+   THÈME
+===================================================== */
+
+const themeButton =
+  document.getElementById("themeButton");
+
+
+function applyTheme(){
+
+  const theme =
+    localStorage.getItem(
+      "pianoAcademyTheme"
+    );
+
+
+  if(theme === "dark"){
+
+    document.body.classList.add("dark");
+
+    themeButton.textContent =
+      "☀️";
+
+  }else{
+
+    document.body.classList.remove("dark");
+
+    themeButton.textContent =
+      "🌙";
+
+  }
+
+}
+
+
+themeButton.addEventListener(
+  "click",
+  function(){
+
+    const dark =
+      document.body.classList.contains(
+        "dark"
+      );
+
+
+    if(dark){
+
+      document.body.classList.remove(
+        "dark"
+      );
+
+      localStorage.setItem(
+        "pianoAcademyTheme",
+        "light"
+      );
+
+      themeButton.textContent =
+        "🌙";
+
+    }else{
+
+      document.body.classList.add(
+        "dark"
+      );
+
+      localStorage.setItem(
+        "pianoAcademyTheme",
+        "dark"
+      );
+
+      themeButton.textContent =
+        "☀️";
+
+    }
+
+  }
+);
+
+
+applyTheme();
+
+
+/* =====================================================
+   MENU
+===================================================== */
+
+const sideMenu =
+  document.getElementById("sideMenu");
+
+const menuOverlay =
+  document.getElementById("menuOverlay");
+
+const menuButton =
+  document.getElementById("menuButton");
+
+const closeMenuButton =
+  document.getElementById("closeMenu");
+
+
+function openMenu(){
+
+  sideMenu.classList.add(
+    "open"
+  );
+
+  menuOverlay.classList.add(
+    "active"
+  );
+
+}
+
+
+function closeMenu(){
+
+  sideMenu.classList.remove(
+    "open"
+  );
+
+  menuOverlay.classList.remove(
+    "active"
+  );
+
+}
+
+
+menuButton.addEventListener(
+  "click",
+  openMenu
+);
+
+
+closeMenuButton.addEventListener(
+  "click",
+  closeMenu
+);
+
+
+menuOverlay.addEventListener(
+  "click",
+  closeMenu
+);
+
+
+/* =====================================================
+   NAVIGATION
+===================================================== */
+
+function goTo(page){
+
+  closeMenu();
+
+  window.location.href =
+    page;
+
+}
+
+
+/* =====================================================
+   MESSAGE
+===================================================== */
+
+function showMessage(
+  text,
+  type
+){
+
+  message.textContent =
+    text;
+
+  message.className =
+    "message " + type;
+
+}
+
+
+/* =====================================================
+   INITIAL
+===================================================== */
+
+function getInitial(name){
+
+  if(!name){
+
+    return "?";
+
+  }
+
+  return name
+    .trim()
+    .charAt(0)
+    .toUpperCase();
+
+}
+
+
+/* =====================================================
+   CHARGER UTILISATEUR
+===================================================== */
+
+async function loadUser(){
+
+  try{
+
+
+    const {
+      data:sessionData,
+      error:sessionError
+    } =
+      await supabaseClient.auth.getSession();
+
+
+    if(sessionError){
+
+      throw sessionError;
+
+    }
+
+
+    const session =
+      sessionData.session;
+
+
+    if(!session){
+
+      window.location.href =
+        "connexion.html";
+
+      return;
+
+    }
+
+
+    currentUser =
+      session.user;
+
+
+    /* =========================
+       PROFIL
+    ========================== */
+
+    const {
+      data:profile,
+      error:profileError
+    } =
+      await supabaseClient
+
+      .from("profiles")
+
+      .select(
+        "name,email,plan"
+      )
+
+      .eq(
+        "id",
+        currentUser.id
+      )
+
+      .maybeSingle();
+
+
+    if(profileError){
+
+      throw profileError;
+
+    }
+
+
+    const name =
+      profile?.name ||
+      currentUser.user_metadata?.name ||
+      "Utilisateur";
+
+
+    const email =
+      profile?.email ||
+      currentUser.email ||
+      "";
+
+
+    userPlan =
+      profile?.plan ||
+      "free";
+
+
+    userPlan =
+      String(userPlan)
+      .toLowerCase();
+
+
+    /* =========================
+       MENU
+    ========================== */
+
+    document.getElementById(
+      "menuAvatar"
+    ).textContent =
+      getInitial(name);
+
+
+    document.getElementById(
+      "menuName"
+    ).textContent =
+      name;
+
+
+    document.getElementById(
+      "menuEmail"
+    ).textContent =
+      email;
+
+
+    /* =========================
+       PLAN
+    ========================== */
+
+    if(
+      userPlan === "premium"
+    ){
+
+      currentPlan.textContent =
+        "Premium ⭐";
+
+      premiumButton.textContent =
+        "✓ Vous êtes Premium";
+
+      premiumButton.disabled =
+        true;
+
+      freeButton.textContent =
+        "Plan Free";
+
+      lockedMessage.style.display =
+        "none";
+
+    }else{
+
+      currentPlan.textContent =
+        "Free 🆓";
+
+      premiumButton.textContent =
+        "⭐ Passer à Premium";
+
+      premiumButton.disabled =
+        false;
+
+      freeButton.textContent =
+        "Plan actuel";
+
+    }
+
+
+    loading.style.display =
+      "none";
+
+    app.style.display =
+      "block";
+
+
+  }catch(error){
+
+    console.error(
+      "Erreur chargement Premium :",
+      error
+    );
+
+
+    loading.style.display =
+      "none";
+
+
+    showMessage(
+      "Impossible de charger votre compte. Vérifiez votre connexion.",
+      "error"
+    );
+
+  }
+
+}
+
+
+/* =====================================================
+   BOUTON PREMIUM
+===================================================== */
+
+premiumButton.addEventListener(
+  "click",
+  function(){
+
+    if(
+      userPlan === "premium"
+    ){
+
+      return;
+
+    }
+
+
+    lockedMessage.style.display =
+      "block";
+
+
+    showMessage(
+      "Le système de paiement Premium sera connecté dans la prochaine étape.",
+      "success"
+    );
+
+
+    lockedMessage.scrollIntoView({
+      behavior:"smooth",
+      block:"center"
+    });
+
+  }
+);
+
+
+/* =====================================================
+   GUIDE
+===================================================== */
+
+document
+.getElementById("guideButton")
+.addEventListener(
+  "click",
+  function(){
+
+    if(
+      userPlan !== "premium"
+    ){
+
+      showMessage(
+        "🔒 Le Guide complet du piano est réservé aux abonnés Premium.",
+        "error"
+      );
+
+      return;
+
+    }
+
+
+    /*
+      Le vrai guide sera connecté
+      ici lorsque sa protection
+      Premium sera mise en place.
+    */
+
+    window.location.href =
+      "guide.html";
+
+  }
+);
+
+
+/* =====================================================
+   DÉCONNEXION
+===================================================== */
+
+document
+.getElementById("logoutButton")
+.addEventListener(
+  "click",
+  async function(){
+
+    const confirmed =
+      confirm(
+        "Voulez-vous vraiment vous déconnecter ?"
+      );
+
+
+    if(!confirmed){
+
+      return;
+
+    }
+
+
+    try{
+
+      const {
+        error
+      } =
+        await supabaseClient.auth.signOut();
+
+
+      if(error){
+
+        throw error;
+
+      }
+
+
+      window.location.href =
+        "connexion.html";
+
+
+    }catch(error){
+
+      console.error(
+        "Erreur déconnexion :",
+        error
+      );
+
+
+      alert(
+        "Impossible de vous déconnecter. Veuillez réessayer."
+      );
+
+    }
+
+  }
+);
+
+
+/* =====================================================
+   SESSION
+===================================================== */
+
+supabaseClient.auth.onAuthStateChange(
+  function(
+    event
+  ){
+
+    if(
+      event === "SIGNED_OUT"
+    ){
+
+      window.location.href =
+        "connexion.html";
+
+    }
+
+  }
+);
+
+
+/* =====================================================
+   DÉMARRAGE
+===================================================== */
+
+loadUser();
+
+</script>
+
+</body>
+</html>
