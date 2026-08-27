@@ -567,6 +567,71 @@ button{
 
 
 /* =========================
+   GUIDE PREMIUM
+========================= */
+
+.premium-guide-card{
+  position:relative;
+  overflow:hidden;
+  margin-bottom:25px;
+  background:linear-gradient(135deg,#17152f,#30266b);
+  color:white;
+  border:none;
+}
+
+.premium-guide-card:after{
+  content:"🎹";
+  position:absolute;
+  right:25px;
+  top:15px;
+  font-size:90px;
+  opacity:.08;
+}
+
+.premium-guide-content{
+  position:relative;
+  z-index:2;
+}
+
+.premium-label{
+  display:inline-flex;
+  padding:6px 10px;
+  border-radius:20px;
+  background:rgba(255,255,255,.12);
+  font-size:10px;
+  font-weight:800;
+  margin-bottom:12px;
+}
+
+.premium-guide-card h3{
+  font-size:21px;
+  margin-bottom:8px;
+}
+
+.premium-guide-card p{
+  color:rgba(255,255,255,.72);
+  font-size:12px;
+  line-height:1.6;
+  max-width:650px;
+  margin-bottom:17px;
+}
+
+.guide-button{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-height:43px;
+  padding:0 18px;
+  border-radius:10px;
+  background:white;
+  color:#5848d6;
+  text-decoration:none;
+  font-size:12px;
+  font-weight:800;
+}
+
+
+/* =========================
    COURS
 ========================= */
 
@@ -669,7 +734,8 @@ button{
 }
 
 .goal-check{
-  color:var(--success);
+  color:var(--primary);
+  font-size:20px;
 }
 
 
@@ -837,6 +903,10 @@ button{
     grid-template-columns:1fr;
   }
 
+  .premium-guide-card{
+    padding:20px;
+  }
+
 }
 
 @media(max-width:430px){
@@ -897,7 +967,6 @@ button{
   class="side-menu"
   id="sideMenu">
 
-
   <div class="menu-header">
 
     <div class="menu-brand">
@@ -946,7 +1015,6 @@ button{
 
   <nav class="menu-items">
 
-
     <button
       class="menu-item"
       onclick="goTo('index.html')">
@@ -988,7 +1056,7 @@ button{
 
     <button
       class="menu-item"
-      onclick="showPremium()">
+      onclick="openPremiumPage()">
 
       <span class="menu-icon">
         ⭐
@@ -1023,7 +1091,6 @@ button{
       Paramètres
 
     </button>
-
 
   </nav>
 
@@ -1086,14 +1153,11 @@ button{
 
 <div id="app">
 
-
 <header class="header">
 
   <div class="header-inner">
 
-
     <div class="header-left">
-
 
       <button
         class="menu-button"
@@ -1117,11 +1181,8 @@ button{
 
       </div>
 
-
     </div>
 
-
-    <!-- MODE SOMBRE -->
 
     <button
       class="theme-button"
@@ -1131,7 +1192,6 @@ button{
       🌙
 
     </button>
-
 
   </div>
 
@@ -1377,7 +1437,8 @@ button{
 
   <button
     class="premium-button"
-    onclick="showPremium()">
+    id="premiumButton"
+    onclick="openPremiumPage()">
 
     Découvrir Premium
 
@@ -1385,6 +1446,42 @@ button{
 
 </div>
 
+
+</section>
+
+
+<!-- =========================
+     GUIDE PREMIUM
+========================= -->
+
+<section class="card premium-guide-card">
+
+  <div class="premium-guide-content">
+
+    <div class="premium-label">
+      ⭐ PREMIUM
+    </div>
+
+    <h3>
+      Guide complet du piano
+    </h3>
+
+    <p id="guideDescription">
+      Accède au guide complet Piano Academy,
+      avec toutes les leçons et ressources
+      réservées aux membres Premium.
+    </p>
+
+    <a
+      href="offres-premium.html"
+      class="guide-button"
+      id="guideButton">
+
+      🔒 Débloquer le guide complet
+
+    </a>
+
+  </div>
 
 </section>
 
@@ -1681,7 +1778,6 @@ button{
 
 <script>
 
-
 /* =====================================================
    SUPABASE
 ===================================================== */
@@ -1689,10 +1785,8 @@ button{
 const SUPABASE_URL =
   "https://swsvnzjeipcobodntajs.supabase.co";
 
-
 const SUPABASE_KEY =
   "sb_publishable_JrPeCn1LhCNHY3BJZ5iCEQ_mc2iqLpf";
-
 
 const supabaseClient =
   window.supabase.createClient(
@@ -1772,7 +1866,7 @@ menuOverlay.addEventListener(
 
 
 /* =====================================================
-   NAVIGATION MENU
+   NAVIGATION
 ===================================================== */
 
 function goTo(page){
@@ -1799,7 +1893,6 @@ function applyTheme(){
       "pianoAcademyTheme"
     );
 
-
   if(theme === "dark"){
 
     document.body.classList.add("dark");
@@ -1824,7 +1917,6 @@ themeButton.addEventListener(
     const isDark =
       document.body.classList.contains("dark");
 
-
     if(isDark){
 
       document.body.classList.remove("dark");
@@ -1834,8 +1926,7 @@ themeButton.addEventListener(
         "light"
       );
 
-      themeButton.textContent =
-        "🌙";
+      themeButton.textContent = "🌙";
 
     }else{
 
@@ -1846,8 +1937,7 @@ themeButton.addEventListener(
         "dark"
       );
 
-      themeButton.textContent =
-        "☀️";
+      themeButton.textContent = "☀️";
 
     }
 
@@ -1856,11 +1946,6 @@ themeButton.addEventListener(
 
 
 applyTheme();
-
-
-/* =====================================================
-   INITIALISATION DU THÈME AVANT CHARGEMENT
-===================================================== */
 
 
 /* =====================================================
@@ -1903,15 +1988,61 @@ function showError(text){
 
 
 /* =====================================================
+   NORMALISER LE PLAN
+===================================================== */
+
+function normalizePlan(plan){
+
+  return String(
+    plan || "free"
+  )
+  .trim()
+  .toLowerCase();
+
+}
+
+
+/* =====================================================
+   EST PREMIUM ?
+===================================================== */
+
+function isPremium(plan){
+
+  const currentPlan =
+    normalizePlan(plan);
+
+  return (
+    currentPlan === "premium" ||
+    currentPlan === "pro" ||
+    currentPlan === "annual" ||
+    currentPlan === "monthly"
+  );
+
+}
+
+
+/* =====================================================
+   OUVRIR LES OFFRES PREMIUM
+===================================================== */
+
+function openPremiumPage(){
+
+  closeMenu();
+
+  window.location.href =
+    "offres-premium.html";
+
+}
+
+
+/* =====================================================
    PLAN
 ===================================================== */
 
 function updatePlan(plan){
 
-  const currentPlan =
-    String(
-      plan || "free"
-    ).toLowerCase();
+  const premium =
+    isPremium(plan);
 
 
   const planValue =
@@ -1939,10 +2070,25 @@ function updatePlan(plan){
       "profilePlan"
     );
 
+  const premiumButton =
+    document.getElementById(
+      "premiumButton"
+    );
 
-  if(
-    currentPlan === "premium"
-  ){
+  const guideButton =
+    document.getElementById(
+      "guideButton"
+    );
+
+  const guideDescription =
+    document.getElementById(
+      "guideDescription"
+    );
+
+
+  if(premium){
+
+    /* ABONNÉ PREMIUM */
 
     planValue.textContent =
       "Premium";
@@ -1954,12 +2100,36 @@ function updatePlan(plan){
       "Premium";
 
     planDescription.textContent =
-      "Tu bénéficies actuellement des fonctionnalités Premium de Piano Academy.";
+      "Ton abonnement Premium est actif. Tu as accès aux contenus réservés aux membres Premium.";
 
     profilePlan.textContent =
       "Premium";
 
+
+    premiumButton.textContent =
+      "⭐ Gérer mon Premium";
+
+    premiumButton.onclick =
+      function(){
+
+        window.location.href =
+          "offres-premium.html";
+
+      };
+
+
+    guideButton.href =
+      "guide.html";
+
+    guideButton.textContent =
+      "📖 Ouvrir le guide complet";
+
+    guideDescription.textContent =
+      "Ton abonnement Premium est actif. Tu peux maintenant accéder au guide complet du piano.";
+
   }else{
+
+    /* UTILISATEUR FREE */
 
     planValue.textContent =
       "Free";
@@ -1971,10 +2141,32 @@ function updatePlan(plan){
       "Gratuit";
 
     planDescription.textContent =
-      "Tu utilises actuellement le plan gratuit de Piano Academy.";
+      "Tu utilises actuellement le plan gratuit de Piano Academy. Passe à Premium pour débloquer le guide complet.";
 
     profilePlan.textContent =
       "Free";
+
+
+    premiumButton.textContent =
+      "Découvrir Premium";
+
+    premiumButton.onclick =
+      function(){
+
+        window.location.href =
+          "offres-premium.html";
+
+      };
+
+
+    guideButton.href =
+      "offres-premium.html";
+
+    guideButton.textContent =
+      "🔒 Débloquer le guide complet";
+
+    guideDescription.textContent =
+      "Le guide complet est réservé aux membres Premium. Découvre les offres Premium pour débloquer l'accès.";
 
   }
 
@@ -1989,8 +2181,9 @@ async function loadDashboard(){
 
   try{
 
-
-    /* SESSION */
+    /* =========================
+       SESSION
+    ========================= */
 
     const {
       data:sessionData,
@@ -2025,7 +2218,9 @@ async function loadDashboard(){
       session.user;
 
 
-    /* MÉTADONNÉES */
+    /* =========================
+       MÉTADONNÉES
+    ========================= */
 
     const metadata =
       user.user_metadata || {};
@@ -2037,37 +2232,39 @@ async function loadDashboard(){
       "";
 
 
-    /* PROFIL */
+    /* =========================
+       PROFIL SUPABASE
+    ========================= */
 
     const {
       data:profile,
       error:profileError
     } =
       await supabaseClient
-
-      .from("profiles")
-
-      .select(
-        "id,name,email,plan,progress,lessons_completed"
-      )
-
-      .eq(
-        "id",
-        user.id
-      )
-
-      .maybeSingle();
+        .from("profiles")
+        .select(
+          "id,name,email,plan,progress,lessons_completed"
+        )
+        .eq(
+          "id",
+          user.id
+        )
+        .maybeSingle();
 
 
     if(profileError){
 
       console.warn(
-        "Profil :",
+        "Erreur profil :",
         profileError
       );
 
     }
 
+
+    /* =========================
+       INFORMATIONS UTILISATEUR
+    ========================= */
 
     const name =
       profile?.name ||
@@ -2115,7 +2312,9 @@ async function loadDashboard(){
       );
 
 
-    /* HEADER */
+    /* =========================
+       BIENVENUE
+    ========================= */
 
     document.getElementById(
       "welcomeName"
@@ -2123,7 +2322,9 @@ async function loadDashboard(){
       name + " !";
 
 
-    /* MENU */
+    /* =========================
+       MENU
+    ========================= */
 
     document.getElementById(
       "menuName"
@@ -2143,7 +2344,9 @@ async function loadDashboard(){
       getInitial(name);
 
 
-    /* PROGRESSION */
+    /* =========================
+       PROGRESSION
+    ========================= */
 
     document.getElementById(
       "progressValue"
@@ -2163,7 +2366,9 @@ async function loadDashboard(){
       progress + "%";
 
 
-    /* COURS */
+    /* =========================
+       COURS
+    ========================= */
 
     document.getElementById(
       "lessonsValue"
@@ -2171,7 +2376,9 @@ async function loadDashboard(){
       lessons;
 
 
-    /* OBJECTIF */
+    /* =========================
+       OBJECTIF
+    ========================= */
 
     document.getElementById(
       "goalValue"
@@ -2179,7 +2386,9 @@ async function loadDashboard(){
       progress + "%";
 
 
-    /* PROFIL */
+    /* =========================
+       PROFIL
+    ========================= */
 
     document.getElementById(
       "profileName"
@@ -2193,19 +2402,22 @@ async function loadDashboard(){
       email;
 
 
-    /* PLAN */
+    /* =========================
+       PLAN
+    ========================= */
 
     updatePlan(plan);
 
 
-    /* AFFICHER */
+    /* =========================
+       AFFICHER APPLICATION
+    ========================= */
 
     loading.style.display =
       "none";
 
     app.style.display =
       "block";
-
 
   }catch(error){
 
@@ -2233,88 +2445,73 @@ async function loadDashboard(){
 ===================================================== */
 
 document
-.getElementById("logoutButton")
-.addEventListener(
-  "click",
-  async function(){
+  .getElementById("logoutButton")
+  .addEventListener(
+    "click",
+    async function(){
 
-    const confirmed =
-      confirm(
-        "Voulez-vous vraiment vous déconnecter ?"
-      );
-
-
-    if(!confirmed){
-
-      return;
-
-    }
+      const confirmed =
+        confirm(
+          "Voulez-vous vraiment vous déconnecter ?"
+        );
 
 
-    this.disabled =
-      true;
+      if(!confirmed){
 
-    this.textContent =
-      "Déconnexion...";
-
-
-    try{
-
-      const {
-        error
-      } =
-        await supabaseClient.auth.signOut();
-
-
-      if(error){
-
-        throw error;
+        return;
 
       }
 
 
-      window.location.href =
-        "connexion.html";
-
-
-    }catch(error){
-
-      console.error(
-        "Erreur déconnexion:",
-        error
-      );
-
-
       this.disabled =
-        false;
+        true;
 
-      this.textContent =
-        "🚪 Déconnexion";
+      this.innerHTML =
+        "🚪 Déconnexion...";
 
 
-      alert(
-        "Impossible de vous déconnecter. Veuillez réessayer."
-      );
+      try{
+
+        const {
+          error
+        } =
+          await supabaseClient.auth.signOut();
+
+
+        if(error){
+
+          throw error;
+
+        }
+
+
+        window.location.href =
+          "connexion.html";
+
+
+      }catch(error){
+
+        console.error(
+          "Erreur déconnexion:",
+          error
+        );
+
+
+        this.disabled =
+          false;
+
+        this.innerHTML =
+          "🚪 Déconnexion";
+
+
+        alert(
+          "Impossible de vous déconnecter. Veuillez réessayer."
+        );
+
+      }
 
     }
-
-  }
-);
-
-
-/* =====================================================
-   PREMIUM
-===================================================== */
-
-function showPremium(){
-
-  closeMenu();
-
-  alert(
-    "La section Premium de Piano Academy sera disponible prochainement."
   );
-
-}
 
 
 /* =====================================================
@@ -2333,7 +2530,7 @@ function showSettings(){
 
 
 /* =====================================================
-   SESSION
+   SURVEILLANCE SESSION
 ===================================================== */
 
 supabaseClient.auth.onAuthStateChange(
