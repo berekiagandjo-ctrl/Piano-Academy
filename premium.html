@@ -12,6 +12,7 @@
   content="Piano Academy Premium — débloquez toutes les fonctionnalités."
 >
 
+<!-- SUPABASE -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <style>
@@ -49,13 +50,7 @@
 
   --shadow:
     0 12px 35px rgba(25,25,50,.08);
-
 }
-
-
-/* =========================
-   MODE SOMBRE
-========================= */
 
 body.dark{
 
@@ -70,13 +65,7 @@ body.dark{
 
   --shadow:
     0 12px 35px rgba(0,0,0,.25);
-
 }
-
-
-/* =========================
-   BODY
-========================= */
 
 body{
 
@@ -92,15 +81,12 @@ body{
   color:var(--text);
 
   transition:.25s;
-
 }
-
 
 button{
 
   font-family:inherit;
   cursor:pointer;
-
 }
 
 
@@ -111,9 +97,7 @@ button{
 .header{
 
   position:sticky;
-
   top:0;
-
   z-index:100;
 
   height:70px;
@@ -122,42 +106,29 @@ button{
 
   border-bottom:
     1px solid var(--border);
-
 }
-
 
 .header-inner{
 
   width:100%;
-
   max-width:1150px;
 
   height:100%;
 
   margin:auto;
-
-  padding:
-    0 20px;
+  padding:0 20px;
 
   display:flex;
-
   align-items:center;
-
   justify-content:space-between;
-
 }
-
 
 .header-left{
 
   display:flex;
-
   align-items:center;
-
   gap:13px;
-
 }
-
 
 .menu-button,
 .theme-button{
@@ -166,44 +137,31 @@ button{
   height:42px;
 
   border:none;
-
   border-radius:11px;
 
   background:var(--soft);
-
   color:var(--text);
 
   font-size:20px;
 
   display:flex;
-
   align-items:center;
-
   justify-content:center;
-
 }
-
 
 .menu-button:hover,
 .theme-button:hover{
 
   background:#eeeaff;
-
   color:var(--primary);
-
 }
-
 
 .brand{
 
   display:flex;
-
   align-items:center;
-
   gap:10px;
-
 }
-
 
 .brand-icon{
 
@@ -222,22 +180,16 @@ button{
   color:white;
 
   display:flex;
-
   align-items:center;
-
   justify-content:center;
 
   font-size:20px;
-
 }
-
 
 .brand-name{
 
   font-size:18px;
-
   font-weight:800;
-
 }
 
 
@@ -248,38 +200,29 @@ button{
 .menu-overlay{
 
   position:fixed;
-
   inset:0;
-
   z-index:199;
 
   background:
     rgba(0,0,0,.45);
 
   display:none;
-
 }
-
 
 .menu-overlay.active{
-
   display:block;
-
 }
-
 
 .side-menu{
 
   position:fixed;
 
   top:0;
-
   left:-310px;
 
   z-index:200;
 
   width:290px;
-
   height:100vh;
 
   background:var(--card);
@@ -290,52 +233,35 @@ button{
   box-shadow:
     10px 0 35px rgba(0,0,0,.15);
 
-  transition:
-    left .25s ease;
+  transition:left .25s ease;
 
   display:flex;
-
   flex-direction:column;
-
 }
-
 
 .side-menu.open{
-
   left:0;
-
 }
-
 
 .menu-header{
 
   height:80px;
-
-  padding:
-    0 20px;
+  padding:0 20px;
 
   display:flex;
-
   align-items:center;
-
   justify-content:space-between;
 
   border-bottom:
     1px solid var(--border);
-
 }
-
 
 .menu-brand{
 
   display:flex;
-
   align-items:center;
-
   gap:10px;
-
 }
-
 
 .menu-brand-icon{
 
@@ -354,22 +280,15 @@ button{
   color:white;
 
   display:flex;
-
   align-items:center;
-
   justify-content:center;
 
   font-size:20px;
-
 }
-
 
 .menu-brand strong{
-
   font-size:16px;
-
 }
-
 
 .close-menu{
 
@@ -377,17 +296,13 @@ button{
   height:38px;
 
   border:none;
-
   border-radius:10px;
 
   background:var(--soft);
-
   color:var(--text);
 
   font-size:21px;
-
 }
-
 
 .menu-user{
 
@@ -395,9 +310,7 @@ button{
 
   border-bottom:
     1px solid var(--border);
-
 }
-
 
 .menu-user-avatar{
 
@@ -416,129 +329,91 @@ button{
   color:white;
 
   display:flex;
-
   align-items:center;
-
   justify-content:center;
 
   font-weight:800;
 
   margin-bottom:9px;
-
 }
-
 
 .menu-user-name{
 
   font-weight:800;
-
   font-size:14px;
-
   margin-bottom:3px;
-
 }
-
 
 .menu-user-email{
 
   color:var(--muted);
-
   font-size:11px;
-
   word-break:break-all;
-
 }
-
 
 .menu-items{
 
   padding:15px 12px;
 
   display:grid;
-
   gap:5px;
-
 }
-
 
 .menu-item{
 
   width:100%;
-
   min-height:46px;
 
   border:none;
-
   border-radius:10px;
 
   background:transparent;
-
   color:var(--text);
 
   display:flex;
-
   align-items:center;
 
   gap:13px;
 
-  padding:
-    0 13px;
+  padding:0 13px;
 
   text-align:left;
 
   font-size:13px;
-
   font-weight:600;
-
 }
-
 
 .menu-item:hover{
 
   background:#eeeaff;
-
   color:var(--primary);
-
 }
-
 
 .menu-icon{
 
   width:25px;
-
   text-align:center;
-
   font-size:17px;
-
 }
-
 
 .menu-bottom{
 
   margin-top:auto;
 
-  padding:
-    15px 12px 20px;
+  padding:15px 12px 20px;
 
   border-top:
     1px solid var(--border);
-
 }
-
 
 .logout-item{
-
   color:var(--danger);
-
 }
-
 
 .logout-item:hover{
 
   background:#fff0ef;
-
   color:#c0392b;
-
 }
 
 
@@ -549,31 +424,26 @@ button{
 .container{
 
   width:100%;
-
   max-width:1100px;
 
   margin:auto;
 
-  padding:
-    35px 20px 65px;
-
+  padding:35px 20px 65px;
 }
 
 
 /* =========================
-   HERO PREMIUM
+   HERO
 ========================= */
 
 .hero{
 
   position:relative;
-
   overflow:hidden;
 
   border-radius:24px;
 
-  padding:
-    45px 35px;
+  padding:45px 35px;
 
   color:white;
 
@@ -589,9 +459,7 @@ button{
     rgba(108,92,231,.25);
 
   margin-bottom:25px;
-
 }
-
 
 .hero::before{
 
@@ -609,9 +477,7 @@ button{
 
   top:-150px;
   right:-80px;
-
 }
-
 
 .hero::after{
 
@@ -629,31 +495,24 @@ button{
 
   bottom:-150px;
   left:-70px;
-
 }
-
 
 .hero-content{
 
   position:relative;
-
   z-index:2;
 
   max-width:700px;
-
 }
-
 
 .premium-badge{
 
   display:inline-flex;
 
   align-items:center;
-
   gap:7px;
 
-  padding:
-    8px 13px;
+  padding:8px 13px;
 
   border-radius:30px;
 
@@ -665,31 +524,22 @@ button{
     rgba(255,255,255,.16);
 
   font-size:12px;
-
   font-weight:800;
 
   margin-bottom:18px;
-
 }
-
 
 .hero h1{
 
   font-size:42px;
-
   line-height:1.12;
 
   margin-bottom:15px;
-
 }
-
 
 .hero h1 span{
-
   color:#ffe29a;
-
 }
-
 
 .hero p{
 
@@ -701,13 +551,7 @@ button{
   font-size:15px;
 
   max-width:650px;
-
 }
-
-
-/* =========================
-   PLAN ACTUEL
-========================= */
 
 .current-plan{
 
@@ -727,14 +571,10 @@ button{
   gap:10px;
 
   font-size:13px;
-
 }
 
-
 .current-plan strong{
-
   color:#ffe29a;
-
 }
 
 
@@ -746,27 +586,21 @@ button{
 
   text-align:center;
 
-  margin:
-    35px 0 20px;
-
+  margin:35px 0 20px;
 }
-
 
 .section-title h2{
 
   font-size:26px;
 
   margin-bottom:7px;
-
 }
-
 
 .section-title p{
 
   color:var(--muted);
 
   font-size:13px;
-
 }
 
 
@@ -779,16 +613,10 @@ button{
   display:grid;
 
   grid-template-columns:
-    repeat(2,1fr);
+    repeat(3,1fr);
 
   gap:20px;
-
 }
-
-
-/* =========================
-   PLAN CARD
-========================= */
 
 .plan-card{
 
@@ -805,8 +633,9 @@ button{
 
   box-shadow:var(--shadow);
 
+  display:flex;
+  flex-direction:column;
 }
-
 
 .plan-card.premium{
 
@@ -816,20 +645,16 @@ button{
   box-shadow:
     0 15px 40px
     rgba(245,185,66,.15);
-
 }
-
 
 .popular{
 
   position:absolute;
 
   top:-12px;
-
   right:20px;
 
-  padding:
-    6px 12px;
+  padding:6px 12px;
 
   border-radius:20px;
 
@@ -843,11 +668,8 @@ button{
   color:white;
 
   font-size:10px;
-
   font-weight:800;
-
 }
-
 
 .plan-header{
 
@@ -858,9 +680,7 @@ button{
   gap:13px;
 
   margin-bottom:20px;
-
 }
-
 
 .plan-icon{
 
@@ -872,32 +692,24 @@ button{
   display:flex;
 
   align-items:center;
-
   justify-content:center;
 
   font-size:23px;
 
   background:var(--soft);
-
 }
-
 
 .premium .plan-icon{
 
   background:
     rgba(245,185,66,.13);
-
 }
-
 
 .plan-name{
 
   font-size:20px;
-
   font-weight:800;
-
 }
-
 
 .plan-description{
 
@@ -906,34 +718,24 @@ button{
   font-size:12px;
 
   margin-top:3px;
-
 }
-
 
 .plan-price{
 
   margin-bottom:23px;
-
 }
-
 
 .price{
 
   font-size:32px;
-
   font-weight:900;
-
 }
-
 
 .price-small{
 
   color:var(--muted);
-
   font-size:12px;
-
 }
-
 
 .features{
 
@@ -945,8 +747,8 @@ button{
 
   margin-bottom:25px;
 
+  flex:1;
 }
-
 
 .features li{
 
@@ -959,9 +761,7 @@ button{
   font-size:13px;
 
   line-height:1.5;
-
 }
-
 
 .check{
 
@@ -980,15 +780,11 @@ button{
   display:flex;
 
   align-items:center;
-
   justify-content:center;
 
   font-size:12px;
-
   font-weight:900;
-
 }
-
 
 .premium .check{
 
@@ -997,16 +793,11 @@ button{
 
   color:
     var(--gold-dark);
-
 }
-
 
 .disabled-feature{
-
   color:var(--muted);
-
 }
-
 
 .disabled-feature .check{
 
@@ -1014,7 +805,6 @@ button{
     rgba(119,123,138,.10);
 
   color:var(--muted);
-
 }
 
 
@@ -1025,7 +815,6 @@ button{
 .plan-button{
 
   width:100%;
-
   height:52px;
 
   border:none;
@@ -1033,11 +822,8 @@ button{
   border-radius:12px;
 
   font-size:14px;
-
   font-weight:800;
-
 }
-
 
 .free-button{
 
@@ -1047,9 +833,7 @@ button{
 
   border:
     1px solid var(--border);
-
 }
-
 
 .premium-button{
 
@@ -1065,16 +849,11 @@ button{
   box-shadow:
     0 8px 20px
     rgba(245,185,66,.22);
-
 }
-
 
 .premium-button:hover{
-
   transform:translateY(-1px);
-
 }
-
 
 .premium-button:disabled{
 
@@ -1083,12 +862,30 @@ button{
   cursor:not-allowed;
 
   transform:none;
+}
 
+.plan-savings{
+
+  display:inline-block;
+
+  margin-top:8px;
+
+  padding:4px 10px;
+
+  border-radius:20px;
+
+  background:
+    rgba(0,184,148,.12);
+
+  color:var(--success);
+
+  font-size:11px;
+  font-weight:800;
 }
 
 
 /* =========================
-   FEATURES PREMIUM
+   FEATURES
 ========================= */
 
 .advanced-section{
@@ -1105,9 +902,7 @@ button{
   padding:28px;
 
   box-shadow:var(--shadow);
-
 }
-
 
 .advanced-grid{
 
@@ -1117,9 +912,7 @@ button{
     repeat(4,1fr);
 
   gap:13px;
-
 }
-
 
 .advanced-item{
 
@@ -1133,27 +926,21 @@ button{
     1px solid var(--border);
 
   text-align:center;
-
 }
-
 
 .advanced-icon{
 
   font-size:28px;
 
   margin-bottom:10px;
-
 }
-
 
 .advanced-item h3{
 
   font-size:13px;
 
   margin-bottom:5px;
-
 }
-
 
 .advanced-item p{
 
@@ -1162,7 +949,6 @@ button{
   font-size:11px;
 
   line-height:1.5;
-
 }
 
 
@@ -1188,9 +974,7 @@ button{
   border:
     1px solid
     rgba(108,92,231,.18);
-
 }
-
 
 .guide-content{
 
@@ -1201,9 +985,7 @@ button{
   justify-content:space-between;
 
   gap:25px;
-
 }
-
 
 .guide-left{
 
@@ -1212,9 +994,7 @@ button{
   align-items:center;
 
   gap:18px;
-
 }
-
 
 .guide-icon{
 
@@ -1237,22 +1017,17 @@ button{
   display:flex;
 
   align-items:center;
-
   justify-content:center;
 
   font-size:31px;
-
 }
-
 
 .guide-text h3{
 
   font-size:18px;
 
   margin-bottom:6px;
-
 }
-
 
 .guide-text p{
 
@@ -1261,16 +1036,13 @@ button{
   font-size:12px;
 
   line-height:1.5;
-
 }
-
 
 .guide-button{
 
   height:45px;
 
-  padding:
-    0 18px;
+  padding:0 18px;
 
   border:none;
 
@@ -1285,7 +1057,6 @@ button{
   font-weight:800;
 
   white-space:nowrap;
-
 }
 
 
@@ -1299,17 +1070,14 @@ button{
 
   margin-bottom:20px;
 
-  padding:
-    13px 15px;
+  padding:13px 15px;
 
   border-radius:11px;
 
   font-size:13px;
 
   line-height:1.5;
-
 }
-
 
 .message.success{
 
@@ -1321,9 +1089,7 @@ button{
 
   border:
     1px solid #c9f5e6;
-
 }
-
 
 .message.error{
 
@@ -1335,7 +1101,6 @@ button{
 
   border:
     1px solid #ffd5d1;
-
 }
 
 
@@ -1358,13 +1123,10 @@ button{
   flex-direction:column;
 
   align-items:center;
-
   justify-content:center;
 
   gap:15px;
-
 }
-
 
 .loading-icon{
 
@@ -1385,51 +1147,16 @@ button{
   display:flex;
 
   align-items:center;
-
   justify-content:center;
 
   font-size:27px;
-
 }
-
 
 .loading-text{
 
   color:var(--muted);
 
   font-size:13px;
-
-}
-
-
-/* =========================
-   ACCESS MESSAGE
-========================= */
-
-.locked-message{
-
-  display:none;
-
-  padding:
-    20px;
-
-  border-radius:14px;
-
-  background:
-    rgba(245,185,66,.10);
-
-  border:
-    1px solid
-    rgba(245,185,66,.25);
-
-  color:var(--text);
-
-  font-size:13px;
-
-  line-height:1.6;
-
-  margin-top:20px;
-
 }
 
 
@@ -1437,118 +1164,77 @@ button{
    RESPONSIVE
 ========================= */
 
-@media(max-width:800px){
+@media(max-width:900px){
 
   .plans{
-
     grid-template-columns:1fr;
-
   }
 
+}
+
+@media(max-width:800px){
 
   .advanced-grid{
-
     grid-template-columns:
       repeat(2,1fr);
-
   }
-
 
   .hero h1{
-
     font-size:34px;
-
   }
-
 
   .guide-content{
 
     align-items:flex-start;
 
     flex-direction:column;
-
   }
-
 
   .guide-button{
-
     width:100%;
-
   }
-
 }
-
 
 @media(max-width:500px){
 
   .container{
-
-    padding:
-      25px 15px 50px;
-
+    padding:25px 15px 50px;
   }
-
 
   .hero{
-
     padding:32px 23px;
-
   }
-
 
   .hero h1{
-
     font-size:29px;
-
   }
-
 
   .hero p{
-
     font-size:13px;
-
   }
-
 
   .plan-card{
-
     padding:22px;
-
   }
-
 
   .advanced-grid{
-
     grid-template-columns:1fr;
-
   }
-
 
   .advanced-section{
-
     padding:22px;
-
   }
-
 
   .guide-card{
-
     padding:22px;
-
   }
-
 
   .guide-left{
-
     align-items:flex-start;
-
   }
 
-
   .brand-name{
-
     font-size:16px;
-
   }
 
 }
@@ -1557,13 +1243,8 @@ button{
 
 </head>
 
-
 <body>
 
-
-<!-- =========================
-     LOADING
-========================= -->
 
 <div
   class="loading"
@@ -1580,24 +1261,15 @@ button{
 </div>
 
 
-<!-- =========================
-     MENU OVERLAY
-========================= -->
-
 <div
   class="menu-overlay"
   id="menuOverlay">
 </div>
 
 
-<!-- =========================
-     MENU
-========================= -->
-
 <aside
   class="side-menu"
   id="sideMenu">
-
 
   <div class="menu-header">
 
@@ -1612,7 +1284,6 @@ button{
       </strong>
 
     </div>
-
 
     <button
       class="close-menu"
@@ -1635,7 +1306,6 @@ button{
 
     </div>
 
-
     <div
       class="menu-user-name"
       id="menuName">
@@ -1643,7 +1313,6 @@ button{
       Utilisateur
 
     </div>
-
 
     <div
       class="menu-user-email"
@@ -1657,7 +1326,6 @@ button{
 
 
   <nav class="menu-items">
-
 
     <button
       class="menu-item"
@@ -1723,7 +1391,6 @@ button{
 
     </button>
 
-
   </nav>
 
 
@@ -1746,24 +1413,14 @@ button{
 </aside>
 
 
-<!-- =========================
-     APPLICATION
-========================= -->
-
 <div id="app">
 
-
-<!-- =========================
-     HEADER
-========================= -->
 
 <header class="header">
 
   <div class="header-inner">
 
-
     <div class="header-left">
-
 
       <button
         class="menu-button"
@@ -1797,40 +1454,26 @@ button{
 
     </button>
 
-
   </div>
 
 </header>
 
 
-<!-- =========================
-     CONTENU
-========================= -->
-
 <main class="container">
 
-
-<!-- HERO -->
 
 <section class="hero">
 
   <div class="hero-content">
 
-
     <div class="premium-badge">
-
       ⭐ Piano Academy Premium
-
     </div>
 
-
     <h1>
-
       Passe au niveau
       <span>supérieur.</span>
-
     </h1>
-
 
     <p>
 
@@ -1839,7 +1482,6 @@ button{
       avancées et tous les contenus réservés aux abonnés.
 
     </p>
-
 
     <div class="current-plan">
 
@@ -1851,21 +1493,16 @@ button{
 
     </div>
 
-
   </div>
 
 </section>
 
-
-<!-- MESSAGE -->
 
 <div
   class="message"
   id="message">
 </div>
 
-
-<!-- PLANS -->
 
 <div class="section-title">
 
@@ -1882,8 +1519,6 @@ button{
 
 <section class="plans">
 
-
-<!-- FREE -->
 
 <article class="plan-card">
 
@@ -1919,83 +1554,40 @@ button{
 
   <ul class="features">
 
-
     <li>
-
-      <span class="check">
-        ✓
-      </span>
-
+      <span class="check">✓</span>
       Fonctions gratuites
-
     </li>
 
-
     <li>
-
-      <span class="check">
-        ✓
-      </span>
-
+      <span class="check">✓</span>
       Progression sauvegardée
-
     </li>
 
-
     <li>
-
-      <span class="check">
-        ✓
-      </span>
-
+      <span class="check">✓</span>
       Profil utilisateur
-
     </li>
-
 
     <li>
-
-      <span class="check">
-        ✓
-      </span>
-
+      <span class="check">✓</span>
       Cours gratuits limités
-
     </li>
 
-
     <li class="disabled-feature">
-
-      <span class="check">
-        —
-      </span>
-
+      <span class="check">—</span>
       Guide complet du piano
-
     </li>
 
-
     <li class="disabled-feature">
-
-      <span class="check">
-        —
-      </span>
-
+      <span class="check">—</span>
       Fonctionnalités avancées
-
     </li>
-
 
     <li class="disabled-feature">
-
-      <span class="check">
-        —
-      </span>
-
+      <span class="check">—</span>
       Contenu réservé aux abonnés
-
     </li>
-
 
   </ul>
 
@@ -2011,13 +1603,87 @@ button{
 </article>
 
 
-<!-- PREMIUM -->
+<article class="plan-card premium">
+
+  <div class="plan-header">
+
+    <div class="plan-icon">
+      📅
+    </div>
+
+    <div>
+
+      <div class="plan-name">
+        Mensuel
+      </div>
+
+      <div class="plan-description">
+        Facturation chaque mois
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <div class="plan-price">
+
+    <span class="price">
+      1 500 FCFA
+    </span>
+
+    <span class="price-small">
+      / mois
+    </span>
+
+  </div>
+
+
+  <ul class="features">
+
+    <li>
+      <span class="check">✓</span>
+      Toutes les fonctionnalités
+    </li>
+
+    <li>
+      <span class="check">✓</span>
+      Guide complet du piano
+    </li>
+
+    <li>
+      <span class="check">✓</span>
+      Fonctionnalités avancées
+    </li>
+
+    <li>
+      <span class="check">✓</span>
+      Contenu réservé aux abonnés
+    </li>
+
+    <li>
+      <span class="check">✓</span>
+      Sans engagement, résiliable
+    </li>
+
+  </ul>
+
+
+  <button
+    class="plan-button premium-button"
+    id="monthlyButton">
+
+    📅 S'abonner — Mensuel
+
+  </button>
+
+</article>
+
 
 <article class="plan-card premium">
 
-
   <div class="popular">
-    RECOMMANDÉ
+    MEILLEUR PRIX
   </div>
 
 
@@ -2030,11 +1696,11 @@ button{
     <div>
 
       <div class="plan-name">
-        Premium
+        Annuel
       </div>
 
       <div class="plan-description">
-        Pour apprendre sans limites
+        Facturation chaque année
       </div>
 
     </div>
@@ -2045,106 +1711,57 @@ button{
   <div class="plan-price">
 
     <span class="price">
-      Premium
+      12 000 FCFA
     </span>
 
     <span class="price-small">
-      accès complet
+      / an
     </span>
+
+    <div class="plan-savings">
+      2 mois offerts
+    </div>
 
   </div>
 
 
   <ul class="features">
 
-
     <li>
-
-      <span class="check">
-        ✓
-      </span>
-
+      <span class="check">✓</span>
       Toutes les fonctionnalités
-
     </li>
 
-
     <li>
-
-      <span class="check">
-        ✓
-      </span>
-
+      <span class="check">✓</span>
       Guide complet du piano
-
     </li>
 
-
     <li>
-
-      <span class="check">
-        ✓
-      </span>
-
+      <span class="check">✓</span>
       Fonctionnalités avancées
-
     </li>
 
-
     <li>
-
-      <span class="check">
-        ✓
-      </span>
-
+      <span class="check">✓</span>
       Contenu réservé aux abonnés
-
     </li>
-
 
     <li>
-
-      <span class="check">
-        ✓
-      </span>
-
-      Progression complète
-
+      <span class="check">✓</span>
+      Le meilleur tarif à l'année
     </li>
-
-
-    <li>
-
-      <span class="check">
-        ✓
-      </span>
-
-      Expérience Piano Academy complète
-
-    </li>
-
 
   </ul>
 
 
   <button
     class="plan-button premium-button"
-    id="premiumButton">
+    id="yearlyButton">
 
-    ⭐ Passer à Premium
+    ⭐ S'abonner — Annuel
 
   </button>
-
-
-  <div
-    class="locked-message"
-    id="lockedMessage">
-
-    Le paiement Premium sera connecté
-    dans la prochaine étape. Ton compte reste
-    actuellement sur le plan Free.
-
-  </div>
 
 
 </article>
@@ -2152,10 +1769,6 @@ button{
 
 </section>
 
-
-<!-- =========================
-     FONCTIONNALITÉS AVANCÉES
-========================= -->
 
 <section class="advanced-section">
 
@@ -2253,23 +1866,15 @@ button{
 </section>
 
 
-<!-- =========================
-     GUIDE COMPLET
-========================= -->
-
 <section class="guide-card">
-
 
   <div class="guide-content">
 
-
     <div class="guide-left">
-
 
       <div class="guide-icon">
         📚
       </div>
-
 
       <div class="guide-text">
 
@@ -2287,7 +1892,6 @@ button{
 
       </div>
 
-
     </div>
 
 
@@ -2298,7 +1902,6 @@ button{
       🔒 Réservé Premium
 
     </button>
-
 
   </div>
 
@@ -2319,16 +1922,23 @@ button{
 const SUPABASE_URL =
   "https://swsvnzjeipcobodntajs.supabase.co";
 
-
 const SUPABASE_KEY =
   "sb_publishable_JrPeCn1LhCNHY3BJZ5iCEQ_mc2iqLpf";
-
 
 const supabaseClient =
   window.supabase.createClient(
     SUPABASE_URL,
     SUPABASE_KEY
   );
+
+
+/* =====================================================
+   CREATE PREMIUM PAYMENT
+   NOUVELLE EDGE FUNCTION
+===================================================== */
+
+const CREATE_PAYMENT_FUNCTION_URL =
+  "https://swsvnzjeipcobodntajs.supabase.co/functions/v1/hyper-task";
 
 
 /* =====================================================
@@ -2344,18 +1954,17 @@ const app =
 const currentPlan =
   document.getElementById("currentPlan");
 
-const premiumButton =
-  document.getElementById("premiumButton");
-
 const freeButton =
   document.getElementById("freeButton");
 
 const message =
   document.getElementById("message");
 
-const lockedMessage =
-  document.getElementById("lockedMessage");
+const monthlyButton =
+  document.getElementById("monthlyButton");
 
+const yearlyButton =
+  document.getElementById("yearlyButton");
 
 let currentUser = null;
 
@@ -2463,26 +2072,18 @@ const closeMenuButton =
 
 function openMenu(){
 
-  sideMenu.classList.add(
-    "open"
-  );
+  sideMenu.classList.add("open");
 
-  menuOverlay.classList.add(
-    "active"
-  );
+  menuOverlay.classList.add("active");
 
 }
 
 
 function closeMenu(){
 
-  sideMenu.classList.remove(
-    "open"
-  );
+  sideMenu.classList.remove("open");
 
-  menuOverlay.classList.remove(
-    "active"
-  );
+  menuOverlay.classList.remove("active");
 
 }
 
@@ -2544,9 +2145,7 @@ function showMessage(
 function getInitial(name){
 
   if(!name){
-
     return "?";
-
   }
 
   return name
@@ -2565,7 +2164,6 @@ async function loadUser(){
 
   try{
 
-
     const {
       data:sessionData,
       error:sessionError
@@ -2574,9 +2172,7 @@ async function loadUser(){
 
 
     if(sessionError){
-
       throw sessionError;
-
     }
 
 
@@ -2597,10 +2193,6 @@ async function loadUser(){
     currentUser =
       session.user;
 
-
-    /* =========================
-       PROFIL
-    ========================== */
 
     const {
       data:profile,
@@ -2623,9 +2215,7 @@ async function loadUser(){
 
 
     if(profileError){
-
       throw profileError;
-
     }
 
 
@@ -2651,10 +2241,6 @@ async function loadUser(){
       .toLowerCase();
 
 
-    /* =========================
-       MENU
-    ========================== */
-
     document.getElementById(
       "menuAvatar"
     ).textContent =
@@ -2673,10 +2259,6 @@ async function loadUser(){
       email;
 
 
-    /* =========================
-       PLAN
-    ========================== */
-
     if(
       userPlan === "premium"
     ){
@@ -2684,31 +2266,40 @@ async function loadUser(){
       currentPlan.textContent =
         "Premium ⭐";
 
-      premiumButton.textContent =
-        "✓ Vous êtes Premium";
-
-      premiumButton.disabled =
-        true;
-
       freeButton.textContent =
         "Plan Free";
 
-      lockedMessage.style.display =
-        "none";
+      monthlyButton.textContent =
+        "✓ Vous êtes Premium";
+
+      monthlyButton.disabled =
+        true;
+
+      yearlyButton.textContent =
+        "✓ Vous êtes Premium";
+
+      yearlyButton.disabled =
+        true;
 
     }else{
 
       currentPlan.textContent =
         "Free 🆓";
 
-      premiumButton.textContent =
-        "⭐ Passer à Premium";
-
-      premiumButton.disabled =
-        false;
-
       freeButton.textContent =
         "Plan actuel";
+
+      monthlyButton.textContent =
+        "📅 S'abonner — Mensuel";
+
+      monthlyButton.disabled =
+        false;
+
+      yearlyButton.textContent =
+        "⭐ S'abonner — Annuel";
+
+      yearlyButton.disabled =
+        false;
 
     }
 
@@ -2727,10 +2318,8 @@ async function loadUser(){
       error
     );
 
-
     loading.style.display =
       "none";
-
 
     showMessage(
       "Impossible de charger votre compte. Vérifiez votre connexion.",
@@ -2743,10 +2332,372 @@ async function loadUser(){
 
 
 /* =====================================================
-   BOUTON PREMIUM
+   CRÉER LE PAIEMENT PREMIUM
 ===================================================== */
 
-premiumButton.addEventListener(
+async function startPremiumPayment(
+  plan
+){
+
+  if(!currentUser){
+
+    showMessage(
+      "Votre session utilisateur est introuvable. Reconnectez-vous.",
+      "error"
+    );
+
+    return;
+
+  }
+
+
+  let button = null;
+
+  let planLabel = "";
+
+  let amount = 0;
+
+
+  if(plan === "monthly"){
+
+    button =
+      monthlyButton;
+
+    planLabel =
+      "Premium Mensuel";
+
+    amount =
+      1500;
+
+  }
+
+
+  if(plan === "yearly"){
+
+    button =
+      yearlyButton;
+
+    planLabel =
+      "Premium Annuel";
+
+    amount =
+      12000;
+
+  }
+
+
+  if(!button){
+
+    showMessage(
+      "Plan Premium invalide.",
+      "error"
+    );
+
+    return;
+
+  }
+
+
+  /* ================================================
+     DÉSACTIVER LES BOUTONS
+  ================================================ */
+
+  monthlyButton.disabled =
+    true;
+
+  yearlyButton.disabled =
+    true;
+
+
+  const oldText =
+    button.textContent;
+
+
+  button.textContent =
+    "⏳ Préparation du paiement...";
+
+
+  showMessage(
+    "Préparation de votre paiement FedaPay...",
+    "success"
+  );
+
+
+  try{
+
+    /* ==============================================
+       RÉCUPÉRER LA SESSION ACTUELLE
+    ============================================== */
+
+    const {
+      data:sessionData,
+      error:sessionError
+    } =
+      await supabaseClient.auth.getSession();
+
+
+    if(sessionError){
+
+      throw sessionError;
+
+    }
+
+
+    const session =
+      sessionData.session;
+
+
+    if(!session){
+
+      throw new Error(
+        "Session Supabase introuvable."
+      );
+
+    }
+
+
+    currentUser =
+      session.user;
+
+
+    /* ==============================================
+       EMAIL
+    ============================================== */
+
+    const email =
+      currentUser.email || "";
+
+
+    if(!email){
+
+      throw new Error(
+        "Votre compte ne possède pas d'adresse email."
+      );
+
+    }
+
+
+    /* ==============================================
+       APPEL EDGE FUNCTION
+    ============================================== */
+
+    const response =
+      await fetch(
+        CREATE_PAYMENT_FUNCTION_URL,
+        {
+          method:"POST",
+
+          headers:{
+            "Content-Type":
+              "application/json",
+
+            "apikey":
+              SUPABASE_KEY,
+
+            "Authorization":
+              "Bearer " +
+              session.access_token
+          },
+
+          body:JSON.stringify({
+
+            plan:
+              plan,
+
+            user_id:
+              currentUser.id,
+
+            email:
+              email
+
+          })
+
+        }
+      );
+
+
+    /* ==============================================
+       RÉPONSE
+    ============================================== */
+
+    const responseText =
+      await response.text();
+
+
+    let data = null;
+
+
+    try{
+
+      data =
+        JSON.parse(responseText);
+
+    }catch{
+
+      throw new Error(
+        "La fonction Edge a retourné une réponse invalide : " +
+        responseText
+      );
+
+    }
+
+
+    console.log(
+      "Réponse create-premium-payment :",
+      data
+    );
+
+
+    /* ==============================================
+       ERREUR EDGE FUNCTION
+    ============================================== */
+
+    if(!response.ok){
+
+      console.error(
+        "Erreur Edge Function :",
+        data
+      );
+
+
+      throw new Error(
+        data?.error ||
+        data?.message ||
+        "Impossible de créer le paiement."
+      );
+
+    }
+
+
+    /* ==============================================
+       VÉRIFIER SUCCÈS
+    ============================================== */
+
+    if(!data?.success){
+
+      throw new Error(
+        data?.error ||
+        "La création du paiement a échoué."
+      );
+
+    }
+
+
+    /* ==============================================
+       PAYMENT URL
+    ============================================== */
+
+    const paymentUrl =
+      data?.payment_url;
+
+
+    if(!paymentUrl){
+
+      console.error(
+        "Réponse sans payment_url :",
+        data
+      );
+
+
+      throw new Error(
+        "FedaPay n'a pas retourné l'URL de paiement."
+      );
+
+    }
+
+
+    /* ==============================================
+       SAUVEGARDER INFOS TRANSACTION
+    ============================================== */
+
+    if(data.transaction_id){
+
+      localStorage.setItem(
+        "pianoAcademyPendingTransaction",
+        String(data.transaction_id)
+      );
+
+    }
+
+
+    localStorage.setItem(
+      "pianoAcademyPendingPlan",
+      plan
+    );
+
+
+    localStorage.setItem(
+      "pianoAcademyPendingAmount",
+      String(amount)
+    );
+
+
+    /* ==============================================
+       MESSAGE
+    ============================================== */
+
+    showMessage(
+      "Paiement " +
+      planLabel +
+      " prêt. Ouverture de FedaPay...",
+      "success"
+    );
+
+
+    /* ==============================================
+       OUVERTURE FEDAPAY
+    ============================================== */
+
+    setTimeout(
+      function(){
+
+        window.location.href =
+          paymentUrl;
+
+      },
+      500
+    );
+
+
+  }catch(error){
+
+    console.error(
+      "Erreur paiement Premium :",
+      error
+    );
+
+
+    monthlyButton.disabled =
+      false;
+
+    yearlyButton.disabled =
+      false;
+
+
+    button.textContent =
+      oldText;
+
+
+    showMessage(
+      "Impossible de lancer le paiement : " +
+      (
+        error instanceof Error
+          ? error.message
+          : String(error)
+      ),
+      "error"
+    );
+
+  }
+
+}
+
+
+/* =====================================================
+   BOUTON MENSUEL
+===================================================== */
+
+monthlyButton.addEventListener(
   "click",
   function(){
 
@@ -2759,20 +2710,34 @@ premiumButton.addEventListener(
     }
 
 
-    lockedMessage.style.display =
-      "block";
-
-
-    showMessage(
-      "Le système de paiement Premium sera connecté dans la prochaine étape.",
-      "success"
+    startPremiumPayment(
+      "monthly"
     );
 
+  }
+);
 
-    lockedMessage.scrollIntoView({
-      behavior:"smooth",
-      block:"center"
-    });
+
+/* =====================================================
+   BOUTON ANNUEL
+===================================================== */
+
+yearlyButton.addEventListener(
+  "click",
+  function(){
+
+    if(
+      userPlan === "premium"
+    ){
+
+      return;
+
+    }
+
+
+    startPremiumPayment(
+      "yearly"
+    );
 
   }
 );
@@ -2802,12 +2767,6 @@ document
     }
 
 
-    /*
-      Le vrai guide sera connecté
-      ici lorsque sa protection
-      Premium sera mise en place.
-    */
-
     window.location.href =
       "guide.html";
 
@@ -2832,9 +2791,7 @@ document
 
 
     if(!confirmed){
-
       return;
-
     }
 
 
@@ -2847,9 +2804,7 @@ document
 
 
       if(error){
-
         throw error;
-
       }
 
 
@@ -2880,9 +2835,7 @@ document
 ===================================================== */
 
 supabaseClient.auth.onAuthStateChange(
-  function(
-    event
-  ){
+  function(event){
 
     if(
       event === "SIGNED_OUT"
