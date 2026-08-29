@@ -3259,6 +3259,30 @@ button{
 </main>
 
 
+<!-- =====================================================
+     SUPABASE
+     AJOUTÉ UNIQUEMENT POUR L'INTÉGRATION
+===================================================== -->
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+
+const SUPABASE_URL =
+  "https://swsvnzjeipcobodntajs.supabase.co";
+
+const SUPABASE_KEY =
+  "sb_publishable_JrPeCn1LhCNHY3BJZ5iCEQ_mc2iqLpf";
+
+const supabase =
+  window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+  );
+
+</script>
+
+
 <script>
 
 /* =====================================================
