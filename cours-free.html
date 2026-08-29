@@ -1,0 +1,2589 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Cours de piano — Piano Academy</title>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<style>
+
+/* =====================================================
+   VARIABLES
+===================================================== */
+
+:root{
+    --bg:#ffffff;
+    --card:#ffffff;
+    --soft:#f5f3ff;
+    --soft2:#eef2ff;
+
+    --text:#111827;
+    --muted:#64748b;
+    --border:#e5e7eb;
+
+    --primary:#7c3aed;
+    --primary2:#2563eb;
+
+    --success:#16a34a;
+    --warning:#d97706;
+    --danger:#dc2626;
+
+    --shadow:0 8px 25px rgba(15,23,42,.08);
+}
+
+/* =====================================================
+   RESET
+===================================================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:Arial,Helvetica,sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    min-height:100vh;
+}
+
+/* =====================================================
+   VERIFICATION
+===================================================== */
+
+#accessCheck{
+    position:fixed;
+    inset:0;
+    z-index:9999;
+
+    background:white;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    padding:20px;
+}
+
+.check-card{
+    width:100%;
+    max-width:420px;
+
+    background:white;
+
+    border:1px solid var(--border);
+
+    border-radius:24px;
+
+    padding:30px;
+
+    text-align:center;
+
+    box-shadow:var(--shadow);
+}
+
+.check-icon{
+    font-size:50px;
+    margin-bottom:15px;
+}
+
+.check-card h2{
+    margin-bottom:10px;
+}
+
+.check-card p{
+    color:var(--muted);
+    line-height:1.6;
+}
+
+.spinner{
+    width:38px;
+    height:38px;
+
+    border:4px solid #e5e7eb;
+    border-top-color:var(--primary);
+
+    border-radius:50%;
+
+    margin:20px auto;
+
+    animation:spin .8s linear infinite;
+}
+
+@keyframes spin{
+    to{
+        transform:rotate(360deg);
+    }
+}
+
+#errorBox{
+    display:none;
+}
+
+.check-button{
+    width:100%;
+
+    border:none;
+
+    padding:14px;
+
+    border-radius:13px;
+
+    margin-top:12px;
+
+    font-weight:bold;
+
+    color:white;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--primary),
+            var(--primary2)
+        );
+}
+
+/* =====================================================
+   APPLICATION
+===================================================== */
+
+#app{
+    display:none;
+}
+
+.app{
+    width:100%;
+    max-width:720px;
+    margin:auto;
+
+    padding:14px;
+}
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+.header{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    margin-bottom:16px;
+}
+
+.header-left{
+    display:flex;
+    align-items:center;
+    gap:11px;
+}
+
+.header-button{
+    width:44px;
+    height:44px;
+
+    border:none;
+
+    border:1px solid var(--border);
+
+    background:white;
+    color:var(--text);
+
+    border-radius:13px;
+
+    font-size:20px;
+
+    cursor:pointer;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.header-title{
+    font-size:20px;
+    font-weight:800;
+}
+
+/* =====================================================
+   FREE BADGE
+===================================================== */
+
+.free-badge{
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:6px;
+
+    padding:7px 12px;
+
+    border-radius:20px;
+
+    background:#f1f5f9;
+
+    color:#475569;
+
+    font-size:12px;
+
+    font-weight:bold;
+
+    margin-bottom:12px;
+}
+
+/* =====================================================
+   HERO
+===================================================== */
+
+.hero{
+    background:
+        linear-gradient(
+            135deg,
+            var(--primary),
+            var(--primary2)
+        );
+
+    border-radius:24px;
+
+    padding:25px;
+
+    color:white;
+
+    margin-bottom:16px;
+
+    box-shadow:var(--shadow);
+
+    position:relative;
+
+    overflow:hidden;
+}
+
+.hero::after{
+    content:"🎹";
+
+    position:absolute;
+
+    right:-8px;
+    bottom:-30px;
+
+    font-size:130px;
+
+    opacity:.10;
+}
+
+.hero-content{
+    position:relative;
+    z-index:2;
+}
+
+.hero-icon{
+    font-size:42px;
+
+    margin-bottom:8px;
+}
+
+.hero h1{
+    font-size:27px;
+
+    margin-bottom:8px;
+}
+
+.hero p{
+    color:#ede9fe;
+
+    font-size:14px;
+
+    line-height:1.7;
+}
+
+/* =====================================================
+   INFO FREE
+===================================================== */
+
+.info-card{
+    background:var(--soft);
+
+    border:1px solid #ddd6fe;
+
+    border-radius:18px;
+
+    padding:16px;
+
+    margin-bottom:18px;
+}
+
+.info-card strong{
+    display:block;
+
+    color:var(--primary);
+
+    margin-bottom:6px;
+}
+
+.info-card p{
+    font-size:13px;
+
+    color:var(--muted);
+
+    line-height:1.6;
+}
+
+/* =====================================================
+   PROGRESSION
+===================================================== */
+
+.progress-card{
+    background:var(--card);
+
+    border:1px solid var(--border);
+
+    border-radius:18px;
+
+    padding:17px;
+
+    margin-bottom:18px;
+
+    box-shadow:var(--shadow);
+}
+
+.progress-top{
+    display:flex;
+
+    justify-content:space-between;
+
+    margin-bottom:10px;
+
+    font-size:13px;
+
+    font-weight:bold;
+}
+
+.progress-bar{
+    height:9px;
+
+    background:#e5e7eb;
+
+    border-radius:20px;
+
+    overflow:hidden;
+}
+
+.progress-fill{
+    height:100%;
+
+    width:0%;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--primary),
+            var(--primary2)
+        );
+
+    transition:.3s;
+}
+
+/* =====================================================
+   TITRE
+===================================================== */
+
+.section-title{
+    font-size:20px;
+
+    margin-bottom:12px;
+}
+
+/* =====================================================
+   COURS
+===================================================== */
+
+.courses{
+    display:grid;
+
+    gap:12px;
+}
+
+.course{
+    background:white;
+
+    border:1px solid var(--border);
+
+    border-radius:19px;
+
+    overflow:hidden;
+
+    transition:.2s;
+
+    box-shadow:0 4px 15px rgba(15,23,42,.04);
+}
+
+.course:hover{
+    border-color:var(--primary);
+}
+
+.course-header{
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    padding:15px;
+
+    cursor:pointer;
+}
+
+.course-number{
+    width:44px;
+    height:44px;
+
+    flex-shrink:0;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:13px;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--primary),
+            var(--primary2)
+        );
+
+    color:white;
+
+    font-weight:800;
+
+    font-size:13px;
+}
+
+.course-info{
+    flex:1;
+}
+
+.course-title{
+    font-weight:800;
+
+    font-size:15px;
+
+    margin-bottom:4px;
+}
+
+.course-description{
+    color:var(--muted);
+
+    font-size:12px;
+
+    line-height:1.4;
+}
+
+.course-arrow{
+    font-size:18px;
+
+    transition:.25s;
+}
+
+.course.open .course-arrow{
+    transform:rotate(180deg);
+}
+
+.course-content{
+    display:none;
+
+    border-top:1px solid var(--border);
+
+    padding:14px;
+}
+
+.course.open .course-content{
+    display:block;
+}
+
+/* =====================================================
+   LEÇON
+===================================================== */
+
+.lesson-box{
+    background:#fafafa;
+
+    border:1px solid var(--border);
+
+    border-radius:17px;
+
+    padding:17px;
+
+    margin-bottom:12px;
+}
+
+.lesson-box h3{
+    color:var(--primary);
+
+    font-size:17px;
+
+    margin-bottom:9px;
+}
+
+.lesson-box p{
+    font-size:14px;
+
+    line-height:1.8;
+}
+
+.lesson-box ul{
+    padding-left:20px;
+
+    margin-top:8px;
+}
+
+.lesson-box li{
+    margin-bottom:7px;
+
+    line-height:1.6;
+}
+
+/* =====================================================
+   PIANO VISUEL
+===================================================== */
+
+.piano-demo{
+    position:relative;
+
+    display:flex;
+
+    height:125px;
+
+    background:#111827;
+
+    border-radius:12px;
+
+    padding:5px;
+
+    overflow:hidden;
+
+    margin-top:14px;
+
+    margin-bottom:14px;
+}
+
+.white-key{
+    flex:1;
+
+    background:white;
+
+    border:1px solid #cbd5e1;
+
+    border-radius:0 0 7px 7px;
+
+    position:relative;
+
+    display:flex;
+
+    align-items:flex-end;
+
+    justify-content:center;
+
+    padding-bottom:8px;
+
+    color:#475569;
+
+    font-size:11px;
+
+    font-weight:bold;
+}
+
+.black-key{
+    position:absolute;
+
+    top:5px;
+
+    height:75px;
+
+    width:10%;
+
+    background:#111827;
+
+    border-radius:0 0 6px 6px;
+
+    z-index:5;
+
+    box-shadow:0 4px 7px rgba(0,0,0,.3);
+}
+
+.key1{left:9%}
+.key2{left:23%}
+.key3{left:51%}
+.key4{left:65%}
+.key5{left:79%}
+
+/* =====================================================
+   SYMBOL MUSICAL
+===================================================== */
+
+.music-symbol{
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    min-height:90px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #f5f3ff,
+            #eef2ff
+        );
+
+    border-radius:15px;
+
+    border:1px solid #ddd6fe;
+
+    font-size:54px;
+
+    color:var(--primary);
+
+    margin-top:12px;
+
+    margin-bottom:12px;
+}
+
+.symbol-row{
+    display:flex;
+
+    gap:10px;
+
+    flex-wrap:wrap;
+
+    margin-top:12px;
+}
+
+.symbol-card{
+    flex:1;
+
+    min-width:90px;
+
+    text-align:center;
+
+    background:white;
+
+    border:1px solid var(--border);
+
+    border-radius:13px;
+
+    padding:12px;
+}
+
+.symbol-card .symbol{
+    display:block;
+
+    font-size:34px;
+
+    color:var(--primary);
+
+    margin-bottom:5px;
+}
+
+.symbol-card span:last-child{
+    color:var(--muted);
+
+    font-size:11px;
+}
+
+/* =====================================================
+   CONSEIL
+===================================================== */
+
+.tip{
+    background:#f0fdf4;
+
+    border-left:4px solid var(--success);
+
+    border-radius:11px;
+
+    padding:14px;
+
+    margin-top:12px;
+
+    font-size:13px;
+
+    line-height:1.7;
+}
+
+/* =====================================================
+   EXERCICE
+===================================================== */
+
+.exercise{
+    background:#fff7ed;
+
+    border-left:4px solid var(--warning);
+
+    border-radius:11px;
+
+    padding:14px;
+
+    margin-top:12px;
+
+    font-size:13px;
+
+    line-height:1.7;
+}
+
+.exercise strong{
+    display:block;
+
+    margin-bottom:5px;
+
+    color:var(--warning);
+}
+
+/* =====================================================
+   BOUTON TERMINER
+===================================================== */
+
+.complete-button{
+    width:100%;
+
+    border:none;
+
+    padding:14px;
+
+    border-radius:13px;
+
+    margin-top:12px;
+
+    color:white;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--primary),
+            var(--primary2)
+        );
+
+    font-weight:bold;
+
+    cursor:pointer;
+}
+
+.complete-button.done{
+    background:var(--success);
+}
+
+/* =====================================================
+   PREMIUM
+===================================================== */
+
+.premium-box{
+    margin-top:20px;
+
+    padding:20px;
+
+    border-radius:20px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #f5f3ff,
+            #eef2ff
+        );
+
+    border:1px solid #ddd6fe;
+
+    text-align:center;
+}
+
+.premium-box .icon{
+    font-size:38px;
+
+    margin-bottom:8px;
+}
+
+.premium-box h3{
+    color:var(--primary);
+
+    margin-bottom:7px;
+}
+
+.premium-box p{
+    color:var(--muted);
+
+    font-size:13px;
+
+    line-height:1.6;
+
+    margin-bottom:13px;
+}
+
+.premium-button{
+    border:none;
+
+    padding:13px 20px;
+
+    border-radius:13px;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--primary),
+            var(--primary2)
+        );
+
+    color:white;
+
+    font-weight:bold;
+}
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+.footer{
+    text-align:center;
+
+    color:var(--muted);
+
+    padding:30px 0 20px;
+
+    font-size:12px;
+
+    line-height:1.7;
+}
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media(max-width:480px){
+
+    .app{
+        padding:12px;
+    }
+
+    .hero{
+        padding:21px;
+    }
+
+    .hero h1{
+        font-size:23px;
+    }
+
+    .course-header{
+        padding:13px;
+    }
+
+    .lesson-box{
+        padding:15px;
+    }
+
+}
+
+/* =====================================================
+   IMPRESSION
+===================================================== */
+
+@media print{
+
+    .header,
+    .progress-card,
+    .premium-box,
+    .complete-button{
+        display:none!important;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- =====================================================
+     VÉRIFICATION
+===================================================== -->
+
+<div id="accessCheck">
+
+    <div class="check-card">
+
+        <div id="checking">
+
+            <div class="check-icon">
+                🎹
+            </div>
+
+            <h2>
+                Chargement des cours
+            </h2>
+
+            <p>
+                Nous vérifions votre compte...
+            </p>
+
+            <div class="spinner"></div>
+
+        </div>
+
+        <div id="errorBox">
+
+            <div class="check-icon">
+                🔒
+            </div>
+
+            <h2 id="errorTitle">
+                Connexion requise
+            </h2>
+
+            <p id="errorMessage">
+                Connectez-vous pour accéder aux cours.
+            </p>
+
+            <button
+                class="check-button"
+                onclick="goLogin()">
+
+                🔑 Se connecter
+
+            </button>
+
+            <button
+                class="check-button"
+                onclick="goDashboard()">
+
+                ← Retour
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     APPLICATION
+===================================================== -->
+
+<div id="app">
+
+<div class="app">
+
+<!-- HEADER -->
+
+<header class="header">
+
+    <div class="header-left">
+
+        <button
+            class="header-button"
+            onclick="goDashboard()">
+
+            ←
+
+        </button>
+
+        <div class="header-title">
+            🎹 Cours de piano
+        </div>
+
+    </div>
+
+</header>
+
+
+<!-- HERO -->
+
+<section class="hero">
+
+    <div class="hero-content">
+
+        <div class="free-badge">
+            🆓 COURS GRATUITS
+        </div>
+
+        <div class="hero-icon">
+            🎹
+        </div>
+
+        <h1>
+            Les bases du piano
+        </h1>
+
+        <p>
+            Découvre progressivement les fondamentaux
+            du piano grâce à 10 cours simples, détaillés
+            et pratiques.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- INFO -->
+
+<div class="info-card">
+
+    <strong>
+        🆓 Version gratuite
+    </strong>
+
+    <p>
+        Ces cours te permettent d'acquérir une première
+        base solide au piano. Pour aller plus loin,
+        le Guide complet et les fonctionnalités avancées
+        sont disponibles avec Piano Academy Premium.
+    </p>
+
+</div>
+
+
+<!-- PROGRESSION -->
+
+<div class="progress-card">
+
+    <div class="progress-top">
+
+        <span>
+            📚 Ma progression
+        </span>
+
+        <span id="progressText">
+            0 / 10
+        </span>
+
+    </div>
+
+    <div class="progress-bar">
+
+        <div
+            class="progress-fill"
+            id="progressFill">
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- COURS -->
+
+<section>
+
+<h2 class="section-title">
+    📖 Mes 10 cours gratuits
+</h2>
+
+<div class="courses">
+
+
+<!-- =====================================================
+     COURS 1
+===================================================== -->
+
+<div class="course open">
+
+<div
+    class="course-header"
+    onclick="toggleCourse(this)">
+
+    <div class="course-number">
+        01
+    </div>
+
+    <div class="course-info">
+
+        <div class="course-title">
+            Découvrir le piano
+        </div>
+
+        <div class="course-description">
+            Comprendre l'instrument et adopter une bonne position.
+        </div>
+
+    </div>
+
+    <div class="course-arrow">
+        ▼
+    </div>
+
+</div>
+
+<div class="course-content">
+
+<div class="lesson-box">
+
+<h3>
+    🎹 Qu'est-ce qu'un piano ?
+</h3>
+
+<p>
+Le piano est un instrument à clavier. Lorsque tu appuies
+sur une touche, un mécanisme produit un son. Le clavier
+permet de jouer des notes graves à gauche et des notes
+aiguës à droite.
+</p>
+
+<div class="piano-demo">
+
+<div class="white-key">Do</div>
+<div class="white-key">Ré</div>
+<div class="white-key">Mi</div>
+<div class="white-key">Fa</div>
+<div class="white-key">Sol</div>
+<div class="white-key">La</div>
+<div class="white-key">Si</div>
+
+<div class="black-key key1"></div>
+<div class="black-key key2"></div>
+<div class="black-key key3"></div>
+<div class="black-key key4"></div>
+<div class="black-key key5"></div>
+
+</div>
+
+</div>
+
+<div class="lesson-box">
+
+<h3>
+    🪑 La bonne position
+</h3>
+
+<p>
+Assieds-toi au centre du clavier. Garde le dos relativement
+droit, les épaules détendues et les bras libres. Les mains
+doivent rester souples.
+</p>
+
+<ul>
+<li>Ne serre pas les épaules.</li>
+<li>Garde les poignets détendus.</li>
+<li>Place les doigts naturellement sur les touches.</li>
+<li>Évite de jouer avec une tension excessive.</li>
+</ul>
+
+</div>
+
+<div class="tip">
+
+💡 <strong>Conseil :</strong>
+Au début, cherche surtout à être détendu. Une bonne position
+te permettra de progresser plus facilement.
+
+</div>
+
+<div class="exercise">
+
+<strong>🎯 Exercice</strong>
+
+Assieds-toi devant ton clavier et identifie simplement
+la partie grave, la partie centrale et la partie aiguë.
+Ne cherche pas encore à jouer rapidement.
+
+</div>
+
+<button
+class="complete-button"
+onclick="completeCourse(1)">
+
+✓ Marquer le cours comme terminé
+
+</button>
+
+</div>
+
+</div>
+
+
+<!-- =====================================================
+     COURS 2
+===================================================== -->
+
+<div class="course">
+
+<div class="course-header"
+onclick="toggleCourse(this)">
+
+<div class="course-number">
+02
+</div>
+
+<div class="course-info">
+
+<div class="course-title">
+Touches blanches et noires
+</div>
+
+<div class="course-description">
+Reconnaître les groupes de touches du clavier.
+</div>
+
+</div>
+
+<div class="course-arrow">
+▼
+</div>
+
+</div>
+
+<div class="course-content">
+
+<div class="lesson-box">
+
+<h3>
+    ⬜ Les touches blanches
+</h3>
+
+<p>
+Les touches blanches correspondent aux notes naturelles :
+Do, Ré, Mi, Fa, Sol, La et Si.
+</p>
+
+<div class="piano-demo">
+
+<div class="white-key">Do</div>
+<div class="white-key">Ré</div>
+<div class="white-key">Mi</div>
+<div class="white-key">Fa</div>
+<div class="white-key">Sol</div>
+<div class="white-key">La</div>
+<div class="white-key">Si</div>
+
+</div>
+
+</div>
+
+<div class="lesson-box">
+
+<h3>
+    ⬛ Les touches noires
+</h3>
+
+<p>
+Les touches noires correspondent aux notes altérées.
+Elles peuvent être appelées dièses ou bémols selon
+le contexte musical.
+</p>
+
+<p style="margin-top:10px;">
+Observe attentivement le clavier : les touches noires
+apparaissent par groupes de <strong>2</strong> et de
+<strong>3</strong>.
+</p>
+
+</div>
+
+<div class="tip">
+
+💡 Le groupe de deux touches noires et le groupe de trois
+touches noires sont des repères essentiels pour retrouver
+les notes.
+
+</div>
+
+<div class="exercise">
+
+<strong>🎯 Exercice</strong>
+
+Trouve tous les groupes de deux touches noires sur ton clavier.
+Ensuite, trouve les groupes de trois.
+
+</div>
+
+<button
+class="complete-button"
+onclick="completeCourse(2)">
+
+✓ Marquer le cours comme terminé
+
+</button>
+
+</div>
+
+</div>
+
+
+<!-- =====================================================
+     COURS 3
+===================================================== -->
+
+<div class="course">
+
+<div class="course-header"
+onclick="toggleCourse(this)">
+
+<div class="course-number">
+03
+</div>
+
+<div class="course-info">
+
+<div class="course-title">
+Les 7 notes musicales
+</div>
+
+<div class="course-description">
+Do, Ré, Mi, Fa, Sol, La et Si.
+</div>
+
+</div>
+
+<div class="course-arrow">
+▼
+</div>
+
+</div>
+
+<div class="course-content">
+
+<div class="lesson-box">
+
+<h3>
+    🎵 Les sept notes
+</h3>
+
+<p>
+La musique occidentale utilise sept noms de notes
+principales :
+</p>
+
+<div class="symbol-row">
+
+<div class="symbol-card">
+<span class="symbol">C</span>
+<span>Do</span>
+</div>
+
+<div class="symbol-card">
+<span class="symbol">D</span>
+<span>Ré</span>
+</div>
+
+<div class="symbol-card">
+<span class="symbol">E</span>
+<span>Mi</span>
+</div>
+
+<div class="symbol-card">
+<span class="symbol">F</span>
+<span>Fa</span>
+</div>
+
+<div class="symbol-card">
+<span class="symbol">G</span>
+<span>Sol</span>
+</div>
+
+<div class="symbol-card">
+<span class="symbol">A</span>
+<span>La</span>
+</div>
+
+<div class="symbol-card">
+<span class="symbol">B</span>
+<span>Si</span>
+</div>
+
+</div>
+
+</div>
+
+<div class="lesson-box">
+
+<h3>
+    🎹 Trouver le Do
+</h3>
+
+<p>
+Pour retrouver le Do, cherche un groupe de deux touches
+noires. Le Do se trouve immédiatement à gauche de ce groupe.
+</p>
+
+<div class="music-symbol">
+🎹
+</div>
+
+</div>
+
+<div class="exercise">
+
+<strong>🎯 Exercice</strong>
+
+Joue lentement :
+
+<br><br>
+
+<strong>
+Do → Ré → Mi → Fa → Sol → La → Si
+</strong>
+
+<br><br>
+
+Puis redescends :
+
+<br><br>
+
+<strong>
+Si → La → Sol → Fa → Mi → Ré → Do
+</strong>
+
+</div>
+
+<button
+class="complete-button"
+onclick="completeCourse(3)">
+
+✓ Marquer le cours comme terminé
+
+</button>
+
+</div>
+
+</div>
+
+
+<!-- =====================================================
+     COURS 4
+===================================================== -->
+
+<div class="course">
+
+<div class="course-header"
+onclick="toggleCourse(this)">
+
+<div class="course-number">
+04
+</div>
+
+<div class="course-info">
+
+<div class="course-title">
+Position des doigts
+</div>
+
+<div class="course-description">
+Apprendre les numéros des doigts.
+</div>
+
+</div>
+
+<div class="course-arrow">
+▼
+</div>
+
+</div>
+
+<div class="course-content">
+
+<div class="lesson-box">
+
+<h3>
+    ✋ Les numéros des doigts
+</h3>
+
+<p>
+Au piano, chaque doigt possède un numéro.
+</p>
+
+<div class="symbol-row">
+
+<div class="symbol-card">
+<span class="symbol">1</span>
+<span>Pouce</span>
+</div>
+
+<div class="symbol-card">
+<span class="symbol">2</span>
+<span>Index</span>
+</div>
+
+<div class="symbol-card">
+<span class="symbol">3</span>
+<span>Majeur</span>
+</div>
+
+<div class="symbol-card">
+<span class="symbol">4</span>
+<span>Annulaire</span>
+</div>
+
+<div class="symbol-card">
+<span class="symbol">5</span>
+<span>Auriculaire</span>
+</div>
+
+</div>
+
+</div>
+
+<div class="lesson-box">
+
+<h3>
+    🤲 Position naturelle
+</h3>
+
+<p>
+Place ta main au-dessus des touches comme si tu tenais
+une petite balle. Les doigts doivent être légèrement
+arrondis et détendus.
+</p>
+
+</div>
+
+<div class="tip">
+
+💡 Ne force jamais les doigts. La souplesse est beaucoup
+plus importante que la force.
+
+</div>
+
+<div class="exercise">
+
+<strong>🎯 Exercice</strong>
+
+Pose les cinq doigts de la main droite sur cinq touches
+blanches consécutives. Joue chaque doigt lentement de 1 à 5,
+puis de 5 à 1.
+
+</div>
+
+<button
+class="complete-button"
+onclick="completeCourse(4)">
+
+✓ Marquer le cours comme terminé
+
+</button>
+
+</div>
+
+</div>
+
+
+<!-- =====================================================
+     COURS 5
+===================================================== -->
+
+<div class="course">
+
+<div class="course-header"
+onclick="toggleCourse(this)">
+
+<div class="course-number">
+05
+</div>
+
+<div class="course-info">
+
+<div class="course-title">
+Trouver le Do central
+</div>
+
+<div class="course-description">
+Trouver un repère important sur le clavier.
+</div>
+
+</div>
+
+<div class="course-arrow">
+▼
+</div>
+
+</div>
+
+<div class="course-content">
+
+<div class="lesson-box">
+
+<h3>
+    🎹 Le Do central
+</h3>
+
+<p>
+Le Do central constitue un repère important pour débuter.
+Il se trouve approximativement au centre du clavier.
+Sur un piano standard, il est généralement appelé
+<strong>C4</strong> en notation scientifique.
+</p>
+
+<div class="music-symbol">
+C4
+</div>
+
+</div>
+
+<div class="lesson-box">
+
+<h3>
+    🔎 Comment le retrouver ?
+</h3>
+
+<p>
+Cherche un groupe de deux touches noires proche du centre
+du clavier. La touche blanche immédiatement à gauche
+de ce groupe est un Do.
+</p>
+
+</div>
+
+<div class="exercise">
+
+<strong>🎯 Exercice</strong>
+
+Trouve le Do central, joue-le plusieurs fois et dis
+à voix haute : <strong>Do</strong>.
+
+Ensuite, joue :
+
+<strong>Do - Ré - Mi - Ré - Do</strong>
+
+</div>
+
+<button
+class="complete-button"
+onclick="completeCourse(5)">
+
+✓ Marquer le cours comme terminé
+
+</button>
+
+</div>
+
+</div>
+
+
+<!-- =====================================================
+     COURS 6
+===================================================== -->
+
+<div class="course">
+
+<div class="course-header"
+onclick="toggleCourse(this)">
+
+<div class="course-number">
+06
+</div>
+
+<div class="course-info">
+
+<div class="course-title">
+Jouer ses premières notes
+</div>
+
+<div class="course-description">
+Commencer à jouer une petite séquence.
+</div>
+
+</div>
+
+<div class="course-arrow">
+▼
+</div>
+
+</div>
+
+<div class="course-content">
+
+<div class="lesson-box">
+
+<h3>
+    🎹 Première séquence
+</h3>
+
+<p>
+Maintenant que tu connais les notes, commence par une
+séquence très simple.
+</p>
+
+<div class="music-symbol">
+Do · Ré · Mi
+</div>
+
+<p>
+Joue Do avec le pouce, Ré avec l'index et Mi avec
+le majeur.
+</p>
+
+</div>
+
+<div class="lesson-box">
+
+<h3>
+    🔄 Monter puis descendre
+</h3>
+
+<p>
+Joue :
+</p>
+
+<p style="margin-top:10px;font-weight:bold;">
+Do → Ré → Mi → Fa → Sol
+</p>
+
+<p style="margin-top:10px;">
+Puis :
+</p>
+
+<p style="margin-top:10px;font-weight:bold;">
+Sol → Fa → Mi → Ré → Do
+</p>
+
+</div>
+
+<div class="tip">
+
+💡 Joue lentement. Chaque note doit être claire avant
+d'augmenter la vitesse.
+
+</div>
+
+<div class="exercise">
+
+<strong>🎯 Exercice</strong>
+
+Répète la séquence cinq fois sans accélérer.
+
+Si tu fais une erreur, recommence calmement.
+
+</div>
+
+<button
+class="complete-button"
+onclick="completeCourse(6)">
+
+✓ Marquer le cours comme terminé
+
+</button>
+
+</div>
+
+</div>
+
+
+<!-- =====================================================
+     COURS 7
+===================================================== -->
+
+<div class="course">
+
+<div class="course-header"
+onclick="toggleCourse(this)">
+
+<div class="course-number">
+07
+</div>
+
+<div class="course-info">
+
+<div class="course-title">
+Jouer une petite mélodie
+</div>
+
+<div class="course-description">
+Utiliser les notes apprises dans une mélodie simple.
+</div>
+
+</div>
+
+<div class="course-arrow">
+▼
+</div>
+
+</div>
+
+<div class="course-content">
+
+<div class="lesson-box">
+
+<h3>
+    🎶 Une première mélodie
+</h3>
+
+<p>
+Utilise les notes Do, Ré, Mi et Sol pour créer une
+petite phrase musicale.
+</p>
+
+<div class="music-symbol">
+♪ ♪ ♫ ♪
+</div>
+
+<p>
+Exemple :
+</p>
+
+<p style="margin-top:10px;font-weight:bold;">
+Do - Ré - Mi - Ré - Do
+</p>
+
+<p style="margin-top:10px;font-weight:bold;">
+Mi - Fa - Sol - Fa - Mi
+</p>
+
+</div>
+
+<div class="lesson-box">
+
+<h3>
+    🎵 Jouer avec régularité
+</h3>
+
+<p>
+Ne cherche pas à jouer rapidement. Essaie plutôt de donner
+à chaque note une durée régulière.
+</p>
+
+</div>
+
+<div class="exercise">
+
+<strong>🎯 Exercice</strong>
+
+Joue chaque phrase trois fois.
+
+La première fois très lentement.
+
+La deuxième fois normalement.
+
+La troisième fois en essayant de jouer sans regarder
+constamment tes doigts.
+
+</div>
+
+<button
+class="complete-button"
+onclick="completeCourse(7)">
+
+✓ Marquer le cours comme terminé
+
+</button>
+
+</div>
+
+</div>
+
+
+<!-- =====================================================
+     COURS 8
+===================================================== -->
+
+<div class="course">
+
+<div class="course-header"
+onclick="toggleCourse(this)">
+
+<div class="course-number">
+08
+</div>
+
+<div class="course-info">
+
+<div class="course-title">
+Comprendre le rythme
+</div>
+
+<div class="course-description">
+Découvrir pulsation, temps et valeurs.
+</div>
+
+</div>
+
+<div class="course-arrow">
+▼
+</div>
+
+</div>
+
+<div class="course-content">
+
+<div class="lesson-box">
+
+<h3>
+    ⏱️ La pulsation
+</h3>
+
+<p>
+La pulsation est le battement régulier qui permet
+d'organiser la musique.
+</p>
+
+<div class="music-symbol">
+♩ ♩ ♩ ♩
+</div>
+
+<p>
+Tu peux compter :
+
+<strong>
+1 - 2 - 3 - 4
+</strong>
+</p>
+
+</div>
+
+<div class="lesson-box">
+
+<h3>
+    🎼 Les valeurs de notes
+</h3>
+
+<div class="symbol-row">
+
+<div class="symbol-card">
+<span class="symbol">𝅝</span>
+<span>Ronde</span>
+</div>
+
+<div class="symbol-card">
+<span class="symbol">𝅗𝅥</span>
+<span>Blanche</span>
+</div>
+
+<div class="symbol-card">
+<span class="symbol">♩</span>
+<span>Noire</span>
+</div>
+
+<div class="symbol-card">
+<span class="symbol">♪</span>
+<span>Croche</span>
+</div>
+
+</div>
+
+</div>
+
+<div class="tip">
+
+💡 Le rythme est aussi important que les bonnes notes.
+Un pianiste doit apprendre à respecter la pulsation.
+
+</div>
+
+<div class="exercise">
+
+<strong>🎯 Exercice</strong>
+
+Tape doucement dans tes mains en comptant :
+
+<strong>
+1 - 2 - 3 - 4
+</strong>
+
+Puis joue une seule note du piano sur chaque temps.
+
+</div>
+
+<button
+class="complete-button"
+onclick="completeCourse(8)">
+
+✓ Marquer le cours comme terminé
+
+</button>
+
+</div>
+
+</div>
+
+
+<!-- =====================================================
+     COURS 9
+===================================================== -->
+
+<div class="course">
+
+<div class="course-header"
+onclick="toggleCourse(this)">
+
+<div class="course-number">
+09
+</div>
+
+<div class="course-info">
+
+<div class="course-title">
+Première coordination
+</div>
+
+<div class="course-description">
+Commencer à utiliser les deux mains.
+</div>
+
+</div>
+
+<div class="course-arrow">
+▼
+</div>
+
+</div>
+
+<div class="course-content">
+
+<div class="lesson-box">
+
+<h3>
+    🤲 Les deux mains
+</h3>
+
+<p>
+Lorsque tu commences à utiliser les deux mains,
+travaille d'abord chaque main séparément.
+</p>
+
+<p style="margin-top:10px;">
+La main droite peut jouer une petite mélodie tandis
+que la main gauche joue une note grave simple.
+</p>
+
+</div>
+
+<div class="lesson-box">
+
+<h3>
+    🎹 Premier exercice
+</h3>
+
+<p>
+Main gauche :
+</p>
+
+<p style="font-weight:bold;margin-top:8px;">
+Do — Do — Do — Do
+</p>
+
+<p style="margin-top:10px;">
+Main droite :
+</p>
+
+<p style="font-weight:bold;margin-top:8px;">
+Do — Ré — Mi — Ré
+</p>
+
+</div>
+
+<div class="tip">
+
+💡 Si les deux mains deviennent difficiles à coordonner,
+ralentis. Il vaut mieux jouer lentement et correctement
+que rapidement avec des erreurs.
+
+</div>
+
+<div class="exercise">
+
+<strong>🎯 Exercice</strong>
+
+Joue quatre Do avec la main gauche pendant que la main
+droite joue Do-Ré-Mi-Ré.
+
+Répète plusieurs fois.
+
+</div>
+
+<button
+class="complete-button"
+onclick="completeCourse(9)">
+
+✓ Marquer le cours comme terminé
+
+</button>
+
+</div>
+
+</div>
+
+
+<!-- =====================================================
+     COURS 10
+===================================================== -->
+
+<div class="course">
+
+<div class="course-header"
+onclick="toggleCourse(this)">
+
+<div class="course-number">
+10
+</div>
+
+<div class="course-info">
+
+<div class="course-title">
+Ton premier morceau
+</div>
+
+<div class="course-description">
+Mettre les premières notions en pratique.
+</div>
+
+</div>
+
+<div class="course-arrow">
+▼
+</div>
+
+</div>
+
+<div class="course-content">
+
+<div class="lesson-box">
+
+<h3>
+    🏆 Objectif
+</h3>
+
+<p>
+Tu vas maintenant utiliser les notes, le rythme et
+la coordination appris dans les cours précédents.
+</p>
+
+</div>
+
+<div class="lesson-box">
+
+<h3>
+    🎵 Petite composition d'entraînement
+</h3>
+
+<p>
+Joue lentement :
+</p>
+
+<p style="font-weight:bold;margin-top:10px;">
+Do - Ré - Mi - Ré
+</p>
+
+<p style="font-weight:bold;margin-top:7px;">
+Do - Do - Ré - Mi
+</p>
+
+<p style="font-weight:bold;margin-top:7px;">
+Sol - Fa - Mi - Ré
+</p>
+
+<p style="font-weight:bold;margin-top:7px;">
+Do
+</p>
+
+<div class="music-symbol">
+🎼 ♩ ♪ ♩
+</div>
+
+</div>
+
+<div class="lesson-box">
+
+<h3>
+    🧠 Ce que tu dois maintenant connaître
+</h3>
+
+<ul>
+
+<li>La structure générale du clavier.</li>
+
+<li>Les touches blanches et noires.</li>
+
+<li>Les sept notes musicales.</li>
+
+<li>Les numéros des doigts.</li>
+
+<li>Le Do central.</li>
+
+<li>Les bases du rythme.</li>
+
+<li>La coordination élémentaire des deux mains.</li>
+
+</ul>
+
+</div>
+
+<div class="tip">
+
+💡 Félicitations ! Tu as terminé les bases gratuites
+de Piano Academy. Continue à pratiquer régulièrement.
+
+</div>
+
+<button
+class="complete-button"
+onclick="completeCourse(10)">
+
+✓ Terminer les cours gratuits
+
+</button>
+
+</div>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+     PREMIUM
+===================================================== -->
+
+<div class="premium-box">
+
+<div class="icon">
+⭐
+</div>
+
+<h3>
+Passe au niveau supérieur
+</h3>
+
+<p>
+Tu as terminé les bases gratuites ? Découvre maintenant
+le Guide complet du piano avec ses 30 chapitres et ses
+contenus pédagogiques avancés.
+</p>
+
+<button
+class="premium-button"
+onclick="goPremium()">
+
+⭐ Découvrir Premium
+
+</button>
+
+</div>
+
+
+<!-- FOOTER -->
+
+<footer class="footer">
+
+Piano Academy<br>
+
+Apprends • Pratique • Progresse
+
+</footer>
+
+</div>
+
+</div>
+
+
+<script>
+
+/* =====================================================
+   SUPABASE
+===================================================== */
+
+const SUPABASE_URL =
+"https://swsvnzjeipcobodntajs.supabase.co";
+
+const SUPABASE_KEY =
+"sb_publishable_JrPeCn1LhCNHY3BJZ5iCEQ_mc2iqLpf";
+
+const supabaseClient =
+window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+);
+
+
+/* =====================================================
+   VÉRIFICATION DU COMPTE
+===================================================== */
+
+async function checkAccess(){
+
+    try{
+
+        const {
+            data:{
+                session
+            },
+            error
+        } =
+        await supabaseClient
+        .auth
+        .getSession();
+
+        if(error){
+            throw error;
+        }
+
+        if(!session){
+
+            showError(
+                "Connexion requise",
+                "Connectez-vous à votre compte pour accéder aux cours gratuits."
+            );
+
+            return;
+        }
+
+        /*
+         * Même si l'utilisateur est Premium,
+         * les cours de base restent accessibles.
+         */
+
+        openApp();
+
+    }catch(error){
+
+        console.error(error);
+
+        showError(
+            "Erreur",
+            "Impossible de vérifier votre compte."
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   OUVRIR APPLICATION
+===================================================== */
+
+function openApp(){
+
+    document.getElementById(
+        "accessCheck"
+    ).style.display = "none";
+
+    document.getElementById(
+        "app"
+    ).style.display = "block";
+
+    updateProgress();
+
+}
+
+
+/* =====================================================
+   ERREUR
+===================================================== */
+
+function showError(
+    title,
+    message
+){
+
+    document.getElementById(
+        "checking"
+    ).style.display = "none";
+
+    document.getElementById(
+        "errorBox"
+    ).style.display = "block";
+
+    document.getElementById(
+        "errorTitle"
+    ).textContent = title;
+
+    document.getElementById(
+        "errorMessage"
+    ).textContent = message;
+
+}
+
+
+/* =====================================================
+   NAVIGATION
+===================================================== */
+
+function goLogin(){
+
+    window.location.href =
+    "connexion.html";
+
+}
+
+
+function goDashboard(){
+
+    window.location.href =
+    "dashboard.html";
+
+}
+
+
+function goPremium(){
+
+    window.location.href =
+    "premium.html";
+
+}
+
+
+/* =====================================================
+   OUVRIR / FERMER COURS
+===================================================== */
+
+function toggleCourse(header){
+
+    const course =
+    header.parentElement;
+
+    course.classList.toggle(
+        "open"
+    );
+
+}
+
+
+/* =====================================================
+   PROGRESSION
+===================================================== */
+
+let completedCourses =
+JSON.parse(
+    localStorage.getItem(
+        "pianoFreeCourses"
+    ) || "[]"
+);
+
+
+/* =====================================================
+   TERMINER UN COURS
+===================================================== */
+
+function completeCourse(number){
+
+    if(
+        !completedCourses.includes(
+            number
+        )
+    ){
+
+        completedCourses.push(
+            number
+        );
+
+        localStorage.setItem(
+            "pianoFreeCourses",
+            JSON.stringify(
+                completedCourses
+            )
+        );
+
+    }
+
+    updateProgress();
+
+    updateButtons();
+
+}
+
+
+/* =====================================================
+   METTRE À JOUR PROGRESSION
+===================================================== */
+
+function updateProgress(){
+
+    completedCourses =
+    completedCourses.filter(
+        number =>
+            Number.isInteger(number) &&
+            number >= 1 &&
+            number <= 10
+    );
+
+    completedCourses =
+    [...new Set(
+        completedCourses
+    )];
+
+    const count =
+    completedCourses.length;
+
+    const percent =
+    (count / 10) * 100;
+
+    document.getElementById(
+        "progressText"
+    ).textContent =
+    count + " / 10";
+
+    document.getElementById(
+        "progressFill"
+    ).style.width =
+    percent + "%";
+
+    updateButtons();
+
+}
+
+
+/* =====================================================
+   BOUTONS
+===================================================== */
+
+function updateButtons(){
+
+    const buttons =
+    document.querySelectorAll(
+        ".complete-button"
+    );
+
+    buttons.forEach(
+        (button,index)=>{
+
+            const number =
+            index + 1;
+
+            if(
+                completedCourses.includes(
+                    number
+                )
+            ){
+
+                button.textContent =
+                "✓ Cours terminé";
+
+                button.classList.add(
+                    "done"
+                );
+
+            }else{
+
+                button.textContent =
+                number === 10
+                ? "✓ Terminer les cours gratuits"
+                : "✓ Marquer le cours comme terminé";
+
+                button.classList.remove(
+                    "done"
+                );
+
+            }
+
+        }
+    );
+
+}
+
+
+/* =====================================================
+   DÉMARRAGE
+===================================================== */
+
+checkAccess();
+
+</script>
+
+</body>
+</html>
