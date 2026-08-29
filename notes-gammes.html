@@ -1,0 +1,1465 @@
+<!DOCTYPE html><html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Notes, Gammes & Tonalités — Piano Academy</title><style>
+:root{
+    --bg:#ffffff;
+    --surface:#ffffff;
+    --surface2:#f8fafc;
+    --text:#111827;
+    --muted:#64748b;
+    --border:#e5e7eb;
+    --primary:#7c3aed;
+    --primary2:#2563eb;
+    --success:#16a34a;
+    --warning:#f59e0b;
+    --danger:#dc2626;
+    --shadow:0 10px 30px rgba(15,23,42,.08);
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:Arial,Helvetica,sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    min-height:100vh;
+}
+
+button{
+    font-family:inherit;
+}
+
+.app{
+    width:100%;
+    max-width:760px;
+    margin:auto;
+    padding:14px;
+}
+
+/* HEADER */
+
+.header{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+    margin-bottom:15px;
+}
+
+.header-left{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.icon-btn{
+    width:44px;
+    height:44px;
+    border:1px solid var(--border);
+    background:var(--surface);
+    color:var(--text);
+    border-radius:13px;
+    font-size:20px;
+    cursor:pointer;
+    box-shadow:0 3px 10px rgba(0,0,0,.04);
+}
+
+.title{
+    font-size:19px;
+    font-weight:800;
+}
+
+/* HERO */
+
+.hero{
+    position:relative;
+    overflow:hidden;
+    border-radius:25px;
+    padding:25px;
+    margin-bottom:16px;
+    color:white;
+    background:linear-gradient(135deg,var(--primary),var(--primary2));
+    box-shadow:var(--shadow);
+}
+
+.hero:after{
+    content:"🎵";
+    position:absolute;
+    right:18px;
+    bottom:-15px;
+    font-size:100px;
+    opacity:.12;
+}
+
+.badge{
+    display:inline-block;
+    background:rgba(255,255,255,.17);
+    border:1px solid rgba(255,255,255,.2);
+    padding:7px 11px;
+    border-radius:20px;
+    font-size:12px;
+    font-weight:bold;
+    margin-bottom:13px;
+}
+
+.hero h1{
+    font-size:28px;
+    margin-bottom:8px;
+}
+
+.hero p{
+    color:#eef2ff;
+    font-size:14px;
+    line-height:1.7;
+    max-width:620px;
+}
+
+/* PROGRESSION */
+
+.progress-card{
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:18px;
+    padding:16px;
+    margin-bottom:16px;
+    box-shadow:var(--shadow);
+}
+
+.progress-top{
+    display:flex;
+    justify-content:space-between;
+    margin-bottom:10px;
+    font-size:13px;
+    font-weight:bold;
+}
+
+.progress{
+    height:9px;
+    background:var(--surface2);
+    border-radius:20px;
+    overflow:hidden;
+}
+
+.progress-fill{
+    height:100%;
+    width:0%;
+    background:linear-gradient(90deg,var(--primary),var(--primary2));
+    transition:.3s;
+}
+
+/* MENU */
+
+.menu{
+    display:grid;
+    gap:10px;
+    margin-bottom:18px;
+}
+
+.lesson-card{
+    display:flex;
+    align-items:center;
+    gap:13px;
+    width:100%;
+    padding:15px;
+    border:1px solid var(--border);
+    border-radius:18px;
+    background:var(--surface);
+    cursor:pointer;
+    text-align:left;
+    color:var(--text);
+    box-shadow:0 5px 18px rgba(15,23,42,.04);
+    transition:.2s;
+}
+
+.lesson-card:hover{
+    border-color:var(--primary);
+    transform:translateY(-1px);
+}
+
+.lesson-icon{
+    width:46px;
+    height:46px;
+    flex-shrink:0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:14px;
+    background:linear-gradient(135deg,var(--primary),var(--primary2));
+    color:white;
+    font-size:22px;
+}
+
+.lesson-info{
+    flex:1;
+}
+
+.lesson-title{
+    font-size:15px;
+    font-weight:800;
+    margin-bottom:4px;
+}
+
+.lesson-description{
+    color:var(--muted);
+    font-size:12px;
+    line-height:1.45;
+}
+
+.arrow{
+    font-size:18px;
+    color:var(--muted);
+}
+
+/* COURS */
+
+.course{
+    display:none;
+}
+
+.course.active{
+    display:block;
+}
+
+.course-header{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:15px;
+}
+
+.back-btn{
+    border:1px solid var(--border);
+    background:var(--surface);
+    color:var(--text);
+    padding:11px 14px;
+    border-radius:12px;
+    cursor:pointer;
+}
+
+.course-number{
+    color:var(--muted);
+    font-size:13px;
+}
+
+.content{
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:22px;
+    padding:21px;
+    box-shadow:var(--shadow);
+}
+
+.content h2{
+    font-size:25px;
+    margin-bottom:7px;
+}
+
+.subtitle{
+    color:var(--muted);
+    line-height:1.65;
+    font-size:14px;
+    margin-bottom:22px;
+}
+
+.section{
+    margin-top:23px;
+}
+
+.section h3{
+    color:var(--primary);
+    font-size:18px;
+    margin-bottom:9px;
+}
+
+.section p{
+    font-size:15px;
+    line-height:1.8;
+}
+
+.info{
+    margin-top:13px;
+    padding:15px;
+    border-left:4px solid var(--primary);
+    background:rgba(124,58,237,.08);
+    border-radius:12px;
+    line-height:1.7;
+}
+
+.tip{
+    margin-top:13px;
+    padding:15px;
+    border-left:4px solid var(--success);
+    background:rgba(22,163,74,.08);
+    border-radius:12px;
+    line-height:1.7;
+}
+
+.warning{
+    margin-top:13px;
+    padding:15px;
+    border-left:4px solid var(--warning);
+    background:rgba(245,158,11,.10);
+    border-radius:12px;
+    line-height:1.7;
+}
+
+/* NOTES */
+
+.note-row{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    margin-top:12px;
+}
+
+.note{
+    min-width:48px;
+    padding:11px 13px;
+    text-align:center;
+    border-radius:10px;
+    background:var(--surface2);
+    border:1px solid var(--border);
+    font-weight:bold;
+}
+
+.note.active{
+    background:linear-gradient(135deg,var(--primary),var(--primary2));
+    color:white;
+    border:none;
+}
+
+/* CLAVIER */
+
+.piano-wrap{
+    margin-top:16px;
+    overflow-x:auto;
+    padding-bottom:7px;
+}
+
+.piano{
+    position:relative;
+    min-width:560px;
+    height:190px;
+    display:flex;
+    background:#111827;
+    padding:5px;
+    border-radius:12px;
+}
+
+.white-key{
+    position:relative;
+    flex:1;
+    height:180px;
+    background:white;
+    border:1px solid #cbd5e1;
+    border-radius:0 0 7px 7px;
+    display:flex;
+    align-items:flex-end;
+    justify-content:center;
+    padding-bottom:10px;
+    color:#111827;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.white-key:first-child{
+    border-radius:8px 0 7px 7px;
+}
+
+.black-key{
+    position:absolute;
+    top:5px;
+    width:7%;
+    height:110px;
+    background:#111827;
+    border-radius:0 0 6px 6px;
+    z-index:2;
+    color:white;
+    display:flex;
+    align-items:flex-end;
+    justify-content:center;
+    padding-bottom:7px;
+    font-size:10px;
+}
+
+/* TABLE */
+
+.scale-box{
+    overflow-x:auto;
+    margin-top:13px;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    min-width:430px;
+}
+
+th,td{
+    padding:11px;
+    border:1px solid var(--border);
+    text-align:center;
+    font-size:13px;
+}
+
+th{
+    background:var(--surface2);
+}
+
+/* EXERCICE */
+
+.exercise{
+    margin-top:20px;
+    padding:17px;
+    border-radius:17px;
+    background:var(--surface2);
+    border:1px solid var(--border);
+}
+
+.exercise h3{
+    margin-bottom:8px;
+}
+
+.answer{
+    display:none;
+    margin-top:12px;
+    padding:13px;
+    border-radius:11px;
+    background:rgba(22,163,74,.1);
+    line-height:1.6;
+}
+
+.answer.show{
+    display:block;
+}
+
+.exercise button{
+    margin-top:12px;
+    border:none;
+    background:linear-gradient(135deg,var(--primary),var(--primary2));
+    color:white;
+    padding:11px 15px;
+    border-radius:11px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+/* NAVIGATION */
+
+.navigation{
+    display:flex;
+    gap:10px;
+    margin-top:15px;
+}
+
+.nav-btn{
+    flex:1;
+    border:none;
+    padding:14px;
+    border-radius:13px;
+    background:var(--surface2);
+    border:1px solid var(--border);
+    color:var(--text);
+    cursor:pointer;
+    font-weight:bold;
+}
+
+.nav-btn.primary{
+    color:white;
+    border:none;
+    background:linear-gradient(135deg,var(--primary),var(--primary2));
+}
+
+/* FIN */
+
+.complete{
+    width:100%;
+    margin-top:15px;
+    border:none;
+    padding:15px;
+    border-radius:14px;
+    color:white;
+    background:linear-gradient(135deg,var(--primary),var(--primary2));
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.complete.done{
+    background:var(--success);
+}
+
+.footer{
+    text-align:center;
+    color:var(--muted);
+    font-size:12px;
+    line-height:1.7;
+    padding:30px 0 20px;
+}
+
+@media(max-width:480px){
+
+    .app{
+        padding:11px;
+    }
+
+    .hero{
+        padding:21px;
+    }
+
+    .hero h1{
+        font-size:23px;
+    }
+
+    .content{
+        padding:17px;
+    }
+
+    .content h2{
+        font-size:22px;
+    }
+
+}
+</style></head><body><div class="app"><header class="header"><div class="header-left">
+
+    <button class="icon-btn" onclick="goBack()">
+        ←
+    </button>
+
+    <div class="title">
+        🎵 Notes, gammes & tonalités
+    </div>
+
+</div>
+
+</header><section class="hero"><div class="badge">
+    🎓 COURS FREE
+</div>
+
+<h1>
+    Notes, gammes & tonalités
+</h1>
+
+<p>
+    Découvre les fondations de la théorie musicale
+    et apprends à comprendre les notes, les distances,
+    les gammes et les tonalités au piano.
+</p>
+
+</section><div class="progress-card"><div class="progress-top">
+    <span>📚 Progression</span>
+    <span id="progressText">0 / 8</span>
+</div>
+
+<div class="progress">
+    <div class="progress-fill" id="progressFill"></div>
+</div>
+
+</div><div id="menu" class="menu"><button class="lesson-card" onclick="openCourse(1)">
+    <div class="lesson-icon">🎵</div>
+    <div class="lesson-info">
+        <div class="lesson-title">Les 7 notes musicales</div>
+        <div class="lesson-description">
+            Do, Ré, Mi, Fa, Sol, La et Si.
+        </div>
+    </div>
+    <div class="arrow">›</div>
+</button>
+
+<button class="lesson-card" onclick="openCourse(2)">
+    <div class="lesson-icon">♯</div>
+    <div class="lesson-info">
+        <div class="lesson-title">Dièses, bémols et bécarres</div>
+        <div class="lesson-description">
+            Comprendre les principaux symboles d'altération.
+        </div>
+    </div>
+    <div class="arrow">›</div>
+</button>
+
+<button class="lesson-card" onclick="openCourse(3)">
+    <div class="lesson-icon">↔️</div>
+    <div class="lesson-info">
+        <div class="lesson-title">Tons et demi-tons</div>
+        <div class="lesson-description">
+            Comprendre les distances entre les notes.
+        </div>
+    </div>
+    <div class="arrow">›</div>
+</button>
+
+<button class="lesson-card" onclick="openCourse(4)">
+    <div class="lesson-icon">🎹</div>
+    <div class="lesson-info">
+        <div class="lesson-title">La gamme de Do majeur</div>
+        <div class="lesson-description">
+            Découvrir et jouer la gamme de Do majeur.
+        </div>
+    </div>
+    <div class="arrow">›</div>
+</button>
+
+<button class="lesson-card" onclick="openCourse(5)">
+    <div class="lesson-icon">🎼</div>
+    <div class="lesson-info">
+        <div class="lesson-title">Les gammes majeures</div>
+        <div class="lesson-description">
+            Comprendre la construction d'une gamme majeure.
+        </div>
+    </div>
+    <div class="arrow">›</div>
+</button>
+
+<button class="lesson-card" onclick="openCourse(6)">
+    <div class="lesson-icon">🎶</div>
+    <div class="lesson-info">
+        <div class="lesson-title">Les gammes mineures</div>
+        <div class="lesson-description">
+            Découvrir la sonorité et la structure mineure.
+        </div>
+    </div>
+    <div class="arrow">›</div>
+</button>
+
+<button class="lesson-card" onclick="openCourse(7)">
+    <div class="lesson-icon">🔑</div>
+    <div class="lesson-info">
+        <div class="lesson-title">Comprendre les tonalités</div>
+        <div class="lesson-description">
+            Comprendre les tonalités et les armures.
+        </div>
+    </div>
+    <div class="arrow">›</div>
+</button>
+
+<button class="lesson-card" onclick="openCourse(8)">
+    <div class="lesson-icon">🧠</div>
+    <div class="lesson-info">
+        <div class="lesson-title">Révision & exercices</div>
+        <div class="lesson-description">
+            Vérifier tes connaissances avec des exercices.
+        </div>
+    </div>
+    <div class="arrow">›</div>
+</button>
+
+</div><section id="course" class="course"><div class="course-header">
+
+    <button class="back-btn" onclick="closeCourse()">
+        ← Cours
+    </button>
+
+    <span id="courseNumber" class="course-number"></span>
+
+</div>
+
+<article id="content" class="content"></article>
+
+<div class="navigation">
+
+    <button class="nav-btn" onclick="previousCourse()">
+        ← Précédent
+    </button>
+
+    <button class="nav-btn primary" onclick="nextCourse()">
+        Suivant →
+    </button>
+
+</div>
+
+<button id="completeButton" class="complete" onclick="completeCourse()">
+    ✓ Marquer comme terminé
+</button>
+
+</section><footer class="footer">
+    Piano Academy<br>
+    Apprends • Pratique • Progresse
+</footer></div><script>
+
+const courses = {
+
+1:{
+title:"Les 7 notes musicales",
+subtitle:"Découvrir les sept notes qui constituent la base de la musique occidentale.",
+html:`
+
+<div class="section">
+<h3>🎵 Les sept notes</h3>
+
+<p>
+Les sept notes naturelles sont :
+<strong>Do, Ré, Mi, Fa, Sol, La et Si.</strong>
+</p>
+
+<div class="note-row">
+<div class="note active">Do</div>
+<div class="note">Ré</div>
+<div class="note">Mi</div>
+<div class="note">Fa</div>
+<div class="note">Sol</div>
+<div class="note">La</div>
+<div class="note">Si</div>
+</div>
+
+<div class="info">
+💡 Après Si, la série recommence avec Do.
+Les mêmes sept notes se répètent donc sur tout le clavier.
+</div>
+</div>
+
+<div class="section">
+<h3>🎹 Les notes sur le clavier</h3>
+
+<p>
+Sur un piano, les touches blanches correspondent aux notes naturelles.
+Pour retrouver facilement le Do, observe le groupe de deux touches noires :
+le Do se trouve juste à gauche de ce groupe.
+</p>
+
+<div class="piano-wrap">
+<div class="piano">
+
+<div class="white-key">Do</div>
+<div class="white-key">Ré</div>
+<div class="white-key">Mi</div>
+<div class="white-key">Fa</div>
+<div class="white-key">Sol</div>
+<div class="white-key">La</div>
+<div class="white-key">Si</div>
+
+<div class="black-key" style="left:11%;">Do♯</div>
+<div class="black-key" style="left:25%;">Ré♯</div>
+<div class="black-key" style="left:54%;">Fa♯</div>
+<div class="black-key" style="left:68%;">Sol♯</div>
+<div class="black-key" style="left:82%;">La♯</div>
+
+</div>
+</div>
+</div>
+
+<div class="section">
+<h3>🧠 À retenir</h3>
+
+<p>
+Les notes sont la matière première de la musique.
+Apprends d'abord à les reconnaître rapidement sur le clavier
+avant de passer aux gammes et aux accords.
+</p>
+</div>
+
+<div class="exercise">
+<h3>🎯 Exercice</h3>
+<p>
+Quelle note vient après Mi ?
+</p>
+<button onclick="showAnswer('answer1')">
+Voir la réponse
+</button>
+<div id="answer1" class="answer">
+✅ La réponse est <strong>Fa</strong>.
+</div>
+</div>
+`
+},
+
+2:{
+title:"Dièses, bémols et bécarres",
+subtitle:"Comprendre les symboles qui modifient la hauteur des notes.",
+html:`
+
+<div class="section">
+<h3>♯ Le dièse</h3>
+
+<p>
+Le symbole <strong>♯</strong> est appelé dièse.
+Il élève une note d'un demi-ton.
+</p>
+
+<div class="info">
+Exemple : <strong>Do → Do♯</strong>
+</div>
+</div>
+
+<div class="section">
+<h3>♭ Le bémol</h3>
+
+<p>
+Le symbole <strong>♭</strong> est appelé bémol.
+Il abaisse une note d'un demi-ton.
+</p>
+
+<div class="info">
+Exemple : <strong>Ré → Ré♭</strong>
+</div>
+</div>
+
+<div class="section">
+<h3>♮ Le bécarre</h3>
+
+<p>
+Le symbole <strong>♮</strong> est le bécarre.
+Il sert à annuler une altération précédente.
+</p>
+
+<div class="note-row">
+<div class="note">♯ Dièse</div>
+<div class="note">♭ Bémol</div>
+<div class="note">♮ Bécarre</div>
+</div>
+</div>
+
+<div class="section">
+<h3>🎹 Sur le clavier</h3>
+
+<p>
+Une même touche noire peut parfois avoir deux noms.
+Par exemple, la touche noire située entre Do et Ré peut être appelée
+<strong>Do♯</strong> ou <strong>Ré♭</strong>.
+</p>
+
+<div class="tip">
+💡 Do♯ et Ré♭ désignent la même touche dans le tempérament égal,
+mais leur nom dépend du contexte musical.
+</div>
+</div>
+
+<div class="exercise">
+<h3>🎯 Exercice</h3>
+<p>
+Quel symbole élève une note d'un demi-ton ?
+</p>
+<button onclick="showAnswer('answer2')">
+Voir la réponse
+</button>
+<div id="answer2" class="answer">
+✅ Le <strong>dièse ♯</strong>.
+</div>
+</div>
+`
+},
+
+3:{
+title:"Tons et demi-tons",
+subtitle:"Comprendre les distances fondamentales entre les notes.",
+html:`
+
+<div class="section">
+<h3>↔️ Le demi-ton</h3>
+
+<p>
+Le demi-ton est la plus petite distance entre deux touches voisines
+du clavier dans le système musical utilisé au piano.
+</p>
+
+<div class="info">
+🎹 Sur le piano, passer d'une touche à la touche immédiatement voisine
+correspond à un demi-ton.
+</div>
+</div>
+
+<div class="section">
+<h3>📏 Le ton</h3>
+
+<p>
+Un ton correspond à <strong>deux demi-tons</strong>.
+</p>
+
+<div class="note-row">
+<div class="note active">1 demi-ton</div>
+<div class="note active">1 demi-ton</div>
+<div class="note">= 1 ton</div>
+</div>
+</div>
+
+<div class="section">
+<h3>🎵 Exemples importants</h3>
+
+<div class="scale-box">
+<table>
+<tr>
+<th>Notes</th>
+<th>Distance</th>
+</tr>
+<tr>
+<td>Do → Ré</td>
+<td>1 ton</td>
+</tr>
+<tr>
+<td>Ré → Mi</td>
+<td>1 ton</td>
+</tr>
+<tr>
+<td>Mi → Fa</td>
+<td>½ ton</td>
+</tr>
+<tr>
+<td>Fa → Sol</td>
+<td>1 ton</td>
+</tr>
+<tr>
+<td>Sol → La</td>
+<td>1 ton</td>
+</tr>
+<tr>
+<td>La → Si</td>
+<td>1 ton</td>
+</tr>
+<tr>
+<td>Si → Do</td>
+<td>½ ton</td>
+</tr>
+</table>
+</div>
+</div>
+
+<div class="tip">
+💡 Les demi-tons naturels entre Mi-Fa et Si-Do sont essentiels
+pour comprendre la construction des gammes.
+</div>
+
+<div class="exercise">
+<h3>🎯 Exercice</h3>
+<p>
+Combien de demi-tons contient un ton ?
+</p>
+<button onclick="showAnswer('answer3')">
+Voir la réponse
+</button>
+<div id="answer3" class="answer">
+✅ Un ton contient <strong>2 demi-tons</strong>.
+</div>
+</div>
+`
+},
+
+4:{
+title:"La gamme de Do majeur",
+subtitle:"Apprendre la première gamme majeure fondamentale.",
+html:`
+
+<div class="section">
+<h3>🎹 Les notes</h3>
+
+<p>
+La gamme de Do majeur est composée de :
+<strong>Do, Ré, Mi, Fa, Sol, La, Si, Do.</strong>
+</p>
+
+<div class="note-row">
+<div class="note active">Do</div>
+<div class="note active">Ré</div>
+<div class="note active">Mi</div>
+<div class="note active">Fa</div>
+<div class="note active">Sol</div>
+<div class="note active">La</div>
+<div class="note active">Si</div>
+<div class="note active">Do</div>
+</div>
+</div>
+
+<div class="section">
+<h3>📏 Sa construction</h3>
+
+<p>
+La gamme majeure suit cette organisation :
+</p>
+
+<div class="info">
+<strong>Ton – Ton – Demi-ton – Ton – Ton – Ton – Demi-ton</strong>
+</div>
+</div>
+
+<div class="section">
+<h3>🎹 Particularité</h3>
+
+<p>
+La gamme de Do majeur est particulièrement importante pour les débutants
+car elle ne comporte aucune touche noire.
+</p>
+
+<div class="tip">
+🎯 Exercice : joue Do-Ré-Mi-Fa-Sol-La-Si-Do lentement,
+puis redescends jusqu'au Do grave.
+</div>
+</div>
+
+<div class="exercise">
+<h3>🎯 Question</h3>
+<p>
+Combien de touches noires sont nécessaires pour jouer la gamme naturelle
+de Do majeur ?
+</p>
+<button onclick="showAnswer('answer4')">
+Voir la réponse
+</button>
+<div id="answer4" class="answer">
+✅ Aucune. La gamme de Do majeur utilise uniquement les touches blanches.
+</div>
+</div>
+`
+},
+
+5:{
+title:"Les gammes majeures",
+subtitle:"Comprendre comment construire une gamme majeure.",
+html:`
+
+<div class="section">
+<h3>🎼 Qu'est-ce qu'une gamme ?</h3>
+
+<p>
+Une gamme est une succession organisée de notes qui monte ou descend
+selon une structure précise.
+</p>
+</div>
+
+<div class="section">
+<h3>📏 Formule de la gamme majeure</h3>
+
+<div class="info">
+<strong>
+Ton – Ton – Demi-ton – Ton – Ton – Ton – Demi-ton
+</strong>
+</div>
+
+<p style="margin-top:13px;">
+Cette formule permet de construire une gamme majeure à partir de
+n'importe quelle note fondamentale.
+</p>
+</div>
+
+<div class="section">
+<h3>🎹 Exemple : Sol majeur</h3>
+
+<p>
+La gamme de Sol majeur est :
+<strong>Sol – La – Si – Do – Ré – Mi – Fa♯ – Sol.</strong>
+</p>
+
+<div class="note-row">
+<div class="note">Sol</div>
+<div class="note">La</div>
+<div class="note">Si</div>
+<div class="note">Do</div>
+<div class="note">Ré</div>
+<div class="note">Mi</div>
+<div class="note active">Fa♯</div>
+<div class="note">Sol</div>
+</div>
+</div>
+
+<div class="tip">
+💡 Le Fa devient Fa♯ afin de respecter la formule de la gamme majeure.
+</div>
+
+<div class="exercise">
+<h3>🎯 Exercice</h3>
+<p>
+Quelle note est altérée dans la gamme de Sol majeur ?
+</p>
+<button onclick="showAnswer('answer5')">
+Voir la réponse
+</button>
+<div id="answer5" class="answer">
+✅ C'est <strong>Fa♯</strong>.
+</div>
+</div>
+`
+},
+
+6:{
+title:"Les gammes mineures",
+subtitle:"Découvrir les bases de la gamme mineure naturelle.",
+html:`
+
+<div class="section">
+<h3>🎵 La gamme mineure</h3>
+
+<p>
+Les gammes mineures possèdent une couleur différente des gammes majeures.
+Elles sont très utilisées dans de nombreux styles musicaux.
+</p>
+</div>
+
+<div class="section">
+<h3>🎹 La gamme de La mineur naturel</h3>
+
+<p>
+La gamme de La mineur naturel est :
+<strong>La – Si – Do – Ré – Mi – Fa – Sol – La.</strong>
+</p>
+
+<div class="note-row">
+<div class="note active">La</div>
+<div class="note">Si</div>
+<div class="note">Do</div>
+<div class="note">Ré</div>
+<div class="note">Mi</div>
+<div class="note">Fa</div>
+<div class="note">Sol</div>
+<div class="note active">La</div>
+</div>
+</div>
+
+<div class="section">
+<h3>📚 À retenir</h3>
+
+<p>
+La mineur naturel utilise les mêmes touches blanches que Do majeur,
+mais commence et se termine sur La.
+</p>
+
+<div class="info">
+Do majeur et La mineur naturel sont des tonalités relatives.
+</div>
+</div>
+
+<div class="exercise">
+<h3>🎯 Exercice</h3>
+<p>
+Quelles notes composent la gamme de La mineur naturel ?
+</p>
+<button onclick="showAnswer('answer6')">
+Voir la réponse
+</button>
+<div id="answer6" class="answer">
+✅ La – Si – Do – Ré – Mi – Fa – Sol – La.
+</div>
+</div>
+`
+},
+
+7:{
+title:"Comprendre les tonalités",
+subtitle:"Découvrir le rôle des tonalités et des armures.",
+html:`
+
+<div class="section">
+<h3>🔑 Qu'est-ce qu'une tonalité ?</h3>
+
+<p>
+Une tonalité indique le centre musical autour duquel une œuvre est organisée.
+Elle est généralement basée sur une note fondamentale et sa gamme.
+</p>
+</div>
+
+<div class="section">
+<h3>🎼 Les armures</h3>
+
+<p>
+L'armure est placée au début d'une partition, après la clé.
+Elle indique les dièses ou les bémols qui seront généralement utilisés
+dans la tonalité.
+</p>
+
+<div class="note-row">
+<div class="note">♯</div>
+<div class="note">♭</div>
+<div class="note">𝄞</div>
+<div class="note">𝄢</div>
+</div>
+</div>
+
+<div class="section">
+<h3>🎹 Quelques exemples</h3>
+
+<div class="scale-box">
+<table>
+<tr>
+<th>Tonalité</th>
+<th>Altération principale</th>
+</tr>
+<tr>
+<td>Do majeur</td>
+<td>Aucune</td>
+</tr>
+<tr>
+<td>Sol majeur</td>
+<td>Fa♯</td>
+</tr>
+<tr>
+<td>Fa majeur</td>
+<td>Si♭</td>
+</tr>
+<tr>
+<td>Ré majeur</td>
+<td>Fa♯ et Do♯</td>
+</tr>
+</table>
+</div>
+</div>
+
+<div class="tip">
+💡 Apprendre les tonalités devient beaucoup plus facile lorsque
+tu maîtrises les gammes et les tons/demi-tons.
+</div>
+
+<div class="exercise">
+<h3>🎯 Question</h3>
+<p>
+Combien de dièses possède la tonalité de Sol majeur ?
+</p>
+<button onclick="showAnswer('answer7')">
+Voir la réponse
+</button>
+<div id="answer7" class="answer">
+✅ Un seul : <strong>Fa♯</strong>.
+</div>
+</div>
+`
+},
+
+8:{
+title:"Révision & exercices",
+subtitle:"Teste tes connaissances sur les notes, gammes et tonalités.",
+html:`
+
+<div class="section">
+<h3>🧠 Révision rapide</h3>
+
+<p>
+Avant de terminer ce cours, vérifie que tu connais bien :
+</p>
+
+<div class="info">
+🎵 Les 7 notes : Do, Ré, Mi, Fa, Sol, La, Si.<br><br>
+♯ Le dièse augmente d'un demi-ton.<br><br>
+♭ Le bémol diminue d'un demi-ton.<br><br>
+♮ Le bécarre annule une altération.<br><br>
+📏 Un ton = deux demi-tons.<br><br>
+🎹 Do majeur ne contient aucune touche noire.<br><br>
+🔑 Sol majeur possède un Fa♯.
+</div>
+</div>
+
+<div class="exercise">
+<h3>🎯 Question 1</h3>
+<p>
+Quelle note vient après Sol ?
+</p>
+<button onclick="showAnswer('answer8a')">
+Réponse
+</button>
+<div id="answer8a" class="answer">
+✅ La.
+</div>
+</div>
+
+<div class="exercise">
+<h3>🎯 Question 2</h3>
+<p>
+Quelle est la formule de la gamme majeure ?
+</p>
+<button onclick="showAnswer('answer8b')">
+Réponse
+</button>
+<div id="answer8b" class="answer">
+✅ Ton – Ton – Demi-ton – Ton – Ton – Ton – Demi-ton.
+</div>
+</div>
+
+<div class="exercise">
+<h3>🎯 Question 3</h3>
+<p>
+Quel est le seul dièse de Sol majeur ?
+</p>
+<button onclick="showAnswer('answer8c')">
+Réponse
+</button>
+<div id="answer8c" class="answer">
+✅ Fa♯.
+</div>
+</div>
+
+<div class="tip">
+🏆 Bravo ! Tu as terminé ce cours sur les notes,
+les gammes et les tonalités.
+</div>
+`
+}
+
+};
+
+
+let currentCourse = 0;
+
+let completed = JSON.parse(
+    localStorage.getItem("notesGammesProgress") || "[]"
+);
+
+
+function openCourse(number){
+
+    if(!courses[number]) return;
+
+    currentCourse = number;
+
+    const course = courses[number];
+
+    document.getElementById("menu").style.display = "none";
+
+    document.querySelector(".progress-card").style.display = "none";
+
+    document.getElementById("course").classList.add("active");
+
+    document.getElementById("courseNumber").textContent =
+        "Cours " + number + " / 8";
+
+    document.getElementById("content").innerHTML =
+        "<h2>" + course.title + "</h2>" +
+        "<div class='subtitle'>" + course.subtitle + "</div>" +
+        course.html;
+
+    updateCompleteButton();
+
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
+}
+
+
+function closeCourse(){
+
+    currentCourse = 0;
+
+    document.getElementById("course").classList.remove("active");
+
+    document.getElementById("menu").style.display = "grid";
+
+    document.querySelector(".progress-card").style.display = "block";
+
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
+}
+
+
+function nextCourse(){
+
+    if(currentCourse < 8){
+
+        openCourse(currentCourse + 1);
+
+    }
+}
+
+
+function previousCourse(){
+
+    if(currentCourse > 1){
+
+        openCourse(currentCourse - 1);
+
+    }
+}
+
+
+function completeCourse(){
+
+    if(
+        currentCourse &&
+        !completed.includes(currentCourse)
+    ){
+
+        completed.push(currentCourse);
+
+        localStorage.setItem(
+            "notesGammesProgress",
+            JSON.stringify(completed)
+        );
+
+    }
+
+    updateProgress();
+
+    updateCompleteButton();
+}
+
+
+function updateCompleteButton(){
+
+    const button =
+        document.getElementById("completeButton");
+
+    if(completed.includes(currentCourse)){
+
+        button.textContent =
+            "✓ Cours terminé";
+
+        button.classList.add("done");
+
+    }else{
+
+        button.textContent =
+            "✓ Marquer comme terminé";
+
+        button.classList.remove("done");
+
+    }
+}
+
+
+function updateProgress(){
+
+    completed = completed.filter(
+        n => Number.isInteger(n) && n >= 1 && n <= 8
+    );
+
+    completed = [...new Set(completed)];
+
+    const count = completed.length;
+
+    const percent = (count / 8) * 100;
+
+    document.getElementById("progressText").textContent =
+        count + " / 8";
+
+    document.getElementById("progressFill").style.width =
+        percent + "%";
+}
+
+
+function showAnswer(id){
+
+    const element =
+        document.getElementById(id);
+
+    if(element){
+
+        element.classList.toggle("show");
+
+    }
+}
+
+
+function goBack(){
+
+    if(
+        document
+        .getElementById("course")
+        .classList.contains("active")
+    ){
+
+        closeCourse();
+
+        return;
+    }
+
+    window.location.href = "dashboard.html";
+}
+
+
+updateProgress();
+
+</script></body>
+</html>
