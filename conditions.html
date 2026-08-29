@@ -1,0 +1,1676 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0"
+>
+
+<title>Conditions d'utilisation — Piano Academy</title>
+
+<meta
+  name="description"
+  content="Conditions d'utilisation de Piano Academy."
+>
+
+<style>
+
+/* =====================================================
+   RESET
+===================================================== */
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+
+/* =====================================================
+   VARIABLES
+===================================================== */
+
+:root{
+
+  --primary:#6c5ce7;
+  --primary-dark:#5848d6;
+
+  --secondary:#00cec9;
+
+  --gold:#f5b942;
+
+  --background:#f5f6fa;
+  --card:#ffffff;
+  --soft:#fafbfe;
+
+  --text:#1e1e2f;
+  --muted:#777b8a;
+  --border:#e2e4ec;
+
+  --success:#00b894;
+
+  --shadow:
+    0 12px 35px
+    rgba(25,25,50,.08);
+
+}
+
+
+/* =====================================================
+   MODE SOMBRE
+===================================================== */
+
+body.dark{
+
+  --background:#11121a;
+  --card:#1b1d28;
+  --soft:#222531;
+
+  --text:#f5f5fa;
+  --muted:#a7a9b7;
+  --border:#303342;
+
+  --shadow:
+    0 12px 35px
+    rgba(0,0,0,.25);
+
+}
+
+
+/* =====================================================
+   BODY
+===================================================== */
+
+body{
+
+  min-height:100vh;
+
+  font-family:
+    Arial,
+    Helvetica,
+    sans-serif;
+
+  background:var(--background);
+
+  color:var(--text);
+
+  transition:.25s;
+
+}
+
+
+/* =====================================================
+   BOUTONS
+===================================================== */
+
+button{
+
+  font-family:inherit;
+
+  cursor:pointer;
+
+}
+
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+.header{
+
+  position:sticky;
+
+  top:0;
+
+  z-index:100;
+
+  height:70px;
+
+  background:var(--card);
+
+  border-bottom:
+    1px solid
+    var(--border);
+
+}
+
+
+.header-inner{
+
+  width:100%;
+
+  max-width:1150px;
+
+  height:100%;
+
+  margin:auto;
+
+  padding:
+    0 20px;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:space-between;
+
+}
+
+
+.header-left{
+
+  display:flex;
+
+  align-items:center;
+
+  gap:13px;
+
+}
+
+
+/* =====================================================
+   BOUTON RETOUR
+===================================================== */
+
+.back-button,
+.theme-button{
+
+  width:42px;
+
+  height:42px;
+
+  border:none;
+
+  border-radius:11px;
+
+  background:var(--soft);
+
+  color:var(--text);
+
+  font-size:20px;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+}
+
+
+.back-button:hover,
+.theme-button:hover{
+
+  background:#eeeaff;
+
+  color:var(--primary);
+
+}
+
+
+/* =====================================================
+   BRAND
+===================================================== */
+
+.brand{
+
+  display:flex;
+
+  align-items:center;
+
+  gap:10px;
+
+}
+
+
+.brand-icon{
+
+  width:40px;
+
+  height:40px;
+
+  border-radius:11px;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--primary),
+      var(--primary-dark)
+    );
+
+  color:white;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  font-size:20px;
+
+}
+
+
+.brand-name{
+
+  font-size:17px;
+
+  font-weight:800;
+
+}
+
+
+/* =====================================================
+   CONTAINER
+===================================================== */
+
+.container{
+
+  width:100%;
+
+  max-width:900px;
+
+  margin:auto;
+
+  padding:
+    30px 20px 70px;
+
+}
+
+
+/* =====================================================
+   TITRE
+===================================================== */
+
+.page-title{
+
+  margin-bottom:25px;
+
+}
+
+
+.page-title h1{
+
+  font-size:30px;
+
+  margin-bottom:7px;
+
+}
+
+
+.page-title p{
+
+  color:var(--muted);
+
+  font-size:13px;
+
+  line-height:1.6;
+
+}
+
+
+/* =====================================================
+   CARD PRINCIPALE
+===================================================== */
+
+.terms-card{
+
+  background:var(--card);
+
+  border:
+    1px solid
+    var(--border);
+
+  border-radius:18px;
+
+  padding:28px;
+
+  box-shadow:var(--shadow);
+
+}
+
+
+/* =====================================================
+   INTRODUCTION
+===================================================== */
+
+.introduction{
+
+  background:
+
+    linear-gradient(
+      135deg,
+      rgba(108,92,231,.10),
+      rgba(0,206,201,.06)
+    );
+
+  border:
+    1px solid
+    rgba(108,92,231,.15);
+
+  border-radius:15px;
+
+  padding:18px;
+
+  margin-bottom:25px;
+
+}
+
+
+.introduction-title{
+
+  display:flex;
+
+  align-items:center;
+
+  gap:9px;
+
+  font-size:15px;
+
+  font-weight:800;
+
+  margin-bottom:8px;
+
+}
+
+
+.introduction p{
+
+  color:var(--muted);
+
+  font-size:12px;
+
+  line-height:1.7;
+
+}
+
+
+/* =====================================================
+   SECTION
+===================================================== */
+
+.terms-section{
+
+  padding:
+    0 0 23px;
+
+  margin-bottom:23px;
+
+  border-bottom:
+    1px solid
+    var(--border);
+
+}
+
+
+.terms-section:last-child{
+
+  border-bottom:none;
+
+  margin-bottom:0;
+
+  padding-bottom:0;
+
+}
+
+
+.section-heading{
+
+  display:flex;
+
+  align-items:center;
+
+  gap:10px;
+
+  margin-bottom:11px;
+
+}
+
+
+.section-number{
+
+  width:34px;
+
+  height:34px;
+
+  flex-shrink:0;
+
+  border-radius:10px;
+
+  background:
+    rgba(108,92,231,.12);
+
+  color:var(--primary);
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  font-size:13px;
+
+  font-weight:800;
+
+}
+
+
+.section-heading h2{
+
+  font-size:16px;
+
+  font-weight:800;
+
+}
+
+
+.terms-section p{
+
+  color:var(--muted);
+
+  font-size:12px;
+
+  line-height:1.8;
+
+  margin-bottom:9px;
+
+}
+
+
+.terms-section p:last-child{
+
+  margin-bottom:0;
+
+}
+
+
+/* =====================================================
+   LISTES
+===================================================== */
+
+.terms-list{
+
+  list-style:none;
+
+  margin-top:10px;
+
+}
+
+
+.terms-list li{
+
+  position:relative;
+
+  padding-left:20px;
+
+  margin-bottom:9px;
+
+  color:var(--muted);
+
+  font-size:12px;
+
+  line-height:1.7;
+
+}
+
+
+.terms-list li::before{
+
+  content:"•";
+
+  position:absolute;
+
+  left:5px;
+
+  color:var(--primary);
+
+  font-size:16px;
+
+  font-weight:bold;
+
+}
+
+
+/* =====================================================
+   IMPORTANT
+===================================================== */
+
+.important{
+
+  margin-top:12px;
+
+  padding:13px 15px;
+
+  border-radius:11px;
+
+  background:
+    rgba(245,185,66,.10);
+
+  border:
+    1px solid
+    rgba(245,185,66,.25);
+
+  color:var(--text);
+
+  font-size:11px;
+
+  line-height:1.7;
+
+}
+
+
+.important strong{
+
+  color:var(--gold);
+
+}
+
+
+/* =====================================================
+   CONTACT
+===================================================== */
+
+.contact-box{
+
+  margin-top:12px;
+
+  padding:17px;
+
+  border-radius:13px;
+
+  background:var(--soft);
+
+  border:
+    1px solid
+    var(--border);
+
+}
+
+
+.contact-box strong{
+
+  display:block;
+
+  font-size:12px;
+
+  margin-bottom:6px;
+
+}
+
+
+.contact-box span{
+
+  color:var(--muted);
+
+  font-size:11px;
+
+  line-height:1.6;
+
+}
+
+
+/* =====================================================
+   DATE
+===================================================== */
+
+.last-update{
+
+  text-align:center;
+
+  margin-top:25px;
+
+  color:var(--muted);
+
+  font-size:10px;
+
+  line-height:1.6;
+
+}
+
+
+/* =====================================================
+   TOAST
+===================================================== */
+
+.toast{
+
+  position:fixed;
+
+  left:50%;
+
+  bottom:25px;
+
+  transform:
+    translate(-50%,120px);
+
+  z-index:500;
+
+  padding:
+    13px 18px;
+
+  border-radius:12px;
+
+  background:#1e1e2f;
+
+  color:white;
+
+  font-size:12px;
+
+  box-shadow:
+    0 10px 30px
+    rgba(0,0,0,.25);
+
+  transition:.3s;
+
+}
+
+
+.toast.show{
+
+  transform:
+    translate(-50%,0);
+
+}
+
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media(max-width:600px){
+
+  .container{
+
+    padding:
+      22px 15px 55px;
+
+  }
+
+
+  .page-title h1{
+
+    font-size:27px;
+
+  }
+
+
+  .terms-card{
+
+    padding:20px 16px;
+
+    border-radius:16px;
+
+  }
+
+
+  .terms-section p{
+
+    font-size:11px;
+
+    line-height:1.75;
+
+  }
+
+
+  .terms-list li{
+
+    font-size:11px;
+
+  }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
+<header class="header">
+
+  <div class="header-inner">
+
+
+    <div class="header-left">
+
+
+      <button
+        class="back-button"
+        onclick="goBack()"
+        aria-label="Retour"
+      >
+
+        ←
+
+      </button>
+
+
+      <div class="brand">
+
+
+        <div class="brand-icon">
+
+          🎹
+
+        </div>
+
+
+        <div class="brand-name">
+
+          Piano Academy
+
+        </div>
+
+
+      </div>
+
+
+    </div>
+
+
+    <button
+      class="theme-button"
+      id="themeButton"
+      onclick="toggleDarkMode()"
+      aria-label="Changer le thème"
+    >
+
+      🌙
+
+    </button>
+
+
+  </div>
+
+</header>
+
+
+<!-- =====================================================
+     MAIN
+===================================================== -->
+
+<main class="container">
+
+
+  <div class="page-title">
+
+    <h1>
+
+      📄 Conditions d'utilisation
+
+    </h1>
+
+
+    <p>
+
+      Les règles qui encadrent l'utilisation
+      de Piano Academy.
+
+    </p>
+
+  </div>
+
+
+  <article class="terms-card">
+
+
+    <!-- =================================================
+         INTRODUCTION
+    ================================================= -->
+
+    <div class="introduction">
+
+
+      <div class="introduction-title">
+
+        📚
+
+        <span>
+
+          Bienvenue sur Piano Academy
+
+        </span>
+
+      </div>
+
+
+      <p>
+
+        En utilisant Piano Academy, tu acceptes
+        les présentes conditions d'utilisation.
+        Nous t'invitons à les lire attentivement
+        avant d'utiliser l'application.
+
+      </p>
+
+
+    </div>
+
+
+    <!-- =================================================
+         1
+    ================================================= -->
+
+    <section class="terms-section">
+
+
+      <div class="section-heading">
+
+        <div class="section-number">
+          1
+        </div>
+
+        <h2>
+          Présentation de Piano Academy
+        </h2>
+
+      </div>
+
+
+      <p>
+
+        Piano Academy est une plateforme
+        d'apprentissage du piano conçue pour
+        permettre aux utilisateurs d'apprendre,
+        de pratiquer et de progresser
+        étape par étape.
+
+      </p>
+
+
+      <p>
+
+        L'application peut proposer différents
+        cours, exercices, contenus pédagogiques
+        et fonctionnalités destinés à accompagner
+        l'apprentissage du piano.
+
+      </p>
+
+
+    </section>
+
+
+    <!-- =================================================
+         2
+    ================================================= -->
+
+    <section class="terms-section">
+
+
+      <div class="section-heading">
+
+        <div class="section-number">
+          2
+        </div>
+
+        <h2>
+          Création et utilisation du compte
+        </h2>
+
+      </div>
+
+
+      <p>
+
+        Certaines fonctionnalités de Piano Academy
+        nécessitent la création d'un compte utilisateur.
+
+      </p>
+
+
+      <ul class="terms-list">
+
+        <li>
+          Les informations fournies lors de
+          l'inscription doivent être exactes.
+        </li>
+
+        <li>
+          Chaque utilisateur est responsable
+          de la sécurité de son compte.
+        </li>
+
+        <li>
+          L'utilisateur doit conserver son
+          mot de passe confidentiel.
+        </li>
+
+        <li>
+          Un compte ne doit pas être utilisé
+          pour des activités frauduleuses ou
+          illégales.
+        </li>
+
+      </ul>
+
+
+    </section>
+
+
+    <!-- =================================================
+         3
+    ================================================= -->
+
+    <section class="terms-section">
+
+
+      <div class="section-heading">
+
+        <div class="section-number">
+          3
+        </div>
+
+        <h2>
+          Utilisation des cours
+        </h2>
+
+      </div>
+
+
+      <p>
+
+        Les cours disponibles sur Piano Academy
+        sont destinés à un usage personnel
+        et pédagogique.
+
+      </p>
+
+
+      <ul class="terms-list">
+
+        <li>
+          Les cours peuvent être gratuits
+          ou accessibles avec une formule Premium.
+        </li>
+
+        <li>
+          L'utilisateur peut suivre les cours
+          à son propre rythme.
+        </li>
+
+        <li>
+          Les contenus ne doivent pas être
+          reproduits, revendus ou redistribués
+          sans autorisation.
+        </li>
+
+      </ul>
+
+
+    </section>
+
+
+    <!-- =================================================
+         4
+    ================================================= -->
+
+    <section class="terms-section">
+
+
+      <div class="section-heading">
+
+        <div class="section-number">
+          4
+        </div>
+
+        <h2>
+          Accès Premium
+        </h2>
+
+      </div>
+
+
+      <p>
+
+        Piano Academy peut proposer des
+        fonctionnalités et contenus Premium
+        accessibles après paiement.
+
+      </p>
+
+
+      <p>
+
+        L'accès Premium est personnel et ne doit
+        pas être partagé avec d'autres personnes
+        dans le but de contourner les restrictions
+        de l'application.
+
+      </p>
+
+
+      <div class="important">
+
+        <strong>Important :</strong>
+        l'accès Premium dépend de la confirmation
+        du paiement et peut être soumis aux
+        conditions du moyen de paiement utilisé.
+
+      </div>
+
+
+    </section>
+
+
+    <!-- =================================================
+         5
+    ================================================= -->
+
+    <section class="terms-section">
+
+
+      <div class="section-heading">
+
+        <div class="section-number">
+          5
+        </div>
+
+        <h2>
+          Paiements
+        </h2>
+
+      </div>
+
+
+      <p>
+
+        Lorsque l'utilisateur achète une
+        fonctionnalité ou un contenu Premium,
+        le paiement est traité par le service
+        de paiement proposé lors de l'achat.
+
+      </p>
+
+
+      <p>
+
+        L'utilisateur doit vérifier les informations
+        affichées avant de confirmer une transaction.
+
+      </p>
+
+
+      <p>
+
+        En cas de problème lié à une transaction,
+        l'utilisateur doit utiliser les procédures
+        prévues par le prestataire de paiement
+        concerné et/ou contacter le support
+        de Piano Academy.
+
+      </p>
+
+
+    </section>
+
+
+    <!-- =================================================
+         6
+    ================================================= -->
+
+    <section class="terms-section">
+
+
+      <div class="section-heading">
+
+        <div class="section-number">
+          6
+        </div>
+
+        <h2>
+          Propriété intellectuelle
+        </h2>
+
+      </div>
+
+
+      <p>
+
+        Les éléments présents dans Piano Academy,
+        notamment les textes, interfaces, graphismes,
+        logos, contenus pédagogiques et éléments
+        logiciels, peuvent être protégés par les
+        droits applicables à la propriété intellectuelle.
+
+      </p>
+
+
+      <p>
+
+        Sauf autorisation préalable, il est interdit
+        de copier, modifier, distribuer, revendre ou
+        exploiter commercialement les contenus de
+        Piano Academy.
+
+      </p>
+
+
+    </section>
+
+
+    <!-- =================================================
+         7
+    ================================================= -->
+
+    <section class="terms-section">
+
+
+      <div class="section-heading">
+
+        <div class="section-number">
+          7
+        </div>
+
+        <h2>
+          Progression de l'utilisateur
+        </h2>
+
+      </div>
+
+
+      <p>
+
+        Piano Academy peut enregistrer certaines
+        informations nécessaires au fonctionnement
+        de la progression des cours.
+
+      </p>
+
+
+      <p>
+
+        La progression peut notamment permettre
+        de retrouver les cours commencés ou terminés.
+
+      </p>
+
+
+      <div class="important">
+
+        <strong>À noter :</strong>
+        certaines données locales peuvent être
+        supprimées si l'utilisateur efface les
+        données de l'application ou réinitialise
+        sa progression.
+
+      </div>
+
+
+    </section>
+
+
+    <!-- =================================================
+         8
+    ================================================= -->
+
+    <section class="terms-section">
+
+
+      <div class="section-heading">
+
+        <div class="section-number">
+          8
+        </div>
+
+        <h2>
+          Comportement de l'utilisateur
+        </h2>
+
+      </div>
+
+
+      <p>
+
+        L'utilisateur s'engage à utiliser Piano Academy
+        de manière responsable et respectueuse.
+
+      </p>
+
+
+      <ul class="terms-list">
+
+        <li>
+          Ne pas tenter de compromettre la sécurité
+          de l'application.
+        </li>
+
+        <li>
+          Ne pas utiliser de méthodes frauduleuses
+          pour obtenir un accès Premium.
+        </li>
+
+        <li>
+          Ne pas perturber le fonctionnement
+          normal du service.
+        </li>
+
+        <li>
+          Ne pas utiliser l'application à des
+          fins illégales.
+        </li>
+
+      </ul>
+
+
+    </section>
+
+
+    <!-- =================================================
+         9
+    ================================================= -->
+
+    <section class="terms-section">
+
+
+      <div class="section-heading">
+
+        <div class="section-number">
+          9
+        </div>
+
+        <h2>
+          Disponibilité du service
+        </h2>
+
+      </div>
+
+
+      <p>
+
+        Nous faisons notre possible pour maintenir
+        Piano Academy disponible et fonctionnel.
+
+      </p>
+
+
+      <p>
+
+        Toutefois, certaines interruptions peuvent
+        survenir notamment en raison de problèmes
+        techniques, de maintenance, de connexion
+        Internet ou de services externes.
+
+      </p>
+
+
+    </section>
+
+
+    <!-- =================================================
+         10
+    ================================================= -->
+
+    <section class="terms-section">
+
+
+      <div class="section-heading">
+
+        <div class="section-number">
+          10
+        </div>
+
+        <h2>
+          Données personnelles
+        </h2>
+
+      </div>
+
+
+      <p>
+
+        Les données personnelles sont traitées
+        conformément à la politique de confidentialité
+        de Piano Academy.
+
+      </p>
+
+
+      <p>
+
+        Pour connaître les informations collectées,
+        leur utilisation et les droits de l'utilisateur,
+        consulte la page dédiée à la
+        <strong>Politique de confidentialité</strong>.
+
+      </p>
+
+
+    </section>
+
+
+    <!-- =================================================
+         11
+    ================================================= -->
+
+    <section class="terms-section">
+
+
+      <div class="section-heading">
+
+        <div class="section-number">
+          11
+        </div>
+
+        <h2>
+          Résiliation du compte
+        </h2>
+
+      </div>
+
+
+      <p>
+
+        L'utilisateur peut cesser d'utiliser
+        Piano Academy et, lorsque cette fonctionnalité
+        est disponible, demander la suppression
+        de son compte.
+
+      </p>
+
+
+      <p>
+
+        En cas d'utilisation abusive, frauduleuse
+        ou contraire aux présentes conditions,
+        l'accès au service peut être limité ou
+        suspendu conformément aux règles applicables.
+
+      </p>
+
+
+    </section>
+
+
+    <!-- =================================================
+         12
+    ================================================= -->
+
+    <section class="terms-section">
+
+
+      <div class="section-heading">
+
+        <div class="section-number">
+          12
+        </div>
+
+        <h2>
+          Modifications des conditions
+        </h2>
+
+      </div>
+
+
+      <p>
+
+        Piano Academy peut mettre à jour les présentes
+        conditions afin de tenir compte de l'évolution
+        de l'application, des fonctionnalités ou des
+        obligations applicables.
+
+      </p>
+
+
+      <p>
+
+        La nouvelle version sera publiée dans
+        l'application lorsqu'une modification
+        importante intervient.
+
+      </p>
+
+
+    </section>
+
+
+    <!-- =================================================
+         13
+    ================================================= -->
+
+    <section class="terms-section">
+
+
+      <div class="section-heading">
+
+        <div class="section-number">
+          13
+        </div>
+
+        <h2>
+          Contact
+        </h2>
+
+      </div>
+
+
+      <p>
+
+        Pour toute question concernant ces conditions
+        ou le fonctionnement de Piano Academy,
+        l'utilisateur peut contacter le support
+        prévu par l'application.
+
+      </p>
+
+
+      <div class="contact-box">
+
+        <strong>
+          🎹 Piano Academy
+        </strong>
+
+        <span>
+          Assistance et informations concernant
+          l'utilisation de la plateforme.
+        </span>
+
+      </div>
+
+
+    </section>
+
+
+  </article>
+
+
+  <!-- =================================================
+       DATE
+  ================================================= -->
+
+  <div class="last-update">
+
+    Dernière mise à jour : 2026<br>
+
+    Piano Academy — Apprendre • Pratiquer • Progresser
+
+  </div>
+
+
+</main>
+
+
+<!-- =====================================================
+     TOAST
+===================================================== -->
+
+<div
+  class="toast"
+  id="toast">
+</div>
+
+
+<script>
+
+/* =====================================================
+   RETOUR
+===================================================== */
+
+function goBack(){
+
+  if(
+    document.referrer &&
+    document.referrer !== window.location.href
+  ){
+
+    history.back();
+
+  }else{
+
+    window.location.href =
+      "paramètres.html";
+
+  }
+
+}
+
+
+/* =====================================================
+   THEME
+===================================================== */
+
+const themeButton =
+  document.getElementById("themeButton");
+
+
+function applyTheme(){
+
+  const theme =
+    localStorage.getItem(
+      "pianoAcademyTheme"
+    ) || "light";
+
+
+  if(theme === "dark"){
+
+    document.body.classList.add("dark");
+
+    themeButton.textContent =
+      "☀️";
+
+  }else{
+
+    document.body.classList.remove("dark");
+
+    themeButton.textContent =
+      "🌙";
+
+  }
+
+}
+
+
+function toggleDarkMode(){
+
+  const isDark =
+    document.body.classList.contains("dark");
+
+
+  if(isDark){
+
+    document.body.classList.remove("dark");
+
+    localStorage.setItem(
+      "pianoAcademyTheme",
+      "light"
+    );
+
+    themeButton.textContent =
+      "🌙";
+
+    showToast(
+      "☀️ Mode clair activé"
+    );
+
+  }else{
+
+    document.body.classList.add("dark");
+
+    localStorage.setItem(
+      "pianoAcademyTheme",
+      "dark"
+    );
+
+    themeButton.textContent =
+      "☀️";
+
+    showToast(
+      "🌙 Mode sombre activé"
+    );
+
+  }
+
+}
+
+
+/* =====================================================
+   TOAST
+===================================================== */
+
+function showToast(text){
+
+  const toast =
+    document.getElementById("toast");
+
+  toast.textContent =
+    text;
+
+  toast.classList.add("show");
+
+  clearTimeout(
+    window.toastTimer
+  );
+
+  window.toastTimer =
+    setTimeout(
+      function(){
+
+        toast.classList.remove("show");
+
+      },
+      2200
+    );
+
+}
+
+
+/* =====================================================
+   INITIALISATION
+===================================================== */
+
+applyTheme();
+
+
+/* =====================================================
+   TOUCHE ESC
+===================================================== */
+
+document.addEventListener(
+  "keydown",
+  function(event){
+
+    if(event.key === "Escape"){
+
+      goBack();
+
+    }
+
+  }
+);
+
+</script>
+
+
+</body>
+
+</html>
