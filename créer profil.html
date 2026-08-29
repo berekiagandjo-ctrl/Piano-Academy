@@ -1,0 +1,2015 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Mon profil — Piano Academy</title>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<style>
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+:root{
+  --primary:#6c5ce7;
+  --primary-dark:#5848d6;
+  --secondary:#00cec9;
+  --bg:#f5f6fa;
+  --card:#ffffff;
+  --text:#1e1e2f;
+  --muted:#777b8a;
+  --border:#e2e4ec;
+  --soft:#fafbfe;
+  --danger:#e74c3c;
+  --success:#00b894;
+  --shadow:0 10px 30px rgba(25,25,50,.08);
+}
+
+body.dark{
+  --bg:#11121a;
+  --card:#1b1d28;
+  --text:#f5f5fa;
+  --muted:#a7a9b7;
+  --border:#303342;
+  --soft:#222531;
+  --shadow:0 10px 30px rgba(0,0,0,.25);
+}
+
+body{
+  min-height:100vh;
+  font-family:Arial,Helvetica,sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  transition:.25s;
+}
+
+button,
+input{
+  font-family:inherit;
+}
+
+button{
+  cursor:pointer;
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+.header{
+  position:sticky;
+  top:0;
+  z-index:100;
+  height:70px;
+  background:var(--card);
+  border-bottom:1px solid var(--border);
+}
+
+.header-inner{
+  max-width:1100px;
+  height:100%;
+  margin:auto;
+  padding:0 20px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+
+.header-left{
+  display:flex;
+  align-items:center;
+  gap:13px;
+}
+
+.menu-button,
+.theme-button{
+  width:42px;
+  height:42px;
+  border:none;
+  border-radius:11px;
+  background:var(--soft);
+  color:var(--text);
+  font-size:21px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.menu-button:hover,
+.theme-button:hover{
+  background:#eeeaff;
+  color:var(--primary);
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.brand-icon{
+  width:40px;
+  height:40px;
+  border-radius:11px;
+  background:linear-gradient(135deg,var(--primary),var(--primary-dark));
+  color:white;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:20px;
+}
+
+.brand-name{
+  font-size:18px;
+  font-weight:800;
+}
+
+
+/* =========================
+   MENU
+========================= */
+
+.menu-overlay{
+  position:fixed;
+  inset:0;
+  z-index:199;
+  background:rgba(0,0,0,.45);
+  display:none;
+}
+
+.menu-overlay.active{
+  display:block;
+}
+
+.side-menu{
+  position:fixed;
+  top:0;
+  left:-310px;
+  z-index:200;
+  width:290px;
+  height:100vh;
+  background:var(--card);
+  border-right:1px solid var(--border);
+  box-shadow:10px 0 35px rgba(0,0,0,.15);
+  transition:left .25s ease;
+  display:flex;
+  flex-direction:column;
+}
+
+.side-menu.open{
+  left:0;
+}
+
+.menu-header{
+  height:80px;
+  padding:0 20px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  border-bottom:1px solid var(--border);
+}
+
+.menu-brand{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.menu-brand-icon{
+  width:40px;
+  height:40px;
+  border-radius:11px;
+  background:linear-gradient(135deg,var(--primary),var(--primary-dark));
+  color:white;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:20px;
+}
+
+.menu-brand strong{
+  font-size:16px;
+}
+
+.close-menu{
+  width:38px;
+  height:38px;
+  border:none;
+  border-radius:10px;
+  background:var(--soft);
+  color:var(--text);
+  font-size:21px;
+}
+
+.menu-user{
+  padding:20px;
+  border-bottom:1px solid var(--border);
+}
+
+.menu-user-avatar{
+  width:45px;
+  height:45px;
+  border-radius:50%;
+  background:linear-gradient(135deg,var(--primary),var(--secondary));
+  color:white;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:800;
+  margin-bottom:9px;
+}
+
+.menu-user-name{
+  font-weight:800;
+  font-size:14px;
+  margin-bottom:3px;
+}
+
+.menu-user-email{
+  color:var(--muted);
+  font-size:11px;
+  word-break:break-all;
+}
+
+.menu-items{
+  padding:15px 12px;
+  display:grid;
+  gap:5px;
+}
+
+.menu-item{
+  width:100%;
+  min-height:46px;
+  border:none;
+  border-radius:10px;
+  background:transparent;
+  color:var(--text);
+  display:flex;
+  align-items:center;
+  gap:13px;
+  padding:0 13px;
+  text-align:left;
+  font-size:13px;
+  font-weight:600;
+}
+
+.menu-item:hover{
+  background:#eeeaff;
+  color:var(--primary);
+}
+
+.menu-icon{
+  width:25px;
+  text-align:center;
+  font-size:17px;
+}
+
+.menu-bottom{
+  margin-top:auto;
+  padding:15px 12px 20px;
+  border-top:1px solid var(--border);
+}
+
+.logout-item{
+  color:#e74c3c;
+}
+
+.logout-item:hover{
+  background:#fff0ef;
+  color:#c0392b;
+}
+
+
+/* =========================
+   PAGE
+========================= */
+
+.container{
+  width:100%;
+  max-width:900px;
+  margin:auto;
+  padding:35px 20px 60px;
+}
+
+.page-title{
+  margin-bottom:25px;
+}
+
+.page-title h1{
+  font-size:30px;
+  margin-bottom:8px;
+}
+
+.page-title p{
+  color:var(--muted);
+  font-size:14px;
+}
+
+
+/* =========================
+   PROFIL CARD
+========================= */
+
+.profile-card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:20px;
+  box-shadow:var(--shadow);
+  overflow:hidden;
+}
+
+.profile-top{
+  padding:30px;
+  background:linear-gradient(
+    135deg,
+    rgba(108,92,231,.12),
+    rgba(0,206,201,.08)
+  );
+  border-bottom:1px solid var(--border);
+  display:flex;
+  align-items:center;
+  gap:20px;
+}
+
+.avatar{
+  width:85px;
+  height:85px;
+  border-radius:50%;
+  background:linear-gradient(
+    135deg,
+    var(--primary),
+    var(--secondary)
+  );
+  color:white;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:32px;
+  font-weight:800;
+  flex-shrink:0;
+  box-shadow:0 8px 20px rgba(108,92,231,.22);
+}
+
+.profile-heading h2{
+  font-size:21px;
+  margin-bottom:6px;
+}
+
+.profile-heading p{
+  color:var(--muted);
+  font-size:13px;
+  word-break:break-all;
+}
+
+
+/* =========================
+   FORM
+========================= */
+
+.form{
+  padding:30px;
+}
+
+.form-group{
+  margin-bottom:20px;
+}
+
+.form-group label{
+  display:block;
+  font-size:13px;
+  font-weight:700;
+  margin-bottom:8px;
+}
+
+.input{
+  width:100%;
+  height:52px;
+  border:1px solid var(--border);
+  border-radius:12px;
+  outline:none;
+  padding:0 15px;
+  background:var(--soft);
+  color:var(--text);
+  font-size:14px;
+  transition:.2s;
+}
+
+.input:focus{
+  border-color:var(--primary);
+  background:var(--card);
+  box-shadow:0 0 0 4px rgba(108,92,231,.09);
+}
+
+.input:disabled{
+  opacity:.7;
+  cursor:not-allowed;
+}
+
+.help{
+  display:block;
+  color:var(--muted);
+  font-size:11px;
+  margin-top:7px;
+  line-height:1.5;
+}
+
+
+/* =========================
+   MESSAGE
+========================= */
+
+.message{
+  display:none;
+  margin:0 30px;
+  padding:13px 15px;
+  border-radius:10px;
+  font-size:13px;
+  line-height:1.5;
+}
+
+.message.success{
+  display:block;
+  background:#edfff8;
+  color:#008f70;
+  border:1px solid #c9f5e6;
+}
+
+.message.error{
+  display:block;
+  background:#fff0ef;
+  color:#c0392b;
+  border:1px solid #ffd5d1;
+}
+
+
+/* =========================
+   BUTTONS
+========================= */
+
+.form-actions{
+  display:flex;
+  gap:10px;
+  margin-top:10px;
+}
+
+.save-button{
+  flex:1;
+  height:50px;
+  border:none;
+  border-radius:11px;
+  background:linear-gradient(
+    135deg,
+    var(--primary),
+    var(--primary-dark)
+  );
+  color:white;
+  font-size:14px;
+  font-weight:800;
+  box-shadow:0 8px 20px rgba(108,92,231,.20);
+}
+
+.save-button:hover{
+  transform:translateY(-1px);
+}
+
+.save-button:disabled{
+  opacity:.65;
+  cursor:not-allowed;
+  transform:none;
+}
+
+.cancel-button{
+  height:50px;
+  padding:0 20px;
+  border:1px solid var(--border);
+  border-radius:11px;
+  background:var(--soft);
+  color:var(--text);
+  font-size:14px;
+  font-weight:700;
+}
+
+
+/* =========================
+   INFORMATIONS
+========================= */
+
+.info-card{
+  margin-top:20px;
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:18px;
+  padding:22px;
+  box-shadow:var(--shadow);
+}
+
+.info-card h3{
+  font-size:16px;
+  margin-bottom:17px;
+}
+
+.info-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:12px;
+}
+
+.info-item{
+  padding:14px;
+  border-radius:12px;
+  background:var(--soft);
+  border:1px solid var(--border);
+}
+
+.info-item small{
+  display:block;
+  color:var(--muted);
+  font-size:10px;
+  margin-bottom:6px;
+}
+
+.info-item strong{
+  font-size:13px;
+}
+
+
+/* =========================
+   LOADING
+========================= */
+
+.loading{
+  position:fixed;
+  inset:0;
+  z-index:999;
+  background:var(--bg);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:15px;
+}
+
+.loading-icon{
+  width:55px;
+  height:55px;
+  border-radius:15px;
+  background:linear-gradient(
+    135deg,
+    var(--primary),
+    var(--primary-dark)
+  );
+  color:white;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:27px;
+}
+
+.loading-text{
+  color:var(--muted);
+  font-size:13px;
+}
+
+
+/* =========================
+   ERROR
+========================= */
+
+.error-screen{
+  display:none;
+  min-height:100vh;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+}
+
+.error-card{
+  max-width:430px;
+  width:100%;
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:20px;
+  padding:30px;
+  text-align:center;
+  box-shadow:var(--shadow);
+}
+
+.error-icon{
+  font-size:45px;
+  margin-bottom:15px;
+}
+
+.error-card h2{
+  margin-bottom:10px;
+}
+
+.error-card p{
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.6;
+  margin-bottom:20px;
+}
+
+.error-button{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  height:43px;
+  padding:0 20px;
+  border-radius:10px;
+  background:var(--primary);
+  color:white;
+  text-decoration:none;
+  font-size:13px;
+  font-weight:800;
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width:650px){
+
+  .container{
+    padding:25px 15px 45px;
+  }
+
+  .page-title h1{
+    font-size:26px;
+  }
+
+  .profile-top{
+    padding:22px;
+  }
+
+  .avatar{
+    width:70px;
+    height:70px;
+    font-size:27px;
+  }
+
+  .form{
+    padding:22px;
+  }
+
+  .message{
+    margin:0 22px;
+  }
+
+  .info-grid{
+    grid-template-columns:1fr;
+  }
+
+}
+
+@media(max-width:430px){
+
+  .brand-name{
+    font-size:16px;
+  }
+
+  .header-inner{
+    padding:0 12px;
+  }
+
+  .form-actions{
+    flex-direction:column;
+  }
+
+  .cancel-button{
+    width:100%;
+  }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     CHARGEMENT
+========================= -->
+
+<div class="loading" id="loading">
+
+  <div class="loading-icon">
+    🎹
+  </div>
+
+  <div class="loading-text">
+    Chargement du profil...
+  </div>
+
+</div>
+
+
+<!-- =========================
+     MENU OVERLAY
+========================= -->
+
+<div
+  class="menu-overlay"
+  id="menuOverlay">
+</div>
+
+
+<!-- =========================
+     MENU
+========================= -->
+
+<aside
+  class="side-menu"
+  id="sideMenu">
+
+
+  <div class="menu-header">
+
+    <div class="menu-brand">
+
+      <div class="menu-brand-icon">
+        🎹
+      </div>
+
+      <strong>
+        Piano Academy
+      </strong>
+
+    </div>
+
+    <button
+      class="close-menu"
+      id="closeMenu">
+      ×
+    </button>
+
+  </div>
+
+
+  <div class="menu-user">
+
+    <div
+      class="menu-user-avatar"
+      id="menuAvatar">
+      ?
+    </div>
+
+    <div
+      class="menu-user-name"
+      id="menuName">
+      Utilisateur
+    </div>
+
+    <div
+      class="menu-user-email"
+      id="menuEmail">
+      —
+    </div>
+
+  </div>
+
+
+  <nav class="menu-items">
+
+
+    <button
+      class="menu-item"
+      onclick="goTo('dashboard.html')">
+
+      <span class="menu-icon">
+        🏠
+      </span>
+
+      Accueil
+
+    </button>
+
+
+    <button
+      class="menu-item"
+      onclick="goTo('index.html')">
+
+      <span class="menu-icon">
+        📚
+      </span>
+
+      Mes cours
+
+    </button>
+
+
+    <button
+      class="menu-item"
+      onclick="goTo('dashboard.html')">
+
+      <span class="menu-icon">
+        📊
+      </span>
+
+      Ma progression
+
+    </button>
+
+
+    <button
+      class="menu-item"
+      onclick="showPremium()">
+
+      <span class="menu-icon">
+        ⭐
+      </span>
+
+      Premium
+
+    </button>
+
+
+    <button
+      class="menu-item"
+      onclick="closeMenu()">
+
+      <span class="menu-icon">
+        👤
+      </span>
+
+      Mon profil
+
+    </button>
+
+
+    <button
+      class="menu-item"
+      onclick="showSettings()">
+
+      <span class="menu-icon">
+        ⚙️
+      </span>
+
+      Paramètres
+
+    </button>
+
+
+  </nav>
+
+
+  <div class="menu-bottom">
+
+    <button
+      class="menu-item logout-item"
+      id="logoutButton">
+
+      <span class="menu-icon">
+        🚪
+      </span>
+
+      Déconnexion
+
+    </button>
+
+  </div>
+
+</aside>
+
+
+<!-- =========================
+     ERREUR
+========================= -->
+
+<section
+  class="error-screen"
+  id="errorScreen">
+
+  <div class="error-card">
+
+    <div class="error-icon">
+      🔐
+    </div>
+
+    <h2>
+      Accès refusé
+    </h2>
+
+    <p id="errorText">
+      Vous devez être connecté pour accéder à votre profil.
+    </p>
+
+    <a
+      href="connexion.html"
+      class="error-button">
+
+      Se connecter
+
+    </a>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     APPLICATION
+========================= -->
+
+<div id="app">
+
+
+<!-- =========================
+     HEADER
+========================= -->
+
+<header class="header">
+
+  <div class="header-inner">
+
+
+    <div class="header-left">
+
+      <button
+        class="menu-button"
+        id="menuButton"
+        aria-label="Ouvrir le menu">
+
+        ☰
+
+      </button>
+
+
+      <div class="brand">
+
+        <div class="brand-icon">
+          🎹
+        </div>
+
+        <div class="brand-name">
+          Piano Academy
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <button
+      class="theme-button"
+      id="themeButton"
+      aria-label="Mode sombre">
+
+      🌙
+
+    </button>
+
+
+  </div>
+
+</header>
+
+
+<!-- =========================
+     CONTENU
+========================= -->
+
+<main class="container">
+
+
+<section class="page-title">
+
+  <h1>
+    Mon profil
+  </h1>
+
+  <p>
+    Gère tes informations personnelles sur Piano Academy.
+  </p>
+
+</section>
+
+
+<section class="profile-card">
+
+
+  <!-- PROFIL HEADER -->
+
+  <div class="profile-top">
+
+    <div
+      class="avatar"
+      id="avatar">
+      ?
+    </div>
+
+
+    <div class="profile-heading">
+
+      <h2 id="profileHeading">
+        Mon profil
+      </h2>
+
+      <p id="profileEmailTop">
+        —
+      </p>
+
+    </div>
+
+  </div>
+
+
+  <!-- MESSAGE -->
+
+  <div
+    class="message"
+    id="message">
+  </div>
+
+
+  <!-- FORMULAIRE -->
+
+  <form
+    class="form"
+    id="profileForm">
+
+
+    <div class="form-group">
+
+      <label for="name">
+        Nom complet
+      </label>
+
+      <input
+        class="input"
+        type="text"
+        id="name"
+        placeholder="Ton nom complet"
+        autocomplete="name"
+        required>
+
+      <span class="help">
+        Ce nom sera utilisé dans ton espace Piano Academy.
+      </span>
+
+    </div>
+
+
+    <div class="form-group">
+
+      <label for="email">
+        Adresse email
+      </label>
+
+      <input
+        class="input"
+        type="email"
+        id="email"
+        disabled>
+
+      <span class="help">
+        L'adresse email est gérée par le système d'authentification.
+      </span>
+
+    </div>
+
+
+    <div class="form-actions">
+
+      <button
+        type="button"
+        class="cancel-button"
+        id="cancelButton">
+
+        Annuler
+
+      </button>
+
+
+      <button
+        type="submit"
+        class="save-button"
+        id="saveButton">
+
+        Enregistrer les modifications
+
+      </button>
+
+    </div>
+
+
+  </form>
+
+</section>
+
+
+<!-- =========================
+     INFORMATIONS
+========================= -->
+
+<section class="info-card">
+
+  <h3>
+    Informations du compte
+  </h3>
+
+
+  <div class="info-grid">
+
+
+    <div class="info-item">
+
+      <small>
+        Plan actuel
+      </small>
+
+      <strong id="plan">
+        Free
+      </strong>
+
+    </div>
+
+
+    <div class="info-item">
+
+      <small>
+        Progression
+      </small>
+
+      <strong id="progress">
+        0%
+      </strong>
+
+    </div>
+
+
+    <div class="info-item">
+
+      <small>
+        Cours terminés
+      </small>
+
+      <strong id="lessons">
+        0
+      </strong>
+
+    </div>
+
+
+  </div>
+
+</section>
+
+
+</main>
+
+</div>
+
+
+<script>
+
+/* =====================================================
+   SUPABASE
+===================================================== */
+
+const SUPABASE_URL =
+  "https://swsvnzjeipcobodntajs.supabase.co";
+
+
+const SUPABASE_KEY =
+  "TA_SB_PUBLISHABLE_KEY";
+
+
+const supabaseClient =
+  window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+  );
+
+
+/* =====================================================
+   ÉLÉMENTS
+===================================================== */
+
+const loading =
+  document.getElementById("loading");
+
+const app =
+  document.getElementById("app");
+
+const errorScreen =
+  document.getElementById("errorScreen");
+
+const errorText =
+  document.getElementById("errorText");
+
+const form =
+  document.getElementById("profileForm");
+
+const nameInput =
+  document.getElementById("name");
+
+const emailInput =
+  document.getElementById("email");
+
+const saveButton =
+  document.getElementById("saveButton");
+
+const cancelButton =
+  document.getElementById("cancelButton");
+
+const message =
+  document.getElementById("message");
+
+
+let currentUser = null;
+let originalName = "";
+
+
+/* =====================================================
+   MENU
+===================================================== */
+
+const sideMenu =
+  document.getElementById("sideMenu");
+
+const menuOverlay =
+  document.getElementById("menuOverlay");
+
+const menuButton =
+  document.getElementById("menuButton");
+
+const closeMenuButton =
+  document.getElementById("closeMenu");
+
+
+function openMenu(){
+
+  sideMenu.classList.add("open");
+
+  menuOverlay.classList.add("active");
+
+}
+
+
+function closeMenu(){
+
+  sideMenu.classList.remove("open");
+
+  menuOverlay.classList.remove("active");
+
+}
+
+
+menuButton.addEventListener(
+  "click",
+  openMenu
+);
+
+
+closeMenuButton.addEventListener(
+  "click",
+  closeMenu
+);
+
+
+menuOverlay.addEventListener(
+  "click",
+  closeMenu
+);
+
+
+/* =====================================================
+   NAVIGATION
+===================================================== */
+
+function goTo(page){
+
+  closeMenu();
+
+  window.location.href =
+    page;
+
+}
+
+
+/* =====================================================
+   MODE SOMBRE
+===================================================== */
+
+const themeButton =
+  document.getElementById("themeButton");
+
+
+function applyTheme(){
+
+  const theme =
+    localStorage.getItem(
+      "pianoAcademyTheme"
+    );
+
+
+  if(theme === "dark"){
+
+    document.body.classList.add("dark");
+
+    themeButton.textContent =
+      "☀️";
+
+  }else{
+
+    document.body.classList.remove("dark");
+
+    themeButton.textContent =
+      "🌙";
+
+  }
+
+}
+
+
+themeButton.addEventListener(
+  "click",
+  function(){
+
+    const isDark =
+      document.body.classList.contains("dark");
+
+
+    if(isDark){
+
+      document.body.classList.remove("dark");
+
+      localStorage.setItem(
+        "pianoAcademyTheme",
+        "light"
+      );
+
+      themeButton.textContent =
+        "🌙";
+
+    }else{
+
+      document.body.classList.add("dark");
+
+      localStorage.setItem(
+        "pianoAcademyTheme",
+        "dark"
+      );
+
+      themeButton.textContent =
+        "☀️";
+
+    }
+
+  }
+);
+
+
+applyTheme();
+
+
+/* =====================================================
+   MESSAGE
+===================================================== */
+
+function showMessage(
+  text,
+  type
+){
+
+  message.textContent =
+    text;
+
+  message.className =
+    "message " + type;
+
+}
+
+
+function clearMessage(){
+
+  message.textContent =
+    "";
+
+  message.className =
+    "message";
+
+}
+
+
+/* =====================================================
+   INITIAL
+===================================================== */
+
+function getInitial(name){
+
+  if(!name){
+
+    return "?";
+
+  }
+
+  return name
+    .trim()
+    .charAt(0)
+    .toUpperCase();
+
+}
+
+
+/* =====================================================
+   AFFICHER ERREUR
+===================================================== */
+
+function showError(text){
+
+  loading.style.display =
+    "none";
+
+  app.style.display =
+    "none";
+
+  errorScreen.style.display =
+    "flex";
+
+  errorText.textContent =
+    text;
+
+}
+
+
+/* =====================================================
+   CHARGER LE PROFIL
+===================================================== */
+
+async function loadProfile(){
+
+  try{
+
+
+    /* SESSION */
+
+    const {
+      data:sessionData,
+      error:sessionError
+    } =
+      await supabaseClient.auth.getSession();
+
+
+    if(sessionError){
+
+      throw sessionError;
+
+    }
+
+
+    const session =
+      sessionData.session;
+
+
+    if(!session){
+
+      showError(
+        "Vous devez être connecté pour accéder à votre profil."
+      );
+
+      return;
+
+    }
+
+
+    currentUser =
+      session.user;
+
+
+    const metadata =
+      currentUser.user_metadata || {};
+
+
+    const authName =
+      metadata.name ||
+      metadata.full_name ||
+      "";
+
+
+    /* PROFIL */
+
+    const {
+      data:profile,
+      error:profileError
+    } =
+      await supabaseClient
+
+      .from("profiles")
+
+      .select(
+        "id,name,email,plan,progress,lessons_completed"
+      )
+
+      .eq(
+        "id",
+        currentUser.id
+      )
+
+      .maybeSingle();
+
+
+    if(profileError){
+
+      console.warn(
+        "Erreur profil :",
+        profileError
+      );
+
+    }
+
+
+    const profileName =
+      profile?.name ||
+      authName ||
+      "";
+
+
+    const email =
+      profile?.email ||
+      currentUser.email ||
+      "";
+
+
+    originalName =
+      profileName;
+
+
+    /* FORM */
+
+    nameInput.value =
+      profileName;
+
+
+    emailInput.value =
+      email;
+
+
+    /* HEADER PROFIL */
+
+    document.getElementById(
+      "profileHeading"
+    ).textContent =
+      profileName ||
+      "Mon profil";
+
+
+    document.getElementById(
+      "profileEmailTop"
+    ).textContent =
+      email;
+
+
+    document.getElementById(
+      "avatar"
+    ).textContent =
+      getInitial(
+        profileName
+      );
+
+
+    /* MENU */
+
+    document.getElementById(
+      "menuAvatar"
+    ).textContent =
+      getInitial(
+        profileName
+      );
+
+
+    document.getElementById(
+      "menuName"
+    ).textContent =
+      profileName ||
+      "Utilisateur";
+
+
+    document.getElementById(
+      "menuEmail"
+    ).textContent =
+      email;
+
+
+    /* INFORMATIONS */
+
+    document.getElementById(
+      "plan"
+    ).textContent =
+      profile?.plan ||
+      "Free";
+
+
+    document.getElementById(
+      "progress"
+    ).textContent =
+      Number(
+        profile?.progress || 0
+      ) + "%";
+
+
+    document.getElementById(
+      "lessons"
+    ).textContent =
+      Number(
+        profile?.lessons_completed || 0
+      );
+
+
+    /* AFFICHER */
+
+    loading.style.display =
+      "none";
+
+    app.style.display =
+      "block";
+
+
+  }catch(error){
+
+    console.error(
+      "Erreur chargement profil :",
+      error
+    );
+
+
+    showError(
+      "Impossible de charger votre profil."
+    );
+
+  }
+
+}
+
+
+/* =====================================================
+   ENREGISTRER LE PROFIL
+===================================================== */
+
+form.addEventListener(
+  "submit",
+  async function(event){
+
+    event.preventDefault();
+
+    clearMessage();
+
+
+    if(!currentUser){
+
+      showError(
+        "Votre session a expiré. Veuillez vous reconnecter."
+      );
+
+      return;
+
+    }
+
+
+    const name =
+      nameInput.value.trim();
+
+
+    if(name.length < 2){
+
+      showMessage(
+        "Veuillez entrer un nom valide.",
+        "error"
+      );
+
+      nameInput.focus();
+
+      return;
+
+    }
+
+
+    saveButton.disabled =
+      true;
+
+    saveButton.textContent =
+      "Enregistrement...";
+
+
+    try{
+
+
+      /*
+        Mise à jour du profil
+        dans public.profiles
+      */
+
+      const {
+        data,
+        error
+      } =
+        await supabaseClient
+
+        .from("profiles")
+
+        .update({
+
+          name:name
+
+        })
+
+        .eq(
+          "id",
+          currentUser.id
+        )
+
+        .select()
+        .maybeSingle();
+
+
+      if(error){
+
+        throw error;
+
+      }
+
+
+      /*
+        On met également à jour
+        les métadonnées Supabase Auth.
+      */
+
+      const {
+        error:authError
+      } =
+        await supabaseClient.auth.updateUser({
+
+          data:{
+            name:name
+          }
+
+        });
+
+
+      if(authError){
+
+        console.warn(
+          "Métadonnées Auth :",
+          authError
+        );
+
+      }
+
+
+      originalName =
+        name;
+
+
+      /* INTERFACE */
+
+      document.getElementById(
+        "profileHeading"
+      ).textContent =
+        name;
+
+
+      document.getElementById(
+        "avatar"
+      ).textContent =
+        getInitial(name);
+
+
+      document.getElementById(
+        "menuAvatar"
+      ).textContent =
+        getInitial(name);
+
+
+      document.getElementById(
+        "menuName"
+      ).textContent =
+        name;
+
+
+      showMessage(
+        "Profil mis à jour avec succès ✓",
+        "success"
+      );
+
+
+      saveButton.textContent =
+        "Enregistré ✓";
+
+
+      setTimeout(
+        function(){
+
+          saveButton.textContent =
+            "Enregistrer les modifications";
+
+          saveButton.disabled =
+            false;
+
+        },
+        1800
+      );
+
+
+    }catch(error){
+
+      console.error(
+        "Erreur mise à jour profil :",
+        error
+      );
+
+
+      let text =
+        "Impossible de mettre à jour le profil.";
+
+
+      if(
+        error &&
+        error.message
+      ){
+
+        text =
+          error.message;
+
+      }
+
+
+      showMessage(
+        text,
+        "error"
+      );
+
+
+      saveButton.disabled =
+        false;
+
+      saveButton.textContent =
+        "Enregistrer les modifications";
+
+    }
+
+  }
+);
+
+
+/* =====================================================
+   ANNULER
+===================================================== */
+
+cancelButton.addEventListener(
+  "click",
+  function(){
+
+    nameInput.value =
+      originalName;
+
+    clearMessage();
+
+  }
+);
+
+
+/* =====================================================
+   DÉCONNEXION
+===================================================== */
+
+document
+.getElementById("logoutButton")
+.addEventListener(
+  "click",
+  async function(){
+
+    const confirmed =
+      confirm(
+        "Voulez-vous vraiment vous déconnecter ?"
+      );
+
+
+    if(!confirmed){
+
+      return;
+
+    }
+
+
+    this.disabled =
+      true;
+
+    this.textContent =
+      "Déconnexion...";
+
+
+    try{
+
+      const {
+        error
+      } =
+        await supabaseClient.auth.signOut();
+
+
+      if(error){
+
+        throw error;
+
+      }
+
+
+      window.location.href =
+        "connexion.html";
+
+
+    }catch(error){
+
+      console.error(
+        "Erreur déconnexion :",
+        error
+      );
+
+
+      this.disabled =
+        false;
+
+      this.innerHTML =
+        '<span class="menu-icon">🚪</span> Déconnexion';
+
+
+      alert(
+        "Impossible de vous déconnecter. Veuillez réessayer."
+      );
+
+    }
+
+  }
+);
+
+
+/* =====================================================
+   PREMIUM
+===================================================== */
+
+function showPremium(){
+
+  closeMenu();
+
+  alert(
+    "La section Premium sera disponible prochainement."
+  );
+
+}
+
+
+/* =====================================================
+   PARAMÈTRES
+===================================================== */
+
+function showSettings(){
+
+  closeMenu();
+
+  alert(
+    "Les paramètres seront disponibles prochainement."
+  );
+
+}
+
+
+/* =====================================================
+   SURVEILLER LA SESSION
+===================================================== */
+
+supabaseClient.auth.onAuthStateChange(
+  function(event){
+
+    if(
+      event === "SIGNED_OUT"
+    ){
+
+      window.location.href =
+        "connexion.html";
+
+    }
+
+  }
+);
+
+
+/* =====================================================
+   DÉMARRAGE
+===================================================== */
+
+loadProfile();
+
+</script>
+
+</body>
+</html>
