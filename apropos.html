@@ -1,0 +1,1670 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0"
+>
+
+<title>À propos — Piano Academy</title>
+
+<meta
+  name="description"
+  content="À propos de Piano Academy — Apprendre, pratiquer et progresser."
+>
+
+<style>
+
+/* =====================================================
+   RESET
+===================================================== */
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+
+/* =====================================================
+   VARIABLES
+===================================================== */
+
+:root{
+
+  --primary:#6c5ce7;
+  --primary-dark:#5848d6;
+
+  --secondary:#00cec9;
+
+  --gold:#f5b942;
+  --gold-dark:#d99a20;
+
+  --background:#f5f6fa;
+  --card:#ffffff;
+  --soft:#fafbfe;
+
+  --text:#1e1e2f;
+  --muted:#777b8a;
+
+  --border:#e2e4ec;
+
+  --success:#00b894;
+
+  --shadow:
+    0 12px 35px rgba(25,25,50,.08);
+
+}
+
+
+/* =====================================================
+   MODE SOMBRE
+===================================================== */
+
+body.dark{
+
+  --background:#11121a;
+  --card:#1b1d28;
+  --soft:#222531;
+
+  --text:#f5f5fa;
+  --muted:#a7a9b7;
+  --border:#303342;
+
+  --shadow:
+    0 12px 35px rgba(0,0,0,.25);
+
+}
+
+
+/* =====================================================
+   BODY
+===================================================== */
+
+body{
+
+  min-height:100vh;
+
+  font-family:
+    Arial,
+    Helvetica,
+    sans-serif;
+
+  background:var(--background);
+
+  color:var(--text);
+
+  transition:.25s;
+
+}
+
+
+button{
+
+  font-family:inherit;
+
+  cursor:pointer;
+
+}
+
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+.header{
+
+  position:sticky;
+
+  top:0;
+
+  z-index:100;
+
+  height:70px;
+
+  background:var(--card);
+
+  border-bottom:
+    1px solid
+    var(--border);
+
+}
+
+
+.header-inner{
+
+  width:100%;
+
+  max-width:1150px;
+
+  height:100%;
+
+  margin:auto;
+
+  padding:0 20px;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:space-between;
+
+}
+
+
+.header-left{
+
+  display:flex;
+
+  align-items:center;
+
+  gap:13px;
+
+}
+
+
+/* =====================================================
+   BOUTON RETOUR
+===================================================== */
+
+.back-button,
+.theme-button{
+
+  width:42px;
+
+  height:42px;
+
+  border:none;
+
+  border-radius:11px;
+
+  background:var(--soft);
+
+  color:var(--text);
+
+  font-size:20px;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+}
+
+
+.back-button:hover,
+.theme-button:hover{
+
+  background:#eeeaff;
+
+  color:var(--primary);
+
+}
+
+
+/* =====================================================
+   BRAND
+===================================================== */
+
+.brand{
+
+  display:flex;
+
+  align-items:center;
+
+  gap:10px;
+
+}
+
+
+.brand-icon{
+
+  width:40px;
+
+  height:40px;
+
+  border-radius:11px;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--primary),
+      var(--primary-dark)
+    );
+
+  color:white;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  font-size:20px;
+
+}
+
+
+.brand-name{
+
+  font-size:17px;
+
+  font-weight:800;
+
+}
+
+
+/* =====================================================
+   CONTAINER
+===================================================== */
+
+.container{
+
+  width:100%;
+
+  max-width:900px;
+
+  margin:auto;
+
+  padding:
+    30px 20px 70px;
+
+}
+
+
+/* =====================================================
+   TITRE
+===================================================== */
+
+.page-title{
+
+  margin-bottom:25px;
+
+}
+
+
+.page-title h1{
+
+  font-size:30px;
+
+  margin-bottom:7px;
+
+}
+
+
+.page-title p{
+
+  color:var(--muted);
+
+  font-size:13px;
+
+  line-height:1.6;
+
+}
+
+
+/* =====================================================
+   SECTION
+===================================================== */
+
+.about-section{
+
+  margin-bottom:22px;
+
+}
+
+
+.section-title{
+
+  display:flex;
+
+  align-items:center;
+
+  gap:9px;
+
+  font-size:15px;
+
+  font-weight:800;
+
+  margin-bottom:10px;
+
+}
+
+
+.section-icon{
+
+  width:34px;
+
+  height:34px;
+
+  border-radius:10px;
+
+  background:
+    rgba(108,92,231,.12);
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  font-size:17px;
+
+}
+
+
+/* =====================================================
+   CARD
+===================================================== */
+
+.about-card{
+
+  background:var(--card);
+
+  border:
+    1px solid
+    var(--border);
+
+  border-radius:17px;
+
+  padding:22px;
+
+  box-shadow:var(--shadow);
+
+}
+
+
+/* =====================================================
+   HERO
+===================================================== */
+
+.about-hero{
+
+  text-align:center;
+
+  padding:
+    28px 20px;
+
+}
+
+
+.logo-large{
+
+  width:82px;
+
+  height:82px;
+
+  margin:
+    0 auto 15px;
+
+  border-radius:22px;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--primary),
+      var(--primary-dark)
+    );
+
+  color:white;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  font-size:42px;
+
+  box-shadow:
+    0 12px 30px
+    rgba(108,92,231,.25);
+
+}
+
+
+.about-hero h2{
+
+  font-size:24px;
+
+  margin-bottom:8px;
+
+}
+
+
+.about-hero h2 span{
+
+  color:var(--primary);
+
+}
+
+
+.about-hero p{
+
+  color:var(--muted);
+
+  font-size:12px;
+
+  line-height:1.7;
+
+  max-width:600px;
+
+  margin:auto;
+
+}
+
+
+/* =====================================================
+   TEXTE
+===================================================== */
+
+.about-text{
+
+  color:var(--muted);
+
+  font-size:12px;
+
+  line-height:1.8;
+
+}
+
+
+.about-text strong{
+
+  color:var(--text);
+
+}
+
+
+/* =====================================================
+   FONCTIONNALITÉS
+===================================================== */
+
+.features{
+
+  display:grid;
+
+  grid-template-columns:
+    repeat(2,1fr);
+
+  gap:12px;
+
+}
+
+
+.feature{
+
+  padding:17px;
+
+  background:var(--soft);
+
+  border:
+    1px solid
+    var(--border);
+
+  border-radius:14px;
+
+}
+
+
+.feature-icon{
+
+  width:40px;
+
+  height:40px;
+
+  border-radius:11px;
+
+  background:
+    rgba(108,92,231,.12);
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  font-size:20px;
+
+  margin-bottom:10px;
+
+}
+
+
+.feature-title{
+
+  font-size:13px;
+
+  font-weight:800;
+
+  margin-bottom:5px;
+
+}
+
+
+.feature-description{
+
+  color:var(--muted);
+
+  font-size:10px;
+
+  line-height:1.5;
+
+}
+
+
+/* =====================================================
+   OBJECTIF
+===================================================== */
+
+.objective{
+
+  border-left:
+    4px solid
+    var(--primary);
+
+}
+
+
+/* =====================================================
+   INFORMATIONS
+===================================================== */
+
+.info-list{
+
+  display:flex;
+
+  flex-direction:column;
+
+}
+
+
+.info-item{
+
+  min-height:58px;
+
+  padding:11px 0;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:space-between;
+
+  gap:15px;
+
+  border-bottom:
+    1px solid
+    var(--border);
+
+}
+
+
+.info-item:last-child{
+
+  border-bottom:none;
+
+}
+
+
+.info-left{
+
+  display:flex;
+
+  align-items:center;
+
+  gap:12px;
+
+}
+
+
+.info-icon{
+
+  width:38px;
+
+  height:38px;
+
+  flex-shrink:0;
+
+  border-radius:10px;
+
+  background:var(--soft);
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  font-size:17px;
+
+}
+
+
+.info-name{
+
+  font-size:12px;
+
+  font-weight:800;
+
+}
+
+
+.info-description{
+
+  color:var(--muted);
+
+  font-size:10px;
+
+  margin-top:3px;
+
+}
+
+
+.info-value{
+
+  color:var(--muted);
+
+  font-size:10px;
+
+  text-align:right;
+
+}
+
+
+/* =====================================================
+   VERSION
+===================================================== */
+
+.version-card{
+
+  text-align:center;
+
+}
+
+
+.version-icon{
+
+  font-size:25px;
+
+  margin-bottom:7px;
+
+}
+
+
+.version-title{
+
+  font-size:13px;
+
+  font-weight:800;
+
+  margin-bottom:4px;
+
+}
+
+
+.version-text{
+
+  color:var(--muted);
+
+  font-size:10px;
+
+  line-height:1.6;
+
+}
+
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+.footer{
+
+  text-align:center;
+
+  margin-top:30px;
+
+  color:var(--muted);
+
+  font-size:11px;
+
+  line-height:1.7;
+
+}
+
+
+/* =====================================================
+   TOAST
+===================================================== */
+
+.toast{
+
+  position:fixed;
+
+  left:50%;
+
+  bottom:25px;
+
+  transform:
+    translate(-50%,120px);
+
+  z-index:500;
+
+  padding:13px 18px;
+
+  border-radius:12px;
+
+  background:#1e1e2f;
+
+  color:white;
+
+  font-size:12px;
+
+  box-shadow:
+    0 10px 30px
+    rgba(0,0,0,.25);
+
+  transition:.3s;
+
+}
+
+
+.toast.show{
+
+  transform:
+    translate(-50%,0);
+
+}
+
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media(max-width:600px){
+
+  .container{
+
+    padding:
+      22px 15px 55px;
+
+  }
+
+
+  .page-title h1{
+
+    font-size:27px;
+
+  }
+
+
+  .about-card{
+
+    padding:18px;
+
+  }
+
+
+  .about-hero{
+
+    padding:
+      24px 15px;
+
+  }
+
+
+  .about-hero h2{
+
+    font-size:22px;
+
+  }
+
+
+  .features{
+
+    grid-template-columns:1fr;
+
+  }
+
+
+  .info-item{
+
+    align-items:flex-start;
+
+  }
+
+
+  .info-value{
+
+    font-size:9px;
+
+  }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
+<header class="header">
+
+  <div class="header-inner">
+
+
+    <div class="header-left">
+
+
+      <button
+        class="back-button"
+        onclick="goBack()"
+        aria-label="Retour"
+      >
+        ←
+      </button>
+
+
+      <div class="brand">
+
+
+        <div class="brand-icon">
+          🎹
+        </div>
+
+
+        <div class="brand-name">
+          Piano Academy
+        </div>
+
+
+      </div>
+
+
+    </div>
+
+
+    <button
+      class="theme-button"
+      id="themeButton"
+      aria-label="Changer le thème"
+    >
+      🌙
+    </button>
+
+
+  </div>
+
+</header>
+
+
+
+<!-- =====================================================
+     MAIN
+===================================================== -->
+
+<main class="container">
+
+
+  <!-- TITRE -->
+
+  <div class="page-title">
+
+    <h1>
+      ℹ️ À propos
+    </h1>
+
+    <p>
+      Découvre Piano Academy, son objectif
+      et les fonctionnalités disponibles.
+    </p>
+
+  </div>
+
+
+
+  <!-- ===================================================
+       PRESENTATION
+  ==================================================== -->
+
+  <section class="about-section">
+
+
+    <div class="about-card about-hero">
+
+
+      <div class="logo-large">
+        🎹
+      </div>
+
+
+      <h2>
+        <span>Piano Academy</span>
+      </h2>
+
+
+      <p>
+        Une plateforme d'apprentissage du piano
+        conçue pour apprendre étape par étape,
+        pratiquer régulièrement et progresser
+        à son propre rythme.
+      </p>
+
+
+    </div>
+
+
+  </section>
+
+
+
+  <!-- ===================================================
+       NOTRE OBJECTIF
+  ==================================================== -->
+
+  <section class="about-section">
+
+
+    <div class="section-title">
+
+
+      <div class="section-icon">
+        🎯
+      </div>
+
+
+      <span>
+        Notre objectif
+      </span>
+
+
+    </div>
+
+
+    <div class="about-card objective">
+
+
+      <p class="about-text">
+
+        <strong>
+          Piano Academy
+        </strong>
+        a pour objectif de rendre
+        l'apprentissage du piano plus simple,
+        progressif et accessible.
+
+        <br><br>
+
+        Les cours sont organisés pour permettre
+        à chaque utilisateur de développer
+        progressivement ses connaissances,
+        sa technique, sa coordination et
+        sa musicalité.
+
+      </p>
+
+
+    </div>
+
+  </section>
+
+
+
+  <!-- ===================================================
+       FONCTIONNALITÉS
+  ==================================================== -->
+
+  <section class="about-section">
+
+
+    <div class="section-title">
+
+
+      <div class="section-icon">
+        ⭐
+      </div>
+
+
+      <span>
+        Fonctionnalités
+      </span>
+
+
+    </div>
+
+
+    <div class="about-card">
+
+
+      <div class="features">
+
+
+        <!-- COURS -->
+
+        <div class="feature">
+
+
+          <div class="feature-icon">
+            🎹
+          </div>
+
+
+          <div class="feature-title">
+            Cours de piano
+          </div>
+
+
+          <div class="feature-description">
+            Apprends progressivement grâce
+            aux différents cours disponibles.
+          </div>
+
+
+        </div>
+
+
+
+        <!-- ACCORDS -->
+
+        <div class="feature">
+
+
+          <div class="feature-icon">
+            🎼
+          </div>
+
+
+          <div class="feature-title">
+            Maîtrise des accords
+          </div>
+
+
+          <div class="feature-description">
+            Développe ta connaissance des accords
+            et leur utilisation au piano.
+          </div>
+
+
+        </div>
+
+
+
+        <!-- HARMONIE -->
+
+        <div class="feature">
+
+
+          <div class="feature-icon">
+            🎶
+          </div>
+
+
+          <div class="feature-title">
+            Harmonie
+          </div>
+
+
+          <div class="feature-description">
+            Comprends les principes de l'harmonie
+            et leur application musicale.
+          </div>
+
+
+        </div>
+
+
+
+        <!-- COORDINATION -->
+
+        <div class="feature">
+
+
+          <div class="feature-icon">
+            🤲
+          </div>
+
+
+          <div class="feature-title">
+            Coordination
+          </div>
+
+
+          <div class="feature-description">
+            Améliore progressivement la coordination
+            des deux mains.
+          </div>
+
+
+        </div>
+
+
+
+        <!-- TECHNIQUE -->
+
+        <div class="feature">
+
+
+          <div class="feature-icon">
+            💪
+          </div>
+
+
+          <div class="feature-title">
+            Technique pianistique
+          </div>
+
+
+          <div class="feature-description">
+            Travaille ta technique pour jouer
+            avec plus de précision et de contrôle.
+          </div>
+
+
+        </div>
+
+
+
+        <!-- PROGRESSION -->
+
+        <div class="feature">
+
+
+          <div class="feature-icon">
+            📈
+          </div>
+
+
+          <div class="feature-title">
+            Suivi de progression
+          </div>
+
+
+          <div class="feature-description">
+            Suis ton évolution et retrouve
+            facilement ton parcours d'apprentissage.
+          </div>
+
+
+        </div>
+
+
+      </div>
+
+
+    </div>
+
+  </section>
+
+
+
+  <!-- ===================================================
+       INFORMATIONS
+  ==================================================== -->
+
+  <section class="about-section">
+
+
+    <div class="section-title">
+
+
+      <div class="section-icon">
+        📱
+      </div>
+
+
+      <span>
+        Informations
+      </span>
+
+
+    </div>
+
+
+    <div class="about-card">
+
+
+      <div class="info-list">
+
+
+        <!-- NOM -->
+
+        <div class="info-item">
+
+
+          <div class="info-left">
+
+
+            <div class="info-icon">
+              🎹
+            </div>
+
+
+            <div>
+
+
+              <div class="info-name">
+                Application
+              </div>
+
+
+              <div class="info-description">
+                Nom de l'application
+              </div>
+
+
+            </div>
+
+
+          </div>
+
+
+          <div class="info-value">
+            Piano Academy
+          </div>
+
+
+        </div>
+
+
+
+        <!-- VERSION -->
+
+        <div class="info-item">
+
+
+          <div class="info-left">
+
+
+            <div class="info-icon">
+              🔢
+            </div>
+
+
+            <div>
+
+
+              <div class="info-name">
+                Version
+              </div>
+
+
+              <div class="info-description">
+                Version actuelle
+              </div>
+
+
+            </div>
+
+
+          </div>
+
+
+          <div class="info-value">
+            1.0
+          </div>
+
+
+        </div>
+
+
+
+        <!-- TYPE -->
+
+        <div class="info-item">
+
+
+          <div class="info-left">
+
+
+            <div class="info-icon">
+              🎓
+            </div>
+
+
+            <div>
+
+
+              <div class="info-name">
+                Domaine
+              </div>
+
+
+              <div class="info-description">
+                Domaine de l'application
+              </div>
+
+
+            </div>
+
+
+          </div>
+
+
+          <div class="info-value">
+            Éducation
+          </div>
+
+
+        </div>
+
+
+
+        <!-- LANGUE -->
+
+        <div class="info-item">
+
+
+          <div class="info-left">
+
+
+            <div class="info-icon">
+              🌍
+            </div>
+
+
+            <div>
+
+
+              <div class="info-name">
+                Langue
+              </div>
+
+
+              <div class="info-description">
+                Langue principale
+              </div>
+
+
+            </div>
+
+
+          </div>
+
+
+          <div class="info-value">
+            Français
+          </div>
+
+
+        </div>
+
+
+      </div>
+
+
+    </div>
+
+  </section>
+
+
+
+  <!-- ===================================================
+       VERSION
+  ==================================================== -->
+
+  <section class="about-section">
+
+
+    <div class="about-card version-card">
+
+
+      <div class="version-icon">
+        🎹
+      </div>
+
+
+      <div class="version-title">
+        Piano Academy Premium
+      </div>
+
+
+      <div class="version-text">
+
+        Version 1.0<br>
+
+        Apprendre • Pratiquer • Progresser
+
+      </div>
+
+
+    </div>
+
+
+  </section>
+
+
+
+  <!-- FOOTER -->
+
+  <div class="footer">
+
+    🎹 Piano Academy<br>
+
+    Apprendre • Pratiquer • Progresser
+
+  </div>
+
+
+</main>
+
+
+
+<!-- =====================================================
+     TOAST
+===================================================== -->
+
+<div
+  class="toast"
+  id="toast"
+></div>
+
+
+
+<script>
+
+/* =====================================================
+   NAVIGATION
+===================================================== */
+
+function goBack(){
+
+  if(
+    document.referrer &&
+    document.referrer !== window.location.href
+  ){
+
+    history.back();
+
+  }else{
+
+    window.location.href =
+      "paramètres.html";
+
+  }
+
+}
+
+
+/* =====================================================
+   THEME
+===================================================== */
+
+const themeButton =
+  document.getElementById(
+    "themeButton"
+  );
+
+
+function applyTheme(){
+
+  const theme =
+    localStorage.getItem(
+      "pianoAcademyTheme"
+    ) || "light";
+
+
+  if(theme === "dark"){
+
+    document.body.classList.add(
+      "dark"
+    );
+
+    themeButton.textContent =
+      "☀️";
+
+  }else{
+
+    document.body.classList.remove(
+      "dark"
+    );
+
+    themeButton.textContent =
+      "🌙";
+
+  }
+
+}
+
+
+function toggleDarkMode(){
+
+  const isDark =
+    document.body.classList.contains(
+      "dark"
+    );
+
+
+  if(isDark){
+
+    document.body.classList.remove(
+      "dark"
+    );
+
+    localStorage.setItem(
+      "pianoAcademyTheme",
+      "light"
+    );
+
+    themeButton.textContent =
+      "🌙";
+
+
+    showToast(
+      "☀️ Mode clair activé"
+    );
+
+
+  }else{
+
+    document.body.classList.add(
+      "dark"
+    );
+
+    localStorage.setItem(
+      "pianoAcademyTheme",
+      "dark"
+    );
+
+    themeButton.textContent =
+      "☀️";
+
+
+    showToast(
+      "🌙 Mode sombre activé"
+    );
+
+  }
+
+}
+
+
+themeButton.addEventListener(
+  "click",
+  toggleDarkMode
+);
+
+
+/* =====================================================
+   INITIALISATION
+===================================================== */
+
+applyTheme();
+
+
+/* =====================================================
+   TOAST
+===================================================== */
+
+function showToast(text){
+
+  const toast =
+    document.getElementById(
+      "toast"
+    );
+
+
+  toast.textContent =
+    text;
+
+
+  toast.classList.add(
+    "show"
+  );
+
+
+  clearTimeout(
+    window.toastTimer
+  );
+
+
+  window.toastTimer =
+    setTimeout(
+      function(){
+
+        toast.classList.remove(
+          "show"
+        );
+
+      },
+      2200
+    );
+
+}
+
+
+/* =====================================================
+   ESCAPE
+===================================================== */
+
+document.addEventListener(
+  "keydown",
+  function(event){
+
+    if(
+      event.key === "Escape"
+    ){
+
+      goBack();
+
+    }
+
+  }
+);
+
+</script>
+
+
+</body>
+
+</html>
