@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -8,6 +9,12 @@
 
 <meta name="description"
 content="Cours Premium de technique pianistique — Piano Academy">
+
+<!-- =====================================================
+     SUPABASE
+===================================================== -->
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <style>
 
@@ -723,6 +730,33 @@ button{
   font-weight:800;
 }
 
+/* SYNC */
+
+.sync-status{
+  display:inline-flex;
+  align-items:center;
+  gap:7px;
+
+  margin-top:14px;
+
+  padding:7px 11px;
+
+  border-radius:20px;
+
+  background:rgba(255,255,255,.12);
+
+  color:rgba(255,255,255,.9);
+
+  font-size:11px;
+}
+
+.sync-dot{
+  width:7px;
+  height:7px;
+  border-radius:50%;
+  background:#00b894;
+}
+
 /* TOAST */
 
 .toast{
@@ -900,6 +934,13 @@ button{
 
       </div>
 
+      <div class="sync-status">
+        <span class="sync-dot"></span>
+        <span id="syncStatus">
+          Synchronisation locale
+        </span>
+      </div>
+
     </div>
 
   </div>
@@ -923,753 +964,230 @@ button{
 
 <section class="course-grid" id="courseGrid">
 
-
-<!-- 1 -->
-
 <article class="lesson-card" data-lesson="1">
-
-  <div class="lesson-number">
-    1
-  </div>
-
+  <div class="lesson-number">1</div>
   <div class="lesson-content">
-
-    <h3>
-      Introduction à la technique pianistique
-    </h3>
-
-    <p>
-      Comprendre ce qu'est réellement la technique
-      pianistique et pourquoi elle est essentielle.
-    </p>
-
-    <button
-      class="lesson-button"
-      onclick="openLesson(1)">
-      Ouvrir le cours
-    </button>
-
+    <h3>Introduction à la technique pianistique</h3>
+    <p>Comprendre ce qu'est réellement la technique pianistique et pourquoi elle est essentielle.</p>
+    <button class="lesson-button" onclick="openLesson(1)">Ouvrir le cours</button>
   </div>
-
 </article>
-
-
-<!-- 2 -->
 
 <article class="lesson-card" data-lesson="2">
-
-  <div class="lesson-number">
-    2
-  </div>
-
+  <div class="lesson-number">2</div>
   <div class="lesson-content">
-
-    <h3>
-      Position du pianiste
-    </h3>
-
-    <p>
-      Apprendre à positionner correctement le corps,
-      les bras, les poignets et les mains.
-    </p>
-
-    <button
-      class="lesson-button"
-      onclick="openLesson(2)">
-      Ouvrir le cours
-    </button>
-
+    <h3>Position du pianiste</h3>
+    <p>Apprendre à positionner correctement le corps, les bras, les poignets et les mains.</p>
+    <button class="lesson-button" onclick="openLesson(2)">Ouvrir le cours</button>
   </div>
-
 </article>
-
-
-<!-- 3 -->
 
 <article class="lesson-card" data-lesson="3">
-
-  <div class="lesson-number">
-    3
-  </div>
-
+  <div class="lesson-number">3</div>
   <div class="lesson-content">
-
-    <h3>
-      Placement des doigts
-    </h3>
-
-    <p>
-      Découvrir la numérotation et le placement naturel
-      des cinq doigts.
-    </p>
-
-    <button
-      class="lesson-button"
-      onclick="openLesson(3)">
-      Ouvrir le cours
-    </button>
-
+    <h3>Placement des doigts</h3>
+    <p>Découvrir la numérotation et le placement naturel des cinq doigts.</p>
+    <button class="lesson-button" onclick="openLesson(3)">Ouvrir le cours</button>
   </div>
-
 </article>
-
-
-<!-- 4 -->
 
 <article class="lesson-card" data-lesson="4">
-
-  <div class="lesson-number">
-    4
-  </div>
-
+  <div class="lesson-number">4</div>
   <div class="lesson-content">
-
-    <h3>
-      Relaxation et contrôle
-    </h3>
-
-    <p>
-      Apprendre à jouer avec souplesse et éviter
-      les tensions inutiles.
-    </p>
-
-    <button
-      class="lesson-button"
-      onclick="openLesson(4)">
-      Ouvrir le cours
-    </button>
-
+    <h3>Relaxation et contrôle</h3>
+    <p>Apprendre à jouer avec souplesse et éviter les tensions inutiles.</p>
+    <button class="lesson-button" onclick="openLesson(4)">Ouvrir le cours</button>
   </div>
-
 </article>
-
-
-<!-- 5 -->
 
 <article class="lesson-card" data-lesson="5">
-
-  <div class="lesson-number">
-    5
-  </div>
-
+  <div class="lesson-number">5</div>
   <div class="lesson-content">
-
-    <h3>
-      Indépendance des doigts
-    </h3>
-
-    <p>
-      Développer le contrôle individuel de chaque doigt.
-    </p>
-
-    <button
-      class="lesson-button"
-      onclick="openLesson(5)">
-      Ouvrir le cours
-    </button>
-
+    <h3>Indépendance des doigts</h3>
+    <p>Développer le contrôle individuel de chaque doigt.</p>
+    <button class="lesson-button" onclick="openLesson(5)">Ouvrir le cours</button>
   </div>
-
 </article>
-
-
-<!-- 6 -->
 
 <article class="lesson-card" data-lesson="6">
-
-  <div class="lesson-number">
-    6
-  </div>
-
+  <div class="lesson-number">6</div>
   <div class="lesson-content">
-
-    <h3>
-      Égalité des doigts
-    </h3>
-
-    <p>
-      Obtenir une attaque régulière et équilibrée.
-    </p>
-
-    <button
-      class="lesson-button"
-      onclick="openLesson(6)">
-      Ouvrir le cours
-    </button>
-
+    <h3>Égalité des doigts</h3>
+    <p>Obtenir une attaque régulière et équilibrée.</p>
+    <button class="lesson-button" onclick="openLesson(6)">Ouvrir le cours</button>
   </div>
-
 </article>
-
-
-<!-- 7 -->
 
 <article class="lesson-card" data-lesson="7">
-
-  <div class="lesson-number">
-    7
-  </div>
-
+  <div class="lesson-number">7</div>
   <div class="lesson-content">
-
-    <h3>
-      Technique du pouce
-    </h3>
-
-    <p>
-      Maîtriser le passage du pouce dans les déplacements
-      et les gammes.
-    </p>
-
-    <button
-      class="lesson-button"
-      onclick="openLesson(7)">
-      Ouvrir le cours
-    </button>
-
+    <h3>Technique du pouce</h3>
+    <p>Maîtriser le passage du pouce dans les déplacements et les gammes.</p>
+    <button class="lesson-button" onclick="openLesson(7)">Ouvrir le cours</button>
   </div>
-
 </article>
-
-
-<!-- 8 -->
 
 <article class="lesson-card" data-lesson="8">
-
-  <div class="lesson-number">
-    8
-  </div>
-
+  <div class="lesson-number">8</div>
   <div class="lesson-content">
-
-    <h3>
-      Les gammes comme entraînement
-    </h3>
-
-    <p>
-      Utiliser les gammes pour améliorer précision,
-      doigté et mobilité.
-    </p>
-
-    <button
-      class="lesson-button"
-      onclick="openLesson(8)">
-      Ouvrir le cours
-    </button>
-
+    <h3>Les gammes comme entraînement</h3>
+    <p>Utiliser les gammes pour améliorer précision, doigté et mobilité.</p>
+    <button class="lesson-button" onclick="openLesson(8)">Ouvrir le cours</button>
   </div>
-
 </article>
-
-
-<!-- 9 -->
 
 <article class="lesson-card" data-lesson="9">
-
-  <div class="lesson-number">
-    9
-  </div>
-
+  <div class="lesson-number">9</div>
   <div class="lesson-content">
-
-    <h3>
-      Les arpèges
-    </h3>
-
-    <p>
-      Développer les déplacements de la main grâce
-      aux arpèges majeurs et mineurs.
-    </p>
-
-    <button
-      class="lesson-button"
-      onclick="openLesson(9)">
-      Ouvrir le cours
-    </button>
-
+    <h3>Les arpèges</h3>
+    <p>Développer les déplacements de la main grâce aux arpèges majeurs et mineurs.</p>
+    <button class="lesson-button" onclick="openLesson(9)">Ouvrir le cours</button>
   </div>
-
 </article>
-
-
-<!-- 10 -->
 
 <article class="lesson-card" data-lesson="10">
-
-  <div class="lesson-number">
-    10
-  </div>
-
+  <div class="lesson-number">10</div>
   <div class="lesson-content">
-
-    <h3>
-      Accords et technique de la main
-    </h3>
-
-    <p>
-      Améliorer le contrôle des accords et les
-      changements d'accords.
-    </p>
-
-    <button
-      class="lesson-button"
-      onclick="openLesson(10)">
-      Ouvrir le cours
-    </button>
-
+    <h3>Accords et technique de la main</h3>
+    <p>Améliorer le contrôle des accords et les changements d'accords.</p>
+    <button class="lesson-button" onclick="openLesson(10)">Ouvrir le cours</button>
   </div>
-
 </article>
-
-
-<!-- 11 -->
 
 <article class="lesson-card" data-lesson="11">
-
-  <div class="lesson-number">
-    11
-  </div>
-
+  <div class="lesson-number">11</div>
   <div class="lesson-content">
-
-    <h3>
-      Articulation
-    </h3>
-
-    <p>
-      Maîtriser legato, staccato, détaché et accent.
-    </p>
-
-    <button
-      class="lesson-button"
-      onclick="openLesson(11)">
-      Ouvrir le cours
-    </button>
-
+    <h3>Articulation</h3>
+    <p>Maîtriser legato, staccato, détaché et accent.</p>
+    <button class="lesson-button" onclick="openLesson(11)">Ouvrir le cours</button>
   </div>
-
 </article>
-
-
-<!-- 12 -->
 
 <article class="lesson-card" data-lesson="12">
-
-  <div class="lesson-number">
-    12
-  </div>
-
+  <div class="lesson-number">12</div>
   <div class="lesson-content">
-
-    <h3>
-      Vélocité
-    </h3>
-
-    <p>
-      Développer progressivement la vitesse sans
-      sacrifier la précision.
-    </p>
-
-    <button
-      class="lesson-button"
-      onclick="openLesson(12)">
-      Ouvrir le cours
-    </button>
-
+    <h3>Vélocité</h3>
+    <p>Développer progressivement la vitesse sans sacrifier la précision.</p>
+    <button class="lesson-button" onclick="openLesson(12)">Ouvrir le cours</button>
   </div>
-
 </article>
-
-
-<!-- 13 -->
 
 <article class="lesson-card" data-lesson="13">
-
-  <div class="lesson-number">
-    13
-  </div>
-
+  <div class="lesson-number">13</div>
   <div class="lesson-content">
-
-    <h3>
-      Synchronisation technique
-    </h3>
-
-    <p>
-      Améliorer la régularité et la synchronisation
-      des mouvements.
-    </p>
-
-    <button
-      class="lesson-button"
-      onclick="openLesson(13)">
-      Ouvrir le cours
-    </button>
-
+    <h3>Synchronisation technique</h3>
+    <p>Améliorer la régularité et la synchronisation des mouvements.</p>
+    <button class="lesson-button" onclick="openLesson(13)">Ouvrir le cours</button>
   </div>
-
 </article>
-
-
-<!-- 14 -->
 
 <article class="lesson-card" data-lesson="14">
-
-  <div class="lesson-number">
-    14
-  </div>
-
+  <div class="lesson-number">14</div>
   <div class="lesson-content">
-
-    <h3>
-      Le métronome
-    </h3>
-
-    <p>
-      Utiliser correctement le métronome pour construire
-      une technique régulière.
-    </p>
-
-    <button
-      class="lesson-button"
-      onclick="openLesson(14)">
-      Ouvrir le cours
-    </button>
-
+    <h3>Le métronome</h3>
+    <p>Utiliser correctement le métronome pour construire une technique régulière.</p>
+    <button class="lesson-button" onclick="openLesson(14)">Ouvrir le cours</button>
   </div>
-
 </article>
-
-
-<!-- 15 -->
 
 <article class="lesson-card" data-lesson="15">
-
-  <div class="lesson-number">
-    15
-  </div>
-
+  <div class="lesson-number">15</div>
   <div class="lesson-content">
-
-    <h3>
-      Dynamique et toucher
-    </h3>
-
-    <p>
-      Contrôler la puissance, les nuances et le toucher
-      du clavier.
-    </p>
-
-    <button
-      class="lesson-button"
-      onclick="openLesson(15)">
-      Ouvrir le cours
-    </button>
-
+    <h3>Dynamique et toucher</h3>
+    <p>Contrôler la puissance, les nuances et le toucher du clavier.</p>
+    <button class="lesson-button" onclick="openLesson(15)">Ouvrir le cours</button>
   </div>
-
 </article>
-
-
-<!-- 16 -->
 
 <article class="lesson-card" data-lesson="16">
-
-  <div class="lesson-number">
-    16
-  </div>
-
+  <div class="lesson-number">16</div>
   <div class="lesson-content">
-
-    <h3>
-      Techniques de déplacement
-    </h3>
-
-    <p>
-      Apprendre les déplacements latéraux, les sauts
-      et les grands écarts.
-    </p>
-
-    <button
-      class="lesson-button"
-      onclick="openLesson(16)">
-      Ouvrir le cours
-    </button>
-
+    <h3>Techniques de déplacement</h3>
+    <p>Apprendre les déplacements latéraux, les sauts et les grands écarts.</p>
+    <button class="lesson-button" onclick="openLesson(16)">Ouvrir le cours</button>
   </div>
-
 </article>
-
-
-<!-- 17 -->
 
 <article class="lesson-card" data-lesson="17">
-
-  <div class="lesson-number">
-    17
-  </div>
-
+  <div class="lesson-number">17</div>
   <div class="lesson-content">
-
-    <h3>
-      Les octaves
-    </h3>
-
-    <p>
-      Découvrir le travail technique des octaves
-      progressivement.
-    </p>
-
-    <button
-      class="lesson-button"
-      onclick="openLesson(17)">
-      Ouvrir le cours
-    </button>
-
+    <h3>Les octaves</h3>
+    <p>Découvrir le travail technique des octaves progressivement.</p>
+    <button class="lesson-button" onclick="openLesson(17)">Ouvrir le cours</button>
   </div>
-
 </article>
-
-
-<!-- 18 -->
 
 <article class="lesson-card" data-lesson="18">
-
-  <div class="lesson-number">
-    18
-  </div>
-
+  <div class="lesson-number">18</div>
   <div class="lesson-content">
-
-    <h3>
-      Répétition des notes
-    </h3>
-
-    <p>
-      Développer vitesse, contrôle et régularité
-      dans les notes répétées.
-    </p>
-
-    <button
-      class="lesson-button"
-      onclick="openLesson(18)">
-      Ouvrir le cours
-    </button>
-
+    <h3>Répétition des notes</h3>
+    <p>Développer vitesse, contrôle et régularité dans les notes répétées.</p>
+    <button class="lesson-button" onclick="openLesson(18)">Ouvrir le cours</button>
   </div>
-
 </article>
-
-
-<!-- 19 -->
 
 <article class="lesson-card" data-lesson="19">
-
-  <div class="lesson-number">
-    19
-  </div>
-
+  <div class="lesson-number">19</div>
   <div class="lesson-content">
-
-    <h3>
-      Exercices techniques progressifs
-    </h3>
-
-    <p>
-      Une série d'exercices du niveau débutant
-      jusqu'au niveau avancé.
-    </p>
-
-    <button
-      class="lesson-button"
-      onclick="openLesson(19)">
-      Ouvrir le cours
-    </button>
-
+    <h3>Exercices techniques progressifs</h3>
+    <p>Une série d'exercices du niveau débutant jusqu'au niveau avancé.</p>
+    <button class="lesson-button" onclick="openLesson(19)">Ouvrir le cours</button>
   </div>
-
 </article>
-
-
-<!-- 20 -->
 
 <article class="lesson-card" data-lesson="20">
-
-  <div class="lesson-number">
-    20
-  </div>
-
+  <div class="lesson-number">20</div>
   <div class="lesson-content">
-
-    <h3>
-      Technique appliquée à la musique
-    </h3>
-
-    <p>
-      Transformer le travail technique en véritable
-      musicalité.
-    </p>
-
-    <button
-      class="lesson-button"
-      onclick="openLesson(20)">
-      Ouvrir le cours
-    </button>
-
+    <h3>Technique appliquée à la musique</h3>
+    <p>Transformer le travail technique en véritable musicalité.</p>
+    <button class="lesson-button" onclick="openLesson(20)">Ouvrir le cours</button>
   </div>
-
 </article>
-
-
-<!-- 21 -->
 
 <article class="lesson-card" data-lesson="21">
-
-  <div class="lesson-number">
-    21
-  </div>
-
+  <div class="lesson-number">21</div>
   <div class="lesson-content">
-
-    <h3>
-      Routine technique quotidienne
-    </h3>
-
-    <p>
-      Construire une séance quotidienne structurée
-      et efficace.
-    </p>
-
-    <button
-      class="lesson-button"
-      onclick="openLesson(21)">
-      Ouvrir le cours
-    </button>
-
+    <h3>Routine technique quotidienne</h3>
+    <p>Construire une séance quotidienne structurée et efficace.</p>
+    <button class="lesson-button" onclick="openLesson(21)">Ouvrir le cours</button>
   </div>
-
 </article>
-
-
-<!-- 22 -->
 
 <article class="lesson-card" data-lesson="22">
-
-  <div class="lesson-number">
-    22
-  </div>
-
+  <div class="lesson-number">22</div>
   <div class="lesson-content">
-
-    <h3>
-      Les erreurs techniques à éviter
-    </h3>
-
-    <p>
-      Identifier les mauvaises habitudes qui ralentissent
-      la progression.
-    </p>
-
-    <button
-      class="lesson-button"
-      onclick="openLesson(22)">
-      Ouvrir le cours
-    </button>
-
+    <h3>Les erreurs techniques à éviter</h3>
+    <p>Identifier les mauvaises habitudes qui ralentissent la progression.</p>
+    <button class="lesson-button" onclick="openLesson(22)">Ouvrir le cours</button>
   </div>
-
 </article>
-
-
-<!-- 23 -->
 
 <article class="lesson-card" data-lesson="23">
-
-  <div class="lesson-number">
-    23
-  </div>
-
+  <div class="lesson-number">23</div>
   <div class="lesson-content">
-
-    <h3>
-      Programme de progression
-    </h3>
-
-    <p>
-      Organiser son évolution technique en plusieurs
-      niveaux.
-    </p>
-
-    <button
-      class="lesson-button"
-      onclick="openLesson(23)">
-      Ouvrir le cours
-    </button>
-
+    <h3>Programme de progression</h3>
+    <p>Organiser son évolution technique en plusieurs niveaux.</p>
+    <button class="lesson-button" onclick="openLesson(23)">Ouvrir le cours</button>
   </div>
-
 </article>
-
-
-<!-- 24 -->
 
 <article class="lesson-card" data-lesson="24">
-
-  <div class="lesson-number">
-    24
-  </div>
-
+  <div class="lesson-number">24</div>
   <div class="lesson-content">
-
-    <h3>
-      Évaluation finale
-    </h3>
-
-    <p>
-      Vérifier les compétences techniques acquises
-      pendant le cours.
-    </p>
-
-    <button
-      class="lesson-button"
-      onclick="openLesson(24)">
-      Ouvrir le cours
-    </button>
-
+    <h3>Évaluation finale</h3>
+    <p>Vérifier les compétences techniques acquises pendant le cours.</p>
+    <button class="lesson-button" onclick="openLesson(24)">Ouvrir le cours</button>
   </div>
-
 </article>
-
-
-<!-- 25 -->
 
 <article class="lesson-card" data-lesson="25">
-
-  <div class="lesson-number">
-    25
-  </div>
-
+  <div class="lesson-number">25</div>
   <div class="lesson-content">
-
-    <h3>
-      Glossaire technique
-    </h3>
-
-    <p>
-      Retrouver les principaux termes techniques
-      utilisés dans le cours.
-    </p>
-
-    <button
-      class="lesson-button"
-      onclick="openLesson(25)">
-      Ouvrir le cours
-    </button>
-
+    <h3>Glossaire technique</h3>
+    <p>Retrouver les principaux termes techniques utilisés dans le cours.</p>
+    <button class="lesson-button" onclick="openLesson(25)">Ouvrir le cours</button>
   </div>
-
 </article>
-
 
 </section>
 
@@ -1721,105 +1239,39 @@ button{
 <section class="routine">
 
   <div class="routine-item">
-
-    <div class="routine-icon">
-      🔥
-    </div>
-
-    <h3>
-      Échauffement
-    </h3>
-
-    <p>
-      5 à 10 minutes de mouvements simples
-      et détendus.
-    </p>
-
+    <div class="routine-icon">🔥</div>
+    <h3>Échauffement</h3>
+    <p>5 à 10 minutes de mouvements simples et détendus.</p>
   </div>
 
-
   <div class="routine-item">
-
-    <div class="routine-icon">
-      ☝️
-    </div>
-
-    <h3>
-      Doigts
-    </h3>
-
-    <p>
-      10 minutes d'indépendance et d'égalité.
-    </p>
-
+    <div class="routine-icon">☝️</div>
+    <h3>Doigts</h3>
+    <p>10 minutes d'indépendance et d'égalité.</p>
   </div>
 
-
   <div class="routine-item">
-
-    <div class="routine-icon">
-      🎼
-    </div>
-
-    <h3>
-      Gammes
-    </h3>
-
-    <p>
-      10 minutes de gammes avec métronome.
-    </p>
-
+    <div class="routine-icon">🎼</div>
+    <h3>Gammes</h3>
+    <p>10 minutes de gammes avec métronome.</p>
   </div>
 
-
   <div class="routine-item">
-
-    <div class="routine-icon">
-      🎹
-    </div>
-
-    <h3>
-      Arpèges
-    </h3>
-
-    <p>
-      10 minutes d'arpèges et déplacements.
-    </p>
-
+    <div class="routine-icon">🎹</div>
+    <h3>Arpèges</h3>
+    <p>10 minutes d'arpèges et déplacements.</p>
   </div>
 
-
   <div class="routine-item">
-
-    <div class="routine-icon">
-      ⚡
-    </div>
-
-    <h3>
-      Vélocité
-    </h3>
-
-    <p>
-      10 minutes de vitesse progressive.
-    </p>
-
+    <div class="routine-icon">⚡</div>
+    <h3>Vélocité</h3>
+    <p>10 minutes de vitesse progressive.</p>
   </div>
 
-
   <div class="routine-item">
-
-    <div class="routine-icon">
-      🎵
-    </div>
-
-    <h3>
-      Application
-    </h3>
-
-    <p>
-      10 à 20 minutes sur un morceau.
-    </p>
-
+    <div class="routine-icon">🎵</div>
+    <h3>Application</h3>
+    <p>10 à 20 minutes sur un morceau.</p>
   </div>
 
 </section>
@@ -1844,79 +1296,52 @@ button{
 
   <div class="term">
     <strong>Legato</strong>
-    <span>
-      Manière de jouer les notes de façon liée
-      et continue.
-    </span>
+    <span>Manière de jouer les notes de façon liée et continue.</span>
   </div>
 
   <div class="term">
     <strong>Staccato</strong>
-    <span>
-      Manière de jouer les notes de façon courte
-      et détachée.
-    </span>
+    <span>Manière de jouer les notes de façon courte et détachée.</span>
   </div>
 
   <div class="term">
     <strong>Vélocité</strong>
-    <span>
-      Capacité à jouer rapidement tout en gardant
-      précision et contrôle.
-    </span>
+    <span>Capacité à jouer rapidement tout en gardant précision et contrôle.</span>
   </div>
 
   <div class="term">
     <strong>Articulation</strong>
-    <span>
-      Manière dont les notes sont attaquées,
-      liées ou détachées.
-    </span>
+    <span>Manière dont les notes sont attaquées, liées ou détachées.</span>
   </div>
 
   <div class="term">
     <strong>Dynamique</strong>
-    <span>
-      Variation de l'intensité sonore pendant
-      l'interprétation.
-    </span>
+    <span>Variation de l'intensité sonore pendant l'interprétation.</span>
   </div>
 
   <div class="term">
     <strong>Métronome</strong>
-    <span>
-      Outil permettant de maintenir un tempo régulier.
-    </span>
+    <span>Outil permettant de maintenir un tempo régulier.</span>
   </div>
 
   <div class="term">
     <strong>Arpège</strong>
-    <span>
-      Notes d'un accord jouées successivement.
-    </span>
+    <span>Notes d'un accord jouées successivement.</span>
   </div>
 
   <div class="term">
     <strong>Octave</strong>
-    <span>
-      Intervalle entre deux notes portant le même nom.
-    </span>
+    <span>Intervalle entre deux notes portant le même nom.</span>
   </div>
 
   <div class="term">
     <strong>Doigté</strong>
-    <span>
-      Organisation des doigts utilisés pour jouer
-      une phrase musicale.
-    </span>
+    <span>Organisation des doigts utilisés pour jouer une phrase musicale.</span>
   </div>
 
   <div class="term">
     <strong>Indépendance</strong>
-    <span>
-      Capacité d'un doigt à effectuer un mouvement
-      contrôlé sans perturber les autres.
-    </span>
+    <span>Capacité d'un doigt à effectuer un mouvement contrôlé sans perturber les autres.</span>
   </div>
 
 </section>
@@ -1954,6 +1379,36 @@ button{
 
 
 <script>
+
+/* =====================================================
+   CONFIGURATION SUPABASE
+===================================================== */
+
+const SUPABASE_URL =
+  "https://swsvnzjeipcobodntajs.supabase.co";
+
+const SUPABASE_PUBLISHABLE_KEY =
+  "sb_publishable_JrPeCn1LhCNHY3BJZ5iCEQ_mc2iqLpf";
+
+const supabaseClient =
+  window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_PUBLISHABLE_KEY
+  );
+
+
+/* =====================================================
+   VARIABLES
+===================================================== */
+
+const LOCAL_PROGRESS_KEY =
+  "pianoTechniqueCompleted";
+
+const LOCAL_COURSE_KEY =
+  "pianoTechniqueCourseCompleted";
+
+let currentUser = null;
+
 
 /* =====================================================
    THÈME
@@ -2091,20 +1546,11 @@ avec précision et sans tension inutile.
 
 <h3>Les trois principes fondamentaux</h3>
 
-<p>
-<strong>1. Détente :</strong>
-éviter les tensions inutiles.
-</p>
+<p><strong>1. Détente :</strong> éviter les tensions inutiles.</p>
 
-<p>
-<strong>2. Contrôle :</strong>
-chaque mouvement doit être volontaire.
-</p>
+<p><strong>2. Contrôle :</strong> chaque mouvement doit être volontaire.</p>
 
-<p>
-<strong>3. Progressivité :</strong>
-la vitesse vient après la précision.
-</p>
+<p><strong>3. Progressivité :</strong> la vitesse vient après la précision.</p>
 
 <div class="success-box">
 🎯 Objectif : apprendre à produire un mouvement
@@ -2200,30 +1646,11 @@ Les doigts doivent conserver une courbure naturelle.
 <div class="white-key">A</div>
 <div class="white-key">B</div>
 
-<div
-class="black-key"
-style="left:9%;">
-</div>
-
-<div
-class="black-key"
-style="left:23%;">
-</div>
-
-<div
-class="black-key"
-style="left:51%;">
-</div>
-
-<div
-class="black-key"
-style="left:65%;">
-</div>
-
-<div
-class="black-key"
-style="left:79%;">
-</div>
+<div class="black-key" style="left:9%;"></div>
+<div class="black-key" style="left:23%;"></div>
+<div class="black-key" style="left:51%;"></div>
+<div class="black-key" style="left:65%;"></div>
+<div class="black-key" style="left:79%;"></div>
 
 </div>
 
@@ -2261,9 +1688,7 @@ la vitesse et l'endurance.
 
 <h3>Contrôle du mouvement</h3>
 
-<p>
-Avant chaque exercice, vérifie :
-</p>
+<p>Avant chaque exercice, vérifie :</p>
 
 <ul>
 <li>Épaules détendues.</li>
@@ -2514,28 +1939,17 @@ title:"Articulation",
 html:`
 
 <h3>🎵 Legato</h3>
-
-<p>
-Les notes sont liées de manière continue.
-</p>
+<p>Les notes sont liées de manière continue.</p>
 
 <h3>🎵 Staccato</h3>
-
-<p>
-Les notes sont courtes et détachées.
-</p>
+<p>Les notes sont courtes et détachées.</p>
 
 <h3>🎵 Accent</h3>
-
-<p>
-Une note reçoit une importance particulière.
-</p>
+<p>Une note reçoit une importance particulière.</p>
 
 <h3>Exercice</h3>
 
-<p>
-Joue la même petite phrase trois fois :
-</p>
+<p>Joue la même petite phrase trois fois :</p>
 
 <ul>
 <li>Legato</li>
@@ -2668,16 +2082,10 @@ sans perdre le contrôle.
 </ul>
 
 <h3>Crescendo</h3>
-
-<p>
-Augmentation progressive de l'intensité.
-</p>
+<p>Augmentation progressive de l'intensité.</p>
 
 <h3>Decrescendo</h3>
-
-<p>
-Diminution progressive de l'intensité.
-</p>
+<p>Diminution progressive de l'intensité.</p>
 
 <div class="success-box">
 🎯 Une bonne technique permet de contrôler la force
@@ -2910,34 +2318,19 @@ title:"Programme de progression",
 html:`
 
 <h3>📈 Niveau 1 — Fondations</h3>
-
-<p>
-Posture, position des mains, doigts et relaxation.
-</p>
+<p>Posture, position des mains, doigts et relaxation.</p>
 
 <h3>Niveau 2 — Contrôle</h3>
-
-<p>
-Indépendance, égalité et articulation.
-</p>
+<p>Indépendance, égalité et articulation.</p>
 
 <h3>Niveau 3 — Mobilité</h3>
-
-<p>
-Gammes, arpèges et déplacements.
-</p>
+<p>Gammes, arpèges et déplacements.</p>
 
 <h3>Niveau 4 — Vitesse</h3>
-
-<p>
-Vélocité et travail au métronome.
-</p>
+<p>Vélocité et travail au métronome.</p>
 
 <h3>Niveau 5 — Maîtrise</h3>
-
-<p>
-Octaves, nuances, contrôle et application musicale.
-</p>
+<p>Octaves, nuances, contrôle et application musicale.</p>
 
 <div class="success-box">
 🎯 Ne passe au niveau suivant que lorsque le niveau
@@ -3034,7 +2427,7 @@ const lessonBody =
   document.getElementById("lessonBody");
 
 
-function openLesson(number){
+async function openLesson(number){
 
   const lesson =
     lessons[number];
@@ -3056,7 +2449,7 @@ function openLesson(number){
     block:"start"
   });
 
-  markLessonCompleted(number);
+  await markLessonCompleted(number);
 
 }
 
@@ -3075,7 +2468,7 @@ function closeLesson(){
 
 
 /* =====================================================
-   PROGRESSION
+   PROGRESSION LOCALE
 ===================================================== */
 
 function getCompleted(){
@@ -3084,7 +2477,7 @@ function getCompleted(){
 
     return JSON.parse(
       localStorage.getItem(
-        "pianoTechniqueCompleted"
+        LOCAL_PROGRESS_KEY
       ) || "[]"
     );
 
@@ -3097,26 +2490,275 @@ function getCompleted(){
 }
 
 
-function markLessonCompleted(number){
+function saveLocalProgress(completed){
+
+  localStorage.setItem(
+    LOCAL_PROGRESS_KEY,
+    JSON.stringify(completed)
+  );
+
+}
+
+
+/* =====================================================
+   UTILISATEUR SUPABASE
+===================================================== */
+
+async function getCurrentUser(){
+
+  try{
+
+    const {
+      data,
+      error
+    } =
+      await supabaseClient.auth.getUser();
+
+    if(error){
+
+      console.log(
+        "Utilisateur Supabase non disponible:",
+        error.message
+      );
+
+      return null;
+    }
+
+    return data.user || null;
+
+  }catch(error){
+
+    console.log(
+      "Erreur Supabase:",
+      error
+    );
+
+    return null;
+
+  }
+
+}
+
+
+/* =====================================================
+   CHARGER PROGRESSION SUPABASE
+===================================================== */
+
+async function loadSupabaseProgress(){
+
+  try{
+
+    currentUser =
+      await getCurrentUser();
+
+    if(!currentUser){
+
+      updateSyncStatus(
+        "Mode hors connexion"
+      );
+
+      return;
+
+    }
+
+    const metadata =
+      currentUser.user_metadata || {};
+
+    const saved =
+      metadata.piano_technique_progress;
+
+    if(
+      Array.isArray(saved)
+    ){
+
+      const local =
+        getCompleted();
+
+      const merged =
+        [
+          ...new Set(
+            [
+              ...local,
+              ...saved
+            ].map(Number)
+          )
+        ];
+
+      saveLocalProgress(
+        merged
+      );
+
+      updateProgress();
+
+    }
+
+    if(
+      metadata.piano_technique_completed === true
+    ){
+
+      localStorage.setItem(
+        LOCAL_COURSE_KEY,
+        "true"
+      );
+
+    }
+
+    updateSyncStatus(
+      "Synchronisé avec Supabase"
+    );
+
+  }catch(error){
+
+    console.log(
+      "Erreur chargement progression:",
+      error
+    );
+
+    updateSyncStatus(
+      "Sauvegarde locale"
+    );
+
+  }
+
+}
+
+
+/* =====================================================
+   SAUVEGARDER PROGRESSION SUPABASE
+===================================================== */
+
+async function saveSupabaseProgress(){
+
+  if(!currentUser){
+
+    return;
+
+  }
+
+  try{
+
+    const completed =
+      getCompleted();
+
+    const courseCompleted =
+      localStorage.getItem(
+        LOCAL_COURSE_KEY
+      ) === "true";
+
+    const {
+      error
+    } =
+      await supabaseClient.auth.updateUser({
+
+        data:{
+          piano_technique_progress:
+            completed,
+
+          piano_technique_completed:
+            courseCompleted,
+
+          piano_technique_updated_at:
+            new Date().toISOString()
+        }
+
+      });
+
+    if(error){
+
+      console.log(
+        "Erreur sauvegarde Supabase:",
+        error.message
+      );
+
+      updateSyncStatus(
+        "Sauvegarde locale"
+      );
+
+      return;
+
+    }
+
+    updateSyncStatus(
+      "Progression synchronisée ✓"
+    );
+
+  }catch(error){
+
+    console.log(
+      "Erreur Supabase:",
+      error
+    );
+
+    updateSyncStatus(
+      "Sauvegarde locale"
+    );
+
+  }
+
+}
+
+
+/* =====================================================
+   STATUT SYNCHRONISATION
+===================================================== */
+
+function updateSyncStatus(text){
+
+  const element =
+    document.getElementById(
+      "syncStatus"
+    );
+
+  if(element){
+
+    element.textContent =
+      text;
+
+  }
+
+}
+
+
+/* =====================================================
+   MARQUER UNE LEÇON TERMINÉE
+===================================================== */
+
+async function markLessonCompleted(number){
 
   let completed =
     getCompleted();
+
+  number =
+    Number(number);
 
   if(!completed.includes(number)){
 
     completed.push(number);
 
-    localStorage.setItem(
-      "pianoTechniqueCompleted",
-      JSON.stringify(completed)
+    completed.sort(
+      (a,b) => a-b
     );
+
+    saveLocalProgress(
+      completed
+    );
+
+    updateProgress();
+
+    showToast(
+      "✓ Leçon enregistrée"
+    );
+
+    await saveSupabaseProgress();
 
   }
 
-  updateProgress();
-
 }
 
+
+/* =====================================================
+   PROGRESSION
+===================================================== */
 
 function updateProgress(){
 
@@ -3151,6 +2793,11 @@ function updateProgress(){
           card.dataset.lesson
         );
 
+      const button =
+        card.querySelector(
+          ".lesson-button"
+        );
+
       if(
         completed.includes(number)
       ){
@@ -3159,13 +2806,25 @@ function updateProgress(){
           "completed"
         );
 
-        const button =
-          card.querySelector(
-            ".lesson-button"
-          );
+        if(button){
 
-        button.textContent =
-          "✓ Revoir le cours";
+          button.textContent =
+            "✓ Revoir le cours";
+
+        }
+
+      }else{
+
+        card.classList.remove(
+          "completed"
+        );
+
+        if(button){
+
+          button.textContent =
+            "Ouvrir le cours";
+
+        }
 
       }
 
@@ -3181,10 +2840,10 @@ updateProgress();
    COURS TERMINÉ
 ===================================================== */
 
-function completeCourse(){
+async function completeCourse(){
 
   localStorage.setItem(
-    "pianoTechniqueCourseCompleted",
+    LOCAL_COURSE_KEY,
     "true"
   );
 
@@ -3192,14 +2851,9 @@ function completeCourse(){
     "🎓 Cours Technique pianistique terminé !"
   );
 
-  setTimeout(
-    function(){
+  await saveSupabaseProgress();
 
-      updateProgress();
-
-    },
-    300
-  );
+  updateProgress();
 
 }
 
@@ -3211,7 +2865,9 @@ function completeCourse(){
 function showToast(text){
 
   const toast =
-    document.getElementById("toast");
+    document.getElementById(
+      "toast"
+    );
 
   toast.textContent =
     text;
@@ -3252,6 +2908,60 @@ document.addEventListener(
 
   }
 );
+
+
+/* =====================================================
+   INITIALISATION SUPABASE
+===================================================== */
+
+async function initializeSupabase(){
+
+  updateSyncStatus(
+    "Connexion à Supabase..."
+  );
+
+  await loadSupabaseProgress();
+
+  updateProgress();
+
+}
+
+
+/* =====================================================
+   ÉCOUTER LES CHANGEMENTS DE SESSION
+===================================================== */
+
+supabaseClient.auth.onAuthStateChange(
+  async function(event, session){
+
+    currentUser =
+      session?.user || null;
+
+    if(currentUser){
+
+      updateSyncStatus(
+        "Compte connecté"
+      );
+
+      await loadSupabaseProgress();
+
+    }else{
+
+      updateSyncStatus(
+        "Mode hors connexion"
+      );
+
+    }
+
+  }
+);
+
+
+/* =====================================================
+   DÉMARRAGE
+===================================================== */
+
+initializeSupabase();
 
 </script>
 
