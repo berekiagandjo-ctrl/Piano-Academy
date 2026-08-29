@@ -1,0 +1,2586 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Les Accords — Piano Academy</title>
+
+<style>
+:root{
+    --bg:#ffffff;
+    --card:#ffffff;
+    --soft:#f6f7fb;
+    --text:#111827;
+    --muted:#667085;
+    --border:#e5e7eb;
+    --primary:#7c3aed;
+    --primary2:#2563eb;
+    --success:#16a34a;
+    --warning:#d97706;
+    --danger:#dc2626;
+    --shadow:0 8px 28px rgba(15,23,42,.08);
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:Arial,Helvetica,sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    min-height:100vh;
+}
+
+button,
+input{
+    font:inherit;
+}
+
+.app{
+    width:100%;
+    max-width:760px;
+    margin:auto;
+    padding:14px;
+}
+
+/* HEADER */
+
+.header{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+    margin-bottom:16px;
+}
+
+.header-left{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.back-btn{
+    width:44px;
+    height:44px;
+    border:1px solid var(--border);
+    border-radius:13px;
+    background:var(--card);
+    color:var(--text);
+    cursor:pointer;
+    font-size:20px;
+}
+
+.header-title{
+    font-size:19px;
+    font-weight:800;
+}
+
+/* HERO */
+
+.hero{
+    background:
+        linear-gradient(
+            135deg,
+            var(--primary),
+            var(--primary2)
+        );
+    color:white;
+    border-radius:25px;
+    padding:27px 22px;
+    margin-bottom:15px;
+    position:relative;
+    overflow:hidden;
+    box-shadow:var(--shadow);
+}
+
+.hero:after{
+    content:"♫";
+    position:absolute;
+    right:18px;
+    bottom:-25px;
+    font-size:130px;
+    opacity:.10;
+}
+
+.badge{
+    display:inline-flex;
+    padding:7px 11px;
+    border-radius:20px;
+    background:rgba(255,255,255,.16);
+    font-size:12px;
+    font-weight:bold;
+    margin-bottom:12px;
+}
+
+.hero-icon{
+    font-size:42px;
+    margin-bottom:8px;
+}
+
+.hero h1{
+    font-size:28px;
+    margin-bottom:8px;
+}
+
+.hero p{
+    font-size:14px;
+    line-height:1.7;
+    color:#eef2ff;
+}
+
+/* SEARCH */
+
+.search{
+    margin-bottom:15px;
+}
+
+.search input{
+    width:100%;
+    height:50px;
+    padding:0 16px;
+    border:1px solid var(--border);
+    border-radius:14px;
+    background:var(--card);
+    color:var(--text);
+    outline:none;
+}
+
+.search input:focus{
+    border-color:var(--primary);
+    box-shadow:0 0 0 3px rgba(124,58,237,.10);
+}
+
+/* QUICK NAV */
+
+.quick-nav{
+    display:flex;
+    gap:8px;
+    overflow-x:auto;
+    padding-bottom:5px;
+    margin-bottom:18px;
+}
+
+.quick-nav button{
+    flex-shrink:0;
+    border:1px solid var(--border);
+    background:var(--card);
+    color:var(--text);
+    padding:10px 13px;
+    border-radius:12px;
+    cursor:pointer;
+    font-size:12px;
+    font-weight:bold;
+}
+
+.quick-nav button:hover{
+    border-color:var(--primary);
+}
+
+/* INTRO */
+
+.card{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:20px;
+    padding:20px;
+    margin-bottom:15px;
+    box-shadow:var(--shadow);
+}
+
+.card h2{
+    font-size:21px;
+    margin-bottom:10px;
+}
+
+.card h3{
+    font-size:17px;
+    color:var(--primary);
+    margin-bottom:8px;
+}
+
+.card p{
+    line-height:1.75;
+    font-size:14px;
+}
+
+.definition{
+    margin-top:13px;
+    padding:15px;
+    border-left:4px solid var(--primary);
+    background:#f3efff;
+    border-radius:10px;
+    line-height:1.7;
+    font-size:14px;
+}
+
+.tip{
+    margin-top:13px;
+    padding:15px;
+    border-left:4px solid var(--success);
+    background:#ecfdf3;
+    border-radius:10px;
+    line-height:1.7;
+    font-size:14px;
+}
+
+.warning{
+    margin-top:13px;
+    padding:15px;
+    border-left:4px solid var(--warning);
+    background:#fff7ed;
+    border-radius:10px;
+    line-height:1.7;
+    font-size:14px;
+}
+
+/* SECTION TITLE */
+
+.section-title{
+    font-size:22px;
+    margin:24px 0 12px;
+}
+
+/* ACCORDION */
+
+.accordion{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:18px;
+    margin-bottom:10px;
+    overflow:hidden;
+}
+
+.accordion-header{
+    width:100%;
+    border:none;
+    background:var(--card);
+    color:var(--text);
+    padding:16px;
+    display:flex;
+    align-items:center;
+    gap:12px;
+    cursor:pointer;
+    text-align:left;
+}
+
+.accordion-icon{
+    width:42px;
+    height:42px;
+    flex-shrink:0;
+    border-radius:12px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:linear-gradient(135deg,var(--primary),var(--primary2));
+    color:white;
+    font-size:20px;
+}
+
+.accordion-info{
+    flex:1;
+}
+
+.accordion-title{
+    font-weight:800;
+    font-size:15px;
+    margin-bottom:4px;
+}
+
+.accordion-desc{
+    color:var(--muted);
+    font-size:12px;
+}
+
+.arrow{
+    font-size:18px;
+    transition:.2s;
+}
+
+.accordion.open .arrow{
+    transform:rotate(180deg);
+}
+
+.accordion-content{
+    display:none;
+    padding:0 15px 18px;
+}
+
+.accordion.open .accordion-content{
+    display:block;
+}
+
+.formula{
+    display:inline-block;
+    background:#f3efff;
+    color:var(--primary);
+    border:1px solid #ddd6fe;
+    padding:8px 11px;
+    border-radius:10px;
+    font-weight:800;
+    margin:6px 0 12px;
+}
+
+/* CHORD GRID */
+
+.chord-grid{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:10px;
+}
+
+.chord-card{
+    border:1px solid var(--border);
+    border-radius:15px;
+    padding:14px;
+    background:var(--soft);
+}
+
+.chord-name{
+    font-weight:800;
+    font-size:15px;
+    margin-bottom:6px;
+}
+
+.chord-notes{
+    font-size:14px;
+    color:var(--primary);
+    font-weight:bold;
+    margin-bottom:6px;
+}
+
+.chord-explain{
+    color:var(--muted);
+    font-size:12px;
+    line-height:1.5;
+}
+
+/* TABLE */
+
+.table-wrap{
+    overflow-x:auto;
+    margin-top:12px;
+}
+
+table{
+    width:100%;
+    min-width:620px;
+    border-collapse:collapse;
+    font-size:13px;
+}
+
+th,
+td{
+    border:1px solid var(--border);
+    padding:10px;
+    text-align:left;
+}
+
+th{
+    background:var(--soft);
+    font-weight:800;
+}
+
+td strong{
+    color:var(--primary);
+}
+
+/* PIANO */
+
+.piano{
+    display:flex;
+    position:relative;
+    height:115px;
+    margin:15px 0;
+    border:1px solid #111827;
+    border-radius:8px;
+    overflow:hidden;
+    background:#111;
+}
+
+.white-key{
+    flex:1;
+    background:#fff;
+    border-right:1px solid #bbb;
+    position:relative;
+}
+
+.white-key span{
+    position:absolute;
+    bottom:8px;
+    left:0;
+    right:0;
+    text-align:center;
+    color:#555;
+    font-size:10px;
+    font-weight:bold;
+}
+
+.black-key{
+    position:absolute;
+    top:0;
+    width:7%;
+    height:68%;
+    background:#111827;
+    border-radius:0 0 5px 5px;
+    z-index:2;
+}
+
+.black-key.active{
+    background:var(--primary);
+}
+
+/* EXERCISE */
+
+.exercise{
+    background:#eff6ff;
+    border:1px solid #bfdbfe;
+    border-radius:16px;
+    padding:16px;
+    margin-top:12px;
+}
+
+.exercise-title{
+    font-weight:800;
+    margin-bottom:7px;
+}
+
+.exercise ol,
+.exercise ul{
+    padding-left:20px;
+}
+
+.exercise li{
+    margin:7px 0;
+    line-height:1.5;
+    font-size:14px;
+}
+
+/* PROGRESS */
+
+.progress{
+    height:8px;
+    background:var(--soft);
+    border-radius:20px;
+    overflow:hidden;
+    margin-top:12px;
+}
+
+.progress-fill{
+    width:0;
+    height:100%;
+    background:linear-gradient(90deg,var(--primary),var(--primary2));
+    transition:.3s;
+}
+
+/* BOTTOM */
+
+.finish{
+    margin-top:20px;
+    width:100%;
+    border:none;
+    background:linear-gradient(135deg,var(--primary),var(--primary2));
+    color:white;
+    padding:15px;
+    border-radius:14px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.footer{
+    text-align:center;
+    color:var(--muted);
+    padding:30px 0 20px;
+    font-size:12px;
+    line-height:1.7;
+}
+
+.hidden{
+    display:none!important;
+}
+
+@media(min-width:600px){
+    .chord-grid{
+        grid-template-columns:1fr 1fr;
+    }
+}
+
+@media(max-width:480px){
+    .app{
+        padding:11px;
+    }
+
+    .hero{
+        padding:23px 18px;
+    }
+
+    .hero h1{
+        font-size:24px;
+    }
+
+    .card{
+        padding:17px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="app">
+
+<header class="header">
+
+    <div class="header-left">
+
+        <button
+            class="back-btn"
+            onclick="goBack()">
+            ←
+        </button>
+
+        <div class="header-title">
+            🎹 Les Accords
+        </div>
+
+    </div>
+
+</header>
+
+
+<section class="hero">
+
+    <div class="badge">
+        🎓 COURS GRATUIT
+    </div>
+
+    <div class="hero-icon">
+        🎹🎵
+    </div>
+
+    <h1>
+        Les accords au piano
+    </h1>
+
+    <p>
+        Découvre comment construire, reconnaître et jouer
+        les principaux types d'accords au piano, des accords
+        majeurs et mineurs jusqu'aux accords de septième,
+        neuvième, onzième et treizième.
+    </p>
+
+</section>
+
+
+<div class="search">
+
+    <input
+        type="search"
+        id="search"
+        placeholder="🔎 Rechercher un accord..."
+        oninput="searchAccords()">
+
+</div>
+
+
+<div class="quick-nav">
+
+    <button onclick="scrollToId('bases')">
+        🎹 Bases
+    </button>
+
+    <button onclick="scrollToId('majeurs')">
+        ⭐ Majeurs
+    </button>
+
+    <button onclick="scrollToId('mineurs')">
+        🎵 Mineurs
+    </button>
+
+    <button onclick="scrollToId('septiemes')">
+        7e
+    </button>
+
+    <button onclick="scrollToId('etendus')">
+        9e/11e/13e
+    </button>
+
+    <button onclick="scrollToId('alteres')">
+        ♯ ♭
+    </button>
+
+    <button onclick="scrollToId('renversements')">
+        🔄 Renversements
+    </button>
+
+</div>
+
+
+<!-- INTRODUCTION -->
+
+<section
+    class="card"
+    id="bases">
+
+    <h2>
+        🎼 1. Comprendre un accord
+    </h2>
+
+    <p>
+        Un accord est un ensemble de plusieurs notes jouées
+        simultanément. Au piano, les accords permettent
+        d'accompagner une mélodie, de créer une harmonie et
+        de donner une couleur particulière à une musique.
+    </p>
+
+    <div class="definition">
+
+        <strong>À retenir :</strong><br>
+
+        Pour construire un accord, on part généralement
+        d'une note fondamentale puis on ajoute d'autres notes
+        selon une formule précise.
+
+    </div>
+
+    <h3 style="margin-top:20px;">
+        Exemple : Do majeur
+    </h3>
+
+    <p>
+        La fondamentale est <strong>Do</strong>.
+        On ajoute ensuite <strong>Mi</strong> et
+        <strong>Sol</strong>.
+    </p>
+
+    <div class="formula">
+        Do majeur = Do – Mi – Sol
+    </div>
+
+    <div class="piano">
+
+        <div class="white-key"><span>Do</span></div>
+        <div class="white-key"><span>Ré</span></div>
+        <div class="white-key"><span>Mi</span></div>
+        <div class="white-key"><span>Fa</span></div>
+        <div class="white-key"><span>Sol</span></div>
+        <div class="white-key"><span>La</span></div>
+        <div class="white-key"><span>Si</span></div>
+
+        <div class="black-key" style="left:9.5%;"></div>
+        <div class="black-key" style="left:23.5%;"></div>
+        <div class="black-key" style="left:52%;"></div>
+        <div class="black-key" style="left:66%;"></div>
+        <div class="black-key" style="left:80%;"></div>
+
+    </div>
+
+    <div class="tip">
+
+        💡 <strong>Conseil :</strong>
+        apprends d'abord les accords majeurs et mineurs.
+        Ils constituent la base de très nombreux morceaux.
+
+    </div>
+
+</section>
+
+
+<!-- MAJEURS -->
+
+<h2
+    class="section-title"
+    id="majeurs">
+
+    ⭐ 2. Les accords majeurs
+
+</h2>
+
+<div class="accordion open">
+
+    <button
+        class="accordion-header"
+        onclick="toggle(this)">
+
+        <div class="accordion-icon">☀️</div>
+
+        <div class="accordion-info">
+
+            <div class="accordion-title">
+                Accord majeur
+            </div>
+
+            <div class="accordion-desc">
+                Fondamentale + tierce majeure + quinte juste
+            </div>
+
+        </div>
+
+        <div class="arrow">▼</div>
+
+    </button>
+
+    <div class="accordion-content">
+
+        <div class="formula">
+            Formule : 1 – 3 – 5
+        </div>
+
+        <p>
+            L'accord majeur est l'un des accords fondamentaux
+            du piano. Sa sonorité est généralement claire et
+            stable.
+        </p>
+
+        <div class="table-wrap">
+
+            <table>
+
+                <tr>
+                    <th>Accord</th>
+                    <th>Notes à jouer</th>
+                </tr>
+
+                <tr>
+                    <td><strong>Do</strong></td>
+                    <td>Do – Mi – Sol</td>
+                </tr>
+
+                <tr>
+                    <td><strong>Ré</strong></td>
+                    <td>Ré – Fa♯ – La</td>
+                </tr>
+
+                <tr>
+                    <td><strong>Mi</strong></td>
+                    <td>Mi – Sol♯ – Si</td>
+                </tr>
+
+                <tr>
+                    <td><strong>Fa</strong></td>
+                    <td>Fa – La – Do</td>
+                </tr>
+
+                <tr>
+                    <td><strong>Sol</strong></td>
+                    <td>Sol – Si – Ré</td>
+                </tr>
+
+                <tr>
+                    <td><strong>La</strong></td>
+                    <td>La – Do♯ – Mi</td>
+                </tr>
+
+                <tr>
+                    <td><strong>Si</strong></td>
+                    <td>Si – Ré♯ – Fa♯</td>
+                </tr>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- MINEURS -->
+
+<h2
+    class="section-title"
+    id="mineurs">
+
+    🎵 3. Les accords mineurs
+
+</h2>
+
+<div class="accordion">
+
+    <button
+        class="accordion-header"
+        onclick="toggle(this)">
+
+        <div class="accordion-icon">🌙</div>
+
+        <div class="accordion-info">
+
+            <div class="accordion-title">
+                Accord mineur
+            </div>
+
+            <div class="accordion-desc">
+                Fondamentale + tierce mineure + quinte juste
+            </div>
+
+        </div>
+
+        <div class="arrow">▼</div>
+
+    </button>
+
+    <div class="accordion-content">
+
+        <div class="formula">
+            Formule : 1 – ♭3 – 5
+        </div>
+
+        <div class="table-wrap">
+
+            <table>
+
+                <tr>
+                    <th>Accord</th>
+                    <th>Notes</th>
+                </tr>
+
+                <tr>
+                    <td><strong>Dom</strong></td>
+                    <td>Do – Mib – Sol</td>
+                </tr>
+
+                <tr>
+                    <td><strong>Rém</strong></td>
+                    <td>Ré – Fa – La</td>
+                </tr>
+
+                <tr>
+                    <td><strong>Mim</strong></td>
+                    <td>Mi – Sol – Si</td>
+                </tr>
+
+                <tr>
+                    <td><strong>Fam</strong></td>
+                    <td>Fa – Lab – Do</td>
+                </tr>
+
+                <tr>
+                    <td><strong>Solm</strong></td>
+                    <td>Sol – Sib – Ré</td>
+                </tr>
+
+                <tr>
+                    <td><strong>Lam</strong></td>
+                    <td>La – Do – Mi</td>
+                </tr>
+
+                <tr>
+                    <td><strong>Sim</strong></td>
+                    <td>Si – Ré – Fa♯</td>
+                </tr>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- DIMINUES -->
+
+<div class="accordion">
+
+    <button
+        class="accordion-header"
+        onclick="toggle(this)">
+
+        <div class="accordion-icon">⚠️</div>
+
+        <div class="accordion-info">
+
+            <div class="accordion-title">
+                Accord diminué
+            </div>
+
+            <div class="accordion-desc">
+                Tierce mineure + quinte diminuée
+            </div>
+
+        </div>
+
+        <div class="arrow">▼</div>
+
+    </button>
+
+    <div class="accordion-content">
+
+        <div class="formula">
+            Formule : 1 – ♭3 – ♭5
+        </div>
+
+        <p>
+            L'accord diminué possède une sonorité tendue.
+            Il est souvent utilisé pour créer une tension
+            avant une résolution.
+        </p>
+
+        <div class="chord-grid">
+
+            <div class="chord-card">
+                <div class="chord-name">Do°</div>
+                <div class="chord-notes">Do – Mib – Solb</div>
+                <div class="chord-explain">
+                    Fondamentale Do, tierce mineure Mib,
+                    quinte diminuée Solb.
+                </div>
+            </div>
+
+            <div class="chord-card">
+                <div class="chord-name">Ré°</div>
+                <div class="chord-notes">Ré – Fa – Lab</div>
+                <div class="chord-explain">
+                    Ré, Fa et Lab.
+                </div>
+            </div>
+
+            <div class="chord-card">
+                <div class="chord-name">Mi°</div>
+                <div class="chord-notes">Mi – Sol – Sib</div>
+                <div class="chord-explain">
+                    Mi, Sol et Sib.
+                </div>
+            </div>
+
+            <div class="chord-card">
+                <div class="chord-name">Fa°</div>
+                <div class="chord-notes">Fa – Lab – Dob</div>
+                <div class="chord-explain">
+                    Fa, Lab et Dob.
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- AUGMENTES -->
+
+<div class="accordion">
+
+    <button
+        class="accordion-header"
+        onclick="toggle(this)">
+
+        <div class="accordion-icon">➕</div>
+
+        <div class="accordion-info">
+
+            <div class="accordion-title">
+                Accord augmenté
+            </div>
+
+            <div class="accordion-desc">
+                Tierce majeure + quinte augmentée
+            </div>
+
+        </div>
+
+        <div class="arrow">▼</div>
+
+    </button>
+
+    <div class="accordion-content">
+
+        <div class="formula">
+            Formule : 1 – 3 – ♯5
+        </div>
+
+        <div class="table-wrap">
+
+            <table>
+
+                <tr>
+                    <th>Accord</th>
+                    <th>Notes</th>
+                </tr>
+
+                <tr>
+                    <td><strong>Do+</strong></td>
+                    <td>Do – Mi – Sol♯</td>
+                </tr>
+
+                <tr>
+                    <td><strong>Ré+</strong></td>
+                    <td>Ré – Fa♯ – La♯</td>
+                </tr>
+
+                <tr>
+                    <td><strong>Mi+</strong></td>
+                    <td>Mi – Sol♯ – Si♯</td>
+                </tr>
+
+                <tr>
+                    <td><strong>Fa+</strong></td>
+                    <td>Fa – La – Do♯</td>
+                </tr>
+
+                <tr>
+                    <td><strong>Sol+</strong></td>
+                    <td>Sol – Si – Ré♯</td>
+                </tr>
+
+                <tr>
+                    <td><strong>La+</strong></td>
+                    <td>La – Do♯ – Mi♯</td>
+                </tr>
+
+                <tr>
+                    <td><strong>Si+</strong></td>
+                    <td>Si – Ré♯ – Fa𝄪</td>
+                </tr>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- SUS -->
+
+<h2 class="section-title">
+    🎸 4. Accords suspendus
+</h2>
+
+<div class="accordion">
+
+    <button
+        class="accordion-header"
+        onclick="toggle(this)">
+
+        <div class="accordion-icon">↔️</div>
+
+        <div class="accordion-info">
+
+            <div class="accordion-title">
+                Sus2 et Sus4
+            </div>
+
+            <div class="accordion-desc">
+                Remplacer la tierce par une autre note
+            </div>
+
+        </div>
+
+        <div class="arrow">▼</div>
+
+    </button>
+
+    <div class="accordion-content">
+
+        <h3>Sus2</h3>
+
+        <div class="formula">
+            1 – 2 – 5
+        </div>
+
+        <p>
+            Exemple : <strong>Dosus2</strong> =
+            Do – Ré – Sol.
+        </p>
+
+        <h3 style="margin-top:16px;">
+            Sus4
+        </h3>
+
+        <div class="formula">
+            1 – 4 – 5
+        </div>
+
+        <p>
+            Exemple : <strong>Dosus4</strong> =
+            Do – Fa – Sol.
+        </p>
+
+        <div class="tip">
+            💡 Le terme « suspendu » vient du fait que la tierce
+            est remplacée par la seconde ou la quarte.
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- SEPTIEMES -->
+
+<h2
+    class="section-title"
+    id="septiemes">
+
+    🎼 5. Les accords de septième
+
+</h2>
+
+
+<div class="accordion open">
+
+    <button
+        class="accordion-header"
+        onclick="toggle(this)">
+
+        <div class="accordion-icon">7</div>
+
+        <div class="accordion-info">
+
+            <div class="accordion-title">
+                Septième dominante — 7
+            </div>
+
+            <div class="accordion-desc">
+                Accord majeur + septième mineure
+            </div>
+
+        </div>
+
+        <div class="arrow">▼</div>
+
+    </button>
+
+    <div class="accordion-content">
+
+        <div class="formula">
+            1 – 3 – 5 – ♭7
+        </div>
+
+        <div class="chord-grid">
+
+            <div class="chord-card">
+                <div class="chord-name">Do7</div>
+                <div class="chord-notes">Do – Mi – Sol – Sib</div>
+            </div>
+
+            <div class="chord-card">
+                <div class="chord-name">Ré7</div>
+                <div class="chord-notes">Ré – Fa♯ – La – Do</div>
+            </div>
+
+            <div class="chord-card">
+                <div class="chord-name">Mi7</div>
+                <div class="chord-notes">Mi – Sol♯ – Si – Ré</div>
+            </div>
+
+            <div class="chord-card">
+                <div class="chord-name">Fa7</div>
+                <div class="chord-notes">Fa – La – Do – Mib</div>
+            </div>
+
+            <div class="chord-card">
+                <div class="chord-name">Sol7</div>
+                <div class="chord-notes">Sol – Si – Ré – Fa</div>
+            </div>
+
+            <div class="chord-card">
+                <div class="chord-name">La7</div>
+                <div class="chord-notes">La – Do♯ – Mi – Sol</div>
+            </div>
+
+            <div class="chord-card">
+                <div class="chord-name">Si7</div>
+                <div class="chord-notes">Si – Ré♯ – Fa♯ – La</div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<div class="accordion">
+
+    <button
+        class="accordion-header"
+        onclick="toggle(this)">
+
+        <div class="accordion-icon">M7</div>
+
+        <div class="accordion-info">
+
+            <div class="accordion-title">
+                Septième majeure — Maj7
+            </div>
+
+            <div class="accordion-desc">
+                Accord majeur + septième majeure
+            </div>
+
+        </div>
+
+        <div class="arrow">▼</div>
+
+    </button>
+
+    <div class="accordion-content">
+
+        <div class="formula">
+            1 – 3 – 5 – 7
+        </div>
+
+        <div class="chord-grid">
+
+            <div class="chord-card">
+                <div class="chord-name">DoMaj7</div>
+                <div class="chord-notes">Do – Mi – Sol – Si</div>
+            </div>
+
+            <div class="chord-card">
+                <div class="chord-name">RéMaj7</div>
+                <div class="chord-notes">Ré – Fa♯ – La – Do♯</div>
+            </div>
+
+            <div class="chord-card">
+                <div class="chord-name">MiMaj7</div>
+                <div class="chord-notes">Mi – Sol♯ – Si – Ré♯</div>
+            </div>
+
+            <div class="chord-card">
+                <div class="chord-name">FaMaj7</div>
+                <div class="chord-notes">Fa – La – Do – Mi</div>
+            </div>
+
+            <div class="chord-card">
+                <div class="chord-name">SolMaj7</div>
+                <div class="chord-notes">Sol – Si – Ré – Fa♯</div>
+            </div>
+
+            <div class="chord-card">
+                <div class="chord-name">LaMaj7</div>
+                <div class="chord-notes">La – Do♯ – Mi – Sol♯</div>
+            </div>
+
+            <div class="chord-card">
+                <div class="chord-name">SiMaj7</div>
+                <div class="chord-notes">Si – Ré♯ – Fa♯ – La♯</div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<div class="accordion">
+
+    <button
+        class="accordion-header"
+        onclick="toggle(this)">
+
+        <div class="accordion-icon">m7</div>
+
+        <div class="accordion-info">
+
+            <div class="accordion-title">
+                Septième mineure — m7
+            </div>
+
+            <div class="accordion-desc">
+                Accord mineur + septième mineure
+            </div>
+
+        </div>
+
+        <div class="arrow">▼</div>
+
+    </button>
+
+    <div class="accordion-content">
+
+        <div class="formula">
+            1 – ♭3 – 5 – ♭7
+        </div>
+
+        <div class="chord-grid">
+
+            <div class="chord-card">
+                <div class="chord-name">Dom7</div>
+                <div class="chord-notes">Do – Mib – Sol – Sib</div>
+            </div>
+
+            <div class="chord-card">
+                <div class="chord-name">Rém7</div>
+                <div class="chord-notes">Ré – Fa – La – Do</div>
+            </div>
+
+            <div class="chord-card">
+                <div class="chord-name">Mim7</div>
+                <div class="chord-notes">Mi – Sol – Si – Ré</div>
+            </div>
+
+            <div class="chord-card">
+                <div class="chord-name">Fam7</div>
+                <div class="chord-notes">Fa – Lab – Do – Mib</div>
+            </div>
+
+            <div class="chord-card">
+                <div class="chord-name">Solm7</div>
+                <div class="chord-notes">Sol – Sib – Ré – Fa</div>
+            </div>
+
+            <div class="chord-card">
+                <div class="chord-name">Lam7</div>
+                <div class="chord-notes">La – Do – Mi – Sol</div>
+            </div>
+
+            <div class="chord-card">
+                <div class="chord-name">Sim7</div>
+                <div class="chord-notes">Si – Ré – Fa♯ – La</div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<div class="accordion">
+
+    <button
+        class="accordion-header"
+        onclick="toggle(this)">
+
+        <div class="accordion-icon">mM7</div>
+
+        <div class="accordion-info">
+
+            <div class="accordion-title">
+                Mineur avec septième majeure — mMaj7
+            </div>
+
+            <div class="accordion-desc">
+                Accord mineur + septième majeure
+            </div>
+
+        </div>
+
+        <div class="arrow">▼</div>
+
+    </button>
+
+    <div class="accordion-content">
+
+        <div class="formula">
+            1 – ♭3 – 5 – 7
+        </div>
+
+        <p>
+            Exemple :
+            <strong>DomMaj7</strong> =
+            Do – Mib – Sol – Si.
+        </p>
+
+        <p style="margin-top:10px;">
+            Cette sonorité est particulièrement intéressante
+            dans les contextes jazz, soul et musique de film.
+        </p>
+
+    </div>
+
+</div>
+
+
+<div class="accordion">
+
+    <button
+        class="accordion-header"
+        onclick="toggle(this)">
+
+        <div class="accordion-icon">ø</div>
+
+        <div class="accordion-info">
+
+            <div class="accordion-title">
+                Demi-diminué — m7♭5
+            </div>
+
+            <div class="accordion-desc">
+                Mineur avec quinte diminuée et septième mineure
+            </div>
+
+        </div>
+
+        <div class="arrow">▼</div>
+
+    </button>
+
+    <div class="accordion-content">
+
+        <div class="formula">
+            1 – ♭3 – ♭5 – ♭7
+        </div>
+
+        <p>
+            Exemple :
+            <strong>Dom7♭5</strong> =
+            Do – Mib – Solb – Sib.
+        </p>
+
+        <div class="tip">
+            💡 On le rencontre très souvent sous le symbole
+            <strong>ø7</strong>.
+        </div>
+
+    </div>
+
+</div>
+
+
+<div class="accordion">
+
+    <button
+        class="accordion-header"
+        onclick="toggle(this)">
+
+        <div class="accordion-icon">°7</div>
+
+        <div class="accordion-info">
+
+            <div class="accordion-title">
+                Septième diminuée — dim7
+            </div>
+
+            <div class="accordion-desc">
+                Accord diminué avec septième diminuée
+            </div>
+
+        </div>
+
+        <div class="arrow">▼</div>
+
+    </button>
+
+    <div class="accordion-content">
+
+        <div class="formula">
+            1 – ♭3 – ♭5 – ♭♭7
+        </div>
+
+        <p>
+            Exemple théorique :
+            <strong>Do°7</strong> =
+            Do – Mib – Solb – Labb.
+        </p>
+
+        <div class="warning">
+            ⚠️ Labb signifie « La double bémol ».
+            Sur un clavier tempéré moderne, cette note correspond
+            enharmoniquement à Sol.
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ACCORDS 6 -->
+
+<h2 class="section-title">
+    6. Les accords de sixte
+</h2>
+
+<div class="accordion">
+
+    <button
+        class="accordion-header"
+        onclick="toggle(this)">
+
+        <div class="accordion-icon">6</div>
+
+        <div class="accordion-info">
+
+            <div class="accordion-title">
+                Accord majeur 6
+            </div>
+
+            <div class="accordion-desc">
+                Accord majeur + sixte majeure
+            </div>
+
+        </div>
+
+        <div class="arrow">▼</div>
+
+    </button>
+
+    <div class="accordion-content">
+
+        <div class="formula">
+            1 – 3 – 5 – 6
+        </div>
+
+        <p>
+            Exemple :
+            <strong>Do6</strong> =
+            Do – Mi – Sol – La.
+        </p>
+
+        <p style="margin-top:10px;">
+            Autres exemples :
+            Ré6 = Ré – Fa♯ – La – Si.
+            Fa6 = Fa – La – Do – Ré.
+        </p>
+
+    </div>
+
+</div>
+
+
+<div class="accordion">
+
+    <button
+        class="accordion-header"
+        onclick="toggle(this)">
+
+        <div class="accordion-icon">m6</div>
+
+        <div class="accordion-info">
+
+            <div class="accordion-title">
+                Accord mineur 6
+            </div>
+
+            <div class="accordion-desc">
+                Accord mineur + sixte majeure
+            </div>
+
+        </div>
+
+        <div class="arrow">▼</div>
+
+    </button>
+
+    <div class="accordion-content">
+
+        <div class="formula">
+            1 – ♭3 – 5 – 6
+        </div>
+
+        <p>
+            Exemple :
+            <strong>Dom6</strong> =
+            Do – Mib – Sol – La.
+        </p>
+
+    </div>
+
+</div>
+
+
+<!-- ACCORDS ETENDUS -->
+
+<h2
+    class="section-title"
+    id="etendus">
+
+    🎷 7. Accords étendus : 9, 11 et 13
+
+</h2>
+
+
+<div class="accordion">
+
+    <button
+        class="accordion-header"
+        onclick="toggle(this)">
+
+        <div class="accordion-icon">9</div>
+
+        <div class="accordion-info">
+
+            <div class="accordion-title">
+                Accord de neuvième — 9
+            </div>
+
+            <div class="accordion-desc">
+                Septième + neuvième
+            </div>
+
+        </div>
+
+        <div class="arrow">▼</div>
+
+    </button>
+
+    <div class="accordion-content">
+
+        <div class="formula">
+            1 – 3 – 5 – ♭7 – 9
+        </div>
+
+        <p>
+            Exemple :
+            <strong>Do9</strong> =
+            Do – Mi – Sol – Sib – Ré.
+        </p>
+
+        <div class="tip">
+            💡 La neuvième correspond à la seconde située
+            une octave plus haut.
+        </div>
+
+    </div>
+
+</div>
+
+
+<div class="accordion">
+
+    <button
+        class="accordion-header"
+        onclick="toggle(this)">
+
+        <div class="accordion-icon">M9</div>
+
+        <div class="accordion-info">
+
+            <div class="accordion-title">
+                Neuvième majeure — Maj9
+            </div>
+
+            <div class="accordion-desc">
+                Maj7 + neuvième majeure
+            </div>
+
+        </div>
+
+        <div class="arrow">▼</div>
+
+    </button>
+
+    <div class="accordion-content">
+
+        <div class="formula">
+            1 – 3 – 5 – 7 – 9
+        </div>
+
+        <p>
+            Exemple :
+            <strong>DoMaj9</strong> =
+            Do – Mi – Sol – Si – Ré.
+        </p>
+
+    </div>
+
+</div>
+
+
+<div class="accordion">
+
+    <button
+        class="accordion-header"
+        onclick="toggle(this)">
+
+        <div class="accordion-icon">m9</div>
+
+        <div class="accordion-info">
+
+            <div class="accordion-title">
+                Neuvième mineure — m9
+            </div>
+
+            <div class="accordion-desc">
+                m7 + neuvième
+            </div>
+
+        </div>
+
+        <div class="arrow">▼</div>
+
+    </button>
+
+    <div class="accordion-content">
+
+        <div class="formula">
+            1 – ♭3 – 5 – ♭7 – 9
+        </div>
+
+        <p>
+            Exemple :
+            <strong>Dom9</strong> =
+            Do – Mib – Sol – Sib – Ré.
+        </p>
+
+    </div>
+
+</div>
+
+
+<div class="accordion">
+
+    <button
+        class="accordion-header"
+        onclick="toggle(this)">
+
+        <div class="accordion-icon">11</div>
+
+        <div class="accordion-info">
+
+            <div class="accordion-title">
+                Accord de onzième — 11
+            </div>
+
+            <div class="accordion-desc">
+                Extension jusqu'à la onzième
+            </div>
+
+        </div>
+
+        <div class="arrow">▼</div>
+
+    </button>
+
+    <div class="accordion-content">
+
+        <div class="formula">
+            1 – 3 – 5 – ♭7 – 9 – 11
+        </div>
+
+        <p>
+            Exemple théorique :
+            <strong>Do11</strong> =
+            Do – Mi – Sol – Sib – Ré – Fa.
+        </p>
+
+        <div class="warning">
+            ⚠️ En pratique, les pianistes omettent parfois
+            certaines notes pour rendre l'accord plus facile
+            à jouer et plus clair.
+        </div>
+
+    </div>
+
+</div>
+
+
+<div class="accordion">
+
+    <button
+        class="accordion-header"
+        onclick="toggle(this)">
+
+        <div class="accordion-icon">13</div>
+
+        <div class="accordion-info">
+
+            <div class="accordion-title">
+                Accord de treizième — 13
+            </div>
+
+            <div class="accordion-desc">
+                Extension jusqu'à la treizième
+            </div>
+
+        </div>
+
+        <div class="arrow">▼</div>
+
+    </button>
+
+    <div class="accordion-content">
+
+        <div class="formula">
+            1 – 3 – 5 – ♭7 – 9 – 11 – 13
+        </div>
+
+        <p>
+            Exemple théorique :
+            <strong>Do13</strong> contient
+            Do, Mi, Sol, Sib, Ré, Fa et La.
+        </p>
+
+        <div class="tip">
+            💡 Au piano, on ne joue pas nécessairement toutes
+            les notes simultanément. On sélectionne souvent
+            les notes essentielles pour créer un voicing clair.
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ALTERATIONS -->
+
+<h2
+    class="section-title"
+    id="alteres">
+
+    ♯ 8. Accords avec dièses et bémols
+
+</h2>
+
+<div class="accordion open">
+
+    <button
+        class="accordion-header"
+        onclick="toggle(this)">
+
+        <div class="accordion-icon">♯♭</div>
+
+        <div class="accordion-info">
+
+            <div class="accordion-title">
+                Altérations d'accords
+            </div>
+
+            <div class="accordion-desc">
+                ♭5, ♯5, ♭9, ♯9, ♯11, ♭13...
+            </div>
+
+        </div>
+
+        <div class="arrow">▼</div>
+
+    </button>
+
+    <div class="accordion-content">
+
+        <h3>7♭5</h3>
+
+        <div class="formula">
+            1 – 3 – ♭5 – ♭7
+        </div>
+
+        <p>
+            Do7♭5 =
+            <strong>Do – Mi – Solb – Sib</strong>.
+        </p>
+
+        <h3 style="margin-top:18px;">
+            7♯5
+        </h3>
+
+        <div class="formula">
+            1 – 3 – ♯5 – ♭7
+        </div>
+
+        <p>
+            Do7♯5 =
+            <strong>Do – Mi – Sol♯ – Sib</strong>.
+        </p>
+
+        <h3 style="margin-top:18px;">
+            7♭9
+        </h3>
+
+        <div class="formula">
+            1 – 3 – 5 – ♭7 – ♭9
+        </div>
+
+        <p>
+            Do7♭9 =
+            <strong>Do – Mi – Sol – Sib – Réb</strong>.
+        </p>
+
+        <h3 style="margin-top:18px;">
+            7♯9
+        </h3>
+
+        <div class="formula">
+            1 – 3 – 5 – ♭7 – ♯9
+        </div>
+
+        <p>
+            Do7♯9 =
+            <strong>Do – Mi – Sol – Sib – Ré♯</strong>.
+        </p>
+
+        <h3 style="margin-top:18px;">
+            7♯11
+        </h3>
+
+        <div class="formula">
+            1 – 3 – 5 – ♭7 – 9 – ♯11
+        </div>
+
+        <p>
+            Do7♯11 =
+            <strong>
+                Do – Mi – Sol – Sib – Ré – Fa♯
+            </strong>.
+        </p>
+
+        <h3 style="margin-top:18px;">
+            7♭13
+        </h3>
+
+        <div class="formula">
+            1 – 3 – 5 – ♭7 – ♭13
+        </div>
+
+        <p>
+            Do7♭13 =
+            <strong>
+                Do – Mi – Sol – Sib – Lab
+            </strong>.
+        </p>
+
+    </div>
+
+</div>
+
+
+<!-- ADD -->
+
+<h2 class="section-title">
+    ➕ 9. Accords avec notes ajoutées
+</h2>
+
+<div class="accordion">
+
+    <button
+        class="accordion-header"
+        onclick="toggle(this)">
+
+        <div class="accordion-icon">+</div>
+
+        <div class="accordion-info">
+
+            <div class="accordion-title">
+                Add2, Add9 et Add11
+            </div>
+
+            <div class="accordion-desc">
+                Ajouter une note sans modifier la structure principale
+            </div>
+
+        </div>
+
+        <div class="arrow">▼</div>
+
+    </button>
+
+    <div class="accordion-content">
+
+        <h3>Do add9</h3>
+
+        <div class="formula">
+            Do – Mi – Sol – Ré
+        </div>
+
+        <p>
+            On conserve l'accord majeur et on ajoute la neuvième.
+        </p>
+
+        <h3 style="margin-top:17px;">
+            Do add11
+        </h3>
+
+        <div class="formula">
+            Do – Mi – Sol – Fa
+        </div>
+
+        <p>
+            La onzième est ajoutée à l'accord.
+        </p>
+
+        <div class="tip">
+            💡 « add » signifie simplement qu'une note est ajoutée
+            à l'accord.
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- RENVERSEMENTS -->
+
+<h2
+    class="section-title"
+    id="renversements">
+
+    🔄 10. Les renversements
+
+</h2>
+
+<div class="card">
+
+    <h2>
+        Comprendre les renversements
+    </h2>
+
+    <p>
+        Un renversement consiste à déplacer la note la plus
+        basse d'un accord vers une octave supérieure.
+        L'accord garde les mêmes notes mais leur ordre change.
+    </p>
+
+    <h3 style="margin-top:18px;">
+        Do majeur
+    </h3>
+
+    <div class="chord-grid">
+
+        <div class="chord-card">
+            <div class="chord-name">
+                Position fondamentale
+            </div>
+            <div class="chord-notes">
+                Do – Mi – Sol
+            </div>
+        </div>
+
+        <div class="chord-card">
+            <div class="chord-name">
+                1er renversement
+            </div>
+            <div class="chord-notes">
+                Mi – Sol – Do
+            </div>
+        </div>
+
+        <div class="chord-card">
+            <div class="chord-name">
+                2e renversement
+            </div>
+            <div class="chord-notes">
+                Sol – Do – Mi
+            </div>
+        </div>
+
+    </div>
+
+    <div class="definition">
+
+        <strong>Important :</strong><br>
+
+        Do–Mi–Sol, Mi–Sol–Do et Sol–Do–Mi sont trois positions
+        différentes du même accord de Do majeur.
+
+    </div>
+
+</div>
+
+
+<!-- PROGRESSIONS -->
+
+<h2 class="section-title">
+    🎶 11. Progressions d'accords
+</h2>
+
+<div class="card">
+
+    <h2>
+        Les suites d'accords
+    </h2>
+
+    <p>
+        Une progression est une suite d'accords qui forme
+        l'harmonie d'un morceau.
+    </p>
+
+    <div class="exercise">
+
+        <div class="exercise-title">
+            🎹 Progression 1 — très simple
+        </div>
+
+        <p>
+            Do → Fa → Sol → Do
+        </p>
+
+        <p style="margin-top:8px;">
+            Do majeur → Fa majeur → Sol majeur → Do majeur
+        </p>
+
+    </div>
+
+    <div class="exercise">
+
+        <div class="exercise-title">
+            🎹 Progression 2
+        </div>
+
+        <p>
+            Do → Lam → Fa → Sol
+        </p>
+
+        <p style="margin-top:8px;">
+            Do majeur → La mineur → Fa majeur → Sol majeur
+        </p>
+
+    </div>
+
+    <div class="exercise">
+
+        <div class="exercise-title">
+            🎹 Progression 3
+        </div>
+
+        <p>
+            Lam → Fa → Do → Sol
+        </p>
+
+    </div>
+
+</div>
+
+
+<!-- EXERCICES -->
+
+<h2 class="section-title">
+    🏋️ 12. Exercices pratiques
+</h2>
+
+<div class="card">
+
+    <h2>
+        Mets tes connaissances en pratique
+    </h2>
+
+    <div class="exercise">
+
+        <div class="exercise-title">
+            Exercice 1 — Accords majeurs
+        </div>
+
+        <ol>
+
+            <li>
+                Joue Do – Mi – Sol.
+            </li>
+
+            <li>
+                Joue Fa – La – Do.
+            </li>
+
+            <li>
+                Joue Sol – Si – Ré.
+            </li>
+
+            <li>
+                Reviens à Do – Mi – Sol.
+            </li>
+
+        </ol>
+
+    </div>
+
+
+    <div class="exercise">
+
+        <div class="exercise-title">
+            Exercice 2 — Accords mineurs
+        </div>
+
+        <ol>
+
+            <li>
+                Do – Mib – Sol
+            </li>
+
+            <li>
+                Ré – Fa – La
+            </li>
+
+            <li>
+                La – Do – Mi
+            </li>
+
+        </ol>
+
+    </div>
+
+
+    <div class="exercise">
+
+        <div class="exercise-title">
+            Exercice 3 — Septièmes
+        </div>
+
+        <ol>
+
+            <li>
+                Do7 = Do – Mi – Sol – Sib
+            </li>
+
+            <li>
+                Fa7 = Fa – La – Do – Mib
+            </li>
+
+            <li>
+                Sol7 = Sol – Si – Ré – Fa
+            </li>
+
+        </ol>
+
+    </div>
+
+
+    <div class="exercise">
+
+        <div class="exercise-title">
+            Exercice 4 — Renversements
+        </div>
+
+        <ol>
+
+            <li>
+                Joue Do – Mi – Sol.
+            </li>
+
+            <li>
+                Joue Mi – Sol – Do.
+            </li>
+
+            <li>
+                Joue Sol – Do – Mi.
+            </li>
+
+            <li>
+                Reviens à Do – Mi – Sol.
+            </li>
+
+        </ol>
+
+    </div>
+
+</div>
+
+
+<!-- TABLEAU RAPIDE -->
+
+<h2 class="section-title">
+    📋 13. Tableau de référence rapide
+</h2>
+
+<div class="card">
+
+    <div class="table-wrap">
+
+        <table>
+
+            <tr>
+                <th>Symbole</th>
+                <th>Nom</th>
+                <th>Formule</th>
+                <th>Exemple en Do</th>
+            </tr>
+
+            <tr>
+                <td><strong>Do</strong></td>
+                <td>Majeur</td>
+                <td>1–3–5</td>
+                <td>Do–Mi–Sol</td>
+            </tr>
+
+            <tr>
+                <td><strong>Dom</strong></td>
+                <td>Mineur</td>
+                <td>1–♭3–5</td>
+                <td>Do–Mib–Sol</td>
+            </tr>
+
+            <tr>
+                <td><strong>Do°</strong></td>
+                <td>Diminué</td>
+                <td>1–♭3–♭5</td>
+                <td>Do–Mib–Solb</td>
+            </tr>
+
+            <tr>
+                <td><strong>Do+</strong></td>
+                <td>Augmenté</td>
+                <td>1–3–♯5</td>
+                <td>Do–Mi–Sol♯</td>
+            </tr>
+
+            <tr>
+                <td><strong>Do7</strong></td>
+                <td>Septième</td>
+                <td>1–3–5–♭7</td>
+                <td>Do–Mi–Sol–Sib</td>
+            </tr>
+
+            <tr>
+                <td><strong>DoMaj7</strong></td>
+                <td>Septième majeure</td>
+                <td>1–3–5–7</td>
+                <td>Do–Mi–Sol–Si</td>
+            </tr>
+
+            <tr>
+                <td><strong>Dom7</strong></td>
+                <td>Septième mineure</td>
+                <td>1–♭3–5–♭7</td>
+                <td>Do–Mib–Sol–Sib</td>
+            </tr>
+
+            <tr>
+                <td><strong>DomMaj7</strong></td>
+                <td>Mineur + 7 majeure</td>
+                <td>1–♭3–5–7</td>
+                <td>Do–Mib–Sol–Si</td>
+            </tr>
+
+            <tr>
+                <td><strong>Doø7</strong></td>
+                <td>Demi-diminué</td>
+                <td>1–♭3–♭5–♭7</td>
+                <td>Do–Mib–Solb–Sib</td>
+            </tr>
+
+            <tr>
+                <td><strong>Do°7</strong></td>
+                <td>Diminué 7</td>
+                <td>1–♭3–♭5–♭♭7</td>
+                <td>Do–Mib–Solb–Labb</td>
+            </tr>
+
+            <tr>
+                <td><strong>Do6</strong></td>
+                <td>Sixte</td>
+                <td>1–3–5–6</td>
+                <td>Do–Mi–Sol–La</td>
+            </tr>
+
+            <tr>
+                <td><strong>Dom6</strong></td>
+                <td>Mineur 6</td>
+                <td>1–♭3–5–6</td>
+                <td>Do–Mib–Sol–La</td>
+            </tr>
+
+            <tr>
+                <td><strong>Dosus2</strong></td>
+                <td>Suspended 2</td>
+                <td>1–2–5</td>
+                <td>Do–Ré–Sol</td>
+            </tr>
+
+            <tr>
+                <td><strong>Dosus4</strong></td>
+                <td>Suspended 4</td>
+                <td>1–4–5</td>
+                <td>Do–Fa–Sol</td>
+            </tr>
+
+            <tr>
+                <td><strong>Do9</strong></td>
+                <td>Neuvième</td>
+                <td>1–3–5–♭7–9</td>
+                <td>Do–Mi–Sol–Sib–Ré</td>
+            </tr>
+
+            <tr>
+                <td><strong>DoMaj9</strong></td>
+                <td>Neuvième majeure</td>
+                <td>1–3–5–7–9</td>
+                <td>Do–Mi–Sol–Si–Ré</td>
+            </tr>
+
+            <tr>
+                <td><strong>Dom9</strong></td>
+                <td>Neuvième mineure</td>
+                <td>1–♭3–5–♭7–9</td>
+                <td>Do–Mib–Sol–Sib–Ré</td>
+            </tr>
+
+            <tr>
+                <td><strong>Do11</strong></td>
+                <td>Onzième</td>
+                <td>1–3–5–♭7–9–11</td>
+                <td>Do–Mi–Sol–Sib–Ré–Fa</td>
+            </tr>
+
+            <tr>
+                <td><strong>Do13</strong></td>
+                <td>Treizième</td>
+                <td>1–3–5–♭7–9–11–13</td>
+                <td>Do–Mi–Sol–Sib–Ré–Fa–La</td>
+            </tr>
+
+        </table>
+
+    </div>
+
+</div>
+
+
+<!-- CONSEILS -->
+
+<div class="card">
+
+    <h2>
+        🧠 Comment mémoriser les accords
+    </h2>
+
+    <p>
+        Ne cherche pas à mémoriser tous les accords en une seule
+        journée. Commence par les majeurs et mineurs, puis ajoute
+        progressivement les septièmes et les accords étendus.
+    </p>
+
+    <div class="tip">
+
+        <strong>Méthode recommandée :</strong><br><br>
+
+        1. Apprends la formule.<br>
+        2. Construis l'accord à partir de sa fondamentale.<br>
+        3. Joue chaque note séparément.<br>
+        4. Joue toutes les notes ensemble.<br>
+        5. Essaie ensuite un renversement.<br>
+        6. Répète dans plusieurs tonalités.
+
+    </div>
+
+</div>
+
+
+<!-- PREMIUM -->
+
+<div class="card">
+
+    <h2>
+        ⭐ Aller plus loin avec Premium
+    </h2>
+
+    <p>
+        Ce cours Free présente les principales familles
+        d'accords et leurs formules. Le parcours Premium permet
+        d'aller beaucoup plus loin avec le guide complet,
+        les notions avancées, les voicings, l'harmonie,
+        les progressions avancées et les applications pratiques
+        au piano.
+    </p>
+
+    <button
+        class="finish"
+        onclick="goPremium()">
+
+        ⭐ Découvrir Piano Academy Premium
+
+    </button>
+
+</div>
+
+
+<footer class="footer">
+
+    🎹 Piano Academy<br>
+
+    Apprends • Pratique • Progresse
+
+</footer>
+
+</div>
+
+
+<script>
+
+/* =====================================================
+   ACCORDÉON
+===================================================== */
+
+function toggle(button){
+
+    const accordion =
+        button.parentElement;
+
+    accordion.classList.toggle("open");
+
+}
+
+
+/* =====================================================
+   RECHERCHE
+===================================================== */
+
+function searchAccords(){
+
+    const query =
+        document
+        .getElementById("search")
+        .value
+        .toLowerCase()
+        .trim();
+
+    const items =
+        document.querySelectorAll(".accordion");
+
+    items.forEach(item => {
+
+        const text =
+            item.textContent
+            .toLowerCase();
+
+        if(!query || text.includes(query)){
+
+            item.classList.remove("hidden");
+
+        }else{
+
+            item.classList.add("hidden");
+
+        }
+
+    });
+
+}
+
+
+/* =====================================================
+   NAVIGATION
+===================================================== */
+
+function scrollToId(id){
+
+    const element =
+        document.getElementById(id);
+
+    if(element){
+
+        element.scrollIntoView({
+            behavior:"smooth",
+            block:"start"
+        });
+
+    }
+
+}
+
+
+/* =====================================================
+   RETOUR DASHBOARD
+===================================================== */
+
+function goBack(){
+
+    window.location.href =
+        "dashboard.html";
+
+}
+
+
+/* =====================================================
+   PREMIUM
+===================================================== */
+
+function goPremium(){
+
+    window.location.href =
+        "premium.html";
+
+}
+
+</script>
+
+</body>
+</html>
