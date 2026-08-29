@@ -1,0 +1,2263 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Ma progression — Piano Academy</title>
+
+<meta
+  name="description"
+  content="Suivez votre progression dans les cours Piano Academy."
+>
+
+<style>
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+:root{
+  --primary:#6c5ce7;
+  --primary-dark:#5848d6;
+  --secondary:#00cec9;
+  --gold:#f5b942;
+
+  --background:#f5f6fa;
+  --card:#ffffff;
+  --soft:#fafbfe;
+
+  --text:#1e1e2f;
+  --muted:#777b8a;
+  --border:#e2e4ec;
+
+  --success:#00b894;
+  --danger:#e74c3c;
+
+  --shadow:
+    0 12px 35px rgba(25,25,50,.08);
+}
+
+body.dark{
+  --background:#11121a;
+  --card:#1b1d28;
+  --soft:#222531;
+  --text:#f5f5fa;
+  --muted:#a7a9b7;
+  --border:#303342;
+
+  --shadow:
+    0 12px 35px rgba(0,0,0,.25);
+}
+
+body{
+  min-height:100vh;
+  font-family:
+    Arial,
+    Helvetica,
+    sans-serif;
+
+  background:var(--background);
+  color:var(--text);
+
+  transition:.25s;
+}
+
+button{
+  font-family:inherit;
+  cursor:pointer;
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+.header{
+  position:sticky;
+  top:0;
+  z-index:100;
+
+  height:70px;
+
+  background:var(--card);
+
+  border-bottom:
+    1px solid var(--border);
+}
+
+.header-inner{
+  width:100%;
+  max-width:1100px;
+
+  height:100%;
+
+  margin:auto;
+  padding:0 20px;
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+
+.header-left{
+  display:flex;
+  align-items:center;
+  gap:13px;
+}
+
+.back-button,
+.theme-button{
+
+  width:42px;
+  height:42px;
+
+  border:none;
+  border-radius:11px;
+
+  background:var(--soft);
+  color:var(--text);
+
+  font-size:20px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.back-button:hover,
+.theme-button:hover{
+
+  background:#eeeaff;
+  color:var(--primary);
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.brand-icon{
+
+  width:40px;
+  height:40px;
+
+  border-radius:11px;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--primary),
+      var(--primary-dark)
+    );
+
+  color:white;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  font-size:20px;
+}
+
+.brand-name{
+  font-size:17px;
+  font-weight:800;
+}
+
+
+/* =========================
+   CONTAINER
+========================= */
+
+.container{
+
+  width:100%;
+  max-width:1100px;
+
+  margin:auto;
+
+  padding:
+    30px 20px 70px;
+}
+
+
+/* =========================
+   HERO
+========================= */
+
+.hero{
+
+  position:relative;
+  overflow:hidden;
+
+  border-radius:25px;
+
+  padding:
+    38px 30px;
+
+  color:white;
+
+  background:
+    linear-gradient(
+      135deg,
+      #6c5ce7,
+      #4834b4
+    );
+
+  box-shadow:
+    0 18px 45px
+    rgba(108,92,231,.25);
+
+  margin-bottom:25px;
+}
+
+.hero::before{
+
+  content:"";
+
+  position:absolute;
+
+  width:300px;
+  height:300px;
+
+  border-radius:50%;
+
+  background:
+    rgba(255,255,255,.07);
+
+  top:-150px;
+  right:-70px;
+}
+
+.hero-content{
+
+  position:relative;
+  z-index:2;
+
+  max-width:760px;
+}
+
+.hero-badge{
+
+  display:inline-flex;
+  align-items:center;
+  gap:7px;
+
+  padding:
+    8px 13px;
+
+  border-radius:30px;
+
+  background:
+    rgba(255,255,255,.14);
+
+  border:
+    1px solid
+    rgba(255,255,255,.16);
+
+  font-size:12px;
+  font-weight:800;
+
+  margin-bottom:15px;
+}
+
+.hero h1{
+
+  font-size:38px;
+  line-height:1.15;
+
+  margin-bottom:10px;
+}
+
+.hero h1 span{
+  color:#ffe29a;
+}
+
+.hero p{
+
+  color:
+    rgba(255,255,255,.86);
+
+  font-size:14px;
+  line-height:1.7;
+}
+
+
+/* =========================
+   GENERAL STATS
+========================= */
+
+.stats{
+
+  display:grid;
+
+  grid-template-columns:
+    repeat(3,1fr);
+
+  gap:15px;
+
+  margin-bottom:30px;
+}
+
+.stat-card{
+
+  background:var(--card);
+
+  border:
+    1px solid var(--border);
+
+  border-radius:18px;
+
+  padding:20px;
+
+  box-shadow:var(--shadow);
+
+  text-align:center;
+}
+
+.stat-icon{
+
+  font-size:28px;
+
+  margin-bottom:8px;
+}
+
+.stat-number{
+
+  font-size:27px;
+
+  font-weight:900;
+
+  color:var(--primary);
+
+  margin-bottom:4px;
+}
+
+.stat-label{
+
+  color:var(--muted);
+
+  font-size:12px;
+}
+
+
+/* =========================
+   SECTION TITLE
+========================= */
+
+.section-title{
+
+  margin:
+    30px 0 18px;
+}
+
+.section-title h2{
+
+  font-size:24px;
+
+  margin-bottom:6px;
+}
+
+.section-title p{
+
+  color:var(--muted);
+
+  font-size:13px;
+}
+
+
+/* =========================
+   OVERALL PROGRESS
+========================= */
+
+.overall-card{
+
+  background:var(--card);
+
+  border:
+    1px solid var(--border);
+
+  border-radius:20px;
+
+  padding:23px;
+
+  box-shadow:var(--shadow);
+
+  margin-bottom:25px;
+}
+
+.overall-header{
+
+  display:flex;
+
+  justify-content:space-between;
+  align-items:center;
+
+  gap:15px;
+
+  margin-bottom:14px;
+}
+
+.overall-title{
+
+  font-size:16px;
+  font-weight:800;
+}
+
+.overall-percent{
+
+  font-size:18px;
+  font-weight:900;
+
+  color:var(--primary);
+}
+
+.progress-bar{
+
+  height:12px;
+
+  border-radius:20px;
+
+  background:
+    var(--soft);
+
+  border:
+    1px solid var(--border);
+
+  overflow:hidden;
+}
+
+.progress-fill{
+
+  height:100%;
+
+  width:0%;
+
+  border-radius:20px;
+
+  background:
+    linear-gradient(
+      90deg,
+      var(--primary),
+      var(--secondary)
+    );
+
+  transition:
+    width .5s ease;
+}
+
+
+/* =========================
+   COURSE CARDS
+========================= */
+
+.courses{
+
+  display:grid;
+
+  grid-template-columns:
+    repeat(2,1fr);
+
+  gap:16px;
+}
+
+.course-card{
+
+  background:var(--card);
+
+  border:
+    1px solid var(--border);
+
+  border-radius:19px;
+
+  padding:20px;
+
+  box-shadow:var(--shadow);
+
+  transition:.2s;
+}
+
+.course-card:hover{
+
+  transform:
+    translateY(-2px);
+}
+
+.course-top{
+
+  display:flex;
+
+  align-items:center;
+
+  gap:14px;
+
+  margin-bottom:16px;
+}
+
+.course-icon{
+
+  width:48px;
+  height:48px;
+
+  flex-shrink:0;
+
+  border-radius:14px;
+
+  background:
+    rgba(108,92,231,.12);
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  font-size:24px;
+}
+
+.course-info{
+
+  flex:1;
+}
+
+.course-info h3{
+
+  font-size:15px;
+
+  margin-bottom:5px;
+}
+
+.course-info p{
+
+  color:var(--muted);
+
+  font-size:11px;
+}
+
+.course-percent{
+
+  font-size:18px;
+
+  font-weight:900;
+
+  color:var(--primary);
+}
+
+.course-progress{
+
+  margin-bottom:13px;
+}
+
+.course-progress-top{
+
+  display:flex;
+
+  justify-content:space-between;
+
+  font-size:11px;
+
+  color:var(--muted);
+
+  margin-bottom:7px;
+}
+
+.course-progress-bar{
+
+  height:8px;
+
+  border-radius:20px;
+
+  background:var(--soft);
+
+  overflow:hidden;
+}
+
+.course-progress-fill{
+
+  height:100%;
+
+  width:0%;
+
+  border-radius:20px;
+
+  background:
+    linear-gradient(
+      90deg,
+      var(--primary),
+      var(--secondary)
+    );
+
+  transition:
+    width .5s ease;
+}
+
+.course-bottom{
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:space-between;
+
+  gap:10px;
+}
+
+.course-status{
+
+  color:var(--muted);
+
+  font-size:11px;
+}
+
+.course-button{
+
+  border:none;
+
+  border-radius:9px;
+
+  background:var(--primary);
+
+  color:white;
+
+  padding:
+    9px 13px;
+
+  font-size:11px;
+
+  font-weight:800;
+}
+
+.course-button:hover{
+
+  background:
+    var(--primary-dark);
+}
+
+.course-card.completed
+.course-icon{
+
+  background:
+    rgba(0,184,148,.13);
+
+  color:var(--success);
+}
+
+.course-card.completed
+.course-percent{
+
+  color:var(--success);
+}
+
+
+/* =========================
+   LAST LESSON
+========================= */
+
+.last-card{
+
+  background:var(--soft);
+
+  border:
+    1px solid var(--border);
+
+  border-radius:18px;
+
+  padding:20px;
+
+  margin-top:25px;
+}
+
+.last-label{
+
+  color:var(--muted);
+
+  font-size:11px;
+
+  font-weight:800;
+
+  text-transform:uppercase;
+
+  margin-bottom:8px;
+}
+
+.last-title{
+
+  font-size:17px;
+
+  font-weight:900;
+
+  margin-bottom:6px;
+}
+
+.last-course{
+
+  color:var(--muted);
+
+  font-size:12px;
+
+  margin-bottom:15px;
+}
+
+.continue-button{
+
+  border:none;
+
+  border-radius:10px;
+
+  background:var(--primary);
+
+  color:white;
+
+  padding:
+    11px 16px;
+
+  font-size:12px;
+
+  font-weight:800;
+}
+
+.continue-button:hover{
+
+  background:
+    var(--primary-dark);
+}
+
+
+/* =========================
+   EMPTY
+========================= */
+
+.empty{
+
+  text-align:center;
+
+  padding:30px;
+
+  color:var(--muted);
+
+  font-size:13px;
+}
+
+
+/* =========================
+   TOAST
+========================= */
+
+.toast{
+
+  position:fixed;
+
+  left:50%;
+  bottom:25px;
+
+  transform:
+    translate(-50%,120px);
+
+  z-index:500;
+
+  padding:
+    13px 18px;
+
+  border-radius:12px;
+
+  background:#1e1e2f;
+
+  color:white;
+
+  font-size:12px;
+
+  box-shadow:
+    0 10px 30px
+    rgba(0,0,0,.25);
+
+  transition:.3s;
+}
+
+.toast.show{
+
+  transform:
+    translate(-50%,0);
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width:800px){
+
+  .courses{
+
+    grid-template-columns:1fr;
+  }
+
+  .hero h1{
+
+    font-size:32px;
+  }
+
+}
+
+@media(max-width:600px){
+
+  .container{
+
+    padding:
+      22px 15px 55px;
+  }
+
+  .hero{
+
+    padding:
+      30px 22px;
+  }
+
+  .hero h1{
+
+    font-size:28px;
+  }
+
+  .hero p{
+
+    font-size:13px;
+  }
+
+  .stats{
+
+    grid-template-columns:
+      1fr;
+  }
+
+  .stat-card{
+
+    padding:17px;
+  }
+
+  .course-card{
+
+    padding:18px;
+  }
+
+  .brand-name{
+
+    font-size:15px;
+  }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     HEADER
+========================= -->
+
+<header class="header">
+
+  <div class="header-inner">
+
+    <div class="header-left">
+
+      <button
+        class="back-button"
+        onclick="goBack()">
+
+        ←
+
+      </button>
+
+
+      <div class="brand">
+
+        <div class="brand-icon">
+
+          🎹
+
+        </div>
+
+        <div class="brand-name">
+
+          Piano Academy
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <button
+      class="theme-button"
+      id="themeButton">
+
+      🌙
+
+    </button>
+
+  </div>
+
+</header>
+
+
+
+<main class="container">
+
+
+<!-- =========================
+     HERO
+========================= -->
+
+<section class="hero">
+
+  <div class="hero-content">
+
+    <div class="hero-badge">
+
+      📊 MA PROGRESSION
+
+    </div>
+
+
+    <h1>
+
+      Suis ton
+      <span>évolution</span>
+
+    </h1>
+
+
+    <p>
+
+      Retrouve ici ta progression dans les cours
+      de Piano Academy. Chaque leçon terminée
+      contribue à ton évolution musicale.
+
+    </p>
+
+  </div>
+
+</section>
+
+
+
+<!-- =========================
+     STATS
+========================= -->
+
+<section class="stats">
+
+
+  <div class="stat-card">
+
+    <div class="stat-icon">
+
+      📚
+
+    </div>
+
+    <div
+      class="stat-number"
+      id="completedLessons">
+
+      0
+
+    </div>
+
+    <div class="stat-label">
+
+      Leçons terminées
+
+    </div>
+
+  </div>
+
+
+
+  <div class="stat-card">
+
+    <div class="stat-icon">
+
+      🎓
+
+    </div>
+
+    <div
+      class="stat-number"
+      id="completedCourses">
+
+      0
+
+    </div>
+
+    <div class="stat-label">
+
+      Cours terminés
+
+    </div>
+
+  </div>
+
+
+
+  <div class="stat-card">
+
+    <div class="stat-icon">
+
+      📈
+
+    </div>
+
+    <div
+      class="stat-number"
+      id="globalPercent">
+
+      0%
+
+    </div>
+
+    <div class="stat-label">
+
+      Progression générale
+
+    </div>
+
+  </div>
+
+
+</section>
+
+
+
+<!-- =========================
+     PROGRESSION GÉNÉRALE
+========================= -->
+
+<div class="section-title">
+
+  <h2>
+
+    🏆 Progression générale
+
+  </h2>
+
+  <p>
+
+    Vue globale de ton apprentissage.
+
+  </p>
+
+</div>
+
+
+<section class="overall-card">
+
+  <div class="overall-header">
+
+    <div class="overall-title">
+
+      Mes cours
+
+    </div>
+
+    <div
+      class="overall-percent"
+      id="overallPercent">
+
+      0%
+
+    </div>
+
+  </div>
+
+
+  <div class="progress-bar">
+
+    <div
+      class="progress-fill"
+      id="overallFill">
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- =========================
+     COURS
+========================= -->
+
+<div class="section-title">
+
+  <h2>
+
+    🎹 Mes cours
+
+  </h2>
+
+  <p>
+
+    Consulte la progression de chaque formation.
+
+  </p>
+
+</div>
+
+
+<section
+  class="courses"
+  id="courses">
+
+
+<!-- MAÎTRISE DES ACCORDS -->
+
+<article
+  class="course-card"
+  data-course="accords">
+
+  <div class="course-top">
+
+    <div class="course-icon">
+
+      🎹
+
+    </div>
+
+    <div class="course-info">
+
+      <h3>
+
+        Maîtrise des accords
+
+      </h3>
+
+      <p>
+
+        Accords, doigtés et accompagnement harmonique.
+
+      </p>
+
+    </div>
+
+    <div
+      class="course-percent"
+      id="accordsPercent">
+
+      0%
+
+    </div>
+
+  </div>
+
+
+  <div class="course-progress">
+
+    <div class="course-progress-top">
+
+      <span id="accordsText">
+
+        0 leçon terminée
+
+      </span>
+
+      <span>
+
+        Progression
+
+      </span>
+
+    </div>
+
+    <div class="course-progress-bar">
+
+      <div
+        class="course-progress-fill"
+        id="accordsFill">
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <div class="course-bottom">
+
+    <div
+      class="course-status"
+      id="accordsStatus">
+
+      Pas encore commencé
+
+    </div>
+
+    <button
+      class="course-button"
+      onclick="openCourse('accords')">
+
+      Commencer
+
+    </button>
+
+  </div>
+
+</article>
+
+
+
+<!-- HARMONIE -->
+
+<article
+  class="course-card"
+  data-course="harmonie">
+
+  <div class="course-top">
+
+    <div class="course-icon">
+
+      🎼
+
+    </div>
+
+    <div class="course-info">
+
+      <h3>
+
+        Harmonie
+
+      </h3>
+
+      <p>
+
+        Comprendre les relations entre les accords et les notes.
+
+      </p>
+
+    </div>
+
+    <div
+      class="course-percent"
+      id="harmoniePercent">
+
+      0%
+
+    </div>
+
+  </div>
+
+
+  <div class="course-progress">
+
+    <div class="course-progress-top">
+
+      <span id="harmonieText">
+
+        0 leçon terminée
+
+      </span>
+
+      <span>
+
+        Progression
+
+      </span>
+
+    </div>
+
+    <div class="course-progress-bar">
+
+      <div
+        class="course-progress-fill"
+        id="harmonieFill">
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <div class="course-bottom">
+
+    <div
+      class="course-status"
+      id="harmonieStatus">
+
+      Pas encore commencé
+
+    </div>
+
+    <button
+      class="course-button"
+      onclick="openCourse('harmonie')">
+
+      Commencer
+
+    </button>
+
+  </div>
+
+</article>
+
+
+
+<!-- COORDINATION -->
+
+<article
+  class="course-card"
+  data-course="coordination">
+
+  <div class="course-top">
+
+    <div class="course-icon">
+
+      🤲
+
+    </div>
+
+    <div class="course-info">
+
+      <h3>
+
+        Coordination
+
+      </h3>
+
+      <p>
+
+        Développer la coordination des deux mains.
+
+      </p>
+
+    </div>
+
+    <div
+      class="course-percent"
+      id="coordinationPercent">
+
+      0%
+
+    </div>
+
+  </div>
+
+
+  <div class="course-progress">
+
+    <div class="course-progress-top">
+
+      <span id="coordinationText">
+
+        0 leçon terminée
+
+      </span>
+
+      <span>
+
+        Progression
+
+      </span>
+
+    </div>
+
+    <div class="course-progress-bar">
+
+      <div
+        class="course-progress-fill"
+        id="coordinationFill">
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <div class="course-bottom">
+
+    <div
+      class="course-status"
+      id="coordinationStatus">
+
+      Pas encore commencé
+
+    </div>
+
+    <button
+      class="course-button"
+      onclick="openCourse('coordination')">
+
+      Commencer
+
+    </button>
+
+  </div>
+
+</article>
+
+
+
+<!-- TECHNIQUE PIANISTIQUE -->
+
+<article
+  class="course-card"
+  data-course="technique">
+
+  <div class="course-top">
+
+    <div class="course-icon">
+
+      ⚡
+
+    </div>
+
+    <div class="course-info">
+
+      <h3>
+
+        Technique pianistique
+
+      </h3>
+
+      <p>
+
+        Posture, doigts, gammes, arpèges et vélocité.
+
+      </p>
+
+    </div>
+
+    <div
+      class="course-percent"
+      id="techniquePercent">
+
+      0%
+
+    </div>
+
+  </div>
+
+
+  <div class="course-progress">
+
+    <div class="course-progress-top">
+
+      <span id="techniqueText">
+
+        0 / 25 leçons
+
+      </span>
+
+      <span>
+
+        Progression
+
+      </span>
+
+    </div>
+
+    <div class="course-progress-bar">
+
+      <div
+        class="course-progress-fill"
+        id="techniqueFill">
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <div class="course-bottom">
+
+    <div
+      class="course-status"
+      id="techniqueStatus">
+
+      Pas encore commencé
+
+    </div>
+
+    <button
+      class="course-button"
+      onclick="openCourse('technique')">
+
+      Commencer
+
+    </button>
+
+  </div>
+
+</article>
+
+
+</section>
+
+
+
+<!-- =========================
+     DERNIÈRE ACTIVITÉ
+========================= -->
+
+<div class="section-title">
+
+  <h2>
+
+    ▶️ Dernière activité
+
+  </h2>
+
+  <p>
+
+    Reprends rapidement ton apprentissage.
+
+  </p>
+
+</div>
+
+
+<section class="last-card">
+
+  <div class="last-label">
+
+    Dernière leçon
+
+  </div>
+
+
+  <div
+    class="last-title"
+    id="lastTitle">
+
+    Aucune leçon commencée
+
+  </div>
+
+
+  <div
+    class="last-course"
+    id="lastCourse">
+
+    Commence un cours pour voir ta dernière activité ici.
+
+  </div>
+
+
+  <button
+    class="continue-button"
+    id="lastButton"
+    onclick="openLastCourse()">
+
+    Commencer mes cours
+
+  </button>
+
+</section>
+
+
+</main>
+
+
+
+<div
+  class="toast"
+  id="toast">
+</div>
+
+
+
+<script>
+
+/* =====================================================
+   THÈME
+===================================================== */
+
+const themeButton =
+  document.getElementById("themeButton");
+
+
+function applyTheme(){
+
+  const theme =
+    localStorage.getItem(
+      "pianoAcademyTheme"
+    );
+
+  if(theme === "dark"){
+
+    document.body.classList.add("dark");
+
+    themeButton.textContent =
+      "☀️";
+
+  }else{
+
+    document.body.classList.remove("dark");
+
+    themeButton.textContent =
+      "🌙";
+
+  }
+
+}
+
+
+themeButton.addEventListener(
+  "click",
+  function(){
+
+    const isDark =
+      document.body.classList.contains("dark");
+
+    if(isDark){
+
+      document.body.classList.remove("dark");
+
+      localStorage.setItem(
+        "pianoAcademyTheme",
+        "light"
+      );
+
+      themeButton.textContent =
+        "🌙";
+
+    }else{
+
+      document.body.classList.add("dark");
+
+      localStorage.setItem(
+        "pianoAcademyTheme",
+        "dark"
+      );
+
+      themeButton.textContent =
+        "☀️";
+
+    }
+
+  }
+);
+
+
+applyTheme();
+
+
+/* =====================================================
+   NAVIGATION
+===================================================== */
+
+function goBack(){
+
+  if(
+    document.referrer &&
+    document.referrer !== window.location.href
+  ){
+
+    history.back();
+
+  }else{
+
+    window.location.href =
+      "dashboard.html";
+
+  }
+
+}
+
+
+/* =====================================================
+   CONFIGURATION DES COURS
+===================================================== */
+
+const courseConfig = {
+
+  accords:{
+    name:"Maîtrise des accords",
+    file:"accords.html",
+    total:25
+  },
+
+  harmonie:{
+    name:"Harmonie",
+    file:"harmonie.html",
+    total:25
+  },
+
+  coordination:{
+    name:"Coordination",
+    file:"coordination.html",
+    total:25
+  },
+
+  technique:{
+    name:"Technique pianistique",
+    file:"technique-pianistique.html",
+    total:25
+  }
+
+};
+
+
+/* =====================================================
+   PROGRESSION TECHNIQUE
+===================================================== */
+
+/*
+   Le fichier technique-pianistique.html
+   utilise déjà cette clé :
+
+   pianoTechniqueCompleted
+
+   Exemple :
+
+   [1,2,3,4]
+
+   signifie que les leçons 1,2,3,4
+   sont terminées.
+*/
+
+
+function getTechniqueProgress(){
+
+  try{
+
+    const data =
+      JSON.parse(
+        localStorage.getItem(
+          "pianoTechniqueCompleted"
+        ) || "[]"
+      );
+
+    return Array.isArray(data)
+      ? data
+      : [];
+
+  }catch{
+
+    return [];
+
+  }
+
+}
+
+
+/* =====================================================
+   PROGRESSION DES AUTRES COURS
+===================================================== */
+
+/*
+   Pour les autres cours nous prévoyons
+   les mêmes structures.
+
+   Cela permettra de connecter facilement
+   leurs fichiers lorsqu'ils seront prêts.
+*/
+
+
+function getCourseProgress(course){
+
+  if(course === "technique"){
+
+    return getTechniqueProgress();
+
+  }
+
+
+  try{
+
+    const data =
+      JSON.parse(
+        localStorage.getItem(
+          "piano_" +
+          course +
+          "_completed"
+        ) || "[]"
+      );
+
+    return Array.isArray(data)
+      ? data
+      : [];
+
+  }catch{
+
+    return [];
+
+  }
+
+}
+
+
+/* =====================================================
+   CALCUL PROGRESSION
+===================================================== */
+
+function getPercentage(
+  completed,
+  total
+){
+
+  if(!total){
+    return 0;
+  }
+
+  return Math.min(
+    100,
+    Math.round(
+      (completed / total) * 100
+    )
+  );
+
+}
+
+
+/* =====================================================
+   AFFICHER UN COURS
+===================================================== */
+
+function updateCourse(
+  course
+){
+
+  const config =
+    courseConfig[course];
+
+  const completed =
+    getCourseProgress(course);
+
+  const count =
+    completed.length;
+
+  const percentage =
+    getPercentage(
+      count,
+      config.total
+    );
+
+
+  const percentElement =
+    document.getElementById(
+      course + "Percent"
+    );
+
+  const fillElement =
+    document.getElementById(
+      course + "Fill"
+    );
+
+  const textElement =
+    document.getElementById(
+      course + "Text"
+    );
+
+  const statusElement =
+    document.getElementById(
+      course + "Status"
+    );
+
+
+  if(percentElement){
+
+    percentElement.textContent =
+      percentage + "%";
+
+  }
+
+
+  if(fillElement){
+
+    fillElement.style.width =
+      percentage + "%";
+
+  }
+
+
+  if(textElement){
+
+    textElement.textContent =
+      count +
+      (
+        course === "technique"
+          ? " / " + config.total
+          : " leçon" +
+            (count > 1 ? "s" : "") +
+            " terminée" +
+            (count > 1 ? "s" : "")
+      );
+
+  }
+
+
+  const card =
+    document.querySelector(
+      '[data-course="' +
+      course +
+      '"]'
+    );
+
+
+  if(
+    percentage >= 100
+  ){
+
+    if(card){
+
+      card.classList.add(
+        "completed"
+      );
+
+    }
+
+    if(statusElement){
+
+      statusElement.textContent =
+        "✓ Cours terminé";
+
+    }
+
+    const button =
+      card
+        ?.querySelector(
+          ".course-button"
+        );
+
+    if(button){
+
+      button.textContent =
+        "Revoir";
+
+    }
+
+  }else if(count > 0){
+
+    if(statusElement){
+
+      statusElement.textContent =
+        "En cours";
+
+    }
+
+    const button =
+      card
+        ?.querySelector(
+          ".course-button"
+        );
+
+    if(button){
+
+      button.textContent =
+        "Continuer";
+
+    }
+
+  }else{
+
+    if(statusElement){
+
+      statusElement.textContent =
+        "Pas encore commencé";
+
+    }
+
+  }
+
+}
+
+
+/* =====================================================
+   PROGRESSION GÉNÉRALE
+===================================================== */
+
+function updateOverall(){
+
+  let totalLessons = 0;
+
+  let completedLessons = 0;
+
+  let completedCourses = 0;
+
+
+  Object.keys(courseConfig)
+    .forEach(course => {
+
+      const config =
+        courseConfig[course];
+
+      const completed =
+        getCourseProgress(course);
+
+      totalLessons +=
+        config.total;
+
+      completedLessons +=
+        completed.length;
+
+
+      if(
+        completed.length >=
+        config.total
+      ){
+
+        completedCourses++;
+
+      }
+
+    });
+
+
+  const percentage =
+    getPercentage(
+      completedLessons,
+      totalLessons
+    );
+
+
+  document.getElementById(
+    "completedLessons"
+  ).textContent =
+    completedLessons;
+
+
+  document.getElementById(
+    "completedCourses"
+  ).textContent =
+    completedCourses;
+
+
+  document.getElementById(
+    "globalPercent"
+  ).textContent =
+    percentage + "%";
+
+
+  document.getElementById(
+    "overallPercent"
+  ).textContent =
+    percentage + "%";
+
+
+  document.getElementById(
+    "overallFill"
+  ).style.width =
+    percentage + "%";
+
+}
+
+
+/* =====================================================
+   DERNIÈRE ACTIVITÉ
+===================================================== */
+
+function getLastActivity(){
+
+  try{
+
+    return JSON.parse(
+      localStorage.getItem(
+        "pianoAcademyLastLesson"
+      ) || "null"
+    );
+
+  }catch{
+
+    return null;
+
+  }
+
+}
+
+
+function updateLastActivity(){
+
+  const activity =
+    getLastActivity();
+
+
+  if(!activity){
+
+    document.getElementById(
+      "lastTitle"
+    ).textContent =
+      "Aucune leçon commencée";
+
+
+    document.getElementById(
+      "lastCourse"
+    ).textContent =
+      "Commence un cours pour voir ta dernière activité ici.";
+
+
+    document.getElementById(
+      "lastButton"
+    ).textContent =
+      "Commencer mes cours";
+
+    return;
+
+  }
+
+
+  document.getElementById(
+    "lastTitle"
+  ).textContent =
+    activity.lessonTitle ||
+    "Dernière leçon";
+
+
+  document.getElementById(
+    "lastCourse"
+  ).textContent =
+    activity.courseName ||
+    "Piano Academy";
+
+
+  document.getElementById(
+    "lastButton"
+  ).textContent =
+    "Continuer →";
+
+}
+
+
+/* =====================================================
+   OUVRIR UN COURS
+===================================================== */
+
+function openCourse(course){
+
+  const config =
+    courseConfig[course];
+
+  if(!config){
+    return;
+  }
+
+
+  window.location.href =
+    config.file;
+
+}
+
+
+/* =====================================================
+   OUVRIR LA DERNIÈRE ACTIVITÉ
+===================================================== */
+
+function openLastCourse(){
+
+  const activity =
+    getLastActivity();
+
+
+  if(
+    activity &&
+    activity.course
+  ){
+
+    openCourse(
+      activity.course
+    );
+
+    return;
+
+  }
+
+
+  /*
+     Si aucune activité n'existe,
+     on commence par le premier cours.
+  */
+
+  openCourse(
+    "accords"
+  );
+
+}
+
+
+/* =====================================================
+   INITIALISATION
+===================================================== */
+
+function updateProgression(){
+
+  Object.keys(courseConfig)
+    .forEach(course => {
+
+      updateCourse(course);
+
+    });
+
+
+  updateOverall();
+
+  updateLastActivity();
+
+}
+
+
+updateProgression();
+
+
+/* =====================================================
+   TOAST
+===================================================== */
+
+function showToast(text){
+
+  const toast =
+    document.getElementById(
+      "toast"
+    );
+
+
+  toast.textContent =
+    text;
+
+
+  toast.classList.add(
+    "show"
+  );
+
+
+  setTimeout(
+    function(){
+
+      toast.classList.remove(
+        "show"
+      );
+
+    },
+    2200
+  );
+
+}
+
+
+/* =====================================================
+   RETOUR AUTOMATIQUE
+===================================================== */
+
+window.addEventListener(
+  "storage",
+  function(){
+
+    updateProgression();
+
+  }
+);
+
+</script>
+
+
+</body>
+</html>
