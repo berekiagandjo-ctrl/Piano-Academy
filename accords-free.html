@@ -6,6 +6,9 @@
 
 <title>Les Accords — Piano Academy</title>
 
+<!-- SUPABASE -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 <style>
 :root{
     --bg:#ffffff;
@@ -506,6 +509,69 @@ td strong{
     display:none!important;
 }
 
+/* =====================================================
+   ÉCRAN DE PROTECTION
+===================================================== */
+
+#premium-loading{
+    position:fixed;
+    inset:0;
+    z-index:99999;
+    background:#ffffff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+}
+
+.loading-box{
+    width:100%;
+    max-width:380px;
+    text-align:center;
+    padding:30px 20px;
+    border:1px solid var(--border);
+    border-radius:24px;
+    box-shadow:var(--shadow);
+    background:white;
+}
+
+.loading-icon{
+    font-size:48px;
+    margin-bottom:15px;
+}
+
+.loading-title{
+    font-size:20px;
+    font-weight:800;
+    margin-bottom:8px;
+}
+
+.loading-text{
+    color:var(--muted);
+    font-size:14px;
+    line-height:1.6;
+}
+
+.spinner{
+    width:35px;
+    height:35px;
+    margin:20px auto 0;
+    border:4px solid #e5e7eb;
+    border-top-color:var(--primary);
+    border-radius:50%;
+    animation:spin .8s linear infinite;
+}
+
+@keyframes spin{
+    to{
+        transform:rotate(360deg);
+    }
+}
+
+#protected-content{
+    display:none;
+}
+
 @media(min-width:600px){
     .chord-grid{
         grid-template-columns:1fr 1fr;
@@ -534,6 +600,39 @@ td strong{
 
 <body>
 
+<!-- =====================================================
+     ÉCRAN AFFICHÉ PENDANT LA VÉRIFICATION
+===================================================== -->
+
+<div id="premium-loading">
+
+    <div class="loading-box">
+
+        <div class="loading-icon">
+            🔐
+        </div>
+
+        <div class="loading-title">
+            Vérification Premium
+        </div>
+
+        <div class="loading-text">
+            Vérification de votre accès au cours...
+        </div>
+
+        <div class="spinner"></div>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     CONTENU PROTÉGÉ
+===================================================== -->
+
+<div id="protected-content">
+
 <div class="app">
 
 <header class="header">
@@ -558,7 +657,7 @@ td strong{
 <section class="hero">
 
     <div class="badge">
-        🎓 COURS GRATUIT
+        ⭐ COURS PREMIUM
     </div>
 
     <div class="hero-icon">
@@ -2444,28 +2543,25 @@ td strong{
 </div>
 
 
-<!-- PREMIUM -->
+<!-- FIN -->
 
 <div class="card">
 
     <h2>
-        ⭐ Aller plus loin avec Premium
+        ⭐ Cours Premium terminé
     </h2>
 
     <p>
-        Ce cours Free présente les principales familles
-        d'accords et leurs formules. Le parcours Premium permet
-        d'aller beaucoup plus loin avec le guide complet,
-        les notions avancées, les voicings, l'harmonie,
-        les progressions avancées et les applications pratiques
-        au piano.
+        Tu as terminé ce cours sur les accords.
+        Continue ton parcours Piano Academy pour découvrir
+        les prochaines notions avancées.
     </p>
 
     <button
         class="finish"
-        onclick="goPremium()">
+        onclick="goBack()">
 
-        ⭐ Découvrir Piano Academy Premium
+        🎹 Retour au parcours
 
     </button>
 
@@ -2482,8 +2578,172 @@ td strong{
 
 </div>
 
+</div>
+
 
 <script>
+
+/* =====================================================
+   CONFIGURATION SUPABASE
+===================================================== */
+
+const SUPABASE_URL =
+    "https://swsvnzjeipcobodntajs.supabase.co";
+
+const SUPABASE_KEY =
+    "sb_publishable_JrPeCn1LhCNHY3BJZ5iCEQ_mc2iqLpf";
+
+
+const premiumSupabase =
+    window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_KEY
+    );
+
+
+/* =====================================================
+   PROTECTION PREMIUM
+===================================================== */
+
+async function checkPremiumAccess(){
+
+    const loading =
+        document.getElementById("premium-loading");
+
+    const content =
+        document.getElementById("protected-content");
+
+
+    try{
+
+        /* ---------------------------------------------
+           1. Vérifier la session
+        --------------------------------------------- */
+
+        const {
+            data: sessionData,
+            error: sessionError
+        } =
+        await premiumSupabase.auth.getSession();
+
+
+        if(sessionError){
+
+            throw sessionError;
+
+        }
+
+
+        const session =
+            sessionData.session;
+
+
+        /* ---------------------------------------------
+           2. Utilisateur non connecté
+        --------------------------------------------- */
+
+        if(!session){
+
+            window.location.href =
+                "connexion.html";
+
+            return;
+
+        }
+
+
+        /* ---------------------------------------------
+           3. Récupérer le plan utilisateur
+        --------------------------------------------- */
+
+        const {
+            data: profile,
+            error: profileError
+        } =
+        await premiumSupabase
+
+        .from("profiles")
+
+        .select("plan")
+
+        .eq(
+            "id",
+            session.user.id
+        )
+
+        .maybeSingle();
+
+
+        if(profileError){
+
+            throw profileError;
+
+        }
+
+
+        /* ---------------------------------------------
+           4. Vérifier Premium
+        --------------------------------------------- */
+
+        const plan =
+            String(
+                profile?.plan || "free"
+            )
+            .trim()
+            .toLowerCase();
+
+
+        console.log(
+            "Plan utilisateur :",
+            plan
+        );
+
+
+        /* ---------------------------------------------
+           5. FREE = PAS D'ACCÈS
+        --------------------------------------------- */
+
+        if(plan !== "premium"){
+
+            window.location.href =
+                "premium.html";
+
+            return;
+
+        }
+
+
+        /* ---------------------------------------------
+           6. PREMIUM = ACCÈS AUTORISÉ
+        --------------------------------------------- */
+
+        loading.style.display =
+            "none";
+
+        content.style.display =
+            "block";
+
+
+    }catch(error){
+
+        console.error(
+            "Erreur protection Premium :",
+            error
+        );
+
+
+        alert(
+            "Impossible de vérifier votre abonnement."
+        );
+
+
+        window.location.href =
+            "premium.html";
+
+    }
+
+}
+
 
 /* =====================================================
    ACCORDÉON
@@ -2494,7 +2754,9 @@ function toggle(button){
     const accordion =
         button.parentElement;
 
-    accordion.classList.toggle("open");
+    accordion.classList.toggle(
+        "open"
+    );
 
 }
 
@@ -2512,8 +2774,12 @@ function searchAccords(){
         .toLowerCase()
         .trim();
 
+
     const items =
-        document.querySelectorAll(".accordion");
+        document.querySelectorAll(
+            ".accordion"
+        );
+
 
     items.forEach(item => {
 
@@ -2521,13 +2787,21 @@ function searchAccords(){
             item.textContent
             .toLowerCase();
 
-        if(!query || text.includes(query)){
 
-            item.classList.remove("hidden");
+        if(
+            !query ||
+            text.includes(query)
+        ){
+
+            item.classList.remove(
+                "hidden"
+            );
 
         }else{
 
-            item.classList.add("hidden");
+            item.classList.add(
+                "hidden"
+            );
 
         }
 
@@ -2545,6 +2819,7 @@ function scrollToId(id){
     const element =
         document.getElementById(id);
 
+
     if(element){
 
         element.scrollIntoView({
@@ -2558,7 +2833,7 @@ function scrollToId(id){
 
 
 /* =====================================================
-   RETOUR DASHBOARD
+   RETOUR
 ===================================================== */
 
 function goBack(){
@@ -2570,15 +2845,17 @@ function goBack(){
 
 
 /* =====================================================
-   PREMIUM
+   DÉMARRAGE DE LA PROTECTION
 ===================================================== */
 
-function goPremium(){
+document.addEventListener(
+    "DOMContentLoaded",
+    function(){
 
-    window.location.href =
-        "premium.html";
+        checkPremiumAccess();
 
-}
+    }
+);
 
 </script>
 
