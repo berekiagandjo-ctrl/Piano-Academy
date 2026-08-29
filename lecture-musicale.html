@@ -1,0 +1,2967 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Lecture musicale — Piano Academy</title>
+
+<style>
+
+/* =====================================================
+   VARIABLES — STYLE SAAS
+===================================================== */
+
+:root{
+    --bg:#ffffff;
+    --card:#ffffff;
+    --card2:#f8fafc;
+    --text:#0f172a;
+    --muted:#64748b;
+    --border:#e2e8f0;
+
+    --primary:#7c3aed;
+    --primary2:#2563eb;
+
+    --success:#16a34a;
+    --warning:#d97706;
+    --danger:#dc2626;
+
+    --shadow:0 8px 25px rgba(15,23,42,.08);
+}
+
+body.dark{
+    --bg:#0f172a;
+    --card:#1e293b;
+    --card2:#334155;
+    --text:#f8fafc;
+    --muted:#94a3b8;
+    --border:#475569;
+
+    --shadow:0 12px 35px rgba(0,0,0,.25);
+}
+
+
+/* =====================================================
+   RESET
+===================================================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:Arial,Helvetica,sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    min-height:100vh;
+    transition:.25s;
+}
+
+
+/* =====================================================
+   APPLICATION
+===================================================== */
+
+.app{
+    width:100%;
+    max-width:760px;
+    margin:auto;
+    padding:14px;
+}
+
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+.header{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+    margin-bottom:16px;
+}
+
+.header-left{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.header-button{
+    width:44px;
+    height:44px;
+
+    border:1px solid var(--border);
+    border-radius:13px;
+
+    background:var(--card);
+    color:var(--text);
+
+    font-size:20px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    cursor:pointer;
+}
+
+.header-button:active{
+    transform:scale(.96);
+}
+
+.header-title{
+    font-size:19px;
+    font-weight:800;
+}
+
+
+/* =====================================================
+   HERO
+===================================================== */
+
+.hero{
+    position:relative;
+
+    overflow:hidden;
+
+    padding:26px;
+
+    border-radius:24px;
+
+    margin-bottom:16px;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--primary),
+            var(--primary2)
+        );
+
+    color:white;
+
+    box-shadow:var(--shadow);
+}
+
+.hero::before{
+    content:"";
+
+    position:absolute;
+
+    width:240px;
+    height:240px;
+
+    border-radius:50%;
+
+    background:rgba(255,255,255,.08);
+
+    top:-110px;
+    right:-70px;
+}
+
+.hero-content{
+    position:relative;
+    z-index:2;
+}
+
+.hero-badge{
+    display:inline-flex;
+
+    padding:7px 11px;
+
+    border-radius:20px;
+
+    background:rgba(255,255,255,.17);
+
+    font-size:12px;
+
+    font-weight:bold;
+
+    margin-bottom:12px;
+}
+
+.hero-icon{
+    font-size:42px;
+    margin-bottom:9px;
+}
+
+.hero h1{
+    font-size:27px;
+    margin-bottom:9px;
+}
+
+.hero p{
+    color:#e2e8f0;
+
+    line-height:1.65;
+
+    font-size:14px;
+}
+
+
+/* =====================================================
+   ACTIONS
+===================================================== */
+
+.actions{
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:10px;
+
+    margin-bottom:16px;
+}
+
+.action-button{
+    border:1px solid var(--border);
+
+    background:var(--card);
+
+    color:var(--text);
+
+    padding:13px;
+
+    border-radius:14px;
+
+    font-size:13px;
+
+    font-weight:700;
+
+    cursor:pointer;
+}
+
+.action-button:hover{
+    background:var(--card2);
+}
+
+.action-button.primary{
+    border:none;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--primary),
+            var(--primary2)
+        );
+
+    color:white;
+}
+
+
+/* =====================================================
+   RECHERCHE
+===================================================== */
+
+.search{
+    margin-bottom:16px;
+}
+
+.search input{
+    width:100%;
+
+    height:52px;
+
+    border:1px solid var(--border);
+
+    border-radius:15px;
+
+    outline:none;
+
+    background:var(--card);
+
+    color:var(--text);
+
+    padding:0 17px;
+
+    font-size:15px;
+}
+
+.search input::placeholder{
+    color:var(--muted);
+}
+
+.search input:focus{
+    border-color:var(--primary);
+
+    box-shadow:
+        0 0 0 3px
+        rgba(124,58,237,.14);
+}
+
+
+/* =====================================================
+   PROGRESSION
+===================================================== */
+
+.progress-card{
+    background:var(--card);
+
+    border:1px solid var(--border);
+
+    border-radius:18px;
+
+    padding:17px;
+
+    margin-bottom:18px;
+}
+
+.progress-top{
+    display:flex;
+
+    justify-content:space-between;
+
+    gap:10px;
+
+    font-size:13px;
+
+    margin-bottom:10px;
+}
+
+.progress-bar{
+    height:9px;
+
+    background:var(--card2);
+
+    border-radius:20px;
+
+    overflow:hidden;
+}
+
+.progress-fill{
+    width:0%;
+
+    height:100%;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--primary),
+            var(--primary2)
+        );
+
+    transition:.3s;
+}
+
+
+/* =====================================================
+   TITRE SECTION
+===================================================== */
+
+.section-title{
+    font-size:20px;
+
+    margin-bottom:12px;
+}
+
+
+/* =====================================================
+   LEÇONS
+===================================================== */
+
+.lessons{
+    display:grid;
+
+    gap:11px;
+}
+
+.lesson{
+    background:var(--card);
+
+    border:1px solid var(--border);
+
+    border-radius:18px;
+
+    overflow:hidden;
+
+    transition:.2s;
+}
+
+.lesson:hover{
+    border-color:var(--primary);
+}
+
+.lesson-header{
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    padding:15px;
+
+    cursor:pointer;
+}
+
+.lesson-number{
+    width:43px;
+    height:43px;
+
+    flex-shrink:0;
+
+    border-radius:12px;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--primary),
+            var(--primary2)
+        );
+
+    color:white;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-size:13px;
+
+    font-weight:800;
+}
+
+.lesson-info{
+    flex:1;
+}
+
+.lesson-title{
+    font-size:15px;
+
+    font-weight:800;
+
+    margin-bottom:4px;
+}
+
+.lesson-description{
+    color:var(--muted);
+
+    font-size:12px;
+
+    line-height:1.4;
+}
+
+.lesson-status{
+    font-size:18px;
+}
+
+
+/* =====================================================
+   LECTEUR
+===================================================== */
+
+.reader{
+    display:none;
+}
+
+.reader.active{
+    display:block;
+}
+
+.reader-header{
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    margin-bottom:14px;
+}
+
+.reader-back{
+    border:1px solid var(--border);
+
+    background:var(--card);
+
+    color:var(--text);
+
+    padding:11px 14px;
+
+    border-radius:12px;
+
+    cursor:pointer;
+
+    font-weight:700;
+}
+
+.reader-number{
+    color:var(--muted);
+
+    font-size:13px;
+}
+
+
+/* =====================================================
+   CARTE DU COURS
+===================================================== */
+
+.lesson-card{
+    background:var(--card);
+
+    border:1px solid var(--border);
+
+    border-radius:22px;
+
+    padding:22px;
+
+    box-shadow:var(--shadow);
+}
+
+.lesson-card h2{
+    font-size:25px;
+
+    margin-bottom:8px;
+}
+
+.lesson-subtitle{
+    color:var(--muted);
+
+    font-size:14px;
+
+    line-height:1.65;
+
+    margin-bottom:22px;
+}
+
+
+/* =====================================================
+   SECTIONS
+===================================================== */
+
+.lesson-section{
+    margin-top:23px;
+}
+
+.lesson-section h3{
+    color:var(--primary);
+
+    font-size:18px;
+
+    margin-bottom:9px;
+}
+
+.lesson-section p{
+    font-size:15px;
+
+    line-height:1.8;
+
+    color:var(--text);
+}
+
+
+/* =====================================================
+   BLOCS D'INFORMATION
+===================================================== */
+
+.definition{
+    background:rgba(124,58,237,.09);
+
+    border-left:4px solid var(--primary);
+
+    padding:15px;
+
+    border-radius:12px;
+
+    line-height:1.7;
+
+    margin-top:12px;
+}
+
+.tip{
+    background:rgba(22,163,74,.09);
+
+    border-left:4px solid var(--success);
+
+    padding:15px;
+
+    border-radius:12px;
+
+    line-height:1.7;
+
+    margin-top:12px;
+}
+
+.warning{
+    background:rgba(217,119,6,.10);
+
+    border-left:4px solid var(--warning);
+
+    padding:15px;
+
+    border-radius:12px;
+
+    line-height:1.7;
+
+    margin-top:12px;
+}
+
+
+/* =====================================================
+   SYMBOL BOX
+===================================================== */
+
+.symbol-box{
+    margin:18px 0;
+
+    padding:20px;
+
+    border:1px solid var(--border);
+
+    border-radius:18px;
+
+    background:var(--card2);
+
+    text-align:center;
+}
+
+.music-symbol{
+    font-family:"Times New Roman",serif;
+
+    font-size:76px;
+
+    line-height:1;
+
+    margin-bottom:10px;
+}
+
+.symbol-name{
+    font-weight:800;
+
+    font-size:15px;
+}
+
+.symbol-description{
+    color:var(--muted);
+
+    font-size:13px;
+
+    margin-top:6px;
+
+    line-height:1.5;
+}
+
+
+/* =====================================================
+   PORTÉE MUSICALE
+===================================================== */
+
+.staff-box{
+    margin:18px 0;
+
+    padding:20px;
+
+    border:1px solid var(--border);
+
+    border-radius:18px;
+
+    background:var(--card2);
+
+    overflow:hidden;
+}
+
+.staff{
+    position:relative;
+
+    height:120px;
+
+    min-width:330px;
+
+    margin:auto;
+}
+
+.staff-lines{
+    position:absolute;
+
+    left:35px;
+    right:5px;
+
+    top:35px;
+}
+
+.staff-line{
+    height:2px;
+
+    background:var(--text);
+
+    margin-bottom:16px;
+}
+
+.treble-clef{
+    position:absolute;
+
+    left:0;
+
+    top:5px;
+
+    font-family:"Times New Roman",serif;
+
+    font-size:76px;
+
+    line-height:1;
+
+    z-index:3;
+}
+
+.bass-clef{
+    position:absolute;
+
+    left:2px;
+
+    top:22px;
+
+    font-family:"Times New Roman",serif;
+
+    font-size:55px;
+
+    line-height:1;
+
+    z-index:3;
+}
+
+
+/* =====================================================
+   NOTES
+===================================================== */
+
+.note-list{
+    display:grid;
+
+    grid-template-columns:
+        repeat(7,1fr);
+
+    gap:7px;
+
+    margin-top:15px;
+}
+
+.note-item{
+    padding:11px 5px;
+
+    text-align:center;
+
+    border:1px solid var(--border);
+
+    border-radius:11px;
+
+    background:var(--card2);
+
+    font-weight:800;
+
+    font-size:13px;
+}
+
+.note-symbol{
+    font-family:"Times New Roman",serif;
+
+    font-size:28px;
+
+    display:block;
+
+    margin-bottom:4px;
+}
+
+
+/* =====================================================
+   VALEURS DES NOTES
+===================================================== */
+
+.rhythm-grid{
+    display:grid;
+
+    grid-template-columns:
+        repeat(2,1fr);
+
+    gap:10px;
+
+    margin-top:15px;
+}
+
+.rhythm-card{
+    background:var(--card2);
+
+    border:1px solid var(--border);
+
+    border-radius:15px;
+
+    padding:15px;
+
+    text-align:center;
+}
+
+.rhythm-symbol{
+    font-family:"Times New Roman",serif;
+
+    font-size:42px;
+
+    margin-bottom:8px;
+}
+
+.rhythm-name{
+    font-weight:800;
+
+    font-size:14px;
+}
+
+.rhythm-time{
+    color:var(--muted);
+
+    font-size:12px;
+
+    margin-top:5px;
+}
+
+
+/* =====================================================
+   MESURES
+===================================================== */
+
+.time-signature{
+    display:inline-flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    justify-content:center;
+
+    width:80px;
+
+    margin:15px 7px;
+
+    padding:9px;
+
+    border:2px solid var(--primary);
+
+    border-radius:14px;
+
+    font-size:25px;
+
+    font-weight:800;
+
+    line-height:1.05;
+}
+
+.time-signature span{
+    display:block;
+}
+
+
+/* =====================================================
+   EXERCICE
+===================================================== */
+
+.exercise{
+    margin-top:20px;
+
+    padding:17px;
+
+    border:1px solid var(--border);
+
+    border-radius:16px;
+
+    background:var(--card2);
+}
+
+.exercise-title{
+    font-weight:800;
+
+    margin-bottom:8px;
+
+    color:var(--primary);
+}
+
+.exercise p{
+    line-height:1.7;
+
+    font-size:14px;
+}
+
+
+/* =====================================================
+   NAVIGATION
+===================================================== */
+
+.reader-nav{
+    display:flex;
+
+    gap:10px;
+
+    margin-top:15px;
+}
+
+.nav-btn{
+    flex:1;
+
+    border:none;
+
+    padding:14px;
+
+    border-radius:13px;
+
+    background:var(--card2);
+
+    color:var(--text);
+
+    cursor:pointer;
+
+    font-size:14px;
+
+    font-weight:700;
+}
+
+.nav-btn.primary{
+    background:
+        linear-gradient(
+            135deg,
+            var(--primary),
+            var(--primary2)
+        );
+
+    color:white;
+}
+
+
+/* =====================================================
+   TERMINER
+===================================================== */
+
+.complete{
+    width:100%;
+
+    border:none;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--primary),
+            var(--primary2)
+        );
+
+    color:white;
+
+    padding:15px;
+
+    border-radius:14px;
+
+    margin-top:20px;
+
+    font-size:15px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+}
+
+.complete.done{
+    background:var(--success);
+}
+
+
+/* =====================================================
+   MESSAGE FIN
+===================================================== */
+
+.final-card{
+    margin-top:18px;
+
+    padding:20px;
+
+    border-radius:18px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(124,58,237,.10),
+            rgba(37,99,235,.10)
+        );
+
+    border:1px solid var(--border);
+
+    text-align:center;
+}
+
+.final-card .icon{
+    font-size:40px;
+
+    margin-bottom:8px;
+}
+
+.final-card h3{
+    margin-bottom:7px;
+}
+
+.final-card p{
+    color:var(--muted);
+
+    line-height:1.6;
+
+    font-size:14px;
+}
+
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+.footer{
+    text-align:center;
+
+    color:var(--muted);
+
+    padding:30px 0 20px;
+
+    font-size:12px;
+
+    line-height:1.7;
+}
+
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media(max-width:520px){
+
+    .app{
+        padding:12px;
+    }
+
+    .hero{
+        padding:21px;
+    }
+
+    .hero h1{
+        font-size:23px;
+    }
+
+    .lesson-card{
+        padding:18px;
+    }
+
+    .lesson-card h2{
+        font-size:22px;
+    }
+
+    .note-list{
+        grid-template-columns:
+            repeat(4,1fr);
+    }
+
+    .rhythm-grid{
+        grid-template-columns:1fr;
+    }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+<div class="app">
+
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
+<header class="header">
+
+    <div class="header-left">
+
+        <button
+            class="header-button"
+            onclick="goBack()">
+
+            ←
+
+        </button>
+
+        <div class="header-title">
+            📖 Lecture musicale
+        </div>
+
+    </div>
+
+    <button
+        class="header-button"
+        id="themeButton"
+        onclick="toggleTheme()">
+
+        🌙
+
+    </button>
+
+</header>
+
+
+<!-- =====================================================
+     HERO
+===================================================== -->
+
+<section class="hero">
+
+    <div class="hero-content">
+
+        <div class="hero-badge">
+            🟢 COURS GRATUIT
+        </div>
+
+        <div class="hero-icon">
+            🎼
+        </div>
+
+        <h1>
+            Lecture musicale
+        </h1>
+
+        <p>
+            Apprends progressivement à lire la musique,
+            reconnaître les notes sur une portée,
+            comprendre les rythmes et lire une petite
+            partition de piano.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     ACTIONS
+===================================================== -->
+
+<div class="actions">
+
+    <button
+        class="action-button"
+        onclick="goBack()">
+
+        ← Retour
+
+    </button>
+
+    <button
+        class="action-button primary"
+        onclick="openLesson(1)">
+
+        ▶ Commencer
+
+    </button>
+
+</div>
+
+
+<!-- =====================================================
+     RECHERCHE
+===================================================== -->
+
+<div class="search">
+
+    <input
+        type="search"
+        id="searchInput"
+        placeholder="🔎 Rechercher une leçon..."
+        oninput="searchLessons()">
+
+</div>
+
+
+<!-- =====================================================
+     PROGRESSION
+===================================================== -->
+
+<div class="progress-card">
+
+    <div class="progress-top">
+
+        <span>
+            📚 Progression
+        </span>
+
+        <span id="progressText">
+            0 / 8
+        </span>
+
+    </div>
+
+    <div class="progress-bar">
+
+        <div
+            class="progress-fill"
+            id="progressFill">
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     LISTE DES COURS
+===================================================== -->
+
+<section id="home">
+
+<h2 class="section-title">
+    🎼 Parcours de lecture musicale
+</h2>
+
+<div class="lessons" id="lessonsList">
+
+
+<!-- 01 -->
+
+<div
+    class="lesson"
+    data-number="1">
+
+    <div
+        class="lesson-header"
+        onclick="openLesson(1)">
+
+        <div class="lesson-number">
+            01
+        </div>
+
+        <div class="lesson-info">
+
+            <div class="lesson-title">
+                Découvrir la portée
+            </div>
+
+            <div class="lesson-description">
+                Comprendre les 5 lignes et les 4 espaces.
+            </div>
+
+        </div>
+
+        <div class="lesson-status"
+             id="status1">
+            ○
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- 02 -->
+
+<div
+    class="lesson"
+    data-number="2">
+
+    <div
+        class="lesson-header"
+        onclick="openLesson(2)">
+
+        <div class="lesson-number">
+            02
+        </div>
+
+        <div class="lesson-info">
+
+            <div class="lesson-title">
+                La clé de Sol
+            </div>
+
+            <div class="lesson-description">
+                Comprendre et reconnaître le symbole 𝄞.
+            </div>
+
+        </div>
+
+        <div class="lesson-status"
+             id="status2">
+            ○
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- 03 -->
+
+<div
+    class="lesson"
+    data-number="3">
+
+    <div
+        class="lesson-header"
+        onclick="openLesson(3)">
+
+        <div class="lesson-number">
+            03
+        </div>
+
+        <div class="lesson-info">
+
+            <div class="lesson-title">
+                La clé de Fa
+            </div>
+
+            <div class="lesson-description">
+                Découvrir la clé utilisée pour les notes graves.
+            </div>
+
+        </div>
+
+        <div class="lesson-status"
+             id="status3">
+            ○
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- 04 -->
+
+<div
+    class="lesson"
+    data-number="4">
+
+    <div
+        class="lesson-header"
+        onclick="openLesson(4)">
+
+        <div class="lesson-number">
+            04
+        </div>
+
+        <div class="lesson-info">
+
+            <div class="lesson-title">
+                Les notes sur la portée
+            </div>
+
+            <div class="lesson-description">
+                Relier les notes écrites aux touches du piano.
+            </div>
+
+        </div>
+
+        <div class="lesson-status"
+             id="status4">
+            ○
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- 05 -->
+
+<div
+    class="lesson"
+    data-number="5">
+
+    <div
+        class="lesson-header"
+        onclick="openLesson(5)">
+
+        <div class="lesson-number">
+            05
+        </div>
+
+        <div class="lesson-info">
+
+            <div class="lesson-title">
+                Les valeurs des notes
+            </div>
+
+            <div class="lesson-description">
+                Ronde, blanche, noire, croche et double croche.
+            </div>
+
+        </div>
+
+        <div class="lesson-status"
+             id="status5">
+            ○
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- 06 -->
+
+<div
+    class="lesson"
+    data-number="6">
+
+    <div
+        class="lesson-header"
+        onclick="openLesson(6)">
+
+        <div class="lesson-number">
+            06
+        </div>
+
+        <div class="lesson-info">
+
+            <div class="lesson-title">
+                Les silences
+            </div>
+
+            <div class="lesson-description">
+                Comprendre les moments où il ne faut pas jouer.
+            </div>
+
+        </div>
+
+        <div class="lesson-status"
+             id="status6">
+            ○
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- 07 -->
+
+<div
+    class="lesson"
+    data-number="7">
+
+    <div
+        class="lesson-header"
+        onclick="openLesson(7)">
+
+        <div class="lesson-number">
+            07
+        </div>
+
+        <div class="lesson-info">
+
+            <div class="lesson-title">
+                Mesures et temps
+            </div>
+
+            <div class="lesson-description">
+                Comprendre 2/4, 3/4, 4/4 et la pulsation.
+            </div>
+
+        </div>
+
+        <div class="lesson-status"
+             id="status7">
+            ○
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- 08 -->
+
+<div
+    class="lesson"
+    data-number="8">
+
+    <div
+        class="lesson-header"
+        onclick="openLesson(8)">
+
+        <div class="lesson-number">
+            08
+        </div>
+
+        <div class="lesson-info">
+
+            <div class="lesson-title">
+                Lire une petite partition
+            </div>
+
+            <div class="lesson-description">
+                Mettre toutes les notions en pratique.
+            </div>
+
+        </div>
+
+        <div class="lesson-status"
+             id="status8">
+            ○
+        </div>
+
+    </div>
+
+</div>
+
+</div>
+
+
+<div class="final-card">
+
+    <div class="icon">
+        🎹
+    </div>
+
+    <h3>
+        Prêt à commencer ?
+    </h3>
+
+    <p>
+        Progresse leçon après leçon et apprends
+        à comprendre le langage écrit de la musique.
+    </p>
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+     LECTEUR
+===================================================== -->
+
+<section
+    class="reader"
+    id="reader">
+
+    <div class="reader-header">
+
+        <button
+            class="reader-back"
+            onclick="closeLesson()">
+
+            ← Leçons
+
+        </button>
+
+        <span
+            class="reader-number"
+            id="readerNumber">
+        </span>
+
+    </div>
+
+
+    <article
+        class="lesson-card"
+        id="lessonContent">
+    </article>
+
+
+    <div class="reader-nav">
+
+        <button
+            class="nav-btn"
+            onclick="previousLesson()">
+
+            ← Précédent
+
+        </button>
+
+        <button
+            class="nav-btn primary"
+            onclick="nextLesson()">
+
+            Suivant →
+
+        </button>
+
+    </div>
+
+
+    <button
+        class="complete"
+        id="completeButton"
+        onclick="completeLesson()">
+
+        ✓ Marquer comme terminé
+
+    </button>
+
+</section>
+
+
+<footer class="footer">
+
+    Piano Academy<br>
+
+    Apprends • Pratique • Progresse
+
+</footer>
+
+
+</div>
+
+
+<script>
+
+/* =====================================================
+   DONNÉES DES LEÇONS
+===================================================== */
+
+const lessons = {
+
+
+1:{
+title:"Découvrir la portée",
+subtitle:"Comprendre les lignes et les espaces qui permettent d'écrire la musique.",
+
+content:`
+
+<div class="lesson-section">
+
+<h3>🎼 Qu'est-ce qu'une portée ?</h3>
+
+<p>
+La portée est l'un des éléments fondamentaux de
+l'écriture musicale. Elle permet de représenter
+la hauteur des sons grâce à des lignes et des espaces.
+</p>
+
+<div class="definition">
+<strong>À retenir :</strong><br>
+Une portée classique possède
+<strong>5 lignes</strong> et
+<strong>4 espaces</strong>.
+</div>
+
+</div>
+
+
+<div class="staff-box">
+
+<div class="staff">
+
+<div class="treble-clef">
+𝄞
+</div>
+
+<div class="staff-lines">
+
+<div class="staff-line"></div>
+<div class="staff-line"></div>
+<div class="staff-line"></div>
+<div class="staff-line"></div>
+<div class="staff-line"></div>
+
+</div>
+
+</div>
+
+</div>
+
+
+<div class="lesson-section">
+
+<h3>📏 Les cinq lignes</h3>
+
+<p>
+Les lignes sont comptées de bas en haut :
+la première ligne est la ligne la plus basse
+et la cinquième est la plus haute.
+</p>
+
+</div>
+
+
+<div class="lesson-section">
+
+<h3>⬜ Les quatre espaces</h3>
+
+<p>
+Les espaces se trouvent entre les cinq lignes.
+Les notes peuvent être placées soit sur une ligne,
+soit dans un espace.
+</p>
+
+</div>
+
+
+<div class="tip">
+💡 <strong>Conseil :</strong><br>
+Avant d'apprendre les notes, habitue-toi à regarder
+la portée comme une carte musicale.
+</div>
+
+
+<div class="exercise">
+
+<div class="exercise-title">
+🎯 Petit exercice
+</div>
+
+<p>
+Compte les cinq lignes de bas en haut,
+puis les quatre espaces.
+Répète plusieurs fois jusqu'à pouvoir
+les identifier immédiatement.
+</p>
+
+</div>
+
+`},
+
+
+2:{
+title:"La clé de Sol",
+subtitle:"Découvrir le symbole 𝄞 et apprendre à se repérer sur la portée.",
+
+content:`
+
+<div class="symbol-box">
+
+<div class="music-symbol">
+𝄞
+</div>
+
+<div class="symbol-name">
+Clé de Sol
+</div>
+
+<div class="symbol-description">
+Elle permet notamment de lire les notes aiguës.
+</div>
+
+</div>
+
+
+<div class="lesson-section">
+
+<h3>🎼 À quoi sert la clé de Sol ?</h3>
+
+<p>
+La clé de Sol est placée au début de la portée.
+Elle permet de déterminer la hauteur des notes
+écrites sur cette portée.
+</p>
+
+</div>
+
+
+<div class="lesson-section">
+
+<h3>🎵 Où se trouve le Sol ?</h3>
+
+<p>
+En clé de Sol, le Sol se trouve sur la
+<strong>deuxième ligne</strong> de la portée,
+en partant du bas.
+</p>
+
+<div class="definition">
+<strong>Repère important :</strong><br>
+Deuxième ligne = <strong>Sol</strong>.
+</div>
+
+</div>
+
+
+<div class="staff-box">
+
+<div class="staff">
+
+<div class="treble-clef">
+𝄞
+</div>
+
+<div class="staff-lines">
+
+<div class="staff-line"></div>
+<div class="staff-line"></div>
+<div class="staff-line"></div>
+<div class="staff-line"></div>
+<div class="staff-line"></div>
+
+</div>
+
+</div>
+
+</div>
+
+
+<div class="lesson-section">
+
+<h3>🎹 Au piano</h3>
+
+<p>
+Une fois la clé de Sol comprise, tu peux progressivement
+associer les notes écrites sur la portée aux touches
+du clavier.
+</p>
+
+</div>
+
+
+<div class="tip">
+💡 <strong>Astuce :</strong><br>
+Mémorise d'abord le Sol de la deuxième ligne.
+Utilise ensuite ce repère pour retrouver les autres notes.
+</div>
+
+`},
+
+
+3:{
+title:"La clé de Fa",
+subtitle:"Comprendre la clé 𝄢 et apprendre à lire les notes graves.",
+
+content:`
+
+<div class="symbol-box">
+
+<div class="music-symbol">
+𝄢
+</div>
+
+<div class="symbol-name">
+Clé de Fa
+</div>
+
+<div class="symbol-description">
+Elle est principalement utilisée pour les notes graves.
+</div>
+
+</div>
+
+
+<div class="lesson-section">
+
+<h3>🎼 À quoi sert la clé de Fa ?</h3>
+
+<p>
+La clé de Fa permet de représenter plus facilement
+les notes graves sur la portée.
+Au piano, elle est très souvent associée à la
+main gauche.
+</p>
+
+</div>
+
+
+<div class="lesson-section">
+
+<h3>🎵 Où se trouve le Fa ?</h3>
+
+<p>
+En clé de Fa, le Fa se trouve sur la
+<strong>quatrième ligne</strong> en partant du bas.
+</p>
+
+<div class="definition">
+<strong>Repère important :</strong><br>
+Quatrième ligne = <strong>Fa</strong>.
+</div>
+
+</div>
+
+
+<div class="staff-box">
+
+<div class="staff">
+
+<div class="bass-clef">
+𝄢
+</div>
+
+<div class="staff-lines">
+
+<div class="staff-line"></div>
+<div class="staff-line"></div>
+<div class="staff-line"></div>
+<div class="staff-line"></div>
+<div class="staff-line"></div>
+
+</div>
+
+</div>
+
+</div>
+
+
+<div class="lesson-section">
+
+<h3>🎹 Au piano</h3>
+
+<p>
+La clé de Fa est particulièrement importante pour
+la lecture des parties graves jouées avec la main gauche.
+</p>
+
+</div>
+
+
+<div class="tip">
+💡 <strong>Astuce :</strong><br>
+Mémorise le Fa de la quatrième ligne.
+C'est ton principal point de repère.
+</div>
+
+`},
+
+
+4:{
+title:"Les notes sur la portée",
+subtitle:"Comprendre comment les notes Do, Ré, Mi, Fa, Sol, La et Si sont représentées.",
+
+content:`
+
+<div class="lesson-section">
+
+<h3>🎵 Les sept notes</h3>
+
+<p>
+Les notes musicales naturelles sont :
+<strong>Do, Ré, Mi, Fa, Sol, La et Si</strong>.
+Elles se répètent ensuite dans différentes hauteurs.
+</p>
+
+<div class="note-list">
+
+<div class="note-item">
+<span class="note-symbol">●</span>
+Do
+</div>
+
+<div class="note-item">
+<span class="note-symbol">●</span>
+Ré
+</div>
+
+<div class="note-item">
+<span class="note-symbol">●</span>
+Mi
+</div>
+
+<div class="note-item">
+<span class="note-symbol">●</span>
+Fa
+</div>
+
+<div class="note-item">
+<span class="note-symbol">●</span>
+Sol
+</div>
+
+<div class="note-item">
+<span class="note-symbol">●</span>
+La
+</div>
+
+<div class="note-item">
+<span class="note-symbol">●</span>
+Si
+</div>
+
+</div>
+
+</div>
+
+
+<div class="lesson-section">
+
+<h3>📖 Ligne ou espace ?</h3>
+
+<p>
+Une note peut être placée directement sur une ligne
+ou au milieu d'un espace.
+Sa position permet de déterminer sa hauteur.
+</p>
+
+</div>
+
+
+<div class="lesson-section">
+
+<h3>🎹 De la partition au piano</h3>
+
+<p>
+Lire une note consiste à faire le lien entre
+trois éléments :
+</p>
+
+<div class="definition">
+<strong>1.</strong> La position de la note sur la portée.<br><br>
+<strong>2.</strong> Le nom de la note.<br><br>
+<strong>3.</strong> La touche correspondante sur le piano.
+</div>
+
+</div>
+
+
+<div class="exercise">
+
+<div class="exercise-title">
+🎯 Petit exercice
+</div>
+
+<p>
+Choisis une note au hasard et demande-toi :
+« Quel est son nom ? Où se trouve-t-elle sur le clavier ? »
+</p>
+
+</div>
+
+`},
+
+
+5:{
+title:"Les valeurs des notes",
+subtitle:"Comprendre combien de temps chaque note doit être tenue.",
+
+content:`
+
+<div class="lesson-section">
+
+<h3>⏱️ Pourquoi les valeurs sont importantes ?</h3>
+
+<p>
+Deux notes peuvent avoir la même hauteur mais
+des durées différentes.
+La valeur indique donc combien de temps une note
+doit être jouée.
+</p>
+
+</div>
+
+
+<div class="rhythm-grid">
+
+<div class="rhythm-card">
+
+<div class="rhythm-symbol">
+𝅝
+</div>
+
+<div class="rhythm-name">
+Ronde
+</div>
+
+<div class="rhythm-time">
+4 temps
+</div>
+
+</div>
+
+
+<div class="rhythm-card">
+
+<div class="rhythm-symbol">
+𝅗𝅥
+</div>
+
+<div class="rhythm-name">
+Blanche
+</div>
+
+<div class="rhythm-time">
+2 temps
+</div>
+
+</div>
+
+
+<div class="rhythm-card">
+
+<div class="rhythm-symbol">
+♩
+</div>
+
+<div class="rhythm-name">
+Noire
+</div>
+
+<div class="rhythm-time">
+1 temps
+</div>
+
+</div>
+
+
+<div class="rhythm-card">
+
+<div class="rhythm-symbol">
+♪
+</div>
+
+<div class="rhythm-name">
+Croche
+</div>
+
+<div class="rhythm-time">
+1/2 temps
+</div>
+
+</div>
+
+</div>
+
+
+<div class="lesson-section">
+
+<h3>🎼 La double croche</h3>
+
+<p>
+La double croche est encore plus courte que la croche.
+Dans une mesure où la noire vaut un temps,
+une double croche vaut généralement un quart de temps.
+</p>
+
+<div class="symbol-box">
+
+<div class="music-symbol">
+𝅘𝅥𝅮
+</div>
+
+<div class="symbol-name">
+Double croche
+</div>
+
+</div>
+
+</div>
+
+
+<div class="tip">
+💡 <strong>À retenir :</strong><br>
+Ronde = 4 temps<br>
+Blanche = 2 temps<br>
+Noire = 1 temps<br>
+Croche = 1/2 temps
+</div>
+
+`},
+
+
+6:{
+title:"Les silences",
+subtitle:"Comprendre les symboles qui indiquent qu'il ne faut pas jouer.",
+
+content:`
+
+<div class="lesson-section">
+
+<h3>🤫 Qu'est-ce qu'un silence ?</h3>
+
+<p>
+En musique, le silence n'est pas une absence d'information.
+Il est écrit avec des symboles précis qui indiquent
+combien de temps le musicien doit arrêter de jouer.
+</p>
+
+</div>
+
+
+<div class="rhythm-grid">
+
+<div class="rhythm-card">
+
+<div class="rhythm-symbol">
+𝄻
+</div>
+
+<div class="rhythm-name">
+Silence de ronde
+</div>
+
+<div class="rhythm-time">
+4 temps
+</div>
+
+</div>
+
+
+<div class="rhythm-card">
+
+<div class="rhythm-symbol">
+𝄼
+</div>
+
+<div class="rhythm-name">
+Silence de blanche
+</div>
+
+<div class="rhythm-time">
+2 temps
+</div>
+
+</div>
+
+
+<div class="rhythm-card">
+
+<div class="rhythm-symbol">
+𝄽
+</div>
+
+<div class="rhythm-name">
+Silence de noire
+</div>
+
+<div class="rhythm-time">
+1 temps
+</div>
+
+</div>
+
+
+<div class="rhythm-card">
+
+<div class="rhythm-symbol">
+𝄾
+</div>
+
+<div class="rhythm-name">
+Silence de croche
+</div>
+
+<div class="rhythm-time">
+1/2 temps
+</div>
+
+</div>
+
+</div>
+
+
+<div class="lesson-section">
+
+<h3>🎵 Pourquoi les silences sont-ils importants ?</h3>
+
+<p>
+Les silences permettent de créer des respirations,
+des espaces et des rythmes.
+Ils doivent être respectés aussi précisément
+que les notes.
+</p>
+
+</div>
+
+
+<div class="warning">
+⚠️ <strong>Attention :</strong><br>
+Un silence ne signifie pas « jouer moins fort ».
+Il signifie qu'il faut réellement respecter
+la durée pendant laquelle aucune note ne doit être jouée.
+</div>
+
+
+<div class="exercise">
+
+<div class="exercise-title">
+🎯 Petit exercice
+</div>
+
+<p>
+Compte lentement 1 - 2 - 3 - 4.
+Imagine que tu joues une note sur 1 puis
+que tu restes silencieux pendant 2 temps.
+</p>
+
+</div>
+
+`},
+
+
+7:{
+title:"Mesures et temps",
+subtitle:"Comprendre la pulsation, les mesures et les chiffres comme 2/4, 3/4 et 4/4.",
+
+content:`
+
+<div class="lesson-section">
+
+<h3>⏱️ Le temps</h3>
+
+<p>
+Le temps est une unité qui permet d'organiser
+le rythme.
+Lorsque tu comptes régulièrement « 1, 2, 3, 4 »,
+tu suis une pulsation.
+</p>
+
+</div>
+
+
+<div class="lesson-section">
+
+<h3>📏 La mesure</h3>
+
+<p>
+Une mesure regroupe un certain nombre de temps.
+Le nombre de temps dépend de la signature rythmique.
+</p>
+
+</div>
+
+
+<div class="lesson-section">
+
+<h3>🎼 Les signatures courantes</h3>
+
+<div>
+
+<div class="time-signature">
+<span>2</span>
+<span>4</span>
+</div>
+
+<div class="time-signature">
+<span>3</span>
+<span>4</span>
+</div>
+
+<div class="time-signature">
+<span>4</span>
+<span>4</span>
+</div>
+
+</div>
+
+</div>
+
+
+<div class="lesson-section">
+
+<h3>2/4</h3>
+
+<p>
+La mesure 2/4 contient deux temps.
+Elle est très fréquente dans les musiques
+avec une sensation régulière et binaire.
+</p>
+
+</div>
+
+
+<div class="lesson-section">
+
+<h3>3/4</h3>
+
+<p>
+La mesure 3/4 contient trois temps.
+Elle est souvent associée à une sensation
+de valse : <strong>1 - 2 - 3</strong>.
+</p>
+
+</div>
+
+
+<div class="lesson-section">
+
+<h3>4/4</h3>
+
+<p>
+La mesure 4/4 contient quatre temps.
+C'est l'une des signatures les plus courantes
+dans la musique moderne et populaire.
+</p>
+
+</div>
+
+
+<div class="tip">
+💡 <strong>Exercice :</strong><br>
+Mets un métronome lent et compte :
+<br><br>
+<strong>1 - 2 - 3 - 4 | 1 - 2 - 3 - 4</strong>
+<br><br>
+Chaque groupe représente une mesure en 4/4.
+</div>
+
+`},
+
+
+8:{
+title:"Lire une petite partition",
+subtitle:"Mettre ensemble les notes, les clés, les rythmes et les mesures.",
+
+content:`
+
+<div class="lesson-section">
+
+<h3>🎹 Maintenant, on rassemble tout</h3>
+
+<p>
+Lire une partition demande de regarder plusieurs
+informations en même temps :
+la clé, les notes, les valeurs, les silences,
+la mesure et les indications de tempo.
+</p>
+
+</div>
+
+
+<div class="definition">
+
+<strong>Pour lire une partition :</strong><br><br>
+
+1️⃣ Identifie la clé.<br><br>
+
+2️⃣ Observe la signature rythmique.<br><br>
+
+3️⃣ Identifie les notes.<br><br>
+
+4️⃣ Observe la durée de chaque note.<br><br>
+
+5️⃣ Repère les silences.<br><br>
+
+6️⃣ Commence lentement.
+
+</div>
+
+
+<div class="staff-box">
+
+<div class="staff">
+
+<div class="treble-clef">
+𝄞
+</div>
+
+<div class="staff-lines">
+
+<div class="staff-line"></div>
+<div class="staff-line"></div>
+<div class="staff-line"></div>
+<div class="staff-line"></div>
+<div class="staff-line"></div>
+
+</div>
+
+</div>
+
+</div>
+
+
+<div class="lesson-section">
+
+<h3>🎵 Exemple de lecture</h3>
+
+<p>
+Supposons que tu rencontres une mesure en 4/4
+avec quatre noires.
+Tu peux compter :
+</p>
+
+<div class="symbol-box">
+
+<div class="music-symbol">
+♩ ♩ ♩ ♩
+</div>
+
+<div class="symbol-name">
+1 - 2 - 3 - 4
+</div>
+
+</div>
+
+<p>
+Chaque noire occupe un temps.
+Tu dois donc jouer quatre notes régulièrement
+pendant la mesure.
+</p>
+
+</div>
+
+
+<div class="lesson-section">
+
+<h3>🎯 Méthode pour débuter</h3>
+
+<p>
+Ne cherche pas immédiatement à jouer vite.
+Commence par identifier les notes.
+Ensuite, compte le rythme.
+Puis joue très lentement.
+</p>
+
+</div>
+
+
+<div class="tip">
+💡 <strong>Règle essentielle :</strong><br>
+Une bonne lecture musicale commence par la précision,
+pas par la vitesse.
+</div>
+
+
+<div class="final-card">
+
+<div class="icon">
+🏆
+</div>
+
+<h3>
+Félicitations !
+</h3>
+
+<p>
+Tu viens de terminer les bases de la lecture musicale.
+Continue à pratiquer régulièrement pour reconnaître
+les notes et les rythmes de plus en plus rapidement.
+</p>
+
+</div>
+
+`
+
+}
+
+};
+
+
+/* =====================================================
+   ÉTAT
+===================================================== */
+
+let currentLesson = 0;
+
+let completed =
+    JSON.parse(
+        localStorage.getItem(
+            "lectureMusicaleProgress"
+        ) || "[]"
+    );
+
+
+/* =====================================================
+   OUVRIR UNE LEÇON
+===================================================== */
+
+function openLesson(number){
+
+    if(!lessons[number]){
+        return;
+    }
+
+    currentLesson = number;
+
+    const lesson =
+        lessons[number];
+
+    document.getElementById(
+        "home"
+    ).style.display = "none";
+
+    document.querySelector(
+        ".search"
+    ).style.display = "none";
+
+    document.querySelector(
+        ".progress-card"
+    ).style.display = "none";
+
+    document.querySelector(
+        ".actions"
+    ).style.display = "none";
+
+    document.querySelector(
+        ".hero"
+    ).style.display = "none";
+
+
+    document.getElementById(
+        "reader"
+    ).classList.add("active");
+
+
+    document.getElementById(
+        "readerNumber"
+    ).textContent =
+        "Leçon " +
+        number +
+        " / 8";
+
+
+    document.getElementById(
+        "lessonContent"
+    ).innerHTML = `
+
+        <h2>
+            ${lesson.title}
+        </h2>
+
+        <div class="lesson-subtitle">
+            ${lesson.subtitle}
+        </div>
+
+        ${lesson.content}
+
+    `;
+
+
+    updateCompleteButton();
+
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
+
+}
+
+
+/* =====================================================
+   FERMER LEÇON
+===================================================== */
+
+function closeLesson(){
+
+    currentLesson = 0;
+
+    document.getElementById(
+        "reader"
+    ).classList.remove("active");
+
+    document.getElementById(
+        "home"
+    ).style.display = "block";
+
+    document.querySelector(
+        ".search"
+    ).style.display = "block";
+
+    document.querySelector(
+        ".progress-card"
+    ).style.display = "block";
+
+    document.querySelector(
+        ".actions"
+    ).style.display = "grid";
+
+    document.querySelector(
+        ".hero"
+    ).style.display = "block";
+
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
+
+}
+
+
+/* =====================================================
+   LEÇON SUIVANTE
+===================================================== */
+
+function nextLesson(){
+
+    if(currentLesson < 8){
+
+        openLesson(
+            currentLesson + 1
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   LEÇON PRÉCÉDENTE
+===================================================== */
+
+function previousLesson(){
+
+    if(currentLesson > 1){
+
+        openLesson(
+            currentLesson - 1
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   TERMINER
+===================================================== */
+
+function completeLesson(){
+
+    if(
+        currentLesson &&
+        !completed.includes(
+            currentLesson
+        )
+    ){
+
+        completed.push(
+            currentLesson
+        );
+
+        localStorage.setItem(
+            "lectureMusicaleProgress",
+            JSON.stringify(completed)
+        );
+
+    }
+
+    updateProgress();
+
+    updateCompleteButton();
+
+}
+
+
+/* =====================================================
+   BOUTON TERMINÉ
+===================================================== */
+
+function updateCompleteButton(){
+
+    const button =
+        document.getElementById(
+            "completeButton"
+        );
+
+    if(
+        completed.includes(
+            currentLesson
+        )
+    ){
+
+        button.textContent =
+            "✓ Leçon terminée";
+
+        button.classList.add(
+            "done"
+        );
+
+    }else{
+
+        button.textContent =
+            "✓ Marquer comme terminé";
+
+        button.classList.remove(
+            "done"
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   PROGRESSION
+===================================================== */
+
+function updateProgress(){
+
+    completed =
+        completed.filter(
+            number =>
+                Number.isInteger(number) &&
+                number >= 1 &&
+                number <= 8
+        );
+
+    completed =
+        [...new Set(completed)];
+
+    const count =
+        completed.length;
+
+    const percent =
+        (count / 8) * 100;
+
+
+    document.getElementById(
+        "progressText"
+    ).textContent =
+        count + " / 8";
+
+
+    document.getElementById(
+        "progressFill"
+    ).style.width =
+        percent + "%";
+
+
+    for(
+        let i = 1;
+        i <= 8;
+        i++
+    ){
+
+        const status =
+            document.getElementById(
+                "status" + i
+            );
+
+        if(!status){
+            continue;
+        }
+
+        status.textContent =
+            completed.includes(i)
+                ? "✓"
+                : "○";
+
+    }
+
+}
+
+
+/* =====================================================
+   RECHERCHE
+===================================================== */
+
+function searchLessons(){
+
+    const query =
+        document.getElementById(
+            "searchInput"
+        ).value
+        .toLowerCase()
+        .trim();
+
+
+    const lessonsElements =
+        document.querySelectorAll(
+            ".lesson"
+        );
+
+
+    lessonsElements.forEach(
+        lesson => {
+
+            const text =
+                lesson.textContent
+                .toLowerCase();
+
+            lesson.style.display =
+                (
+                    !query ||
+                    text.includes(query)
+                )
+                ? "block"
+                : "none";
+
+        }
+    );
+
+}
+
+
+/* =====================================================
+   MODE SOMBRE
+===================================================== */
+
+function toggleTheme(){
+
+    document.body.classList.toggle(
+        "dark"
+    );
+
+    const dark =
+        document.body.classList.contains(
+            "dark"
+        );
+
+
+    localStorage.setItem(
+        "lectureMusicaleTheme",
+        dark
+            ? "dark"
+            : "light"
+    );
+
+
+    document.getElementById(
+        "themeButton"
+    ).textContent =
+        dark
+            ? "☀️"
+            : "🌙";
+
+}
+
+
+/* =====================================================
+   CHARGER LE THÈME
+===================================================== */
+
+function loadTheme(){
+
+    const theme =
+        localStorage.getItem(
+            "lectureMusicaleTheme"
+        );
+
+
+    if(theme === "dark"){
+
+        document.body.classList.add(
+            "dark"
+        );
+
+        document.getElementById(
+            "themeButton"
+        ).textContent =
+            "☀️";
+
+    }else{
+
+        document.body.classList.remove(
+            "dark"
+        );
+
+        document.getElementById(
+            "themeButton"
+        ).textContent =
+            "🌙";
+
+    }
+
+}
+
+
+/* =====================================================
+   RETOUR DASHBOARD
+===================================================== */
+
+function goBack(){
+
+    if(
+        document
+        .getElementById("reader")
+        .classList.contains("active")
+    ){
+
+        closeLesson();
+
+        return;
+
+    }
+
+    window.location.href =
+        "dashboard.html";
+
+}
+
+
+/* =====================================================
+   DÉMARRAGE
+===================================================== */
+
+loadTheme();
+
+updateProgress();
+
+</script>
+
+</body>
+</html>
