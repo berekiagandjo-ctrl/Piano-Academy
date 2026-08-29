@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0"
+>
+
+<title>Piano Academy</title>
+
+<meta
+  name="description"
+  content="Piano Academy — Apprenez le piano, développez votre technique et progressez à votre rythme."
+>
+
+<style>
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+:root{
+  --primary:#6c5ce7;
+  --primary-dark:#5848d6;
+  --secondary:#00cec9;
+  --gold:#f5b942;
+
+  --background:#f5f6fa;
+  --card:#ffffff;
+
+  --text:#1e1e2f;
+  --muted:#777b8a;
+
+  --border:#e2e4ec;
+}
+
+body{
+  min-height:100vh;
+
+  font-family:
+    Arial,
+    Helvetica,
+    sans-serif;
+
+  background:
+    linear-gradient(
+      135deg,
+      #f5f6fa,
+      #eeeaff
+    );
+
+  color:var(--text);
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  padding:20px;
+}
+
+
+/* CONTENEUR */
+
+.container{
+  width:100%;
+  max-width:520px;
+}
+
+
+/* CARTE */
+
+.card{
+  background:var(--card);
+
+  border:1px solid var(--border);
+
+  border-radius:28px;
+
+  padding:40px 30px;
+
+  text-align:center;
+
+  box-shadow:
+    0 20px 60px
+    rgba(40,35,80,.12);
+}
+
+
+/* LOGO */
+
+.logo{
+  width:75px;
+  height:75px;
+
+  margin:0 auto 20px;
+
+  border-radius:20px;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--primary),
+      var(--primary-dark)
+    );
+
+  color:white;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  font-size:38px;
+
+  box-shadow:
+    0 12px 30px
+    rgba(108,92,231,.25);
+}
+
+
+/* TITRE */
+
+h1{
+  font-size:30px;
+  margin-bottom:10px;
+}
+
+h1 span{
+  color:var(--primary);
+}
+
+
+/* DESCRIPTION */
+
+.description{
+  color:var(--muted);
+
+  font-size:14px;
+
+  line-height:1.7;
+
+  margin-bottom:28px;
+}
+
+
+/* AVANTAGES */
+
+.features{
+  display:grid;
+
+  grid-template-columns:
+    repeat(2,1fr);
+
+  gap:12px;
+
+  margin-bottom:28px;
+}
+
+.feature{
+  background:#fafbfe;
+
+  border:1px solid var(--border);
+
+  border-radius:14px;
+
+  padding:15px 10px;
+}
+
+.feature-icon{
+  font-size:25px;
+
+  margin-bottom:7px;
+}
+
+.feature strong{
+  display:block;
+
+  font-size:12px;
+
+  margin-bottom:4px;
+}
+
+.feature span{
+  color:var(--muted);
+
+  font-size:10px;
+}
+
+
+/* BOUTONS */
+
+.buttons{
+  display:flex;
+
+  flex-direction:column;
+
+  gap:12px;
+}
+
+.btn{
+  width:100%;
+
+  min-height:50px;
+
+  border:none;
+
+  border-radius:12px;
+
+  font-size:14px;
+
+  font-weight:800;
+
+  cursor:pointer;
+
+  transition:.2s;
+}
+
+.btn:hover{
+  transform:translateY(-2px);
+}
+
+
+/* INSCRIPTION */
+
+.btn-primary{
+  background:
+    linear-gradient(
+      135deg,
+      var(--primary),
+      var(--primary-dark)
+    );
+
+  color:white;
+
+  box-shadow:
+    0 10px 25px
+    rgba(108,92,231,.25);
+}
+
+
+/* CONNEXION */
+
+.btn-secondary{
+  background:#fafbfe;
+
+  color:var(--primary);
+
+  border:
+    1px solid
+    var(--border);
+}
+
+
+/* TEXTE */
+
+.bottom-text{
+  margin-top:22px;
+
+  color:var(--muted);
+
+  font-size:11px;
+
+  line-height:1.5;
+}
+
+
+/* RESPONSIVE */
+
+@media(max-width:480px){
+
+  .card{
+    padding:32px 20px;
+
+    border-radius:22px;
+  }
+
+  h1{
+    font-size:27px;
+  }
+
+  .features{
+    grid-template-columns:1fr;
+  }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="container">
+
+  <main class="card">
+
+
+    <!-- LOGO -->
+
+    <div class="logo">
+      🎹
+    </div>
+
+
+    <!-- TITRE -->
+
+    <h1>
+      Bienvenue sur
+      <span>Piano Academy</span>
+    </h1>
+
+
+    <!-- DESCRIPTION -->
+
+    <p class="description">
+
+      Apprenez le piano progressivement,
+      développez votre technique et
+      améliorez votre musicalité grâce
+      à notre plateforme d'apprentissage.
+
+    </p>
+
+
+    <!-- AVANTAGES -->
+
+    <section class="features">
+
+
+      <div class="feature">
+
+        <div class="feature-icon">
+          🎹
+        </div>
+
+        <strong>
+          Cours de piano
+        </strong>
+
+        <span>
+          Apprenez progressivement
+        </span>
+
+      </div>
+
+
+      <div class="feature">
+
+        <div class="feature-icon">
+          📚
+        </div>
+
+        <strong>
+          Formation
+        </strong>
+
+        <span>
+          Progressez à votre rythme
+        </span>
+
+      </div>
+
+
+      <div class="feature">
+
+        <div class="feature-icon">
+          📈
+        </div>
+
+        <strong>
+          Progression
+        </strong>
+
+        <span>
+          Suivez votre évolution
+        </span>
+
+      </div>
+
+
+      <div class="feature">
+
+        <div class="feature-icon">
+          ⭐
+        </div>
+
+        <strong>
+          Premium
+        </strong>
+
+        <span>
+          Accédez aux cours avancés
+        </span>
+
+      </div>
+
+
+    </section>
+
+
+    <!-- BOUTONS -->
+
+    <div class="buttons">
+
+
+      <button
+        class="btn btn-primary"
+        onclick="goToInscription()"
+      >
+
+        🚀 S'inscrire
+
+      </button>
+
+
+      <button
+        class="btn btn-secondary"
+        onclick="goToConnexion()"
+      >
+
+        🔐 Se connecter
+
+      </button>
+
+
+    </div>
+
+
+    <p class="bottom-text">
+
+      Commencez votre apprentissage du piano
+      dès maintenant avec Piano Academy.
+
+    </p>
+
+
+  </main>
+
+</div>
+
+
+<script>
+
+/* ================================
+   NAVIGATION
+================================ */
+
+function goToInscription(){
+
+  window.location.href =
+    "inscription.html";
+
+}
+
+
+function goToConnexion(){
+
+  window.location.href =
+    "connexion.html";
+
+}
+
+</script>
+
+
+</body>
+
+</html>
