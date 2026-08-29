@@ -1,0 +1,1454 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0"
+>
+
+<title>Politique de confidentialité — Piano Academy</title>
+
+<meta
+  name="description"
+  content="Politique de confidentialité de Piano Academy."
+>
+
+<meta
+  name="theme-color"
+  content="#6c5ce7"
+>
+
+<style>
+
+/* =====================================================
+   RESET
+===================================================== */
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+
+/* =====================================================
+   VARIABLES
+===================================================== */
+
+:root{
+
+  --primary:#6c5ce7;
+  --primary-dark:#5848d6;
+
+  --secondary:#00cec9;
+
+  --gold:#f5b942;
+
+  --background:#f5f6fa;
+  --card:#ffffff;
+  --soft:#fafbfe;
+
+  --text:#1e1e2f;
+  --muted:#777b8a;
+
+  --border:#e2e4ec;
+
+  --success:#00b894;
+  --danger:#e74c3c;
+
+  --shadow:
+    0 12px 35px rgba(25,25,50,.08);
+
+}
+
+
+/* =====================================================
+   MODE SOMBRE
+===================================================== */
+
+body.dark{
+
+  --background:#11121a;
+  --card:#1b1d28;
+  --soft:#222531;
+
+  --text:#f5f5fa;
+  --muted:#a7a9b7;
+
+  --border:#303342;
+
+  --shadow:
+    0 12px 35px rgba(0,0,0,.25);
+
+}
+
+
+/* =====================================================
+   BODY
+===================================================== */
+
+body{
+
+  min-height:100vh;
+
+  font-family:
+    Arial,
+    Helvetica,
+    sans-serif;
+
+  background:var(--background);
+
+  color:var(--text);
+
+  transition:.25s;
+
+}
+
+
+/* =====================================================
+   BUTTON
+===================================================== */
+
+button{
+
+  font-family:inherit;
+
+  cursor:pointer;
+
+}
+
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+.header{
+
+  position:sticky;
+
+  top:0;
+
+  z-index:100;
+
+  height:70px;
+
+  background:var(--card);
+
+  border-bottom:
+    1px solid
+    var(--border);
+
+}
+
+
+.header-inner{
+
+  width:100%;
+
+  max-width:1150px;
+
+  height:100%;
+
+  margin:auto;
+
+  padding:
+    0 20px;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:space-between;
+
+}
+
+
+.header-left{
+
+  display:flex;
+
+  align-items:center;
+
+  gap:13px;
+
+}
+
+
+/* =====================================================
+   BOUTON RETOUR
+===================================================== */
+
+.back-button,
+.theme-button{
+
+  width:42px;
+
+  height:42px;
+
+  border:none;
+
+  border-radius:11px;
+
+  background:var(--soft);
+
+  color:var(--text);
+
+  font-size:20px;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+}
+
+
+.back-button:hover,
+.theme-button:hover{
+
+  background:#eeeaff;
+
+  color:var(--primary);
+
+}
+
+
+/* =====================================================
+   BRAND
+===================================================== */
+
+.brand{
+
+  display:flex;
+
+  align-items:center;
+
+  gap:10px;
+
+}
+
+
+.brand-icon{
+
+  width:40px;
+
+  height:40px;
+
+  border-radius:11px;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--primary),
+      var(--primary-dark)
+    );
+
+  color:white;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  font-size:20px;
+
+}
+
+
+.brand-name{
+
+  font-size:17px;
+
+  font-weight:800;
+
+}
+
+
+/* =====================================================
+   CONTAINER
+===================================================== */
+
+.container{
+
+  width:100%;
+
+  max-width:900px;
+
+  margin:auto;
+
+  padding:
+    30px 20px 70px;
+
+}
+
+
+/* =====================================================
+   TITRE
+===================================================== */
+
+.page-title{
+
+  margin-bottom:25px;
+
+}
+
+
+.page-title h1{
+
+  font-size:30px;
+
+  margin-bottom:8px;
+
+}
+
+
+.page-title p{
+
+  color:var(--muted);
+
+  font-size:13px;
+
+  line-height:1.7;
+
+}
+
+
+/* =====================================================
+   CARTE
+===================================================== */
+
+.info-card{
+
+  background:var(--card);
+
+  border:
+    1px solid
+    var(--border);
+
+  border-radius:18px;
+
+  padding:24px;
+
+  margin-bottom:18px;
+
+  box-shadow:var(--shadow);
+
+}
+
+
+/* =====================================================
+   TITRE DE SECTION
+===================================================== */
+
+.section-title{
+
+  display:flex;
+
+  align-items:center;
+
+  gap:10px;
+
+  margin-bottom:13px;
+
+}
+
+
+.section-icon{
+
+  width:38px;
+
+  height:38px;
+
+  border-radius:11px;
+
+  background:
+    rgba(108,92,231,.12);
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  font-size:19px;
+
+}
+
+
+.section-title h2{
+
+  font-size:16px;
+
+}
+
+
+/* =====================================================
+   TEXTE
+===================================================== */
+
+.info-card p{
+
+  color:var(--muted);
+
+  font-size:13px;
+
+  line-height:1.75;
+
+  margin-bottom:12px;
+
+}
+
+
+.info-card p:last-child{
+
+  margin-bottom:0;
+
+}
+
+
+/* =====================================================
+   LISTE
+===================================================== */
+
+.info-card ul{
+
+  margin:
+
+    8px 0 0 20px;
+
+}
+
+
+.info-card li{
+
+  color:var(--muted);
+
+  font-size:13px;
+
+  line-height:1.75;
+
+  margin-bottom:7px;
+
+}
+
+
+.info-card li:last-child{
+
+  margin-bottom:0;
+
+}
+
+
+/* =====================================================
+   IMPORTANT
+===================================================== */
+
+.highlight{
+
+  background:
+    rgba(108,92,231,.08);
+
+  border-left:
+    4px solid
+    var(--primary);
+
+  border-radius:10px;
+
+  padding:14px 15px;
+
+  margin-top:15px;
+
+}
+
+
+.highlight p{
+
+  margin:0;
+
+}
+
+
+/* =====================================================
+   DATE
+===================================================== */
+
+.last-update{
+
+  color:var(--muted);
+
+  font-size:11px;
+
+  margin-top:8px;
+
+}
+
+
+/* =====================================================
+   CONTACT
+===================================================== */
+
+.contact-box{
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(108,92,231,.10),
+      rgba(0,206,201,.08)
+    );
+
+  border:
+    1px solid
+    var(--border);
+
+  border-radius:16px;
+
+  padding:18px;
+
+  margin-top:10px;
+
+}
+
+
+.contact-box strong{
+
+  display:block;
+
+  font-size:13px;
+
+  margin-bottom:6px;
+
+}
+
+
+.contact-box span{
+
+  color:var(--muted);
+
+  font-size:12px;
+
+  line-height:1.6;
+
+}
+
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+.footer{
+
+  text-align:center;
+
+  color:var(--muted);
+
+  font-size:11px;
+
+  line-height:1.7;
+
+  margin-top:30px;
+
+}
+
+
+/* =====================================================
+   TOAST
+===================================================== */
+
+.toast{
+
+  position:fixed;
+
+  left:50%;
+
+  bottom:25px;
+
+  transform:
+    translate(-50%,120px);
+
+  z-index:500;
+
+  padding:
+    13px 18px;
+
+  border-radius:12px;
+
+  background:#1e1e2f;
+
+  color:white;
+
+  font-size:12px;
+
+  box-shadow:
+    0 10px 30px
+    rgba(0,0,0,.25);
+
+  transition:.3s;
+
+}
+
+
+.toast.show{
+
+  transform:
+    translate(-50%,0);
+
+}
+
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media(max-width:600px){
+
+  .container{
+
+    padding:
+      22px 15px 55px;
+
+  }
+
+
+  .page-title h1{
+
+    font-size:26px;
+
+  }
+
+
+  .info-card{
+
+    padding:19px;
+
+    border-radius:16px;
+
+  }
+
+
+  .info-card p,
+  .info-card li{
+
+    font-size:12px;
+
+  }
+
+
+  .brand-name{
+
+    font-size:15px;
+
+  }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
+<header class="header">
+
+  <div class="header-inner">
+
+    <div class="header-left">
+
+      <button
+        class="back-button"
+        onclick="goBack()"
+        aria-label="Retour"
+      >
+        ←
+      </button>
+
+
+      <div class="brand">
+
+        <div class="brand-icon">
+          🎹
+        </div>
+
+        <div class="brand-name">
+          Piano Academy
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <button
+      class="theme-button"
+      id="themeButton"
+      onclick="toggleDarkMode()"
+      aria-label="Changer le thème"
+    >
+      🌙
+    </button>
+
+  </div>
+
+</header>
+
+
+<!-- =====================================================
+     MAIN
+===================================================== -->
+
+<main class="container">
+
+
+  <!-- TITRE -->
+
+  <div class="page-title">
+
+    <h1>
+      🔒 Politique de confidentialité
+    </h1>
+
+    <p>
+      Découvre comment Piano Academy protège
+      et utilise les informations liées à ton compte.
+    </p>
+
+    <div class="last-update">
+      Dernière mise à jour : 2026
+    </div>
+
+  </div>
+
+
+  <!-- INTRODUCTION -->
+
+  <section class="info-card">
+
+    <div class="section-title">
+
+      <div class="section-icon">
+        🔐
+      </div>
+
+      <h2>
+        Notre engagement
+      </h2>
+
+    </div>
+
+
+    <p>
+
+      Piano Academy respecte ta vie privée.
+      Cette politique explique quelles informations
+      peuvent être utilisées lorsque tu utilises
+      l'application, notamment lors de la création
+      et de l'utilisation de ton compte.
+
+    </p>
+
+
+    <div class="highlight">
+
+      <p>
+
+        Nous cherchons à collecter uniquement les
+        informations nécessaires au fonctionnement
+        de Piano Academy et à l'amélioration de
+        ton expérience d'apprentissage.
+
+      </p>
+
+    </div>
+
+  </section>
+
+
+  <!-- DONNEES COMPTE -->
+
+  <section class="info-card">
+
+    <div class="section-title">
+
+      <div class="section-icon">
+        👤
+      </div>
+
+      <h2>
+        Informations du compte
+      </h2>
+
+    </div>
+
+
+    <p>
+      Lorsque tu crées un compte, certaines
+      informations peuvent être associées à ton profil.
+    </p>
+
+
+    <ul>
+
+      <li>
+        Adresse e-mail utilisée pour le compte.
+      </li>
+
+      <li>
+        Informations de profil que tu choisis
+        de renseigner.
+      </li>
+
+      <li>
+        Informations nécessaires à l'authentification
+        et à la gestion de ton compte.
+      </li>
+
+    </ul>
+
+  </section>
+
+
+  <!-- PROGRESSION -->
+
+  <section class="info-card">
+
+    <div class="section-title">
+
+      <div class="section-icon">
+        📈
+      </div>
+
+      <h2>
+        Progression et apprentissage
+      </h2>
+
+    </div>
+
+
+    <p>
+
+      Piano Academy peut enregistrer certaines
+      informations liées à ton apprentissage afin
+      de permettre le suivi de ta progression.
+
+    </p>
+
+
+    <ul>
+
+      <li>
+        Cours commencés ou terminés.
+      </li>
+
+      <li>
+        Progression dans les différentes formations.
+      </li>
+
+      <li>
+        Préférences liées à ton expérience
+        d'apprentissage.
+      </li>
+
+    </ul>
+
+
+    <p>
+
+      Ces informations permettent notamment
+      d'afficher ta progression et de faciliter
+      la reprise de tes cours.
+
+    </p>
+
+  </section>
+
+
+  <!-- STOCKAGE LOCAL -->
+
+  <section class="info-card">
+
+    <div class="section-title">
+
+      <div class="section-icon">
+        💾
+      </div>
+
+      <h2>
+        Stockage sur ton appareil
+      </h2>
+
+    </div>
+
+
+    <p>
+
+      Certaines préférences et informations
+      de fonctionnement peuvent être enregistrées
+      localement sur ton appareil grâce au stockage
+      du navigateur.
+
+    </p>
+
+
+    <ul>
+
+      <li>
+        Préférence de thème clair ou sombre.
+      </li>
+
+      <li>
+        Préférences de l'application.
+      </li>
+
+      <li>
+        Certaines informations nécessaires
+        au suivi de la progression.
+      </li>
+
+    </ul>
+
+  </section>
+
+
+  <!-- SUPABASE -->
+
+  <section class="info-card">
+
+    <div class="section-title">
+
+      <div class="section-icon">
+        ☁️
+      </div>
+
+      <h2>
+        Authentification et données
+      </h2>
+
+    </div>
+
+
+    <p>
+
+      Piano Academy utilise des services techniques
+      permettant notamment de gérer l'inscription,
+      la connexion et les comptes utilisateurs.
+
+    </p>
+
+
+    <p>
+
+      Les données nécessaires au fonctionnement
+      du compte peuvent être traitées par ces
+      services conformément à leurs propres
+      politiques de confidentialité et conditions
+      applicables.
+
+    </p>
+
+  </section>
+
+
+  <!-- PAIEMENT -->
+
+  <section class="info-card">
+
+    <div class="section-title">
+
+      <div class="section-icon">
+        💳
+      </div>
+
+      <h2>
+        Paiements
+      </h2>
+
+    </div>
+
+
+    <p>
+
+      Lorsque tu achètes une fonctionnalité
+      ou un contenu Premium, le paiement peut
+      être traité par un prestataire de paiement
+      externe.
+
+    </p>
+
+
+    <p>
+
+      Les informations bancaires ou de paiement
+      sensibles ne sont pas destinées à être
+      stockées directement dans Piano Academy.
+
+    </p>
+
+  </section>
+
+
+  <!-- SECURITE -->
+
+  <section class="info-card">
+
+    <div class="section-title">
+
+      <div class="section-icon">
+        🛡️
+      </div>
+
+      <h2>
+        Sécurité
+      </h2>
+
+    </div>
+
+
+    <p>
+
+      Nous mettons en place des mesures raisonnables
+      pour protéger les informations utilisées par
+      l'application contre les accès non autorisés,
+      les pertes ou les utilisations abusives.
+
+    </p>
+
+
+    <p>
+
+      Cependant, aucun système informatique ou
+      service en ligne ne peut garantir une sécurité
+      absolue.
+
+    </p>
+
+  </section>
+
+
+  <!-- PARTAGE -->
+
+  <section class="info-card">
+
+    <div class="section-title">
+
+      <div class="section-icon">
+        🤝
+      </div>
+
+      <h2>
+        Partage des informations
+      </h2>
+
+    </div>
+
+
+    <p>
+
+      Piano Academy ne cherche pas à vendre tes
+      informations personnelles.
+
+    </p>
+
+
+    <p>
+
+      Certaines données peuvent toutefois être
+      traitées par des prestataires techniques
+      lorsque cela est nécessaire au fonctionnement
+      de l'application, par exemple pour
+      l'authentification ou les paiements.
+
+    </p>
+
+  </section>
+
+
+  <!-- DROITS -->
+
+  <section class="info-card">
+
+    <div class="section-title">
+
+      <div class="section-icon">
+        ⚖️
+      </div>
+
+      <h2>
+        Tes droits
+      </h2>
+
+    </div>
+
+
+    <p>
+
+      Selon les lois applicables, tu peux disposer
+      de différents droits concernant tes données
+      personnelles.
+
+    </p>
+
+
+    <ul>
+
+      <li>
+        Demander l'accès à certaines données.
+      </li>
+
+      <li>
+        Demander la correction d'informations
+        inexactes.
+      </li>
+
+      <li>
+        Demander la suppression de certaines
+        données lorsque cela est applicable.
+      </li>
+
+      <li>
+        Demander des informations sur l'utilisation
+        de tes données.
+      </li>
+
+    </ul>
+
+  </section>
+
+
+  <!-- SUPPRESSION -->
+
+  <section class="info-card">
+
+    <div class="section-title">
+
+      <div class="section-icon">
+        🗑️
+      </div>
+
+      <h2>
+        Suppression du compte
+      </h2>
+
+    </div>
+
+
+    <p>
+
+      Si tu souhaites supprimer ton compte ou
+      demander la suppression de certaines données,
+      tu peux contacter le responsable de Piano
+      Academy afin d'obtenir les informations
+      nécessaires.
+
+    </p>
+
+  </section>
+
+
+  <!-- CONTACT -->
+
+  <section class="info-card">
+
+    <div class="section-title">
+
+      <div class="section-icon">
+        📩
+      </div>
+
+      <h2>
+        Contact
+      </h2>
+
+    </div>
+
+
+    <p>
+
+      Pour toute question concernant cette politique
+      de confidentialité ou le traitement de tes
+      données, tu peux contacter l'équipe de
+      Piano Academy.
+
+    </p>
+
+
+    <div class="contact-box">
+
+      <strong>
+        🎹 Piano Academy
+      </strong>
+
+      <span>
+        Pour toute demande concernant la confidentialité,
+        la sécurité ou tes données personnelles,
+        utilise le moyen de contact indiqué dans
+        ton application ou ton espace utilisateur.
+      </span>
+
+    </div>
+
+  </section>
+
+
+  <!-- MODIFICATION -->
+
+  <section class="info-card">
+
+    <div class="section-title">
+
+      <div class="section-icon">
+        🔄
+      </div>
+
+      <h2>
+        Modification de cette politique
+      </h2>
+
+    </div>
+
+
+    <p>
+
+      Cette politique de confidentialité peut être
+      mise à jour lorsque cela est nécessaire,
+      notamment lorsque les fonctionnalités de
+      Piano Academy évoluent.
+
+    </p>
+
+
+    <p>
+
+      La date de dernière mise à jour sera indiquée
+      en haut de cette page.
+
+    </p>
+
+  </section>
+
+
+  <!-- FOOTER -->
+
+  <div class="footer">
+
+    🎹 Piano Academy<br>
+
+    Apprendre • Pratiquer • Progresser
+
+  </div>
+
+
+</main>
+
+
+<!-- TOAST -->
+
+<div
+  class="toast"
+  id="toast"
+></div>
+
+
+<script>
+
+/* =====================================================
+   RETOUR
+===================================================== */
+
+function goBack(){
+
+  if(
+    document.referrer &&
+    document.referrer !== window.location.href
+  ){
+
+    history.back();
+
+  }else{
+
+    window.location.href =
+      "paramètres.html";
+
+  }
+
+}
+
+
+/* =====================================================
+   THEME
+===================================================== */
+
+function applyTheme(){
+
+  const theme =
+    localStorage.getItem(
+      "pianoAcademyTheme"
+    ) || "light";
+
+
+  const button =
+    document.getElementById(
+      "themeButton"
+    );
+
+
+  if(theme === "dark"){
+
+    document.body.classList.add("dark");
+
+    button.textContent =
+      "☀️";
+
+  }else{
+
+    document.body.classList.remove("dark");
+
+    button.textContent =
+      "🌙";
+
+  }
+
+}
+
+
+function toggleDarkMode(){
+
+  const isDark =
+    document.body.classList.contains(
+      "dark"
+    );
+
+
+  if(isDark){
+
+    document.body.classList.remove(
+      "dark"
+    );
+
+    localStorage.setItem(
+      "pianoAcademyTheme",
+      "light"
+    );
+
+
+    document.getElementById(
+      "themeButton"
+    ).textContent =
+      "🌙";
+
+
+    showToast(
+      "☀️ Mode clair activé"
+    );
+
+
+  }else{
+
+    document.body.classList.add(
+      "dark"
+    );
+
+    localStorage.setItem(
+      "pianoAcademyTheme",
+      "dark"
+    );
+
+
+    document.getElementById(
+      "themeButton"
+    ).textContent =
+      "☀️";
+
+
+    showToast(
+      "🌙 Mode sombre activé"
+    );
+
+  }
+
+}
+
+
+/* =====================================================
+   TOAST
+===================================================== */
+
+function showToast(text){
+
+  const toast =
+    document.getElementById(
+      "toast"
+    );
+
+
+  toast.textContent =
+    text;
+
+
+  toast.classList.add(
+    "show"
+  );
+
+
+  clearTimeout(
+    window.toastTimer
+  );
+
+
+  window.toastTimer =
+    setTimeout(
+      function(){
+
+        toast.classList.remove(
+          "show"
+        );
+
+      },
+      2200
+    );
+
+}
+
+
+/* =====================================================
+   INITIALISATION
+===================================================== */
+
+applyTheme();
+
+
+/* =====================================================
+   TOUCHE ESCAPE
+===================================================== */
+
+document.addEventListener(
+  "keydown",
+  function(event){
+
+    if(
+      event.key === "Escape"
+    ){
+
+      goBack();
+
+    }
+
+  }
+);
+
+</script>
+
+
+</body>
+
+</html>
