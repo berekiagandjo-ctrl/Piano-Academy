@@ -1,21 +1,12 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
+<!DOCTYPE html><html lang="fr">
+<head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Piano Academy Premium</title><meta
+name="description"
+content="Piano Academy Premium — débloquez toutes les fonctionnalités."
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+«»
 
-<title>Piano Academy Premium</title>
-
-<meta
-  name="description"
-  content="Piano Academy Premium — débloquez toutes les fonctionnalités."
->
-
-<!-- SUPABASE -->
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
-<style>
+<!-- SUPABASE --><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><style>
 
 /* =========================
    RESET
@@ -1422,803 +1413,693 @@ button{
 
 }
 
-</style>
-
-</head>
-
-<body>
-
-
-<div
+</style></head><body><div
   class="loading"
-  id="loading">
+  id="loading">  <div class="loading-icon">
+    🎹
+  </div>  <div class="loading-text">
+    Chargement de Piano Academy Premium...
+  </div></div><div
+  class="menu-overlay"
+  id="menuOverlay">
+</div><aside
+  class="side-menu"
+  id="sideMenu">  <div class="menu-header"><div class="menu-brand">
 
-  <div class="loading-icon">
+  <div class="menu-brand-icon">
     🎹
   </div>
 
-  <div class="loading-text">
-    Chargement de Piano Academy Premium...
+  <strong>
+    Piano Academy
+  </strong>
+
+</div>
+
+<button
+  class="close-menu"
+  id="closeMenu">
+
+  ×
+
+</button>
+
+  </div>  <div class="menu-user"><div
+  class="menu-user-avatar"
+  id="menuAvatar">
+
+  ?
+
+</div>
+
+<div
+  class="menu-user-name"
+  id="menuName">
+
+  Utilisateur
+
+</div>
+
+<div
+  class="menu-user-email"
+  id="menuEmail">
+
+  —
+
+</div>
+
+  </div>  <nav class="menu-items"><button
+  class="menu-item"
+  onclick="goTo('dashboard.html')">
+
+  <span class="menu-icon">
+    🏠
+  </span>
+
+  Accueil
+
+</button>
+
+
+<button
+  class="menu-item"
+  onclick="goTo('index.html')">
+
+  <span class="menu-icon">
+    📚
+  </span>
+
+  Mes cours
+
+</button>
+
+
+<button
+  class="menu-item"
+  onclick="goTo('dashboard.html')">
+
+  <span class="menu-icon">
+    📊
+  </span>
+
+  Ma progression
+
+</button>
+
+
+<button
+  class="menu-item"
+  onclick="closeMenu()">
+
+  <span class="menu-icon">
+    ⭐
+  </span>
+
+  Premium
+
+</button>
+
+
+<button
+  class="menu-item"
+  onclick="goTo('profil.html')">
+
+  <span class="menu-icon">
+    👤
+  </span>
+
+  Mon profil
+
+</button>
+
+  </nav>  <div class="menu-bottom"><button
+  class="menu-item logout-item"
+  id="logoutButton">
+
+  <span class="menu-icon">
+    🚪
+  </span>
+
+  Déconnexion
+
+</button>
+
+  </div></aside><div id="app"><header class="header">  <div class="header-inner"><div class="header-left">
+
+  <button
+    class="menu-button"
+    id="menuButton">
+
+    ☰
+
+  </button>
+
+
+  <div class="brand">
+
+    <div class="brand-icon">
+      🎹
+    </div>
+
+    <div class="brand-name">
+      Piano Academy
+    </div>
+
   </div>
 
 </div>
 
 
-<div
-  class="menu-overlay"
-  id="menuOverlay">
+<button
+  class="theme-button"
+  id="themeButton">
+
+  🌙
+
+</button>
+
+  </div></header><main class="container"><section class="hero">  <div class="hero-content"><div class="premium-badge">
+  ⭐ Piano Academy Premium
 </div>
 
+<h1>
+  Passe au niveau
+  <span>supérieur.</span>
+</h1>
 
-<aside
-  class="side-menu"
-  id="sideMenu">
+<p>
 
-  <div class="menu-header">
+  Débloque toute l'expérience Piano Academy :
+  le guide complet du piano, les fonctionnalités
+  avancées et tous les contenus réservés aux abonnés.
 
-    <div class="menu-brand">
+</p>
 
-      <div class="menu-brand-icon">
-        🎹
-      </div>
+<div class="current-plan">
 
-      <strong>
-        Piano Academy
-      </strong>
+  Ton plan actuel :
 
-    </div>
+  <strong id="currentPlan">
+    Chargement...
+  </strong>
 
-    <button
-      class="close-menu"
-      id="closeMenu">
+</div>
 
-      ×
-
-    </button>
-
-  </div>
-
-
-  <div class="menu-user">
-
-    <div
-      class="menu-user-avatar"
-      id="menuAvatar">
-
-      ?
-
-    </div>
-
-    <div
-      class="menu-user-name"
-      id="menuName">
-
-      Utilisateur
-
-    </div>
-
-    <div
-      class="menu-user-email"
-      id="menuEmail">
-
-      —
-
-    </div>
-
-  </div>
-
-
-  <nav class="menu-items">
-
-    <button
-      class="menu-item"
-      onclick="goTo('dashboard.html')">
-
-      <span class="menu-icon">
-        🏠
-      </span>
-
-      Accueil
-
-    </button>
-
-
-    <button
-      class="menu-item"
-      onclick="goTo('index.html')">
-
-      <span class="menu-icon">
-        📚
-      </span>
-
-      Mes cours
-
-    </button>
-
-
-    <button
-      class="menu-item"
-      onclick="goTo('dashboard.html')">
-
-      <span class="menu-icon">
-        📊
-      </span>
-
-      Ma progression
-
-    </button>
-
-
-    <button
-      class="menu-item"
-      onclick="closeMenu()">
-
-      <span class="menu-icon">
-        ⭐
-      </span>
-
-      Premium
-
-    </button>
-
-
-    <button
-      class="menu-item"
-      onclick="goTo('profil.html')">
-
-      <span class="menu-icon">
-        👤
-      </span>
-
-      Mon profil
-
-    </button>
-
-  </nav>
-
-
-  <div class="menu-bottom">
-
-    <button
-      class="menu-item logout-item"
-      id="logoutButton">
-
-      <span class="menu-icon">
-        🚪
-      </span>
-
-      Déconnexion
-
-    </button>
-
-  </div>
-
-</aside>
-
-
-<div id="app">
-
-
-<header class="header">
-
-  <div class="header-inner">
-
-    <div class="header-left">
-
-      <button
-        class="menu-button"
-        id="menuButton">
-
-        ☰
-
-      </button>
-
-
-      <div class="brand">
-
-        <div class="brand-icon">
-          🎹
-        </div>
-
-        <div class="brand-name">
-          Piano Academy
-        </div>
-
-      </div>
-
-    </div>
-
-
-    <button
-      class="theme-button"
-      id="themeButton">
-
-      🌙
-
-    </button>
-
-  </div>
-
-</header>
-
-
-<main class="container">
-
-
-<section class="hero">
-
-  <div class="hero-content">
-
-    <div class="premium-badge">
-      ⭐ Piano Academy Premium
-    </div>
-
-    <h1>
-      Passe au niveau
-      <span>supérieur.</span>
-    </h1>
-
-    <p>
-
-      Débloque toute l'expérience Piano Academy :
-      le guide complet du piano, les fonctionnalités
-      avancées et tous les contenus réservés aux abonnés.
-
-    </p>
-
-    <div class="current-plan">
-
-      Ton plan actuel :
-
-      <strong id="currentPlan">
-        Chargement...
-      </strong>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<div
+  </div></section><div
   class="message"
   id="message">
+</div><div class="section-title">  <h2>
+    Choisis ton expérience
+  </h2>  <p>
+    Commence gratuitement ou débloque toute l'Académie.
+  </p></div><section class="plans"><article class="plan-card">  <div class="plan-header"><div class="plan-icon">
+  🆓
 </div>
 
+<div>
 
-<div class="section-title">
+  <div class="plan-name">
+    Free
+  </div>
 
-  <h2>
-    Choisis ton expérience
-  </h2>
+  <div class="plan-description">
+    Pour commencer
+  </div>
+
+</div>
+
+  </div>  <div class="plan-price"><span class="price">
+  Gratuit
+</span>
+
+  </div>  <ul class="features"><li>
+  <span class="check">✓</span>
+  Fonctions gratuites
+</li>
+
+<li>
+  <span class="check">✓</span>
+  Progression sauvegardée
+</li>
+
+<li>
+  <span class="check">✓</span>
+  Profil utilisateur
+</li>
+
+<li>
+  <span class="check">✓</span>
+  Cours gratuits limités
+</li>
+
+<li class="disabled-feature">
+  <span class="check">—</span>
+  Guide complet du piano
+</li>
+
+<li class="disabled-feature">
+  <span class="check">—</span>
+  Fonctionnalités avancées
+</li>
+
+<li class="disabled-feature">
+  <span class="check">—</span>
+  Contenu réservé aux abonnés
+</li>
+
+  </ul><button
+class="plan-button free-button"
+id="freeButton">
+
+Plan actuel
+
+  </button></article><article class="plan-card premium">  <div class="plan-header"><div class="plan-icon">
+  📅
+</div>
+
+<div>
+
+  <div class="plan-name">
+    Mensuel
+  </div>
+
+  <div class="plan-description">
+    Facturation chaque mois
+  </div>
+
+</div>
+
+  </div>  <div class="plan-price"><span class="price">
+  1 500 FCFA
+</span>
+
+<span class="price-small">
+  / mois
+</span>
+
+  </div>  <ul class="features"><li>
+  <span class="check">✓</span>
+  Toutes les fonctionnalités
+</li>
+
+<li>
+  <span class="check">✓</span>
+  Guide complet du piano
+</li>
+
+<li>
+  <span class="check">✓</span>
+  Fonctionnalités avancées
+</li>
+
+<li>
+  <span class="check">✓</span>
+  Contenu réservé aux abonnés
+</li>
+
+<li>
+  <span class="check">✓</span>
+  Sans engagement, résiliable
+</li>
+
+  </ul><button
+class="plan-button premium-button"
+id="monthlyButton">
+
+📅 S'abonner — Mensuel
+
+  </button></article><article class="plan-card premium">  <div class="popular">
+    MEILLEUR PRIX
+  </div>  <div class="plan-header"><div class="plan-icon">
+  ⭐
+</div>
+
+<div>
+
+  <div class="plan-name">
+    Annuel
+  </div>
+
+  <div class="plan-description">
+    Facturation chaque année
+  </div>
+
+</div>
+
+  </div>  <div class="plan-price"><span class="price">
+  12 000 FCFA
+</span>
+
+<span class="price-small">
+  / an
+</span>
+
+<div class="plan-savings">
+  2 mois offerts
+</div>
+
+  </div>  <ul class="features"><li>
+  <span class="check">✓</span>
+  Toutes les fonctionnalités
+</li>
+
+<li>
+  <span class="check">✓</span>
+  Guide complet du piano
+</li>
+
+<li>
+  <span class="check">✓</span>
+  Fonctionnalités avancées
+</li>
+
+<li>
+  <span class="check">✓</span>
+  Contenu réservé aux abonnés
+</li>
+
+<li>
+  <span class="check">✓</span>
+  Le meilleur tarif à l'année
+</li>
+
+  </ul><button
+class="plan-button premium-button"
+id="yearlyButton">
+
+⭐ S'abonner — Annuel
+
+  </button></article></section><section class="advanced-section">  <div class="section-title"><h2>
+  Ce que Premium débloque
+</h2>
+
+<p>
+  Une expérience complète pour progresser au piano.
+</p>
+
+  </div>  <div class="advanced-grid"><div class="advanced-item">
+
+  <div class="advanced-icon">
+    📖
+  </div>
+
+  <h3>
+    Guide complet
+  </h3>
 
   <p>
-    Commence gratuitement ou débloque toute l'Académie.
+    Accède au guide complet
+    du piano.
   </p>
 
 </div>
 
 
-<section class="plans">
+<div class="advanced-item">
 
-
-<article class="plan-card">
-
-  <div class="plan-header">
-
-    <div class="plan-icon">
-      🆓
-    </div>
-
-    <div>
-
-      <div class="plan-name">
-        Free
-      </div>
-
-      <div class="plan-description">
-        Pour commencer
-      </div>
-
-    </div>
-
+  <div class="advanced-icon">
+    🎹
   </div>
 
-
-  <div class="plan-price">
-
-    <span class="price">
-      Gratuit
-    </span>
-
-  </div>
-
-
-  <ul class="features">
-
-    <li>
-      <span class="check">✓</span>
-      Fonctions gratuites
-    </li>
-
-    <li>
-      <span class="check">✓</span>
-      Progression sauvegardée
-    </li>
-
-    <li>
-      <span class="check">✓</span>
-      Profil utilisateur
-    </li>
-
-    <li>
-      <span class="check">✓</span>
-      Cours gratuits limités
-    </li>
-
-    <li class="disabled-feature">
-      <span class="check">—</span>
-      Guide complet du piano
-    </li>
-
-    <li class="disabled-feature">
-      <span class="check">—</span>
-      Fonctionnalités avancées
-    </li>
-
-    <li class="disabled-feature">
-      <span class="check">—</span>
-      Contenu réservé aux abonnés
-    </li>
-
-  </ul>
-
-
-  <button
-    class="plan-button free-button"
-    id="freeButton">
-
-    Plan actuel
-
-  </button>
-
-</article>
-
-
-<article class="plan-card premium">
-
-  <div class="plan-header">
-
-    <div class="plan-icon">
-      📅
-    </div>
-
-    <div>
-
-      <div class="plan-name">
-        Mensuel
-      </div>
-
-      <div class="plan-description">
-        Facturation chaque mois
-      </div>
-
-    </div>
-
-  </div>
-
-
-  <div class="plan-price">
-
-    <span class="price">
-      1 500 FCFA
-    </span>
-
-    <span class="price-small">
-      / mois
-    </span>
-
-  </div>
-
-
-  <ul class="features">
-
-    <li>
-      <span class="check">✓</span>
-      Toutes les fonctionnalités
-    </li>
-
-    <li>
-      <span class="check">✓</span>
-      Guide complet du piano
-    </li>
-
-    <li>
-      <span class="check">✓</span>
-      Fonctionnalités avancées
-    </li>
-
-    <li>
-      <span class="check">✓</span>
-      Contenu réservé aux abonnés
-    </li>
-
-    <li>
-      <span class="check">✓</span>
-      Sans engagement, résiliable
-    </li>
-
-  </ul>
-
-
-  <button
-    class="plan-button premium-button"
-    id="monthlyButton">
-
-    📅 S'abonner — Mensuel
-
-  </button>
-
-</article>
-
-
-<article class="plan-card premium">
-
-  <div class="popular">
-    MEILLEUR PRIX
-  </div>
-
-
-  <div class="plan-header">
-
-    <div class="plan-icon">
-      ⭐
-    </div>
-
-    <div>
-
-      <div class="plan-name">
-        Annuel
-      </div>
-
-      <div class="plan-description">
-        Facturation chaque année
-      </div>
-
-    </div>
-
-  </div>
-
-
-  <div class="plan-price">
-
-    <span class="price">
-      12 000 FCFA
-    </span>
-
-    <span class="price-small">
-      / an
-    </span>
-
-    <div class="plan-savings">
-      2 mois offerts
-    </div>
-
-  </div>
-
-
-  <ul class="features">
-
-    <li>
-      <span class="check">✓</span>
-      Toutes les fonctionnalités
-    </li>
-
-    <li>
-      <span class="check">✓</span>
-      Guide complet du piano
-    </li>
-
-    <li>
-      <span class="check">✓</span>
-      Fonctionnalités avancées
-    </li>
-
-    <li>
-      <span class="check">✓</span>
-      Contenu réservé aux abonnés
-    </li>
-
-    <li>
-      <span class="check">✓</span>
-      Le meilleur tarif à l'année
-    </li>
-
-  </ul>
-
-
-  <button
-    class="plan-button premium-button"
-    id="yearlyButton">
-
-    ⭐ S'abonner — Annuel
-
-  </button>
-
-
-</article>
-
-
-</section>
-
-
-<section class="advanced-section">
-
-
-  <div class="section-title">
-
-    <h2>
-      Ce que Premium débloque
-    </h2>
-
-    <p>
-      Une expérience complète pour progresser au piano.
-    </p>
-
-  </div>
-
-
-  <div class="advanced-grid">
-
-
-    <div class="advanced-item">
-
-      <div class="advanced-icon">
-        📖
-      </div>
-
-      <h3>
-        Guide complet
-      </h3>
-
-      <p>
-        Accède au guide complet
-        du piano.
-      </p>
-
-    </div>
-
-
-    <div class="advanced-item">
-
-      <div class="advanced-icon">
-        🎹
-      </div>
-
-      <h3>
-        Cours complets
-      </h3>
-
-      <p>
-        Débloque les contenus
-        réservés aux abonnés.
-      </p>
-
-    </div>
-
-
-    <div class="advanced-item">
-
-      <div class="advanced-icon">
-        📊
-      </div>
-
-      <h3>
-        Progression avancée
-      </h3>
-
-      <p>
-        Suis ton apprentissage
-        de manière approfondie.
-      </p>
-
-    </div>
-
-
-    <div class="advanced-item">
-
-      <div class="advanced-icon">
-        🚀
-      </div>
-
-      <h3>
-        Fonctionnalités Pro
-      </h3>
-
-      <p>
-        Utilise les fonctionnalités
-        avancées de Piano Academy.
-      </p>
-
-    </div>
-
-
-  </div>
-
-</section>
-
-
-<!-- =====================================================
-     COURS PREMIUM
-===================================================== -->
-
-<section class="premium-courses">
-
-  <div class="section-title">
-
-    <h2>
-      🎓 Cours Premium
-    </h2>
-
-    <p>
-      Approfondis tes connaissances avec les cours avancés
-      de Piano Academy.
-    </p>
-
-  </div>
-
-
-  <div class="courses-grid">
-
-
-    <!-- MAÎTRISE DES ACCORDS -->
-
-    <article class="course-card">
-
-      <div class="course-top">
-
-        <div class="course-icon">
-          🎹
-        </div>
-
-        <div>
-
-          <h3>
-            Maîtrise des accords au piano
-          </h3>
-
-          <div class="course-level">
-            Niveau Premium
-          </div>
-
-        </div>
-
-      </div>
-
-
-      <p>
-
-        Apprends à construire et reconnaître
-        les accords majeurs, mineurs, diminués,
-        augmentés, septièmes, accords enrichis,
-        renversements et bien plus encore.
-
-      </p>
-
-
-      <button
-        class="course-button"
-        id="ntjxpp"
-        onclick="openPremiumCourse('accords-free.html')">
-
-        🎹 Ouvrir le cours
-
-      </button>
-
-    </article>
-
-
-    <!-- HARMONIE -->
-
-    <article class="course-card">
-
-      <div class="course-top">
-
-        <div class="course-icon">
-          🎼
-        </div>
-
-        <div>
-
-          <h3>
-            Harmonie au piano
-          </h3>
-
-          <div class="course-level">
-            Niveau Premium
-          </div>
-
-        </div>
-
-      </div>
-
-
-      <p>
-
-        Comprends les degrés, les fonctions
-        harmoniques, les progressions d'accords,
-        les cadences, les tonalités, les modulations
-        et la construction harmonique.
-
-      </p>
-
-
-      <button
-        class="course-button"
-        id="pgajjk"
-        onclick="openPremiumCourse('harmonie.html')">
-
-        🎼 Ouvrir le cours
-
-      </button>
-
-    </article>
-
-
-  </div>
-
-</section>
-
-
-<section class="guide-card">
-
-  <div class="guide-content">
-
-    <div class="guide-left">
-
-      <div class="guide-icon">
-        📚
-      </div>
-
-      <div class="guide-text">
-
-        <h3>
-          Guide complet du piano
-        </h3>
-
-        <p>
-
-          Un parcours structuré pour apprendre
-          progressivement la théorie et la pratique
-          du piano.
-
-        </p>
-
-      </div>
-
-    </div>
-
-
-    <button
-      class="guide-button"
-      id="guideButton">
-
-      🔒 Réservé Premium
-
-    </button>
-
-  </div>
-
-</section>
-
-
-</main>
+  <h3>
+    Cours complets
+  </h3>
+
+  <p>
+    Débloque les contenus
+    réservés aux abonnés.
+  </p>
 
 </div>
 
 
-<script>
+<div class="advanced-item">
+
+  <div class="advanced-icon">
+    📊
+  </div>
+
+  <h3>
+    Progression avancée
+  </h3>
+
+  <p>
+    Suis ton apprentissage
+    de manière approfondie.
+  </p>
+
+</div>
+
+
+<div class="advanced-item">
+
+  <div class="advanced-icon">
+    🚀
+  </div>
+
+  <h3>
+    Fonctionnalités Pro
+  </h3>
+
+  <p>
+    Utilise les fonctionnalités
+    avancées de Piano Academy.
+  </p>
+
+</div>
+
+  </div></section><!-- =====================================================
+     COURS PREMIUM
+===================================================== --><section class="premium-courses">  <div class="section-title"><h2>
+  🎓 Cours Premium
+</h2>
+
+<p>
+  Approfondis tes connaissances avec les cours avancés
+  de Piano Academy.
+</p>
+
+  </div>  <div class="courses-grid"><!-- MAÎTRISE DES ACCORDS -->
+
+<article class="course-card">
+
+  <div class="course-top">
+
+    <div class="course-icon">
+      🎹
+    </div>
+
+    <div>
+
+      <h3>
+        Maîtrise des accords au piano
+      </h3>
+
+      <div class="course-level">
+        Niveau Premium
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <p>
+
+    Apprends à construire et reconnaître
+    les accords majeurs, mineurs, diminués,
+    augmentés, septièmes, accords enrichis,
+    renversements et bien plus encore.
+
+  </p>
+
+
+  <button
+    class="course-button"
+    id="ntjxpp"
+    onclick="openPremiumCourse('accords-free.html')">
+
+    🎹 Ouvrir le cours
+
+  </button>
+
+</article>
+
+
+<!-- HARMONIE -->
+
+<article class="course-card">
+
+  <div class="course-top">
+
+    <div class="course-icon">
+      🎼
+    </div>
+
+    <div>
+
+      <h3>
+        Harmonie au piano
+      </h3>
+
+      <div class="course-level">
+        Niveau Premium
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <p>
+
+    Comprends les degrés, les fonctions
+    harmoniques, les progressions d'accords,
+    les cadences, les tonalités, les modulations
+    et la construction harmonique.
+
+  </p>
+
+
+  <button
+    class="course-button"
+    id="pgajjk"
+    onclick="openPremiumCourse('harmonie.html')">
+
+    🎼 Ouvrir le cours
+
+  </button>
+
+</article>
+
+
+<!-- COORDINATION DES DEUX MAINS -->
+
+<article class="course-card">
+
+  <div class="course-top">
+
+    <div class="course-icon">
+      🤲
+    </div>
+
+    <div>
+
+      <h3>
+        Coordination des deux mains
+      </h3>
+
+      <div class="course-level">
+        Niveau Premium
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <p>
+
+    Développe l'indépendance et la coordination
+    des deux mains au piano grâce à des exercices
+    progressifs, des rythmes, des mélodies et
+    des accompagnements adaptés.
+
+  </p>
+
+
+  <button
+    class="course-button"
+    id="coordinationCourseButton"
+    onclick="openPremiumCourse('Coordination.html')">
+
+    🤲 Ouvrir le cours
+
+  </button>
+
+</article>
+
+
+<!-- TECHNIQUE PIANISTIQUE -->
+
+<article class="course-card">
+
+  <div class="course-top">
+
+    <div class="course-icon">
+      🎹
+    </div>
+
+    <div>
+
+      <h3>
+        Technique pianistique
+      </h3>
+
+      <div class="course-level">
+        Niveau Premium
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <p>
+
+    Améliore ta technique au piano avec un travail
+    progressif sur la position des mains, les doigts,
+    les gammes, les arpèges, la précision, la vitesse
+    et la fluidité du jeu.
+
+  </p>
+
+
+  <button
+    class="course-button"
+    id="techniqueCourseButton"
+    onclick="openPremiumCourse('Technique-pianistique.html')">
+
+    🎹 Ouvrir le cours
+
+  </button>
+
+</article>
+
+  </div></section><section class="guide-card">  <div class="guide-content"><div class="guide-left">
+
+  <div class="guide-icon">
+    📚
+  </div>
+
+  <div class="guide-text">
+
+    <h3>
+      Guide complet du piano
+    </h3>
+
+    <p>
+
+      Un parcours structuré pour apprendre
+      progressivement la théorie et la pratique
+      du piano.
+
+    </p>
+
+  </div>
+
+</div>
+
+
+<button
+  class="guide-button"
+  id="guideButton">
+
+  🔒 Réservé Premium
+
+</button>
+
+  </div></section></main></div><script>
 
 /* =====================================================
    SUPABASE
@@ -3140,7 +3021,5 @@ supabaseClient.auth.onAuthStateChange(
 
 loadUser();
 
-</script>
-
-</body>
+</script></body>
 </html>
