@@ -1,14 +1,22 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0">
 
 <title>Mon espace — Piano Academy</title>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <style>
+
+/* =====================================================
+   RESET
+===================================================== */
 
 *{
   margin:0;
@@ -27,6 +35,8 @@
   --border:#e2e4ec;
   --soft:#fafbfe;
   --shadow:0 10px 30px rgba(25,25,50,.08);
+  --success:#27ae60;
+  --danger:#e74c3c;
 }
 
 body.dark{
@@ -47,7 +57,8 @@ body{
   transition:.25s;
 }
 
-button,a{
+button,
+a{
   font-family:inherit;
 }
 
@@ -56,9 +67,9 @@ button{
 }
 
 
-/* =========================
+/* =====================================================
    HEADER
-========================= */
+===================================================== */
 
 .header{
   position:sticky;
@@ -113,7 +124,11 @@ button{
   width:40px;
   height:40px;
   border-radius:11px;
-  background:linear-gradient(135deg,var(--primary),var(--primary-dark));
+  background:linear-gradient(
+    135deg,
+    var(--primary),
+    var(--primary-dark)
+  );
   color:white;
   display:flex;
   align-items:center;
@@ -144,9 +159,9 @@ button{
 }
 
 
-/* =========================
+/* =====================================================
    MENU
-========================= */
+===================================================== */
 
 .menu-overlay{
   position:fixed;
@@ -198,7 +213,11 @@ button{
   width:40px;
   height:40px;
   border-radius:11px;
-  background:linear-gradient(135deg,var(--primary),var(--primary-dark));
+  background:linear-gradient(
+    135deg,
+    var(--primary),
+    var(--primary-dark)
+  );
   color:white;
   display:flex;
   align-items:center;
@@ -229,7 +248,11 @@ button{
   width:45px;
   height:45px;
   border-radius:50%;
-  background:linear-gradient(135deg,var(--primary),var(--secondary));
+  background:linear-gradient(
+    135deg,
+    var(--primary),
+    var(--secondary)
+  );
   color:white;
   display:flex;
   align-items:center;
@@ -290,7 +313,7 @@ button{
 }
 
 .logout-item{
-  color:#e74c3c;
+  color:var(--danger);
 }
 
 .logout-item:hover{
@@ -299,9 +322,9 @@ button{
 }
 
 
-/* =========================
+/* =====================================================
    CONTENU
-========================= */
+===================================================== */
 
 .container{
   width:100%;
@@ -329,19 +352,24 @@ button{
 }
 
 
-/* =========================
+/* =====================================================
    HERO
-========================= */
+===================================================== */
 
 .hero{
   position:relative;
   overflow:hidden;
-  background:linear-gradient(135deg,#6c5ce7,#5848d6);
+  background:linear-gradient(
+    135deg,
+    #6c5ce7,
+    #5848d6
+  );
   color:white;
   border-radius:22px;
   padding:30px;
   margin-bottom:25px;
-  box-shadow:0 15px 35px rgba(108,92,231,.22);
+  box-shadow:
+    0 15px 35px rgba(108,92,231,.22);
 }
 
 .hero:after{
@@ -398,9 +426,9 @@ button{
 }
 
 
-/* =========================
+/* =====================================================
    STATS
-========================= */
+===================================================== */
 
 .stats-grid{
   display:grid;
@@ -440,9 +468,9 @@ button{
 }
 
 
-/* =========================
+/* =====================================================
    CARTES
-========================= */
+===================================================== */
 
 .main-grid{
   display:grid;
@@ -478,9 +506,9 @@ button{
 }
 
 
-/* =========================
+/* =====================================================
    PROGRESSION
-========================= */
+===================================================== */
 
 .progress-number{
   display:flex;
@@ -511,7 +539,11 @@ button{
   width:0;
   height:100%;
   border-radius:20px;
-  background:linear-gradient(90deg,var(--primary),var(--secondary));
+  background:linear-gradient(
+    90deg,
+    var(--primary),
+    var(--secondary)
+  );
   transition:width .7s ease;
 }
 
@@ -522,9 +554,9 @@ button{
 }
 
 
-/* =========================
+/* =====================================================
    PLAN
-========================= */
+===================================================== */
 
 .plan-top{
   display:flex;
@@ -559,16 +591,20 @@ button{
   height:44px;
   border:none;
   border-radius:10px;
-  background:linear-gradient(135deg,var(--primary),var(--primary-dark));
+  background:linear-gradient(
+    135deg,
+    var(--primary),
+    var(--primary-dark)
+  );
   color:white;
   font-size:13px;
   font-weight:800;
 }
 
 
-/* =========================
+/* =====================================================
    GUIDE PREMIUM
-========================= */
+===================================================== */
 
 .premium-guide-card{
   position:relative;
@@ -631,9 +667,9 @@ button{
 }
 
 
-/* =========================
+/* =====================================================
    COURS
-========================= */
+===================================================== */
 
 .courses-grid{
   display:grid;
@@ -653,7 +689,11 @@ button{
   display:flex;
   align-items:center;
   justify-content:center;
-  background:linear-gradient(135deg,#f0edff,#e8fffd);
+  background:linear-gradient(
+    135deg,
+    #f0edff,
+    #e8fffd
+  );
   font-size:42px;
 }
 
@@ -688,9 +728,9 @@ button{
 }
 
 
-/* =========================
+/* =====================================================
    OBJECTIFS
-========================= */
+===================================================== */
 
 .goals{
   display:grid;
@@ -734,14 +774,14 @@ button{
 }
 
 .goal-check{
-  color:var(--primary);
-  font-size:20px;
+  color:var(--success);
+  font-size:18px;
 }
 
 
-/* =========================
+/* =====================================================
    PROFIL
-========================= */
+===================================================== */
 
 .profile-info{
   display:grid;
@@ -769,9 +809,9 @@ button{
 }
 
 
-/* =========================
+/* =====================================================
    LOADING
-========================= */
+===================================================== */
 
 .loading{
   position:fixed;
@@ -789,7 +829,11 @@ button{
   width:55px;
   height:55px;
   border-radius:15px;
-  background:linear-gradient(135deg,var(--primary),var(--primary-dark));
+  background:linear-gradient(
+    135deg,
+    var(--primary),
+    var(--primary-dark)
+  );
   color:white;
   display:flex;
   align-items:center;
@@ -803,9 +847,9 @@ button{
 }
 
 
-/* =========================
+/* =====================================================
    ERREUR
-========================= */
+===================================================== */
 
 .error-screen{
   display:none;
@@ -857,9 +901,9 @@ button{
 }
 
 
-/* =========================
+/* =====================================================
    RESPONSIVE
-========================= */
+===================================================== */
 
 @media(max-width:950px){
 
@@ -903,8 +947,8 @@ button{
     grid-template-columns:1fr;
   }
 
-  .premium-guide-card{
-    padding:20px;
+  .premium-guide-top{
+    align-items:flex-start;
   }
 
 }
@@ -927,6 +971,10 @@ button{
     font-size:21px;
   }
 
+  .premium-guide-card{
+    padding:18px;
+  }
+
 }
 
 </style>
@@ -936,11 +984,13 @@ button{
 <body>
 
 
-<!-- =========================
+<!-- =====================================================
      CHARGEMENT
-========================= -->
+===================================================== -->
 
-<div class="loading" id="loading">
+<div
+  class="loading"
+  id="loading">
 
   <div class="loading-icon">
     🎹
@@ -953,9 +1003,9 @@ button{
 </div>
 
 
-<!-- =========================
-     MENU
-========================= -->
+<!-- =====================================================
+     MENU OVERLAY
+===================================================== -->
 
 <div
   class="menu-overlay"
@@ -963,9 +1013,14 @@ button{
 </div>
 
 
+<!-- =====================================================
+     MENU LATÉRAL
+===================================================== -->
+
 <aside
   class="side-menu"
   id="sideMenu">
+
 
   <div class="menu-header">
 
@@ -984,7 +1039,9 @@ button{
     <button
       class="close-menu"
       id="closeMenu">
+
       ×
+
     </button>
 
   </div>
@@ -995,25 +1052,32 @@ button{
     <div
       class="menu-user-avatar"
       id="menuAvatar">
+
       ?
+
     </div>
 
     <div
       class="menu-user-name"
       id="menuName">
+
       Utilisateur
+
     </div>
 
     <div
       class="menu-user-email"
       id="menuEmail">
+
       —
+
     </div>
 
   </div>
 
 
   <nav class="menu-items">
+
 
     <button
       class="menu-item"
@@ -1054,9 +1118,11 @@ button{
     </button>
 
 
+    <!-- PREMIUM -->
+
     <button
       class="menu-item"
-      onclick="openPremiumPage()">
+      onclick="showPremium()">
 
       <span class="menu-icon">
         ⭐
@@ -1092,6 +1158,7 @@ button{
 
     </button>
 
+
   </nav>
 
 
@@ -1114,9 +1181,9 @@ button{
 </aside>
 
 
-<!-- =========================
-     ERREUR
-========================= -->
+<!-- =====================================================
+     ÉCRAN ERREUR
+===================================================== -->
 
 <section
   class="error-screen"
@@ -1139,7 +1206,9 @@ button{
     <a
       href="connexion.html"
       class="error-button">
+
       Se connecter
+
     </a>
 
   </div>
@@ -1147,17 +1216,20 @@ button{
 </section>
 
 
-<!-- =========================
+<!-- =====================================================
      APPLICATION
-========================= -->
+===================================================== -->
 
 <div id="app">
+
 
 <header class="header">
 
   <div class="header-inner">
 
+
     <div class="header-left">
+
 
       <button
         class="menu-button"
@@ -1181,6 +1253,7 @@ button{
 
       </div>
 
+
     </div>
 
 
@@ -1193,6 +1266,7 @@ button{
 
     </button>
 
+
   </div>
 
 </header>
@@ -1201,9 +1275,9 @@ button{
 <main class="container">
 
 
-<!-- =========================
+<!-- =====================================================
      BIENVENUE
-========================= -->
+===================================================== -->
 
 <section class="welcome">
 
@@ -1223,9 +1297,9 @@ button{
 </section>
 
 
-<!-- =========================
+<!-- =====================================================
      HERO
-========================= -->
+===================================================== -->
 
 <section class="hero">
 
@@ -1258,9 +1332,9 @@ button{
 </section>
 
 
-<!-- =========================
+<!-- =====================================================
      STATISTIQUES
-========================= -->
+===================================================== -->
 
 <section class="stats-grid">
 
@@ -1274,7 +1348,9 @@ button{
   <div
     class="stat-value"
     id="progressValue">
+
     0%
+
   </div>
 
   <div class="stat-label">
@@ -1293,7 +1369,9 @@ button{
   <div
     class="stat-value"
     id="lessonsValue">
+
     0
+
   </div>
 
   <div class="stat-label">
@@ -1312,7 +1390,9 @@ button{
   <div
     class="stat-value"
     id="planValue">
+
     Free
+
   </div>
 
   <div class="stat-label">
@@ -1331,7 +1411,9 @@ button{
   <div
     class="stat-value"
     id="goalValue">
+
     0%
+
   </div>
 
   <div class="stat-label">
@@ -1344,12 +1426,14 @@ button{
 </section>
 
 
-<!-- =========================
-     PROGRESSION + PLAN
-========================= -->
+<!-- =====================================================
+     PROGRESSION + ABONNEMENT
+===================================================== -->
 
 <section class="main-grid">
 
+
+<!-- PROGRESSION -->
 
 <div class="card">
 
@@ -1384,18 +1468,23 @@ button{
     <div
       class="progress-fill"
       id="progressFill">
+
     </div>
 
   </div>
 
 
   <p class="progress-description">
+
     Continue régulièrement tes cours
     pour augmenter ta progression.
+
   </p>
 
 </div>
 
+
+<!-- ABONNEMENT -->
 
 <div class="card">
 
@@ -1413,13 +1502,17 @@ button{
     <div
       class="plan-name"
       id="planName">
+
       Free
+
     </div>
 
     <div
       class="plan-badge"
       id="planBadge">
+
       Gratuit
+
     </div>
 
   </div>
@@ -1437,8 +1530,8 @@ button{
 
   <button
     class="premium-button"
-    id="premiumButton"
-    onclick="openPremiumPage()">
+    id="premiumPlanButton"
+    onclick="showPremium()">
 
     Découvrir Premium
 
@@ -1450,47 +1543,75 @@ button{
 </section>
 
 
-<!-- =========================
-     GUIDE PREMIUM
-========================= -->
+<!-- =====================================================
+     GUIDE COMPLET PREMIUM
+===================================================== -->
 
 <section class="card premium-guide-card">
 
   <div class="premium-guide-content">
 
-    <div class="premium-label">
-      ⭐ PREMIUM
+
+    <div class="premium-guide-top">
+
+
+      <div class="premium-guide-icon">
+        📖
+      </div>
+
+
+      <div>
+
+        <div class="premium-guide-title">
+          Guide complet du piano
+        </div>
+
+        <div
+          class="premium-guide-subtitle"
+          id="guideSubtitle">
+
+          Accède aux cours et ressources Premium.
+
+        </div>
+
+      </div>
+
+
     </div>
 
-    <h3>
-      Guide complet du piano
-    </h3>
 
-    <p id="guideDescription">
-      Accède au guide complet Piano Academy,
-      avec toutes les leçons et ressources
-      réservées aux membres Premium.
+    <p
+      class="premium-guide-text"
+      id="guideText">
+
+      Débloque le guide complet Piano Academy
+      et progresse étape par étape grâce à
+      l'ensemble des chapitres disponibles.
+
     </p>
 
-    <a
-      href="offres-premium.html"
-      class="guide-button"
-      id="guideButton">
 
-      🔒 Débloquer le guide complet
+    <button
+      class="guide-button free"
+      id="guideButton"
+      onclick="openGuide()">
 
-    </a>
+      🔓 Débloquer le guide complet
+
+    </button>
+
 
   </div>
 
 </section>
 
 
-<!-- =========================
+<!-- =====================================================
      COURS
-========================= -->
+===================================================== -->
 
-<section class="card">
+<section class="card"
+  style="margin-top:25px;">
 
   <div class="card-header">
 
@@ -1530,7 +1651,7 @@ button{
         </p>
 
         <a
-          href="index.html"
+          href="cours-free.html"
           class="course-button">
 
           Commencer
@@ -1560,7 +1681,7 @@ button{
         </p>
 
         <a
-          href="index.html"
+          href="notes-gammes.html"
           class="course-button">
 
           Continuer
@@ -1581,16 +1702,16 @@ button{
       <div class="course-content">
 
         <h4>
-          Premiers accords
+          Maîtrise des accords au piano
         </h4>
 
         <p>
-          Apprends tes premiers accords
-          et commence à jouer des morceaux.
+          Apprends à construire, comprendre et jouer 
+          tous les principaux types d’accords.
         </p>
 
         <a
-          href="index.html"
+          href="accords-free.html"
           class="course-button">
 
           Découvrir
@@ -1607,9 +1728,9 @@ button{
 </section>
 
 
-<!-- =========================
+<!-- =====================================================
      OBJECTIFS
-========================= -->
+===================================================== -->
 
 <section
   class="card"
@@ -1707,9 +1828,9 @@ button{
 </section>
 
 
-<!-- =========================
+<!-- =====================================================
      PROFIL
-========================= -->
+===================================================== -->
 
 <section
   class="card"
@@ -1893,17 +2014,20 @@ function applyTheme(){
       "pianoAcademyTheme"
     );
 
+
   if(theme === "dark"){
 
     document.body.classList.add("dark");
 
-    themeButton.textContent = "☀️";
+    themeButton.textContent =
+      "☀️";
 
   }else{
 
     document.body.classList.remove("dark");
 
-    themeButton.textContent = "🌙";
+    themeButton.textContent =
+      "🌙";
 
   }
 
@@ -1917,6 +2041,7 @@ themeButton.addEventListener(
     const isDark =
       document.body.classList.contains("dark");
 
+
     if(isDark){
 
       document.body.classList.remove("dark");
@@ -1926,7 +2051,8 @@ themeButton.addEventListener(
         "light"
       );
 
-      themeButton.textContent = "🌙";
+      themeButton.textContent =
+        "🌙";
 
     }else{
 
@@ -1937,7 +2063,8 @@ themeButton.addEventListener(
         "dark"
       );
 
-      themeButton.textContent = "☀️";
+      themeButton.textContent =
+        "☀️";
 
     }
 
@@ -1955,7 +2082,9 @@ applyTheme();
 function getInitial(name){
 
   if(!name){
+
     return "?";
+
   }
 
   return name
@@ -1988,61 +2117,18 @@ function showError(text){
 
 
 /* =====================================================
-   NORMALISER LE PLAN
-===================================================== */
-
-function normalizePlan(plan){
-
-  return String(
-    plan || "free"
-  )
-  .trim()
-  .toLowerCase();
-
-}
-
-
-/* =====================================================
-   EST PREMIUM ?
-===================================================== */
-
-function isPremium(plan){
-
-  const currentPlan =
-    normalizePlan(plan);
-
-  return (
-    currentPlan === "premium" ||
-    currentPlan === "pro" ||
-    currentPlan === "annual" ||
-    currentPlan === "monthly"
-  );
-
-}
-
-
-/* =====================================================
-   OUVRIR LES OFFRES PREMIUM
-===================================================== */
-
-function openPremiumPage(){
-
-  closeMenu();
-
-  window.location.href =
-    "offres-premium.html";
-
-}
-
-
-/* =====================================================
    PLAN
 ===================================================== */
 
+let userIsPremium = false;
+
+
 function updatePlan(plan){
 
-  const premium =
-    isPremium(plan);
+  const currentPlan =
+    String(
+      plan || "free"
+    ).toLowerCase();
 
 
   const planValue =
@@ -2070,25 +2156,21 @@ function updatePlan(plan){
       "profilePlan"
     );
 
-  const premiumButton =
+  const premiumPlanButton =
     document.getElementById(
-      "premiumButton"
-    );
-
-  const guideButton =
-    document.getElementById(
-      "guideButton"
-    );
-
-  const guideDescription =
-    document.getElementById(
-      "guideDescription"
+      "premiumPlanButton"
     );
 
 
-  if(premium){
+  /*
+     Vérification Premium
+  */
 
-    /* ABONNÉ PREMIUM */
+  userIsPremium =
+    currentPlan === "premium";
+
+
+  if(userIsPremium){
 
     planValue.textContent =
       "Premium";
@@ -2100,36 +2182,16 @@ function updatePlan(plan){
       "Premium";
 
     planDescription.textContent =
-      "Ton abonnement Premium est actif. Tu as accès aux contenus réservés aux membres Premium.";
+      "Tu bénéficies actuellement des fonctionnalités Premium de Piano Academy.";
 
     profilePlan.textContent =
       "Premium";
 
 
-    premiumButton.textContent =
-      "⭐ Gérer mon Premium";
-
-    premiumButton.onclick =
-      function(){
-
-        window.location.href =
-          "offres-premium.html";
-
-      };
-
-
-    guideButton.href =
-      "guide.html";
-
-    guideButton.textContent =
-      "📖 Ouvrir le guide complet";
-
-    guideDescription.textContent =
-      "Ton abonnement Premium est actif. Tu peux maintenant accéder au guide complet du piano.";
+    premiumPlanButton.textContent =
+      "📖 Accéder au guide complet";
 
   }else{
-
-    /* UTILISATEUR FREE */
 
     planValue.textContent =
       "Free";
@@ -2141,34 +2203,150 @@ function updatePlan(plan){
       "Gratuit";
 
     planDescription.textContent =
-      "Tu utilises actuellement le plan gratuit de Piano Academy. Passe à Premium pour débloquer le guide complet.";
+      "Tu utilises actuellement le plan gratuit de Piano Academy.";
 
     profilePlan.textContent =
       "Free";
 
 
-    premiumButton.textContent =
+    premiumPlanButton.textContent =
       "Découvrir Premium";
 
-    premiumButton.onclick =
-      function(){
-
-        window.location.href =
-          "offres-premium.html";
-
-      };
+  }
 
 
-    guideButton.href =
-      "offres-premium.html";
+  updateGuideAccess();
+
+}
+
+
+/* =====================================================
+   ACCÈS GUIDE PREMIUM
+===================================================== */
+
+function updateGuideAccess(){
+
+  const guideButton =
+    document.getElementById(
+      "guideButton"
+    );
+
+  const guideSubtitle =
+    document.getElementById(
+      "guideSubtitle"
+    );
+
+  const guideText =
+    document.getElementById(
+      "guideText"
+    );
+
+
+  if(userIsPremium){
+
+    guideButton.classList.remove(
+      "free"
+    );
+
+    guideButton.classList.add(
+      "premium"
+    );
 
     guideButton.textContent =
-      "🔒 Débloquer le guide complet";
+      "📖 Accéder au guide complet";
 
-    guideDescription.textContent =
-      "Le guide complet est réservé aux membres Premium. Découvre les offres Premium pour débloquer l'accès.";
+
+    guideSubtitle.textContent =
+      "Ton accès Premium est actif.";
+
+    guideText.textContent =
+      "Ton abonnement Premium te donne accès au guide complet Piano Academy.";
+
+  }else{
+
+    guideButton.classList.remove(
+      "premium"
+    );
+
+    guideButton.classList.add(
+      "free"
+    );
+
+    guideButton.textContent =
+      "🔓 Débloquer le guide complet";
+
+
+    guideSubtitle.textContent =
+      "Guide complet réservé aux membres Premium.";
+
+    guideText.textContent =
+      "Débloque le guide complet Piano Academy en choisissant une offre Premium mensuelle ou annuelle.";
 
   }
+
+}
+
+
+/* =====================================================
+   PREMIUM
+===================================================== */
+
+function showPremium(){
+
+  closeMenu();
+
+
+  if(userIsPremium){
+
+    window.location.href =
+      "guide.html";
+
+    return;
+
+  }
+
+
+  window.location.href =
+    "premium.html";
+
+}
+
+
+/* =====================================================
+   GUIDE
+===================================================== */
+
+function openGuide(){
+
+  closeMenu();
+
+
+  if(userIsPremium){
+
+    window.location.href =
+      "guide.html";
+
+  }else{
+
+    window.location.href =
+      "premium.html";
+
+  }
+
+}
+
+
+/* =====================================================
+   PARAMÈTRES
+===================================================== */
+
+function showSettings(){
+
+  closeMenu();
+
+  alert(
+    "Les paramètres du compte seront disponibles prochainement."
+  );
 
 }
 
@@ -2181,9 +2359,8 @@ async function loadDashboard(){
 
   try{
 
-    /* =========================
-       SESSION
-    ========================= */
+
+    /* SESSION */
 
     const {
       data:sessionData,
@@ -2218,9 +2395,9 @@ async function loadDashboard(){
       session.user;
 
 
-    /* =========================
+    /* =================================================
        MÉTADONNÉES
-    ========================= */
+    ================================================= */
 
     const metadata =
       user.user_metadata || {};
@@ -2232,39 +2409,43 @@ async function loadDashboard(){
       "";
 
 
-    /* =========================
+    /* =================================================
        PROFIL SUPABASE
-    ========================= */
+    ================================================= */
 
     const {
       data:profile,
       error:profileError
     } =
       await supabaseClient
-        .from("profiles")
-        .select(
-          "id,name,email,plan,progress,lessons_completed"
-        )
-        .eq(
-          "id",
-          user.id
-        )
-        .maybeSingle();
+
+      .from("profiles")
+
+      .select(
+        "id,name,email,plan,progress,lessons_completed"
+      )
+
+      .eq(
+        "id",
+        user.id
+      )
+
+      .maybeSingle();
 
 
     if(profileError){
 
       console.warn(
-        "Erreur profil :",
+        "Profil :",
         profileError
       );
 
     }
 
 
-    /* =========================
-       INFORMATIONS UTILISATEUR
-    ========================= */
+    /* =================================================
+       DONNÉES UTILISATEUR
+    ================================================= */
 
     const name =
       profile?.name ||
@@ -2312,9 +2493,9 @@ async function loadDashboard(){
       );
 
 
-    /* =========================
+    /* =================================================
        BIENVENUE
-    ========================= */
+    ================================================= */
 
     document.getElementById(
       "welcomeName"
@@ -2322,9 +2503,9 @@ async function loadDashboard(){
       name + " !";
 
 
-    /* =========================
+    /* =================================================
        MENU
-    ========================= */
+    ================================================= */
 
     document.getElementById(
       "menuName"
@@ -2344,9 +2525,9 @@ async function loadDashboard(){
       getInitial(name);
 
 
-    /* =========================
+    /* =================================================
        PROGRESSION
-    ========================= */
+    ================================================= */
 
     document.getElementById(
       "progressValue"
@@ -2366,9 +2547,9 @@ async function loadDashboard(){
       progress + "%";
 
 
-    /* =========================
+    /* =================================================
        COURS
-    ========================= */
+    ================================================= */
 
     document.getElementById(
       "lessonsValue"
@@ -2376,9 +2557,9 @@ async function loadDashboard(){
       lessons;
 
 
-    /* =========================
+    /* =================================================
        OBJECTIF
-    ========================= */
+    ================================================= */
 
     document.getElementById(
       "goalValue"
@@ -2386,9 +2567,9 @@ async function loadDashboard(){
       progress + "%";
 
 
-    /* =========================
+    /* =================================================
        PROFIL
-    ========================= */
+    ================================================= */
 
     document.getElementById(
       "profileName"
@@ -2402,22 +2583,23 @@ async function loadDashboard(){
       email;
 
 
-    /* =========================
+    /* =================================================
        PLAN
-    ========================= */
+    ================================================= */
 
     updatePlan(plan);
 
 
-    /* =========================
-       AFFICHER APPLICATION
-    ========================= */
+    /* =================================================
+       AFFICHAGE
+    ================================================= */
 
     loading.style.display =
       "none";
 
     app.style.display =
       "block";
+
 
   }catch(error){
 
@@ -2445,92 +2627,77 @@ async function loadDashboard(){
 ===================================================== */
 
 document
-  .getElementById("logoutButton")
-  .addEventListener(
-    "click",
-    async function(){
+.getElementById("logoutButton")
+.addEventListener(
+  "click",
+  async function(){
 
-      const confirmed =
-        confirm(
-          "Voulez-vous vraiment vous déconnecter ?"
-        );
+    const confirmed =
+      confirm(
+        "Voulez-vous vraiment vous déconnecter ?"
+      );
 
 
-      if(!confirmed){
+    if(!confirmed){
 
-        return;
+      return;
+
+    }
+
+
+    this.disabled =
+      true;
+
+    this.textContent =
+      "Déconnexion...";
+
+
+    try{
+
+      const {
+        error
+      } =
+        await supabaseClient.auth.signOut();
+
+
+      if(error){
+
+        throw error;
 
       }
+
+
+      window.location.href =
+        "connexion.html";
+
+
+    }catch(error){
+
+      console.error(
+        "Erreur déconnexion:",
+        error
+      );
 
 
       this.disabled =
-        true;
+        false;
 
-      this.innerHTML =
-        "🚪 Déconnexion...";
-
-
-      try{
-
-        const {
-          error
-        } =
-          await supabaseClient.auth.signOut();
+      this.textContent =
+        "🚪 Déconnexion";
 
 
-        if(error){
-
-          throw error;
-
-        }
-
-
-        window.location.href =
-          "connexion.html";
-
-
-      }catch(error){
-
-        console.error(
-          "Erreur déconnexion:",
-          error
-        );
-
-
-        this.disabled =
-          false;
-
-        this.innerHTML =
-          "🚪 Déconnexion";
-
-
-        alert(
-          "Impossible de vous déconnecter. Veuillez réessayer."
-        );
-
-      }
+      alert(
+        "Impossible de vous déconnecter. Veuillez réessayer."
+      );
 
     }
-  );
+
+  }
+);
 
 
 /* =====================================================
-   PARAMÈTRES
-===================================================== */
-
-function showSettings(){
-
-  closeMenu();
-
-  alert(
-    "Les paramètres du compte seront disponibles prochainement."
-  );
-
-}
-
-
-/* =====================================================
-   SURVEILLANCE SESSION
+   SESSION
 ===================================================== */
 
 supabaseClient.auth.onAuthStateChange(
