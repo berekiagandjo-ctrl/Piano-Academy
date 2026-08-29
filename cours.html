@@ -1,0 +1,2081 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Tous les cours — Piano Academy</title>
+
+<meta
+  name="description"
+  content="Tous les cours de Piano Academy — cours gratuits et cours Premium."
+>
+
+<style>
+
+/* =====================================================
+   RESET
+===================================================== */
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+:root{
+
+  --primary:#6c5ce7;
+  --primary-dark:#5848d6;
+
+  --secondary:#00cec9;
+
+  --gold:#f5b942;
+  --gold-dark:#d99a20;
+
+  --background:#f5f6fa;
+  --card:#ffffff;
+  --soft:#fafbfe;
+
+  --text:#1e1e2f;
+  --muted:#777b8a;
+
+  --border:#e2e4ec;
+
+  --success:#00b894;
+
+  --shadow:
+    0 12px 35px rgba(25,25,50,.08);
+
+}
+
+body.dark{
+
+  --background:#11121a;
+  --card:#1b1d28;
+  --soft:#222531;
+
+  --text:#f5f5fa;
+  --muted:#a7a9b7;
+
+  --border:#303342;
+
+  --shadow:
+    0 12px 35px rgba(0,0,0,.25);
+
+}
+
+body{
+
+  min-height:100vh;
+
+  font-family:
+    Arial,
+    Helvetica,
+    sans-serif;
+
+  background:var(--background);
+  color:var(--text);
+
+  transition:.25s;
+
+}
+
+button{
+
+  font-family:inherit;
+  cursor:pointer;
+
+}
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+.header{
+
+  position:sticky;
+  top:0;
+
+  z-index:100;
+
+  height:70px;
+
+  background:var(--card);
+
+  border-bottom:
+    1px solid var(--border);
+
+}
+
+.header-inner{
+
+  width:100%;
+  max-width:1150px;
+
+  height:100%;
+
+  margin:auto;
+
+  padding:0 20px;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:space-between;
+
+}
+
+.header-left{
+
+  display:flex;
+
+  align-items:center;
+
+  gap:13px;
+
+}
+
+.back-button,
+.theme-button{
+
+  width:42px;
+  height:42px;
+
+  border:none;
+
+  border-radius:11px;
+
+  background:var(--soft);
+
+  color:var(--text);
+
+  font-size:20px;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+}
+
+.back-button:hover,
+.theme-button:hover{
+
+  background:#eeeaff;
+
+  color:var(--primary);
+
+}
+
+.brand{
+
+  display:flex;
+
+  align-items:center;
+
+  gap:10px;
+
+}
+
+.brand-icon{
+
+  width:40px;
+  height:40px;
+
+  border-radius:11px;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--primary),
+      var(--primary-dark)
+    );
+
+  color:white;
+
+  display:flex;
+
+  align-items:center;
+  justify-content:center;
+
+  font-size:20px;
+
+}
+
+.brand-name{
+
+  font-size:17px;
+
+  font-weight:800;
+
+}
+
+/* =====================================================
+   CONTAINER
+===================================================== */
+
+.container{
+
+  width:100%;
+
+  max-width:1100px;
+
+  margin:auto;
+
+  padding:
+    28px 20px 70px;
+
+}
+
+/* =====================================================
+   HERO
+===================================================== */
+
+.hero{
+
+  position:relative;
+
+  overflow:hidden;
+
+  border-radius:25px;
+
+  padding:
+    38px 30px;
+
+  color:white;
+
+  background:
+    linear-gradient(
+      135deg,
+      #6c5ce7,
+      #4834b4
+    );
+
+  box-shadow:
+    0 18px 45px
+    rgba(108,92,231,.25);
+
+  margin-bottom:25px;
+
+}
+
+.hero::before{
+
+  content:"";
+
+  position:absolute;
+
+  width:300px;
+  height:300px;
+
+  border-radius:50%;
+
+  background:
+    rgba(255,255,255,.07);
+
+  top:-150px;
+  right:-70px;
+
+}
+
+.hero::after{
+
+  content:"";
+
+  position:absolute;
+
+  width:170px;
+  height:170px;
+
+  border-radius:50%;
+
+  background:
+    rgba(255,255,255,.05);
+
+  bottom:-90px;
+  left:-50px;
+
+}
+
+.hero-content{
+
+  position:relative;
+
+  z-index:2;
+
+  max-width:760px;
+
+}
+
+.hero-badge{
+
+  display:inline-flex;
+
+  align-items:center;
+
+  gap:7px;
+
+  padding:
+    8px 13px;
+
+  border-radius:30px;
+
+  background:
+    rgba(255,255,255,.14);
+
+  border:
+    1px solid
+    rgba(255,255,255,.16);
+
+  font-size:12px;
+
+  font-weight:800;
+
+  margin-bottom:15px;
+
+}
+
+.hero h1{
+
+  font-size:38px;
+
+  line-height:1.15;
+
+  margin-bottom:12px;
+
+}
+
+.hero h1 span{
+
+  color:#ffe29a;
+
+}
+
+.hero p{
+
+  color:
+    rgba(255,255,255,.86);
+
+  font-size:14px;
+
+  line-height:1.7;
+
+}
+
+/* =====================================================
+   SEARCH
+===================================================== */
+
+.search-box{
+
+  margin-top:22px;
+
+  position:relative;
+
+}
+
+.search-input{
+
+  width:100%;
+
+  height:50px;
+
+  padding:
+    0 18px 0 48px;
+
+  border:none;
+
+  outline:none;
+
+  border-radius:13px;
+
+  background:
+    rgba(255,255,255,.13);
+
+  border:
+    1px solid
+    rgba(255,255,255,.18);
+
+  color:white;
+
+  font-size:13px;
+
+}
+
+.search-input::placeholder{
+
+  color:
+    rgba(255,255,255,.70);
+
+}
+
+.search-icon{
+
+  position:absolute;
+
+  left:17px;
+
+  top:50%;
+
+  transform:
+    translateY(-50%);
+
+  font-size:18px;
+
+}
+
+/* =====================================================
+   SECTION
+===================================================== */
+
+.section-title{
+
+  margin:
+    30px 0 17px;
+
+}
+
+.section-title-row{
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:space-between;
+
+  gap:10px;
+
+}
+
+.section-title h2{
+
+  font-size:24px;
+
+  margin-bottom:5px;
+
+}
+
+.section-title p{
+
+  color:var(--muted);
+
+  font-size:13px;
+
+}
+
+/* =====================================================
+   FILTERS
+===================================================== */
+
+.filters{
+
+  display:flex;
+
+  gap:9px;
+
+  flex-wrap:wrap;
+
+  margin-bottom:18px;
+
+}
+
+.filter-button{
+
+  border:
+    1px solid var(--border);
+
+  background:var(--card);
+
+  color:var(--text);
+
+  border-radius:10px;
+
+  padding:
+    9px 14px;
+
+  font-size:11px;
+
+  font-weight:800;
+
+}
+
+.filter-button.active{
+
+  background:var(--primary);
+
+  border-color:var(--primary);
+
+  color:white;
+
+}
+
+/* =====================================================
+   COURSE GRID
+===================================================== */
+
+.course-grid{
+
+  display:grid;
+
+  grid-template-columns:
+    repeat(2,1fr);
+
+  gap:16px;
+
+}
+
+/* =====================================================
+   COURSE CARD
+===================================================== */
+
+.course-card{
+
+  position:relative;
+
+  background:var(--card);
+
+  border:
+    1px solid var(--border);
+
+  border-radius:19px;
+
+  padding:21px;
+
+  box-shadow:var(--shadow);
+
+  transition:
+    transform .2s,
+    box-shadow .2s;
+
+  overflow:hidden;
+
+}
+
+.course-card:hover{
+
+  transform:
+    translateY(-3px);
+
+}
+
+.course-card.hidden{
+
+  display:none;
+
+}
+
+.course-top{
+
+  display:flex;
+
+  align-items:flex-start;
+
+  justify-content:space-between;
+
+  gap:12px;
+
+  margin-bottom:15px;
+
+}
+
+.course-icon{
+
+  width:51px;
+  height:51px;
+
+  border-radius:14px;
+
+  background:
+    rgba(108,92,231,.12);
+
+  display:flex;
+
+  align-items:center;
+  justify-content:center;
+
+  font-size:25px;
+
+}
+
+.course-card.premium
+.course-icon{
+
+  background:
+    rgba(245,185,66,.14);
+
+}
+
+.course-badge{
+
+  padding:
+    6px 9px;
+
+  border-radius:20px;
+
+  font-size:9px;
+
+  font-weight:900;
+
+  white-space:nowrap;
+
+}
+
+.badge-free{
+
+  background:
+    rgba(0,184,148,.12);
+
+  color:var(--success);
+
+}
+
+.badge-premium{
+
+  background:
+    rgba(245,185,66,.16);
+
+  color:
+    #b77c00;
+
+}
+
+body.dark .badge-premium{
+
+  color:#ffd66b;
+
+}
+
+.course-card h3{
+
+  font-size:16px;
+
+  line-height:1.35;
+
+  margin-bottom:8px;
+
+}
+
+.course-card p{
+
+  color:var(--muted);
+
+  font-size:12px;
+
+  line-height:1.6;
+
+  min-height:57px;
+
+}
+
+.course-meta{
+
+  display:flex;
+
+  align-items:center;
+
+  gap:13px;
+
+  margin:
+    15px 0;
+
+  color:var(--muted);
+
+  font-size:10px;
+
+}
+
+.course-meta span{
+
+  display:flex;
+
+  align-items:center;
+
+  gap:4px;
+
+}
+
+.course-button{
+
+  width:100%;
+
+  height:43px;
+
+  border:none;
+
+  border-radius:10px;
+
+  background:var(--primary);
+
+  color:white;
+
+  font-size:11px;
+
+  font-weight:900;
+
+}
+
+.course-button:hover{
+
+  background:var(--primary-dark);
+
+}
+
+.course-card.premium
+.course-button{
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--gold),
+      var(--gold-dark)
+    );
+
+}
+
+.course-card.premium
+.course-button:hover{
+
+  opacity:.92;
+
+}
+
+/* =====================================================
+   PREMIUM INFORMATION
+===================================================== */
+
+.premium-info{
+
+  margin-top:25px;
+
+  padding:22px;
+
+  border-radius:18px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(245,185,66,.13),
+      rgba(108,92,231,.08)
+    );
+
+  border:
+    1px solid
+    rgba(245,185,66,.30);
+
+}
+
+.premium-info h3{
+
+  font-size:17px;
+
+  margin-bottom:7px;
+
+}
+
+.premium-info p{
+
+  color:var(--muted);
+
+  font-size:12px;
+
+  line-height:1.6;
+
+}
+
+/* =====================================================
+   EMPTY
+===================================================== */
+
+.empty-message{
+
+  display:none;
+
+  text-align:center;
+
+  padding:35px 20px;
+
+  color:var(--muted);
+
+  font-size:13px;
+
+}
+
+.empty-message.show{
+
+  display:block;
+
+}
+
+/* =====================================================
+   TOAST
+===================================================== */
+
+.toast{
+
+  position:fixed;
+
+  left:50%;
+
+  bottom:25px;
+
+  transform:
+    translate(-50%,120px);
+
+  z-index:500;
+
+  padding:
+    13px 18px;
+
+  border-radius:12px;
+
+  background:#1e1e2f;
+
+  color:white;
+
+  font-size:12px;
+
+  box-shadow:
+    0 10px 30px
+    rgba(0,0,0,.25);
+
+  transition:.3s;
+
+}
+
+.toast.show{
+
+  transform:
+    translate(-50%,0);
+
+}
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media(max-width:800px){
+
+  .course-grid{
+
+    grid-template-columns:1fr;
+
+  }
+
+  .hero h1{
+
+    font-size:32px;
+
+  }
+
+}
+
+@media(max-width:550px){
+
+  .container{
+
+    padding:
+      22px 15px 55px;
+
+  }
+
+  .hero{
+
+    padding:
+      30px 22px;
+
+  }
+
+  .hero h1{
+
+    font-size:28px;
+
+  }
+
+  .hero p{
+
+    font-size:13px;
+
+  }
+
+  .brand-name{
+
+    font-size:15px;
+
+  }
+
+  .section-title h2{
+
+    font-size:21px;
+
+  }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
+<header class="header">
+
+  <div class="header-inner">
+
+    <div class="header-left">
+
+      <button
+        class="back-button"
+        onclick="goBack()"
+        aria-label="Retour">
+
+        ←
+
+      </button>
+
+
+      <div class="brand">
+
+        <div class="brand-icon">
+          🎹
+        </div>
+
+        <div class="brand-name">
+          Piano Academy
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <button
+      class="theme-button"
+      id="themeButton"
+      aria-label="Changer de thème">
+
+      🌙
+
+    </button>
+
+  </div>
+
+</header>
+
+
+<!-- =====================================================
+     MAIN
+===================================================== -->
+
+<main class="container">
+
+
+<!-- =====================================================
+     HERO
+===================================================== -->
+
+<section class="hero">
+
+  <div class="hero-content">
+
+    <div class="hero-badge">
+
+      🎓 BIBLIOTHÈQUE DES COURS
+
+    </div>
+
+
+    <h1>
+
+      Tous les
+      <span>cours</span>
+
+    </h1>
+
+
+    <p>
+
+      Retrouve ici tous les cours de Piano Academy.
+      Commence gratuitement ou approfondis tes
+      connaissances avec les cours Premium.
+
+    </p>
+
+
+    <div class="search-box">
+
+      <span class="search-icon">
+        🔎
+      </span>
+
+      <input
+        type="search"
+        id="searchInput"
+        class="search-input"
+        placeholder="Rechercher un cours..."
+        autocomplete="off"
+      >
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =====================================================
+     FILTERS
+===================================================== -->
+
+<div class="filters">
+
+  <button
+    class="filter-button active"
+    data-filter="all">
+
+    Tous
+
+  </button>
+
+
+  <button
+    class="filter-button"
+    data-filter="free">
+
+    🆓 Gratuits
+
+  </button>
+
+
+  <button
+    class="filter-button"
+    data-filter="premium">
+
+    ⭐ Premium
+
+  </button>
+
+</div>
+
+
+<!-- =====================================================
+     COURS GRATUITS
+===================================================== -->
+
+<div
+  class="section-title"
+  id="freeSection">
+
+  <div class="section-title-row">
+
+    <div>
+
+      <h2>
+        🆓 Cours gratuits
+      </h2>
+
+      <p>
+        Commence ton apprentissage gratuitement.
+      </p>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<section
+  class="course-grid"
+  id="freeCourses">
+
+
+<!-- COURS GRATUIT 1 -->
+
+<article
+  class="course-card free"
+  data-type="free"
+  data-search="bases du piano piano débutant">
+
+  <div class="course-top">
+
+    <div class="course-icon">
+      🎹
+    </div>
+
+    <span
+      class="course-badge badge-free">
+
+      GRATUIT
+
+    </span>
+
+  </div>
+
+
+  <h3>
+    Bases du piano
+  </h3>
+
+
+  <p>
+
+    Découvre les fondamentaux du piano,
+    du clavier et les premières notions
+    indispensables pour commencer.
+
+  </p>
+
+
+  <div class="course-meta">
+
+    <span>
+      📚 Débutant
+    </span>
+
+    <span>
+      🎓 Gratuit
+    </span>
+
+  </div>
+
+
+  <button
+    class="course-button"
+    onclick="openCourse('bases.html')">
+
+    Commencer le cours
+
+  </button>
+
+</article>
+
+
+<!-- COURS GRATUIT 2 -->
+
+<article
+  class="course-card free"
+  data-type="free"
+  data-search="notes gammes tonalités notes gammes">
+
+  <div class="course-top">
+
+    <div class="course-icon">
+      🎼
+    </div>
+
+    <span
+      class="course-badge badge-free">
+
+      GRATUIT
+
+    </span>
+
+  </div>
+
+
+  <h3>
+    Notes, gammes et tonalités
+  </h3>
+
+
+  <p>
+
+    Apprends à reconnaître les notes,
+    comprendre les gammes et découvrir
+    les principales tonalités musicales.
+
+  </p>
+
+
+  <div class="course-meta">
+
+    <span>
+      📚 Débutant
+    </span>
+
+    <span>
+      🎓 Gratuit
+    </span>
+
+  </div>
+
+
+  <button
+    class="course-button"
+    onclick="openCourse('notes-gammes.html')">
+
+    Commencer le cours
+
+  </button>
+
+</article>
+
+
+<!-- COURS GRATUIT 3 -->
+
+<article
+  class="course-card free"
+  data-type="free"
+  data-search="lecture musicale portée clé sol clé fa partition">
+
+  <div class="course-top">
+
+    <div class="course-icon">
+      📖
+    </div>
+
+    <span
+      class="course-badge badge-free">
+
+      GRATUIT
+
+    </span>
+
+  </div>
+
+
+  <h3>
+    Lecture musicale
+  </h3>
+
+
+  <p>
+
+    Apprends progressivement à lire la musique,
+    reconnaître les notes et comprendre une
+    petite partition.
+
+  </p>
+
+
+  <div class="course-meta">
+
+    <span>
+      📚 Débutant
+    </span>
+
+    <span>
+      🎓 8 leçons
+    </span>
+
+  </div>
+
+
+  <button
+    class="course-button"
+    onclick="openCourse('lecture-musicale.html')">
+
+    Commencer le cours
+
+  </button>
+
+</article>
+
+
+</section>
+
+
+<!-- =====================================================
+     COURS PREMIUM
+===================================================== -->
+
+<div
+  class="section-title"
+  id="premiumSection">
+
+  <div>
+
+    <h2>
+      ⭐ Cours Premium
+    </h2>
+
+    <p>
+      Approfondis tes compétences avec les cours
+      avancés de Piano Academy.
+    </p>
+
+  </div>
+
+</div>
+
+
+<section
+  class="course-grid"
+  id="premiumCourses">
+
+
+<!-- PREMIUM 1 -->
+
+<article
+  class="course-card premium"
+  data-type="premium"
+  data-search="maîtrise accords piano accords">
+
+  <div class="course-top">
+
+    <div class="course-icon">
+      🎹
+    </div>
+
+    <span
+      class="course-badge badge-premium">
+
+      ⭐ PREMIUM
+
+    </span>
+
+  </div>
+
+
+  <h3>
+    Maîtrise des accords au piano
+  </h3>
+
+
+  <p>
+
+    Maîtrise les accords essentiels,
+    leurs renversements et les techniques
+    permettant de les utiliser musicalement.
+
+  </p>
+
+
+  <div class="course-meta">
+
+    <span>
+      📚 Intermédiaire
+    </span>
+
+    <span>
+      ⭐ Premium
+    </span>
+
+  </div>
+
+
+  <button
+    class="course-button"
+    onclick="openPremiumCourse('accords.html')">
+
+    Ouvrir le cours
+
+  </button>
+
+</article>
+
+
+<!-- PREMIUM 2 -->
+
+<article
+  class="course-card premium"
+  data-type="premium"
+  data-search="harmonie piano harmonie musicale accords">
+
+  <div class="course-top">
+
+    <div class="course-icon">
+      🎼
+    </div>
+
+    <span
+      class="course-badge badge-premium">
+
+      ⭐ PREMIUM
+
+    </span>
+
+  </div>
+
+
+  <h3>
+    Harmonie au piano
+  </h3>
+
+
+  <p>
+
+    Comprends les relations entre les accords,
+    les tonalités et les progressions harmoniques
+    utilisées dans la musique.
+
+  </p>
+
+
+  <div class="course-meta">
+
+    <span>
+      📚 Intermédiaire
+    </span>
+
+    <span>
+      ⭐ Premium
+    </span>
+
+  </div>
+
+
+  <button
+    class="course-button"
+    onclick="openPremiumCourse('harmonie.html')">
+
+    Ouvrir le cours
+
+  </button>
+
+</article>
+
+
+<!-- PREMIUM 3 -->
+
+<article
+  class="course-card premium"
+  data-type="premium"
+  data-search="coordination deux mains piano mains">
+
+  <div class="course-top">
+
+    <div class="course-icon">
+      🤲
+    </div>
+
+    <span
+      class="course-badge badge-premium">
+
+      ⭐ PREMIUM
+
+    </span>
+
+  </div>
+
+
+  <h3>
+    Coordination des deux mains
+  </h3>
+
+
+  <p>
+
+    Développe la coordination, l'indépendance
+    et la synchronisation des deux mains
+    au piano.
+
+  </p>
+
+
+  <div class="course-meta">
+
+    <span>
+      📚 Intermédiaire
+    </span>
+
+    <span>
+      ⭐ Premium
+    </span>
+
+  </div>
+
+
+  <button
+    class="course-button"
+    onclick="openPremiumCourse('coordination.html')">
+
+    Ouvrir le cours
+
+  </button>
+
+</article>
+
+
+<!-- PREMIUM 4 -->
+
+<article
+  class="course-card premium"
+  data-type="premium"
+  data-search="technique pianistique technique piano doigts gammes arpèges vélocité">
+
+  <div class="course-top">
+
+    <div class="course-icon">
+      ⚡
+    </div>
+
+    <span
+      class="course-badge badge-premium">
+
+      ⭐ PREMIUM
+
+    </span>
+
+  </div>
+
+
+  <h3>
+    Technique pianistique
+  </h3>
+
+
+  <p>
+
+    Développe une technique solide :
+    posture, doigts, gammes, arpèges,
+    articulation, vélocité et contrôle du clavier.
+
+  </p>
+
+
+  <div class="course-meta">
+
+    <span>
+      📚 Tous niveaux
+    </span>
+
+    <span>
+      ⭐ 25 modules
+    </span>
+
+  </div>
+
+
+  <button
+    class="course-button"
+    onclick="openPremiumCourse('technique-pianistique.html')">
+
+    Ouvrir le cours
+
+  </button>
+
+</article>
+
+
+</section>
+
+
+<!-- =====================================================
+     PREMIUM INFO
+===================================================== -->
+
+<section class="premium-info">
+
+  <h3>
+    ⭐ Pourquoi passer à Premium ?
+  </h3>
+
+
+  <p>
+
+    Les cours Premium permettent d'aller plus loin
+    dans l'apprentissage du piano grâce à des
+    programmes structurés, des exercices progressifs
+    et des contenus plus approfondis.
+
+  </p>
+
+</section>
+
+
+<div
+  class="empty-message"
+  id="emptyMessage">
+
+  🔎 Aucun cours ne correspond à ta recherche.
+
+</div>
+
+
+</main>
+
+
+<!-- =====================================================
+     TOAST
+===================================================== -->
+
+<div
+  class="toast"
+  id="toast">
+</div>
+
+
+<script>
+
+/* =====================================================
+   THÈME
+===================================================== */
+
+const themeButton =
+  document.getElementById("themeButton");
+
+
+function applyTheme(){
+
+  const theme =
+    localStorage.getItem(
+      "pianoAcademyTheme"
+    );
+
+  if(theme === "dark"){
+
+    document.body.classList.add("dark");
+
+    themeButton.textContent =
+      "☀️";
+
+  }else{
+
+    document.body.classList.remove("dark");
+
+    themeButton.textContent =
+      "🌙";
+
+  }
+
+}
+
+
+themeButton.addEventListener(
+  "click",
+  function(){
+
+    const isDark =
+      document.body.classList.contains("dark");
+
+    if(isDark){
+
+      document.body.classList.remove("dark");
+
+      localStorage.setItem(
+        "pianoAcademyTheme",
+        "light"
+      );
+
+      themeButton.textContent =
+        "🌙";
+
+    }else{
+
+      document.body.classList.add("dark");
+
+      localStorage.setItem(
+        "pianoAcademyTheme",
+        "dark"
+      );
+
+      themeButton.textContent =
+        "☀️";
+
+    }
+
+  }
+);
+
+
+applyTheme();
+
+
+/* =====================================================
+   NAVIGATION RETOUR
+===================================================== */
+
+function goBack(){
+
+  if(
+    document.referrer &&
+    document.referrer !== window.location.href
+  ){
+
+    history.back();
+
+  }else{
+
+    window.location.href =
+      "dashboard.html";
+
+  }
+
+}
+
+
+/* =====================================================
+   OUVRIR COURS
+===================================================== */
+
+function openCourse(file){
+
+  window.location.href =
+    file;
+
+}
+
+
+/* =====================================================
+   COURS PREMIUM
+===================================================== */
+
+function openPremiumCourse(file){
+
+  /*
+    Pour l'instant, on vérifie simplement
+    si le cours Premium a été débloqué.
+
+    Le système Supabase pourra ensuite
+    remplacer cette vérification locale.
+  */
+
+  const premiumUnlocked =
+    localStorage.getItem(
+      "pianoAcademyPremium"
+    );
+
+
+  if(
+    premiumUnlocked === "true"
+  ){
+
+    window.location.href =
+      file;
+
+    return;
+
+  }
+
+
+  showToast(
+    "⭐ Ce cours est réservé aux membres Premium."
+  );
+
+
+  setTimeout(
+    function(){
+
+      /*
+        Page à adapter avec ton système
+        Premium existant.
+      */
+
+      window.location.href =
+        "premium.html";
+
+    },
+    1200
+  );
+
+}
+
+
+/* =====================================================
+   FILTRE
+===================================================== */
+
+const filterButtons =
+  document.querySelectorAll(
+    ".filter-button"
+  );
+
+
+const courseCards =
+  document.querySelectorAll(
+    ".course-card"
+  );
+
+
+filterButtons.forEach(
+  button => {
+
+    button.addEventListener(
+      "click",
+      function(){
+
+        filterButtons.forEach(
+          btn =>
+            btn.classList.remove(
+              "active"
+            )
+        );
+
+        this.classList.add(
+          "active"
+        );
+
+
+        const filter =
+          this.dataset.filter;
+
+
+        document
+          .getElementById("freeSection")
+          .style.display =
+            filter === "premium"
+              ? "none"
+              : "block";
+
+
+        document
+          .getElementById("premiumSection")
+          .style.display =
+            filter === "free"
+              ? "none"
+              : "block";
+
+
+        courseCards.forEach(
+          card => {
+
+            const type =
+              card.dataset.type;
+
+
+            if(
+              filter === "all" ||
+              type === filter
+            ){
+
+              card.classList.remove(
+                "hidden"
+              );
+
+            }else{
+
+              card.classList.add(
+                "hidden"
+              );
+
+            }
+
+          }
+        );
+
+
+        checkEmpty();
+
+      }
+    );
+
+  }
+);
+
+
+/* =====================================================
+   RECHERCHE
+===================================================== */
+
+const searchInput =
+  document.getElementById(
+    "searchInput"
+  );
+
+
+searchInput.addEventListener(
+  "input",
+  function(){
+
+    const search =
+      this.value
+        .toLowerCase()
+        .trim();
+
+
+    courseCards.forEach(
+      card => {
+
+        const content =
+          (
+            card.innerText +
+            " " +
+            card.dataset.search
+          ).toLowerCase();
+
+
+        const activeFilter =
+          document
+            .querySelector(
+              ".filter-button.active"
+            )
+            .dataset.filter;
+
+
+        const matchesFilter =
+          activeFilter === "all" ||
+          card.dataset.type ===
+            activeFilter;
+
+
+        const matchesSearch =
+          !search ||
+          content.includes(search);
+
+
+        if(
+          matchesFilter &&
+          matchesSearch
+        ){
+
+          card.classList.remove(
+            "hidden"
+          );
+
+        }else{
+
+          card.classList.add(
+            "hidden"
+          );
+
+        }
+
+      }
+    );
+
+
+    updateSections();
+
+    checkEmpty();
+
+  }
+);
+
+
+/* =====================================================
+   SECTIONS
+===================================================== */
+
+function updateSections(){
+
+  const activeFilter =
+    document
+      .querySelector(
+        ".filter-button.active"
+      )
+      .dataset.filter;
+
+
+  const freeVisible =
+    [...courseCards]
+      .some(
+        card =>
+          card.dataset.type === "free" &&
+          !card.classList.contains("hidden")
+      );
+
+
+  const premiumVisible =
+    [...courseCards]
+      .some(
+        card =>
+          card.dataset.type === "premium" &&
+          !card.classList.contains("hidden")
+      );
+
+
+  document
+    .getElementById("freeSection")
+    .style.display =
+      activeFilter === "premium" ||
+      !freeVisible
+        ? "none"
+        : "block";
+
+
+  document
+    .getElementById("premiumSection")
+    .style.display =
+      activeFilter === "free" ||
+      !premiumVisible
+        ? "none"
+        : "block";
+
+}
+
+
+/* =====================================================
+   MESSAGE VIDE
+===================================================== */
+
+function checkEmpty(){
+
+  const visible =
+    [...courseCards]
+      .some(
+        card =>
+          !card.classList.contains(
+            "hidden"
+          )
+      );
+
+
+  document
+    .getElementById("emptyMessage")
+    .classList.toggle(
+      "show",
+      !visible
+    );
+
+}
+
+
+/* =====================================================
+   TOAST
+===================================================== */
+
+function showToast(text){
+
+  const toast =
+    document.getElementById(
+      "toast"
+    );
+
+
+  toast.textContent =
+    text;
+
+
+  toast.classList.add(
+    "show"
+  );
+
+
+  setTimeout(
+    function(){
+
+      toast.classList.remove(
+        "show"
+      );
+
+    },
+    2500
+  );
+
+}
+
+
+/* =====================================================
+   RACCOURCI ÉCHAP
+===================================================== */
+
+document.addEventListener(
+  "keydown",
+  function(event){
+
+    if(
+      event.key === "Escape"
+    ){
+
+      goBack();
+
+    }
+
+  }
+);
+
+</script>
+
+</body>
+</html>
