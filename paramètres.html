@@ -1,0 +1,1726 @@
+<!DOCTYPE html><html lang="fr">
+<head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Paramètres — Piano Academy</title><meta name="description"
+content="Paramètres de votre compte Piano Academy">
+
+<style>
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+:root{
+  --primary:#6c5ce7;
+  --primary-dark:#5848d6;
+  --secondary:#00cec9;
+  --gold:#f5b942;
+  --gold-dark:#d99a20;
+
+  --background:#f5f6fa;
+  --card:#ffffff;
+  --soft:#fafbfe;
+
+  --text:#1e1e2f;
+  --muted:#777b8a;
+  --border:#e2e4ec;
+
+  --success:#00b894;
+  --danger:#e74c3c;
+
+  --shadow:
+    0 12px 35px rgba(25,25,50,.08);
+}
+
+body.dark{
+  --background:#11121a;
+  --card:#1b1d28;
+  --soft:#222531;
+  --text:#f5f5fa;
+  --muted:#a7a9b7;
+  --border:#303342;
+
+  --shadow:
+    0 12px 35px rgba(0,0,0,.25);
+}
+
+body{
+  min-height:100vh;
+  font-family:Arial,Helvetica,sans-serif;
+  background:var(--background);
+  color:var(--text);
+  transition:.25s;
+}
+
+button{
+  font-family:inherit;
+  cursor:pointer;
+}
+
+/* HEADER */
+
+.header{
+  position:sticky;
+  top:0;
+  z-index:100;
+  height:70px;
+  background:var(--card);
+  border-bottom:1px solid var(--border);
+}
+
+.header-inner{
+  width:100%;
+  max-width:1150px;
+  height:100%;
+  margin:auto;
+  padding:0 20px;
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+
+.header-left{
+  display:flex;
+  align-items:center;
+  gap:13px;
+}
+
+.back-button,
+.theme-button{
+  width:42px;
+  height:42px;
+
+  border:none;
+  border-radius:11px;
+
+  background:var(--soft);
+  color:var(--text);
+
+  font-size:20px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.back-button:hover,
+.theme-button:hover{
+  background:#eeeaff;
+  color:var(--primary);
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.brand-icon{
+  width:40px;
+  height:40px;
+
+  border-radius:11px;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--primary),
+      var(--primary-dark)
+    );
+
+  color:white;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  font-size:20px;
+}
+
+.brand-name{
+  font-size:17px;
+  font-weight:800;
+}
+
+/* CONTAINER */
+
+.container{
+  width:100%;
+  max-width:900px;
+  margin:auto;
+
+  padding:
+    30px 20px 70px;
+}
+
+/* TITLE */
+
+.page-title{
+  margin-bottom:25px;
+}
+
+.page-title h1{
+  font-size:30px;
+  margin-bottom:7px;
+}
+
+.page-title p{
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.6;
+}
+
+/* SETTINGS GROUP */
+
+.settings-section{
+  margin-bottom:22px;
+}
+
+.section-title{
+  display:flex;
+  align-items:center;
+  gap:9px;
+
+  font-size:15px;
+  font-weight:800;
+
+  margin-bottom:10px;
+}
+
+.section-icon{
+  width:34px;
+  height:34px;
+
+  border-radius:10px;
+
+  background:
+    rgba(108,92,231,.12);
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  font-size:17px;
+}
+
+/* CARD */
+
+.settings-card{
+  background:var(--card);
+
+  border:
+    1px solid var(--border);
+
+  border-radius:17px;
+
+  overflow:hidden;
+
+  box-shadow:var(--shadow);
+}
+
+/* ITEM */
+
+.setting-item{
+  width:100%;
+
+  min-height:68px;
+
+  padding:13px 17px;
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:15px;
+
+  background:transparent;
+
+  border:none;
+
+  border-bottom:
+    1px solid var(--border);
+
+  color:var(--text);
+
+  text-align:left;
+}
+
+.setting-item:last-child{
+  border-bottom:none;
+}
+
+.setting-item:hover{
+  background:var(--soft);
+}
+
+.setting-left{
+  display:flex;
+  align-items:center;
+  gap:13px;
+  min-width:0;
+}
+
+.item-icon{
+  width:39px;
+  height:39px;
+
+  flex-shrink:0;
+
+  border-radius:11px;
+
+  background:var(--soft);
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  font-size:18px;
+}
+
+.item-text{
+  min-width:0;
+}
+
+.item-title{
+  font-size:13px;
+  font-weight:800;
+
+  margin-bottom:4px;
+}
+
+.item-description{
+  color:var(--muted);
+
+  font-size:11px;
+  line-height:1.45;
+}
+
+.arrow{
+  color:var(--muted);
+  font-size:18px;
+  flex-shrink:0;
+}
+
+/* TOGGLE */
+
+.toggle{
+  width:48px;
+  height:27px;
+
+  border:none;
+  border-radius:30px;
+
+  background:#cfd2dc;
+
+  position:relative;
+
+  flex-shrink:0;
+
+  transition:.25s;
+}
+
+.toggle::after{
+  content:"";
+
+  position:absolute;
+
+  width:21px;
+  height:21px;
+
+  border-radius:50%;
+
+  background:white;
+
+  top:3px;
+  left:3px;
+
+  box-shadow:
+    0 2px 5px rgba(0,0,0,.2);
+
+  transition:.25s;
+}
+
+.toggle.active{
+  background:var(--primary);
+}
+
+.toggle.active::after{
+  transform:translateX(21px);
+}
+
+/* THEME */
+
+.theme-options{
+  display:flex;
+  gap:7px;
+}
+
+.theme-option{
+  border:none;
+
+  padding:7px 9px;
+
+  border-radius:8px;
+
+  background:var(--soft);
+
+  color:var(--muted);
+
+  font-size:10px;
+  font-weight:800;
+}
+
+.theme-option.active{
+  background:var(--primary);
+  color:white;
+}
+
+/* DANGER */
+
+.danger-item .item-icon{
+  background:
+    rgba(231,76,60,.10);
+
+  color:var(--danger);
+}
+
+.danger-item .item-title{
+  color:var(--danger);
+}
+
+/* LOGOUT */
+
+.logout-button{
+  width:100%;
+
+  margin-top:10px;
+
+  padding:15px;
+
+  border:none;
+
+  border-radius:14px;
+
+  background:
+    rgba(231,76,60,.09);
+
+  color:var(--danger);
+
+  font-size:13px;
+  font-weight:800;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:9px;
+}
+
+.logout-button:hover{
+  background:
+    rgba(231,76,60,.15);
+}
+
+/* VERSION */
+
+.version{
+  text-align:center;
+
+  margin-top:30px;
+
+  color:var(--muted);
+
+  font-size:11px;
+
+  line-height:1.7;
+}
+
+/* TOAST */
+
+.toast{
+  position:fixed;
+
+  left:50%;
+  bottom:25px;
+
+  transform:
+    translate(-50%,120px);
+
+  z-index:500;
+
+  padding:13px 18px;
+
+  border-radius:12px;
+
+  background:#1e1e2f;
+  color:white;
+
+  font-size:12px;
+
+  box-shadow:
+    0 10px 30px
+    rgba(0,0,0,.25);
+
+  transition:.3s;
+}
+
+.toast.show{
+  transform:
+    translate(-50%,0);
+}
+
+/* RESPONSIVE */
+
+@media(max-width:600px){
+
+  .container{
+    padding:
+      22px 15px 55px;
+  }
+
+  .page-title h1{
+    font-size:27px;
+  }
+
+  .setting-item{
+    padding:
+      13px 14px;
+  }
+
+  .item-description{
+    font-size:10px;
+  }
+
+  .theme-options{
+    gap:4px;
+  }
+
+  .theme-option{
+    padding:
+      6px 7px;
+
+    font-size:9px;
+  }
+
+}
+
+</style></head><body><!-- HEADER --><header class="header">  <div class="header-inner"><div class="header-left">
+
+  <button
+    class="back-button"
+    onclick="goBack()"
+    aria-label="Retour">
+    ←
+  </button>
+
+  <div class="brand">
+
+    <div class="brand-icon">
+      🎹
+    </div>
+
+    <div class="brand-name">
+      Piano Academy
+    </div>
+
+  </div>
+
+</div>
+
+<button
+  class="theme-button"
+  id="themeButton"
+  aria-label="Changer le thème">
+  🌙
+</button>
+
+  </div></header><!-- MAIN --><main class="container">  <div class="page-title"><h1>
+  ⚙️ Paramètres
+</h1>
+
+<p>
+  Personnalise ton expérience Piano Academy
+  et gère ton compte.
+</p>
+
+  </div>  <!-- COMPTE -->  <section class="settings-section"><div class="section-title">
+
+  <div class="section-icon">
+    👤
+  </div>
+
+  <span>
+    Compte
+  </span>
+
+</div>
+
+
+<div class="settings-card">
+
+
+  <button
+    class="setting-item"
+    onclick="openProfile()">
+
+    <div class="setting-left">
+
+      <div class="item-icon">
+        👤
+      </div>
+
+      <div class="item-text">
+
+        <div class="item-title">
+          Mon profil
+        </div>
+
+        <div class="item-description">
+          Consulter les informations de ton profil.
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="arrow">
+      ›
+    </div>
+
+  </button>
+
+
+  <button
+    class="setting-item"
+    onclick="editProfile()">
+
+    <div class="setting-left">
+
+      <div class="item-icon">
+        ✏️
+      </div>
+
+      <div class="item-text">
+
+        <div class="item-title">
+          Modifier mes informations
+        </div>
+
+        <div class="item-description">
+          Modifier ton profil et tes informations personnelles.
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="arrow">
+      ›
+    </div>
+
+  </button>
+
+
+</div>
+
+  </section>  <!-- APPARENCE -->  <section class="settings-section"><div class="section-title">
+
+  <div class="section-icon">
+    🎨
+  </div>
+
+  <span>
+    Apparence
+  </span>
+
+</div>
+
+
+<div class="settings-card">
+
+
+  <div class="setting-item">
+
+    <div class="setting-left">
+
+      <div class="item-icon">
+        🌓
+      </div>
+
+      <div class="item-text">
+
+        <div class="item-title">
+          Mode clair / sombre
+        </div>
+
+        <div class="item-description">
+          Choisir l'apparence de l'application.
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <button
+      class="toggle"
+      id="darkToggle"
+      onclick="toggleDarkMode()"
+      aria-label="Mode sombre">
+    </button>
+
+  </div>
+
+
+  <div class="setting-item">
+
+    <div class="setting-left">
+
+      <div class="item-icon">
+        🖌️
+      </div>
+
+      <div class="item-text">
+
+        <div class="item-title">
+          Thème de l'application
+        </div>
+
+        <div class="item-description">
+          Personnalise l'apparence générale.
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div class="theme-options">
+
+      <button
+        class="theme-option active"
+        onclick="selectTheme('violet',this)">
+        Violet
+      </button>
+
+      <button
+        class="theme-option"
+        onclick="selectTheme('blue',this)">
+        Bleu
+      </button>
+
+      <button
+        class="theme-option"
+        onclick="selectTheme('green',this)">
+        Vert
+      </button>
+
+    </div>
+
+  </div>
+
+
+</div>
+
+  </section>  <!-- APPRENTISSAGE -->  <section class="settings-section"><div class="section-title">
+
+  <div class="section-icon">
+    🎹
+  </div>
+
+  <span>
+    Apprentissage
+  </span>
+
+</div>
+
+
+<div class="settings-card">
+
+
+  <button
+    class="setting-item"
+    onclick="resetProgress()">
+
+    <div class="setting-left">
+
+      <div class="item-icon">
+        🔄
+      </div>
+
+      <div class="item-text">
+
+        <div class="item-title">
+          Réinitialiser la progression
+        </div>
+
+        <div class="item-description">
+          Effacer la progression enregistrée dans les cours.
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="arrow">
+      ›
+    </div>
+
+  </button>
+
+
+  <div class="setting-item">
+
+    <div class="setting-left">
+
+      <div class="item-icon">
+        ▶️
+      </div>
+
+      <div class="item-text">
+
+        <div class="item-title">
+          Continuer automatiquement le dernier cours
+        </div>
+
+        <div class="item-description">
+          Reprendre automatiquement ton dernier cours consulté.
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <button
+      class="toggle"
+      id="continueToggle"
+      onclick="toggleContinue()"
+      aria-label="Continuer automatiquement">
+    </button>
+
+  </div>
+
+
+  <div class="setting-item">
+
+    <div class="setting-left">
+
+      <div class="item-icon">
+        🔔
+      </div>
+
+      <div class="item-text">
+
+        <div class="item-title">
+          Notifications d'apprentissage
+        </div>
+
+        <div class="item-description">
+          Recevoir des rappels pour pratiquer régulièrement.
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <button
+      class="toggle"
+      id="notificationToggle"
+      onclick="toggleNotifications()"
+      aria-label="Notifications">
+    </button>
+
+  </div>
+
+
+</div>
+
+  </section>  <!-- SECURITE -->  <section class="settings-section"><div class="section-title">
+
+  <div class="section-icon">
+    🔐
+  </div>
+
+  <span>
+    Sécurité
+  </span>
+
+</div>
+
+
+<div class="settings-card">
+
+
+  <button
+    class="setting-item"
+    onclick="changePassword()">
+
+    <div class="setting-left">
+
+      <div class="item-icon">
+        🔑
+      </div>
+
+      <div class="item-text">
+
+        <div class="item-title">
+          Modifier le mot de passe
+        </div>
+
+        <div class="item-description">
+          Modifier le mot de passe de ton compte.
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="arrow">
+      ›
+    </div>
+
+  </button>
+
+
+  <button
+    class="setting-item danger-item"
+    onclick="manageAccount()">
+
+    <div class="setting-left">
+
+      <div class="item-icon">
+        ⚠️
+      </div>
+
+      <div class="item-text">
+
+        <div class="item-title">
+          Gestion du compte
+        </div>
+
+        <div class="item-description">
+          Gérer les options importantes de ton compte.
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="arrow">
+      ›
+    </div>
+
+  </button>
+
+
+</div>
+
+  </section>  <!-- A PROPOS -->  <section class="settings-section"><div class="section-title">
+
+  <div class="section-icon">
+    ℹ️
+  </div>
+
+  <span>
+    À propos
+  </span>
+
+</div>
+
+
+<div class="settings-card">
+
+
+  <button
+    class="setting-item"
+    onclick="aboutApp()">
+
+    <div class="setting-left">
+
+      <div class="item-icon">
+        🎹
+      </div>
+
+      <div class="item-text">
+
+        <div class="item-title">
+          À propos de Piano Academy
+        </div>
+
+        <div class="item-description">
+          Découvrir l'application et ses fonctionnalités.
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="arrow">
+      ›
+    </div>
+
+  </button>
+
+
+  <button
+    class="setting-item"
+    onclick="showVersion()">
+
+    <div class="setting-left">
+
+      <div class="item-icon">
+        📱
+      </div>
+
+      <div class="item-text">
+
+        <div class="item-title">
+          Version de l'application
+        </div>
+
+        <div class="item-description">
+          Piano Academy Premium — Version 1.0
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="arrow">
+      ›
+    </div>
+
+  </button>
+
+
+  <button
+    class="setting-item"
+    onclick="terms()">
+
+    <div class="setting-left">
+
+      <div class="item-icon">
+        📄
+      </div>
+
+      <div class="item-text">
+
+        <div class="item-title">
+          Conditions d'utilisation
+        </div>
+
+        <div class="item-description">
+          Consulter les conditions d'utilisation.
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="arrow">
+      ›
+    </div>
+
+  </button>
+
+
+  <button
+    class="setting-item"
+    onclick="privacy()">
+
+    <div class="setting-left">
+
+      <div class="item-icon">
+        🔒
+      </div>
+
+      <div class="item-text">
+
+        <div class="item-title">
+          Politique de confidentialité
+        </div>
+
+        <div class="item-description">
+          Découvrir comment tes données sont utilisées.
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="arrow">
+      ›
+    </div>
+
+  </button>
+
+
+</div>
+
+  </section>  <!-- DECONNEXION --><button
+class="logout-button"
+onclick="logout()">
+
+🚪
+Déconnexion
+
+  </button>  <div class="version">🎹 Piano Academy<br>
+
+Apprendre • Pratiquer • Progresser
+
+  </div></main><!-- TOAST --><div
+  class="toast"
+  id="toast">
+</div><script>
+
+/* =====================================================
+   NAVIGATION
+===================================================== */
+
+function goBack(){
+
+  if(
+    document.referrer &&
+    document.referrer !== window.location.href
+  ){
+
+    history.back();
+
+  }else{
+
+    window.location.href =
+      "dashboard.html";
+
+  }
+
+}
+
+
+/* =====================================================
+   THEME
+===================================================== */
+
+const themeButton =
+  document.getElementById("themeButton");
+
+const darkToggle =
+  document.getElementById("darkToggle");
+
+
+function applyTheme(){
+
+  const theme =
+    localStorage.getItem(
+      "pianoAcademyTheme"
+    ) || "light";
+
+  if(theme === "dark"){
+
+    document.body.classList.add("dark");
+
+    themeButton.textContent =
+      "☀️";
+
+    darkToggle.classList.add(
+      "active"
+    );
+
+  }else{
+
+    document.body.classList.remove("dark");
+
+    themeButton.textContent =
+      "🌙";
+
+    darkToggle.classList.remove(
+      "active"
+    );
+
+  }
+
+}
+
+
+themeButton.addEventListener(
+  "click",
+  toggleDarkMode
+);
+
+
+function toggleDarkMode(){
+
+  const isDark =
+    document.body.classList.contains("dark");
+
+  if(isDark){
+
+    document.body.classList.remove("dark");
+
+    localStorage.setItem(
+      "pianoAcademyTheme",
+      "light"
+    );
+
+    themeButton.textContent =
+      "🌙";
+
+    darkToggle.classList.remove(
+      "active"
+    );
+
+    showToast(
+      "☀️ Mode clair activé"
+    );
+
+  }else{
+
+    document.body.classList.add("dark");
+
+    localStorage.setItem(
+      "pianoAcademyTheme",
+      "dark"
+    );
+
+    themeButton.textContent =
+      "☀️";
+
+    darkToggle.classList.add(
+      "active"
+    );
+
+    showToast(
+      "🌙 Mode sombre activé"
+    );
+
+  }
+
+}
+
+
+/* =====================================================
+   THEME DE L'APPLICATION
+===================================================== */
+
+function selectTheme(
+  theme,
+  button
+){
+
+  document
+    .querySelectorAll(".theme-option")
+    .forEach(
+      item =>
+        item.classList.remove("active")
+    );
+
+  button.classList.add(
+    "active"
+  );
+
+  localStorage.setItem(
+    "pianoAcademyColorTheme",
+    theme
+  );
+
+  showToast(
+    "🎨 Thème sélectionné"
+  );
+
+}
+
+
+/* =====================================================
+   APPRENTISSAGE
+===================================================== */
+
+function getSetting(
+  key,
+  defaultValue
+){
+
+  const value =
+    localStorage.getItem(key);
+
+  if(value === null){
+    return defaultValue;
+  }
+
+  return value === "true";
+
+}
+
+
+function setToggle(
+  element,
+  value
+){
+
+  if(value){
+
+    element.classList.add(
+      "active"
+    );
+
+  }else{
+
+    element.classList.remove(
+      "active"
+    );
+
+  }
+
+}
+
+
+/* CONTINUER */
+
+function toggleContinue(){
+
+  const toggle =
+    document.getElementById(
+      "continueToggle"
+    );
+
+  const current =
+    toggle.classList.contains(
+      "active"
+    );
+
+  const next =
+    !current;
+
+  setToggle(
+    toggle,
+    next
+  );
+
+  localStorage.setItem(
+    "pianoContinueLastCourse",
+    next
+  );
+
+  showToast(
+    next
+      ? "▶️ Reprise automatique activée"
+      : "⏸️ Reprise automatique désactivée"
+  );
+
+}
+
+
+/* NOTIFICATIONS */
+
+function toggleNotifications(){
+
+  const toggle =
+    document.getElementById(
+      "notificationToggle"
+    );
+
+  const current =
+    toggle.classList.contains(
+      "active"
+    );
+
+  const next =
+    !current;
+
+  setToggle(
+    toggle,
+    next
+  );
+
+  localStorage.setItem(
+    "pianoNotifications",
+    next
+  );
+
+  showToast(
+    next
+      ? "🔔 Notifications activées"
+      : "🔕 Notifications désactivées"
+  );
+
+}
+
+
+/* =====================================================
+   PROGRESSION
+===================================================== */
+
+function resetProgress(){
+
+  const confirmation =
+    confirm(
+      "Voulez-vous vraiment réinitialiser votre progression ? Cette action effacera les progressions enregistrées sur cet appareil."
+    );
+
+  if(!confirmation){
+    return;
+  }
+
+  const keys = [
+
+    "pianoTechniqueCompleted",
+
+    "pianoTechniqueCourseCompleted",
+
+    "pianoAccordsCompleted",
+
+    "pianoHarmonieCompleted",
+
+    "pianoCoordinationCompleted",
+
+    "pianoCourseProgress",
+
+    "pianoLastCourse"
+
+  ];
+
+  keys.forEach(
+    key =>
+      localStorage.removeItem(key)
+  );
+
+  showToast(
+    "🔄 Progression réinitialisée"
+  );
+
+}
+
+
+/* =====================================================
+   COMPTE
+===================================================== */
+
+function openProfile(){
+
+  window.location.href =
+    "profil.html";
+
+}
+
+
+function editProfile(){
+
+  window.location.href =
+    "profil.html";
+
+}
+
+
+/* =====================================================
+   SECURITE
+===================================================== */
+
+function changePassword(){
+
+  window.location.href =
+    "mot-de-passe.html";
+
+}
+
+
+function manageAccount(){
+
+  showToast(
+    "⚙️ Gestion du compte"
+  );
+
+}
+
+
+/* =====================================================
+   A PROPOS
+===================================================== */
+
+function aboutApp(){
+
+  showToast(
+    "🎹 Piano Academy — Apprendre, pratiquer et progresser."
+  );
+
+}
+
+
+function showVersion(){
+
+  showToast(
+    "📱 Piano Academy — Version 1.0"
+  );
+
+}
+
+
+function terms(){
+
+  window.location.href =
+    "conditions.html";
+
+}
+
+
+function privacy(){
+
+  window.location.href =
+    "confidentialite.html";
+
+}
+
+
+/* =====================================================
+   DECONNEXION SUPABASE
+===================================================== */
+
+/*
+  Ces valeurs correspondent à ton projet Supabase.
+  La clé sb_publishable_... est une clé publique.
+  Ne mets JAMAIS une clé secrète/service_role dans
+  un fichier HTML.
+*/
+
+const SUPABASE_URL =
+  "https://swsvnzjeipcobodntajs.supabase.co";
+
+const SUPABASE_ANON_KEY =
+  "sb_publishable_JrPeCn1LhCNHY3BJZ5iCEQ_mc2iqLpf";
+
+
+async function logout(){
+
+  const confirmation =
+    confirm(
+      "Voulez-vous vraiment vous déconnecter ?"
+    );
+
+  if(!confirmation){
+    return;
+  }
+
+  try{
+
+    /*
+      On essaie d'utiliser le client Supabase
+      s'il existe déjà dans l'application.
+    */
+
+    if(
+      window.supabaseClient &&
+      typeof window.supabaseClient.auth?.signOut ===
+      "function"
+    ){
+
+      await window.supabaseClient.auth.signOut();
+
+    }
+
+    /*
+      Nettoyage de la session locale.
+    */
+
+    const keysToRemove = [
+
+      "supabase.auth.token",
+
+      "pianoUser",
+
+      "pianoUserProfile",
+
+      "currentUser",
+
+      "userSession"
+
+    ];
+
+    keysToRemove.forEach(
+      key =>
+        localStorage.removeItem(key)
+    );
+
+    sessionStorage.clear();
+
+    showToast(
+      "👋 Déconnexion réussie"
+    );
+
+    setTimeout(
+      function(){
+
+        window.location.href =
+          "index.html";
+
+      },
+      700
+    );
+
+  }catch(error){
+
+    console.error(
+      "Erreur de déconnexion :",
+      error
+    );
+
+    /*
+      Même en cas d'erreur du client,
+      on nettoie les données locales.
+    */
+
+    localStorage.removeItem(
+      "pianoUser"
+    );
+
+    localStorage.removeItem(
+      "pianoUserProfile"
+    );
+
+    sessionStorage.clear();
+
+    window.location.href =
+      "index.html";
+
+  }
+
+}
+
+
+/* =====================================================
+   INITIALISATION
+===================================================== */
+
+function initializeSettings(){
+
+  applyTheme();
+
+
+  const continueValue =
+    getSetting(
+      "pianoContinueLastCourse",
+      true
+    );
+
+  setToggle(
+    document.getElementById(
+      "continueToggle"
+    ),
+    continueValue
+  );
+
+
+  const notificationValue =
+    getSetting(
+      "pianoNotifications",
+      false
+    );
+
+  setToggle(
+    document.getElementById(
+      "notificationToggle"
+    ),
+    notificationValue
+  );
+
+
+  const savedColorTheme =
+    localStorage.getItem(
+      "pianoAcademyColorTheme"
+    ) || "violet";
+
+
+  document
+    .querySelectorAll(".theme-option")
+    .forEach(
+      button => {
+
+        const buttonText =
+          button.textContent
+            .trim()
+            .toLowerCase();
+
+        const active =
+          (
+            savedColorTheme === "violet" &&
+            buttonText === "violet"
+          ) ||
+          (
+            savedColorTheme === "blue" &&
+            buttonText === "bleu"
+          ) ||
+          (
+            savedColorTheme === "green" &&
+            buttonText === "vert"
+          );
+
+        button.classList.toggle(
+          "active",
+          active
+        );
+
+      }
+    );
+
+}
+
+
+initializeSettings();
+
+
+/* =====================================================
+   TOAST
+===================================================== */
+
+function showToast(text){
+
+  const toast =
+    document.getElementById(
+      "toast"
+    );
+
+  toast.textContent =
+    text;
+
+  toast.classList.add(
+    "show"
+  );
+
+  clearTimeout(
+    window.toastTimer
+  );
+
+  window.toastTimer =
+    setTimeout(
+      function(){
+
+        toast.classList.remove(
+          "show"
+        );
+
+      },
+      2200
+    );
+
+}
+
+
+/* =====================================================
+   ESCAPE
+===================================================== */
+
+document.addEventListener(
+  "keydown",
+  function(event){
+
+    if(
+      event.key === "Escape"
+    ){
+
+      goBack();
+
+    }
+
+  }
+);
+
+</script></body>
+</html>
