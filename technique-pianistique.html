@@ -1,0 +1,3259 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Technique pianistique — Piano Academy</title>
+
+<meta name="description"
+content="Cours Premium de technique pianistique — Piano Academy">
+
+<style>
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+:root{
+  --primary:#6c5ce7;
+  --primary-dark:#5848d6;
+  --secondary:#00cec9;
+  --gold:#f5b942;
+  --gold-dark:#d99a20;
+
+  --background:#f5f6fa;
+  --card:#ffffff;
+  --soft:#fafbfe;
+
+  --text:#1e1e2f;
+  --muted:#777b8a;
+  --border:#e2e4ec;
+
+  --success:#00b894;
+  --danger:#e74c3c;
+
+  --shadow:
+    0 12px 35px rgba(25,25,50,.08);
+}
+
+body.dark{
+  --background:#11121a;
+  --card:#1b1d28;
+  --soft:#222531;
+  --text:#f5f5fa;
+  --muted:#a7a9b7;
+  --border:#303342;
+
+  --shadow:
+    0 12px 35px rgba(0,0,0,.25);
+}
+
+body{
+  min-height:100vh;
+  font-family:Arial,Helvetica,sans-serif;
+  background:var(--background);
+  color:var(--text);
+  transition:.25s;
+}
+
+button{
+  font-family:inherit;
+  cursor:pointer;
+}
+
+/* HEADER */
+
+.header{
+  position:sticky;
+  top:0;
+  z-index:100;
+  height:70px;
+  background:var(--card);
+  border-bottom:1px solid var(--border);
+}
+
+.header-inner{
+  width:100%;
+  max-width:1150px;
+  height:100%;
+  margin:auto;
+  padding:0 20px;
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+
+.header-left{
+  display:flex;
+  align-items:center;
+  gap:13px;
+}
+
+.back-button,
+.theme-button{
+  width:42px;
+  height:42px;
+  border:none;
+  border-radius:11px;
+  background:var(--soft);
+  color:var(--text);
+  font-size:20px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.back-button:hover,
+.theme-button:hover{
+  background:#eeeaff;
+  color:var(--primary);
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.brand-icon{
+  width:40px;
+  height:40px;
+  border-radius:11px;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--primary),
+      var(--primary-dark)
+    );
+
+  color:white;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  font-size:20px;
+}
+
+.brand-name{
+  font-size:17px;
+  font-weight:800;
+}
+
+/* CONTAINER */
+
+.container{
+  width:100%;
+  max-width:1100px;
+  margin:auto;
+  padding:30px 20px 70px;
+}
+
+/* HERO */
+
+.hero{
+  position:relative;
+  overflow:hidden;
+
+  border-radius:25px;
+  padding:40px 32px;
+
+  color:white;
+
+  background:
+    linear-gradient(
+      135deg,
+      #6c5ce7,
+      #4834b4
+    );
+
+  box-shadow:
+    0 18px 45px
+    rgba(108,92,231,.25);
+
+  margin-bottom:25px;
+}
+
+.hero::before{
+  content:"";
+
+  position:absolute;
+
+  width:300px;
+  height:300px;
+
+  border-radius:50%;
+
+  background:
+    rgba(255,255,255,.07);
+
+  top:-150px;
+  right:-70px;
+}
+
+.hero-content{
+  position:relative;
+  z-index:2;
+  max-width:760px;
+}
+
+.premium-badge{
+  display:inline-flex;
+  align-items:center;
+  gap:7px;
+
+  padding:8px 13px;
+
+  border-radius:30px;
+
+  background:
+    rgba(255,255,255,.14);
+
+  border:
+    1px solid
+    rgba(255,255,255,.16);
+
+  font-size:12px;
+  font-weight:800;
+
+  margin-bottom:16px;
+}
+
+.hero h1{
+  font-size:40px;
+  line-height:1.15;
+  margin-bottom:14px;
+}
+
+.hero h1 span{
+  color:#ffe29a;
+}
+
+.hero p{
+  color:rgba(255,255,255,.86);
+  font-size:14px;
+  line-height:1.7;
+}
+
+.progress-box{
+  margin-top:22px;
+  max-width:500px;
+}
+
+.progress-top{
+  display:flex;
+  justify-content:space-between;
+  margin-bottom:8px;
+
+  font-size:12px;
+}
+
+.progress-bar{
+  height:9px;
+  border-radius:20px;
+  background:rgba(255,255,255,.16);
+  overflow:hidden;
+}
+
+.progress-fill{
+  height:100%;
+  width:0%;
+  border-radius:20px;
+
+  background:
+    linear-gradient(
+      90deg,
+      #ffe29a,
+      #ffffff
+    );
+
+  transition:.4s;
+}
+
+/* SECTION */
+
+.section-title{
+  margin:32px 0 18px;
+}
+
+.section-title h2{
+  font-size:25px;
+  margin-bottom:6px;
+}
+
+.section-title p{
+  color:var(--muted);
+  font-size:13px;
+}
+
+/* COURSE GRID */
+
+.course-grid{
+  display:grid;
+  grid-template-columns:
+    repeat(2,1fr);
+  gap:16px;
+}
+
+.lesson-card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:18px;
+  padding:20px;
+
+  box-shadow:var(--shadow);
+
+  display:flex;
+  gap:15px;
+  align-items:flex-start;
+
+  transition:.2s;
+}
+
+.lesson-card:hover{
+  transform:translateY(-2px);
+}
+
+.lesson-number{
+  width:43px;
+  height:43px;
+  flex-shrink:0;
+
+  border-radius:12px;
+
+  background:
+    rgba(108,92,231,.12);
+
+  color:var(--primary);
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  font-weight:900;
+}
+
+.lesson-card.completed .lesson-number{
+  background:
+    rgba(0,184,148,.13);
+
+  color:var(--success);
+}
+
+.lesson-content{
+  flex:1;
+}
+
+.lesson-content h3{
+  font-size:15px;
+  margin-bottom:7px;
+}
+
+.lesson-content p{
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.55;
+  margin-bottom:12px;
+}
+
+.lesson-button{
+  border:none;
+  border-radius:9px;
+
+  background:var(--primary);
+  color:white;
+
+  padding:9px 13px;
+
+  font-size:11px;
+  font-weight:800;
+}
+
+.lesson-button:hover{
+  background:var(--primary-dark);
+}
+
+/* READER */
+
+.reader{
+  display:none;
+
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:20px;
+
+  padding:25px;
+  margin-top:20px;
+
+  box-shadow:var(--shadow);
+}
+
+.reader.active{
+  display:block;
+}
+
+.reader-header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:15px;
+
+  margin-bottom:20px;
+}
+
+.reader-title{
+  font-size:22px;
+}
+
+.close-reader{
+  width:38px;
+  height:38px;
+
+  border:none;
+  border-radius:10px;
+
+  background:var(--soft);
+  color:var(--text);
+
+  font-size:20px;
+}
+
+.lesson-body{
+  color:var(--text);
+  font-size:14px;
+  line-height:1.8;
+}
+
+.lesson-body h3{
+  font-size:17px;
+  margin:22px 0 8px;
+}
+
+.lesson-body h4{
+  font-size:14px;
+  margin:17px 0 7px;
+}
+
+.lesson-body p{
+  margin-bottom:12px;
+}
+
+.lesson-body ul{
+  margin:10px 0 16px 22px;
+}
+
+.lesson-body li{
+  margin-bottom:7px;
+}
+
+.tip{
+  padding:15px;
+  border-radius:12px;
+
+  background:
+    rgba(108,92,231,.08);
+
+  border-left:
+    4px solid var(--primary);
+
+  margin:15px 0;
+}
+
+.warning{
+  padding:15px;
+
+  border-radius:12px;
+
+  background:
+    rgba(231,76,60,.08);
+
+  border-left:
+    4px solid var(--danger);
+
+  margin:15px 0;
+}
+
+.success-box{
+  padding:15px;
+
+  border-radius:12px;
+
+  background:
+    rgba(0,184,148,.08);
+
+  border-left:
+    4px solid var(--success);
+
+  margin:15px 0;
+}
+
+/* PIANO */
+
+.piano{
+  margin:20px 0;
+  padding:20px;
+
+  background:
+    linear-gradient(
+      180deg,
+      #171822,
+      #090a0f
+    );
+
+  border-radius:15px;
+
+  overflow-x:auto;
+}
+
+.keys{
+  position:relative;
+
+  min-width:500px;
+  height:150px;
+
+  display:flex;
+}
+
+.white-key{
+  position:relative;
+
+  flex:1;
+
+  background:
+    linear-gradient(
+      180deg,
+      #ffffff,
+      #e8e8e8
+    );
+
+  border:1px solid #bbb;
+
+  border-radius:
+    0 0 7px 7px;
+
+  height:140px;
+
+  display:flex;
+  align-items:flex-end;
+  justify-content:center;
+
+  padding-bottom:10px;
+
+  color:#333;
+  font-size:10px;
+}
+
+.black-key{
+  position:absolute;
+
+  top:0;
+
+  width:7%;
+
+  height:88px;
+
+  background:
+    linear-gradient(
+      90deg,
+      #050505,
+      #292929,
+      #050505
+    );
+
+  border-radius:
+    0 0 5px 5px;
+
+  z-index:5;
+}
+
+/* EXERCISE */
+
+.exercise{
+  background:var(--soft);
+  border:1px solid var(--border);
+  border-radius:15px;
+  padding:18px;
+  margin:18px 0;
+}
+
+.exercise h4{
+  margin-bottom:8px;
+}
+
+.exercise button{
+  margin-top:10px;
+
+  padding:9px 13px;
+
+  border:none;
+  border-radius:9px;
+
+  background:var(--secondary);
+  color:white;
+
+  font-size:11px;
+  font-weight:800;
+}
+
+/* ROUTINE */
+
+.routine{
+  display:grid;
+  grid-template-columns:
+    repeat(3,1fr);
+  gap:12px;
+}
+
+.routine-item{
+  padding:18px;
+
+  border-radius:14px;
+
+  background:var(--card);
+  border:1px solid var(--border);
+
+  text-align:center;
+}
+
+.routine-icon{
+  font-size:27px;
+  margin-bottom:8px;
+}
+
+.routine-item h3{
+  font-size:13px;
+  margin-bottom:5px;
+}
+
+.routine-item p{
+  color:var(--muted);
+  font-size:11px;
+  line-height:1.5;
+}
+
+/* GLOSSARY */
+
+.glossary{
+  display:grid;
+  grid-template-columns:
+    repeat(2,1fr);
+
+  gap:12px;
+}
+
+.term{
+  padding:16px;
+
+  background:var(--soft);
+
+  border:
+    1px solid var(--border);
+
+  border-radius:13px;
+}
+
+.term strong{
+  color:var(--primary);
+  display:block;
+  margin-bottom:5px;
+}
+
+.term span{
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.5;
+}
+
+/* FINAL */
+
+.final-card{
+  margin-top:25px;
+
+  padding:28px;
+
+  border-radius:20px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(245,185,66,.13),
+      rgba(108,92,231,.08)
+    );
+
+  border:
+    1px solid
+    rgba(245,185,66,.3);
+}
+
+.final-card h2{
+  margin-bottom:8px;
+}
+
+.final-card p{
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.6;
+}
+
+.final-button{
+  margin-top:18px;
+
+  height:48px;
+  padding:0 20px;
+
+  border:none;
+  border-radius:11px;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--gold),
+      var(--gold-dark)
+    );
+
+  color:white;
+
+  font-size:13px;
+  font-weight:800;
+}
+
+/* TOAST */
+
+.toast{
+  position:fixed;
+
+  left:50%;
+  bottom:25px;
+
+  transform:
+    translate(-50%,120px);
+
+  z-index:500;
+
+  padding:13px 18px;
+
+  border-radius:12px;
+
+  background:#1e1e2f;
+  color:white;
+
+  font-size:12px;
+
+  box-shadow:
+    0 10px 30px
+    rgba(0,0,0,.25);
+
+  transition:.3s;
+}
+
+.toast.show{
+  transform:
+    translate(-50%,0);
+}
+
+/* RESPONSIVE */
+
+@media(max-width:800px){
+
+  .course-grid{
+    grid-template-columns:1fr;
+  }
+
+  .routine{
+    grid-template-columns:
+      repeat(2,1fr);
+  }
+
+  .hero h1{
+    font-size:32px;
+  }
+}
+
+@media(max-width:550px){
+
+  .container{
+    padding:
+      22px 15px 55px;
+  }
+
+  .hero{
+    padding:30px 22px;
+  }
+
+  .hero h1{
+    font-size:28px;
+  }
+
+  .hero p{
+    font-size:13px;
+  }
+
+  .brand-name{
+    font-size:15px;
+  }
+
+  .reader{
+    padding:20px;
+  }
+
+  .routine{
+    grid-template-columns:1fr;
+  }
+
+  .glossary{
+    grid-template-columns:1fr;
+  }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<header class="header">
+
+  <div class="header-inner">
+
+    <div class="header-left">
+
+      <button
+        class="back-button"
+        onclick="goBack()">
+        ←
+      </button>
+
+      <div class="brand">
+
+        <div class="brand-icon">
+          🎹
+        </div>
+
+        <div class="brand-name">
+          Piano Academy
+        </div>
+
+      </div>
+
+    </div>
+
+    <button
+      class="theme-button"
+      id="themeButton">
+      🌙
+    </button>
+
+  </div>
+
+</header>
+
+
+<main class="container">
+
+
+<section class="hero">
+
+  <div class="hero-content">
+
+    <div class="premium-badge">
+      ⭐ COURS PREMIUM
+    </div>
+
+    <h1>
+      Technique
+      <span>pianistique</span>
+    </h1>
+
+    <p>
+      Développe une technique solide, précise et
+      musicale grâce à une progression structurée :
+      posture, doigts, gammes, arpèges, articulation,
+      vélocité, toucher et contrôle du clavier.
+    </p>
+
+    <div class="progress-box">
+
+      <div class="progress-top">
+
+        <span>
+          Progression du cours
+        </span>
+
+        <strong id="progressText">
+          0%
+        </strong>
+
+      </div>
+
+      <div class="progress-bar">
+
+        <div
+          class="progress-fill"
+          id="progressFill">
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<div class="section-title">
+
+  <h2>
+    📚 Programme du cours
+  </h2>
+
+  <p>
+    25 modules pour construire une technique
+    pianistique complète.
+  </p>
+
+</div>
+
+
+<section class="course-grid" id="courseGrid">
+
+
+<!-- 1 -->
+
+<article class="lesson-card" data-lesson="1">
+
+  <div class="lesson-number">
+    1
+  </div>
+
+  <div class="lesson-content">
+
+    <h3>
+      Introduction à la technique pianistique
+    </h3>
+
+    <p>
+      Comprendre ce qu'est réellement la technique
+      pianistique et pourquoi elle est essentielle.
+    </p>
+
+    <button
+      class="lesson-button"
+      onclick="openLesson(1)">
+      Ouvrir le cours
+    </button>
+
+  </div>
+
+</article>
+
+
+<!-- 2 -->
+
+<article class="lesson-card" data-lesson="2">
+
+  <div class="lesson-number">
+    2
+  </div>
+
+  <div class="lesson-content">
+
+    <h3>
+      Position du pianiste
+    </h3>
+
+    <p>
+      Apprendre à positionner correctement le corps,
+      les bras, les poignets et les mains.
+    </p>
+
+    <button
+      class="lesson-button"
+      onclick="openLesson(2)">
+      Ouvrir le cours
+    </button>
+
+  </div>
+
+</article>
+
+
+<!-- 3 -->
+
+<article class="lesson-card" data-lesson="3">
+
+  <div class="lesson-number">
+    3
+  </div>
+
+  <div class="lesson-content">
+
+    <h3>
+      Placement des doigts
+    </h3>
+
+    <p>
+      Découvrir la numérotation et le placement naturel
+      des cinq doigts.
+    </p>
+
+    <button
+      class="lesson-button"
+      onclick="openLesson(3)">
+      Ouvrir le cours
+    </button>
+
+  </div>
+
+</article>
+
+
+<!-- 4 -->
+
+<article class="lesson-card" data-lesson="4">
+
+  <div class="lesson-number">
+    4
+  </div>
+
+  <div class="lesson-content">
+
+    <h3>
+      Relaxation et contrôle
+    </h3>
+
+    <p>
+      Apprendre à jouer avec souplesse et éviter
+      les tensions inutiles.
+    </p>
+
+    <button
+      class="lesson-button"
+      onclick="openLesson(4)">
+      Ouvrir le cours
+    </button>
+
+  </div>
+
+</article>
+
+
+<!-- 5 -->
+
+<article class="lesson-card" data-lesson="5">
+
+  <div class="lesson-number">
+    5
+  </div>
+
+  <div class="lesson-content">
+
+    <h3>
+      Indépendance des doigts
+    </h3>
+
+    <p>
+      Développer le contrôle individuel de chaque doigt.
+    </p>
+
+    <button
+      class="lesson-button"
+      onclick="openLesson(5)">
+      Ouvrir le cours
+    </button>
+
+  </div>
+
+</article>
+
+
+<!-- 6 -->
+
+<article class="lesson-card" data-lesson="6">
+
+  <div class="lesson-number">
+    6
+  </div>
+
+  <div class="lesson-content">
+
+    <h3>
+      Égalité des doigts
+    </h3>
+
+    <p>
+      Obtenir une attaque régulière et équilibrée.
+    </p>
+
+    <button
+      class="lesson-button"
+      onclick="openLesson(6)">
+      Ouvrir le cours
+    </button>
+
+  </div>
+
+</article>
+
+
+<!-- 7 -->
+
+<article class="lesson-card" data-lesson="7">
+
+  <div class="lesson-number">
+    7
+  </div>
+
+  <div class="lesson-content">
+
+    <h3>
+      Technique du pouce
+    </h3>
+
+    <p>
+      Maîtriser le passage du pouce dans les déplacements
+      et les gammes.
+    </p>
+
+    <button
+      class="lesson-button"
+      onclick="openLesson(7)">
+      Ouvrir le cours
+    </button>
+
+  </div>
+
+</article>
+
+
+<!-- 8 -->
+
+<article class="lesson-card" data-lesson="8">
+
+  <div class="lesson-number">
+    8
+  </div>
+
+  <div class="lesson-content">
+
+    <h3>
+      Les gammes comme entraînement
+    </h3>
+
+    <p>
+      Utiliser les gammes pour améliorer précision,
+      doigté et mobilité.
+    </p>
+
+    <button
+      class="lesson-button"
+      onclick="openLesson(8)">
+      Ouvrir le cours
+    </button>
+
+  </div>
+
+</article>
+
+
+<!-- 9 -->
+
+<article class="lesson-card" data-lesson="9">
+
+  <div class="lesson-number">
+    9
+  </div>
+
+  <div class="lesson-content">
+
+    <h3>
+      Les arpèges
+    </h3>
+
+    <p>
+      Développer les déplacements de la main grâce
+      aux arpèges majeurs et mineurs.
+    </p>
+
+    <button
+      class="lesson-button"
+      onclick="openLesson(9)">
+      Ouvrir le cours
+    </button>
+
+  </div>
+
+</article>
+
+
+<!-- 10 -->
+
+<article class="lesson-card" data-lesson="10">
+
+  <div class="lesson-number">
+    10
+  </div>
+
+  <div class="lesson-content">
+
+    <h3>
+      Accords et technique de la main
+    </h3>
+
+    <p>
+      Améliorer le contrôle des accords et les
+      changements d'accords.
+    </p>
+
+    <button
+      class="lesson-button"
+      onclick="openLesson(10)">
+      Ouvrir le cours
+    </button>
+
+  </div>
+
+</article>
+
+
+<!-- 11 -->
+
+<article class="lesson-card" data-lesson="11">
+
+  <div class="lesson-number">
+    11
+  </div>
+
+  <div class="lesson-content">
+
+    <h3>
+      Articulation
+    </h3>
+
+    <p>
+      Maîtriser legato, staccato, détaché et accent.
+    </p>
+
+    <button
+      class="lesson-button"
+      onclick="openLesson(11)">
+      Ouvrir le cours
+    </button>
+
+  </div>
+
+</article>
+
+
+<!-- 12 -->
+
+<article class="lesson-card" data-lesson="12">
+
+  <div class="lesson-number">
+    12
+  </div>
+
+  <div class="lesson-content">
+
+    <h3>
+      Vélocité
+    </h3>
+
+    <p>
+      Développer progressivement la vitesse sans
+      sacrifier la précision.
+    </p>
+
+    <button
+      class="lesson-button"
+      onclick="openLesson(12)">
+      Ouvrir le cours
+    </button>
+
+  </div>
+
+</article>
+
+
+<!-- 13 -->
+
+<article class="lesson-card" data-lesson="13">
+
+  <div class="lesson-number">
+    13
+  </div>
+
+  <div class="lesson-content">
+
+    <h3>
+      Synchronisation technique
+    </h3>
+
+    <p>
+      Améliorer la régularité et la synchronisation
+      des mouvements.
+    </p>
+
+    <button
+      class="lesson-button"
+      onclick="openLesson(13)">
+      Ouvrir le cours
+    </button>
+
+  </div>
+
+</article>
+
+
+<!-- 14 -->
+
+<article class="lesson-card" data-lesson="14">
+
+  <div class="lesson-number">
+    14
+  </div>
+
+  <div class="lesson-content">
+
+    <h3>
+      Le métronome
+    </h3>
+
+    <p>
+      Utiliser correctement le métronome pour construire
+      une technique régulière.
+    </p>
+
+    <button
+      class="lesson-button"
+      onclick="openLesson(14)">
+      Ouvrir le cours
+    </button>
+
+  </div>
+
+</article>
+
+
+<!-- 15 -->
+
+<article class="lesson-card" data-lesson="15">
+
+  <div class="lesson-number">
+    15
+  </div>
+
+  <div class="lesson-content">
+
+    <h3>
+      Dynamique et toucher
+    </h3>
+
+    <p>
+      Contrôler la puissance, les nuances et le toucher
+      du clavier.
+    </p>
+
+    <button
+      class="lesson-button"
+      onclick="openLesson(15)">
+      Ouvrir le cours
+    </button>
+
+  </div>
+
+</article>
+
+
+<!-- 16 -->
+
+<article class="lesson-card" data-lesson="16">
+
+  <div class="lesson-number">
+    16
+  </div>
+
+  <div class="lesson-content">
+
+    <h3>
+      Techniques de déplacement
+    </h3>
+
+    <p>
+      Apprendre les déplacements latéraux, les sauts
+      et les grands écarts.
+    </p>
+
+    <button
+      class="lesson-button"
+      onclick="openLesson(16)">
+      Ouvrir le cours
+    </button>
+
+  </div>
+
+</article>
+
+
+<!-- 17 -->
+
+<article class="lesson-card" data-lesson="17">
+
+  <div class="lesson-number">
+    17
+  </div>
+
+  <div class="lesson-content">
+
+    <h3>
+      Les octaves
+    </h3>
+
+    <p>
+      Découvrir le travail technique des octaves
+      progressivement.
+    </p>
+
+    <button
+      class="lesson-button"
+      onclick="openLesson(17)">
+      Ouvrir le cours
+    </button>
+
+  </div>
+
+</article>
+
+
+<!-- 18 -->
+
+<article class="lesson-card" data-lesson="18">
+
+  <div class="lesson-number">
+    18
+  </div>
+
+  <div class="lesson-content">
+
+    <h3>
+      Répétition des notes
+    </h3>
+
+    <p>
+      Développer vitesse, contrôle et régularité
+      dans les notes répétées.
+    </p>
+
+    <button
+      class="lesson-button"
+      onclick="openLesson(18)">
+      Ouvrir le cours
+    </button>
+
+  </div>
+
+</article>
+
+
+<!-- 19 -->
+
+<article class="lesson-card" data-lesson="19">
+
+  <div class="lesson-number">
+    19
+  </div>
+
+  <div class="lesson-content">
+
+    <h3>
+      Exercices techniques progressifs
+    </h3>
+
+    <p>
+      Une série d'exercices du niveau débutant
+      jusqu'au niveau avancé.
+    </p>
+
+    <button
+      class="lesson-button"
+      onclick="openLesson(19)">
+      Ouvrir le cours
+    </button>
+
+  </div>
+
+</article>
+
+
+<!-- 20 -->
+
+<article class="lesson-card" data-lesson="20">
+
+  <div class="lesson-number">
+    20
+  </div>
+
+  <div class="lesson-content">
+
+    <h3>
+      Technique appliquée à la musique
+    </h3>
+
+    <p>
+      Transformer le travail technique en véritable
+      musicalité.
+    </p>
+
+    <button
+      class="lesson-button"
+      onclick="openLesson(20)">
+      Ouvrir le cours
+    </button>
+
+  </div>
+
+</article>
+
+
+<!-- 21 -->
+
+<article class="lesson-card" data-lesson="21">
+
+  <div class="lesson-number">
+    21
+  </div>
+
+  <div class="lesson-content">
+
+    <h3>
+      Routine technique quotidienne
+    </h3>
+
+    <p>
+      Construire une séance quotidienne structurée
+      et efficace.
+    </p>
+
+    <button
+      class="lesson-button"
+      onclick="openLesson(21)">
+      Ouvrir le cours
+    </button>
+
+  </div>
+
+</article>
+
+
+<!-- 22 -->
+
+<article class="lesson-card" data-lesson="22">
+
+  <div class="lesson-number">
+    22
+  </div>
+
+  <div class="lesson-content">
+
+    <h3>
+      Les erreurs techniques à éviter
+    </h3>
+
+    <p>
+      Identifier les mauvaises habitudes qui ralentissent
+      la progression.
+    </p>
+
+    <button
+      class="lesson-button"
+      onclick="openLesson(22)">
+      Ouvrir le cours
+    </button>
+
+  </div>
+
+</article>
+
+
+<!-- 23 -->
+
+<article class="lesson-card" data-lesson="23">
+
+  <div class="lesson-number">
+    23
+  </div>
+
+  <div class="lesson-content">
+
+    <h3>
+      Programme de progression
+    </h3>
+
+    <p>
+      Organiser son évolution technique en plusieurs
+      niveaux.
+    </p>
+
+    <button
+      class="lesson-button"
+      onclick="openLesson(23)">
+      Ouvrir le cours
+    </button>
+
+  </div>
+
+</article>
+
+
+<!-- 24 -->
+
+<article class="lesson-card" data-lesson="24">
+
+  <div class="lesson-number">
+    24
+  </div>
+
+  <div class="lesson-content">
+
+    <h3>
+      Évaluation finale
+    </h3>
+
+    <p>
+      Vérifier les compétences techniques acquises
+      pendant le cours.
+    </p>
+
+    <button
+      class="lesson-button"
+      onclick="openLesson(24)">
+      Ouvrir le cours
+    </button>
+
+  </div>
+
+</article>
+
+
+<!-- 25 -->
+
+<article class="lesson-card" data-lesson="25">
+
+  <div class="lesson-number">
+    25
+  </div>
+
+  <div class="lesson-content">
+
+    <h3>
+      Glossaire technique
+    </h3>
+
+    <p>
+      Retrouver les principaux termes techniques
+      utilisés dans le cours.
+    </p>
+
+    <button
+      class="lesson-button"
+      onclick="openLesson(25)">
+      Ouvrir le cours
+    </button>
+
+  </div>
+
+</article>
+
+
+</section>
+
+
+<!-- READER -->
+
+<section
+  class="reader"
+  id="reader">
+
+  <div class="reader-header">
+
+    <h2
+      class="reader-title"
+      id="readerTitle">
+    </h2>
+
+    <button
+      class="close-reader"
+      onclick="closeLesson()">
+      ×
+    </button>
+
+  </div>
+
+  <div
+    class="lesson-body"
+    id="lessonBody">
+  </div>
+
+</section>
+
+
+<!-- ROUTINE -->
+
+<div class="section-title">
+
+  <h2>
+    ⏱️ Exemple de routine technique
+  </h2>
+
+  <p>
+    Une séance équilibrée pour progresser régulièrement.
+  </p>
+
+</div>
+
+
+<section class="routine">
+
+  <div class="routine-item">
+
+    <div class="routine-icon">
+      🔥
+    </div>
+
+    <h3>
+      Échauffement
+    </h3>
+
+    <p>
+      5 à 10 minutes de mouvements simples
+      et détendus.
+    </p>
+
+  </div>
+
+
+  <div class="routine-item">
+
+    <div class="routine-icon">
+      ☝️
+    </div>
+
+    <h3>
+      Doigts
+    </h3>
+
+    <p>
+      10 minutes d'indépendance et d'égalité.
+    </p>
+
+  </div>
+
+
+  <div class="routine-item">
+
+    <div class="routine-icon">
+      🎼
+    </div>
+
+    <h3>
+      Gammes
+    </h3>
+
+    <p>
+      10 minutes de gammes avec métronome.
+    </p>
+
+  </div>
+
+
+  <div class="routine-item">
+
+    <div class="routine-icon">
+      🎹
+    </div>
+
+    <h3>
+      Arpèges
+    </h3>
+
+    <p>
+      10 minutes d'arpèges et déplacements.
+    </p>
+
+  </div>
+
+
+  <div class="routine-item">
+
+    <div class="routine-icon">
+      ⚡
+    </div>
+
+    <h3>
+      Vélocité
+    </h3>
+
+    <p>
+      10 minutes de vitesse progressive.
+    </p>
+
+  </div>
+
+
+  <div class="routine-item">
+
+    <div class="routine-icon">
+      🎵
+    </div>
+
+    <h3>
+      Application
+    </h3>
+
+    <p>
+      10 à 20 minutes sur un morceau.
+    </p>
+
+  </div>
+
+</section>
+
+
+<!-- GLOSSAIRE -->
+
+<div class="section-title">
+
+  <h2>
+    📖 Glossaire technique
+  </h2>
+
+  <p>
+    Les termes essentiels à connaître.
+  </p>
+
+</div>
+
+
+<section class="glossary">
+
+  <div class="term">
+    <strong>Legato</strong>
+    <span>
+      Manière de jouer les notes de façon liée
+      et continue.
+    </span>
+  </div>
+
+  <div class="term">
+    <strong>Staccato</strong>
+    <span>
+      Manière de jouer les notes de façon courte
+      et détachée.
+    </span>
+  </div>
+
+  <div class="term">
+    <strong>Vélocité</strong>
+    <span>
+      Capacité à jouer rapidement tout en gardant
+      précision et contrôle.
+    </span>
+  </div>
+
+  <div class="term">
+    <strong>Articulation</strong>
+    <span>
+      Manière dont les notes sont attaquées,
+      liées ou détachées.
+    </span>
+  </div>
+
+  <div class="term">
+    <strong>Dynamique</strong>
+    <span>
+      Variation de l'intensité sonore pendant
+      l'interprétation.
+    </span>
+  </div>
+
+  <div class="term">
+    <strong>Métronome</strong>
+    <span>
+      Outil permettant de maintenir un tempo régulier.
+    </span>
+  </div>
+
+  <div class="term">
+    <strong>Arpège</strong>
+    <span>
+      Notes d'un accord jouées successivement.
+    </span>
+  </div>
+
+  <div class="term">
+    <strong>Octave</strong>
+    <span>
+      Intervalle entre deux notes portant le même nom.
+    </span>
+  </div>
+
+  <div class="term">
+    <strong>Doigté</strong>
+    <span>
+      Organisation des doigts utilisés pour jouer
+      une phrase musicale.
+    </span>
+  </div>
+
+  <div class="term">
+    <strong>Indépendance</strong>
+    <span>
+      Capacité d'un doigt à effectuer un mouvement
+      contrôlé sans perturber les autres.
+    </span>
+  </div>
+
+</section>
+
+
+<section class="final-card">
+
+  <h2>
+    🏆 Maîtrise de la technique pianistique
+  </h2>
+
+  <p>
+    Une bonne technique ne consiste pas uniquement
+    à jouer vite. Elle repose sur la précision,
+    la détente, le contrôle, la régularité,
+    l'écoute et la musicalité.
+  </p>
+
+  <button
+    class="final-button"
+    onclick="completeCourse()">
+    ✓ Valider le cours
+  </button>
+
+</section>
+
+
+</main>
+
+
+<div
+  class="toast"
+  id="toast">
+</div>
+
+
+<script>
+
+/* =====================================================
+   THÈME
+===================================================== */
+
+const themeButton =
+  document.getElementById("themeButton");
+
+
+function applyTheme(){
+
+  const theme =
+    localStorage.getItem(
+      "pianoAcademyTheme"
+    );
+
+  if(theme === "dark"){
+
+    document.body.classList.add("dark");
+
+    themeButton.textContent =
+      "☀️";
+
+  }else{
+
+    document.body.classList.remove("dark");
+
+    themeButton.textContent =
+      "🌙";
+
+  }
+
+}
+
+
+themeButton.addEventListener(
+  "click",
+  function(){
+
+    const isDark =
+      document.body.classList.contains("dark");
+
+    if(isDark){
+
+      document.body.classList.remove("dark");
+
+      localStorage.setItem(
+        "pianoAcademyTheme",
+        "light"
+      );
+
+      themeButton.textContent =
+        "🌙";
+
+    }else{
+
+      document.body.classList.add("dark");
+
+      localStorage.setItem(
+        "pianoAcademyTheme",
+        "dark"
+      );
+
+      themeButton.textContent =
+        "☀️";
+
+    }
+
+  }
+);
+
+
+applyTheme();
+
+
+/* =====================================================
+   NAVIGATION
+===================================================== */
+
+function goBack(){
+
+  if(
+    document.referrer &&
+    document.referrer !== window.location.href
+  ){
+
+    history.back();
+
+  }else{
+
+    window.location.href =
+      "premium.html";
+
+  }
+
+}
+
+
+/* =====================================================
+   DONNÉES DES LEÇONS
+===================================================== */
+
+const lessons = {
+
+1:{
+title:"Introduction à la technique pianistique",
+html:`
+
+<h3>🎹 Qu'est-ce que la technique pianistique ?</h3>
+
+<p>
+La technique pianistique représente l'ensemble des
+capacités physiques et de contrôle qui permettent au
+pianiste de jouer avec précision, régularité,
+souplesse et expression.
+</p>
+
+<div class="tip">
+<strong>💡 À retenir :</strong>
+La technique n'est pas simplement la capacité à jouer
+vite. Un bon technicien contrôle son instrument
+avec précision et sans tension inutile.
+</div>
+
+<h3>Pourquoi développer sa technique ?</h3>
+
+<ul>
+<li>Améliorer la précision.</li>
+<li>Développer l'indépendance des doigts.</li>
+<li>Contrôler le rythme.</li>
+<li>Jouer les gammes et arpèges.</li>
+<li>Maîtriser les nuances.</li>
+<li>Faciliter l'apprentissage des morceaux.</li>
+</ul>
+
+<h3>Les trois principes fondamentaux</h3>
+
+<p>
+<strong>1. Détente :</strong>
+éviter les tensions inutiles.
+</p>
+
+<p>
+<strong>2. Contrôle :</strong>
+chaque mouvement doit être volontaire.
+</p>
+
+<p>
+<strong>3. Progressivité :</strong>
+la vitesse vient après la précision.
+</p>
+
+<div class="success-box">
+🎯 Objectif : apprendre à produire un mouvement
+efficace avant de chercher la rapidité.
+</div>
+
+`
+},
+
+2:{
+title:"Position du pianiste",
+html:`
+
+<h3>🪑 La position générale</h3>
+
+<p>
+Une bonne position permet au corps de rester libre
+et facilite les déplacements sur le clavier.
+</p>
+
+<ul>
+<li>Dos droit mais naturel.</li>
+<li>Épaules détendues.</li>
+<li>Bras libres.</li>
+<li>Poignets souples.</li>
+<li>Pieds stables.</li>
+</ul>
+
+<h3>Hauteur du siège</h3>
+
+<p>
+Les avant-bras doivent pouvoir se placer naturellement
+dans la direction du clavier sans forcer les poignets.
+</p>
+
+<h3>Les épaules</h3>
+
+<p>
+Elles ne doivent pas être constamment relevées.
+Respire normalement et vérifie régulièrement leur
+niveau de tension.
+</p>
+
+<div class="warning">
+⚠️ Si tu ressens une tension importante, arrête
+l'exercice, détends-toi et reprends plus lentement.
+</div>
+
+<h3>Les poignets</h3>
+
+<p>
+Le poignet doit rester souple et permettre aux doigts
+de travailler naturellement.
+</p>
+
+`
+},
+
+3:{
+title:"Placement des doigts",
+html:`
+
+<h3>☝️ Numérotation</h3>
+
+<p>
+Au piano, les doigts sont numérotés de 1 à 5.
+</p>
+
+<ul>
+<li>1 = pouce</li>
+<li>2 = index</li>
+<li>3 = majeur</li>
+<li>4 = annulaire</li>
+<li>5 = auriculaire</li>
+</ul>
+
+<h3>Position naturelle</h3>
+
+<p>
+Les doigts doivent conserver une courbure naturelle.
+Évite de les raidir ou de les écraser sur les touches.
+</p>
+
+<div class="piano">
+
+<div class="keys">
+
+<div class="white-key">C</div>
+<div class="white-key">D</div>
+<div class="white-key">E</div>
+<div class="white-key">F</div>
+<div class="white-key">G</div>
+<div class="white-key">A</div>
+<div class="white-key">B</div>
+
+<div
+class="black-key"
+style="left:9%;">
+</div>
+
+<div
+class="black-key"
+style="left:23%;">
+</div>
+
+<div
+class="black-key"
+style="left:51%;">
+</div>
+
+<div
+class="black-key"
+style="left:65%;">
+</div>
+
+<div
+class="black-key"
+style="left:79%;">
+</div>
+
+</div>
+
+</div>
+
+<div class="exercise">
+
+<h4>Exercice</h4>
+
+<p>
+Pose les cinq doigts sur cinq notes consécutives.
+Joue lentement chaque note en gardant les autres
+doigts détendus.
+</p>
+
+<button onclick="showToast('Exercice enregistré ✓')">
+✓ J'ai pratiqué
+</button>
+
+</div>
+
+`
+},
+
+4:{
+title:"Relaxation et contrôle",
+html:`
+
+<h3>😌 Pourquoi se détendre ?</h3>
+
+<p>
+Une tension excessive peut limiter la précision,
+la vitesse et l'endurance.
+</p>
+
+<h3>Contrôle du mouvement</h3>
+
+<p>
+Avant chaque exercice, vérifie :
+</p>
+
+<ul>
+<li>Épaules détendues.</li>
+<li>Poignets souples.</li>
+<li>Respiration normale.</li>
+<li>Doigts actifs mais non crispés.</li>
+</ul>
+
+<div class="tip">
+💡 Fais régulièrement une courte pause pour relâcher
+les mains et les épaules.
+</div>
+
+<h3>Principe essentiel</h3>
+
+<p>
+La force ne doit pas venir uniquement des doigts.
+Le mouvement doit être naturel et coordonné avec
+la main et l'avant-bras.
+</p>
+
+`
+},
+
+5:{
+title:"Indépendance des doigts",
+html:`
+
+<h3>☝️ Développer l'indépendance</h3>
+
+<p>
+L'indépendance signifie qu'un doigt peut jouer une note
+sans provoquer involontairement un mouvement excessif
+des autres doigts.
+</p>
+
+<h3>Exercice 1 — 1 2 3 4 5</h3>
+
+<p>
+Joue cinq notes consécutives avec les doigts :
+<strong>1-2-3-4-5</strong>, puis redescends :
+<strong>5-4-3-2-1</strong>.
+</p>
+
+<h3>Exercice 2 — alternance</h3>
+
+<p>
+Travaille :
+<strong>1-3-2-4-3-5</strong>.
+</p>
+
+<div class="warning">
+⚠️ Ne cherche pas la vitesse. La priorité est de
+maintenir chaque note claire et régulière.
+</div>
+
+`
+},
+
+6:{
+title:"Égalité des doigts",
+html:`
+
+<h3>🎯 Jouer avec régularité</h3>
+
+<p>
+L'objectif est d'obtenir des notes équilibrées,
+sans qu'un doigt soit systématiquement beaucoup
+plus fort qu'un autre.
+</p>
+
+<h3>Travail lent</h3>
+
+<p>
+Joue très lentement une série de cinq notes.
+Écoute attentivement le volume de chaque note.
+</p>
+
+<h3>Avec le métronome</h3>
+
+<p>
+Commence à un tempo confortable puis augmente
+progressivement.
+</p>
+
+<div class="tip">
+💡 Si la précision disparaît lorsque tu accélères,
+reviens immédiatement à un tempo plus lent.
+</div>
+
+`
+},
+
+7:{
+title:"Technique du pouce",
+html:`
+
+<h3>👍 Le rôle du pouce</h3>
+
+<p>
+Le pouce est essentiel pour les déplacements de la main,
+notamment dans les gammes et les arpèges.
+</p>
+
+<h3>Passage du pouce</h3>
+
+<p>
+Le passage du pouce doit être préparé par un mouvement
+fluide de la main et non par une torsion brutale.
+</p>
+
+<h3>Exercice</h3>
+
+<p>
+Travaille lentement une gamme de Do majeur en respectant
+le doigté traditionnel.
+</p>
+
+<div class="success-box">
+🎯 Objectif : rendre le passage du pouce presque
+invisible dans le mouvement musical.
+</div>
+
+`
+},
+
+8:{
+title:"Les gammes comme entraînement",
+html:`
+
+<h3>🎼 Pourquoi pratiquer les gammes ?</h3>
+
+<p>
+Les gammes permettent de travailler le doigté,
+la régularité, le passage du pouce et la connaissance
+du clavier.
+</p>
+
+<h3>Do majeur</h3>
+
+<p>
+Notes :
+<strong>Do – Ré – Mi – Fa – Sol – La – Si – Do</strong>.
+</p>
+
+<h3>Progression</h3>
+
+<ul>
+<li>Do majeur</li>
+<li>Sol majeur</li>
+<li>Ré majeur</li>
+<li>Fa majeur</li>
+<li>Autres tonalités</li>
+</ul>
+
+<p>
+Travaille d'abord séparément chaque main, puis
+ensemble lorsque le mouvement est maîtrisé.
+</p>
+
+`
+},
+
+9:{
+title:"Les arpèges",
+html:`
+
+<h3>🎹 Qu'est-ce qu'un arpège ?</h3>
+
+<p>
+Un arpège consiste à jouer successivement les notes
+d'un accord au lieu de les jouer simultanément.
+</p>
+
+<h3>Exemple : Do majeur</h3>
+
+<p>
+<strong>Do – Mi – Sol – Do</strong>.
+</p>
+
+<div class="piano">
+
+<div class="keys">
+
+<div class="white-key">C</div>
+<div class="white-key">D</div>
+<div class="white-key">E</div>
+<div class="white-key">F</div>
+<div class="white-key">G</div>
+<div class="white-key">A</div>
+<div class="white-key">B</div>
+
+</div>
+
+</div>
+
+<h3>Objectif technique</h3>
+
+<p>
+L'arpège développe la mobilité de la main,
+la précision et la capacité à effectuer de grands
+déplacements.
+</p>
+
+`
+},
+
+10:{
+title:"Accords et technique de la main",
+html:`
+
+<h3>🎹 Jouer un accord</h3>
+
+<p>
+Un accord demande aux doigts de produire plusieurs
+notes ensemble avec un mouvement coordonné.
+</p>
+
+<h3>Exemple</h3>
+
+<p>
+L'accord de Do majeur :
+<strong>Do – Mi – Sol</strong>.
+</p>
+
+<p>
+L'accord de Ré mineur :
+<strong>Ré – Fa – La</strong>.
+</p>
+
+<h3>Changements d'accords</h3>
+
+<p>
+Travaille deux accords lentement, puis augmente
+progressivement la vitesse de transition.
+</p>
+
+<div class="tip">
+💡 Cherche d'abord le mouvement le plus économique :
+moins de déplacement inutile signifie plus de contrôle.
+</div>
+
+`
+},
+
+11:{
+title:"Articulation",
+html:`
+
+<h3>🎵 Legato</h3>
+
+<p>
+Les notes sont liées de manière continue.
+</p>
+
+<h3>🎵 Staccato</h3>
+
+<p>
+Les notes sont courtes et détachées.
+</p>
+
+<h3>🎵 Accent</h3>
+
+<p>
+Une note reçoit une importance particulière.
+</p>
+
+<h3>Exercice</h3>
+
+<p>
+Joue la même petite phrase trois fois :
+</p>
+
+<ul>
+<li>Legato</li>
+<li>Staccato</li>
+<li>Avec accents</li>
+</ul>
+
+<p>
+Cet exercice développe le contrôle du toucher.
+</p>
+
+`
+},
+
+12:{
+title:"Vélocité",
+html:`
+
+<h3>⚡ Qu'est-ce que la vélocité ?</h3>
+
+<p>
+La vélocité est la capacité à jouer rapidement
+tout en conservant précision et contrôle.
+</p>
+
+<h3>La règle d'or</h3>
+
+<p>
+<strong>Précision avant vitesse.</strong>
+</p>
+
+<p>
+Travaille une phrase lentement. Lorsque tu peux
+la jouer plusieurs fois sans erreur, augmente
+légèrement le tempo.
+</p>
+
+<div class="warning">
+⚠️ Ne force jamais la vitesse avec des mains tendues.
+</div>
+
+`
+},
+
+13:{
+title:"Synchronisation technique",
+html:`
+
+<h3>🤲 Synchroniser les mouvements</h3>
+
+<p>
+La synchronisation technique consiste à coordonner
+les mouvements nécessaires pour obtenir un jeu régulier.
+</p>
+
+<h3>Exercice</h3>
+
+<p>
+Joue cinq notes avec chaque main.
+Commence lentement et écoute si les attaques sont
+simultanées.
+</p>
+
+<div class="tip">
+💡 Le but n'est pas de jouer fort. Le but est de jouer
+ensemble et régulièrement.
+</div>
+
+`
+},
+
+14:{
+title:"Le métronome",
+html:`
+
+<h3>⏱️ Le rôle du métronome</h3>
+
+<p>
+Le métronome produit des battements réguliers qui
+permettent de travailler le tempo.
+</p>
+
+<h3>Progression</h3>
+
+<ul>
+<li>Commence lentement.</li>
+<li>Travaille sans erreur.</li>
+<li>Augmente légèrement le tempo.</li>
+<li>Reviens en arrière si la précision diminue.</li>
+</ul>
+
+<div class="exercise">
+
+<h4>Exercice</h4>
+
+<p>
+Choisis un tempo confortable.
+Joue ton exercice pendant deux minutes.
+Augmente ensuite légèrement la vitesse.
+</p>
+
+<button onclick="showToast('Travail au métronome validé ✓')">
+✓ J'ai pratiqué
+</button>
+
+</div>
+
+`
+},
+
+15:{
+title:"Dynamique et toucher",
+html:`
+
+<h3>🎚️ Contrôler le volume</h3>
+
+<p>
+Le pianiste doit pouvoir jouer doucement ou fortement
+sans perdre le contrôle.
+</p>
+
+<h3>Principales nuances</h3>
+
+<ul>
+<li><strong>p</strong> = piano, doucement.</li>
+<li><strong>mp</strong> = mezzo-piano.</li>
+<li><strong>mf</strong> = mezzo-forte.</li>
+<li><strong>f</strong> = forte.</li>
+<li><strong>ff</strong> = très fort.</li>
+</ul>
+
+<h3>Crescendo</h3>
+
+<p>
+Augmentation progressive de l'intensité.
+</p>
+
+<h3>Decrescendo</h3>
+
+<p>
+Diminution progressive de l'intensité.
+</p>
+
+<div class="success-box">
+🎯 Une bonne technique permet de contrôler la force
+sans brutalité.
+</div>
+
+`
+},
+
+16:{
+title:"Techniques de déplacement",
+html:`
+
+<h3>↔️ Déplacer la main</h3>
+
+<p>
+Certains passages demandent de déplacer rapidement
+la main vers une nouvelle position.
+</p>
+
+<h3>Principe</h3>
+
+<p>
+Prépare le déplacement avant la dernière note de
+la position actuelle.
+</p>
+
+<h3>Les sauts</h3>
+
+<p>
+Travaille d'abord lentement les distances.
+Regarde moins les doigts et développe progressivement
+la sensation de l'espace sur le clavier.
+</p>
+
+<div class="warning">
+⚠️ Ne contracte pas le bras pour effectuer un saut.
+Le mouvement doit rester fluide.
+</div>
+
+`
+},
+
+17:{
+title:"Les octaves",
+html:`
+
+<h3>🎹 Comprendre l'octave</h3>
+
+<p>
+Une octave correspond à l'intervalle entre deux notes
+portant le même nom, par exemple :
+<strong>Do → Do</strong>.
+</p>
+
+<h3>Travail progressif</h3>
+
+<ul>
+<li>Jouer lentement.</li>
+<li>Contrôler la distance.</li>
+<li>Relâcher entre les mouvements.</li>
+<li>Augmenter progressivement la vitesse.</li>
+</ul>
+
+<div class="tip">
+💡 La précision et la détente sont plus importantes
+que la puissance.
+</div>
+
+`
+},
+
+18:{
+title:"Répétition des notes",
+html:`
+
+<h3>🔁 Notes répétées</h3>
+
+<p>
+Les notes répétées demandent un contrôle précis
+des doigts et du mouvement de la main.
+</p>
+
+<h3>Exercice</h3>
+
+<p>
+Choisis une note et joue-la lentement plusieurs fois.
+Écoute la régularité de chaque attaque.
+</p>
+
+<h3>Progression</h3>
+
+<p>
+Commence avec un seul doigt, puis travaille des
+alternances entre plusieurs doigts.
+</p>
+
+`
+},
+
+19:{
+title:"Exercices techniques progressifs",
+html:`
+
+<h3>🟢 Niveau débutant</h3>
+
+<ul>
+<li>5 notes consécutives.</li>
+<li>Montée et descente.</li>
+<li>Do majeur.</li>
+<li>Accords simples.</li>
+</ul>
+
+<h3>🟡 Niveau intermédiaire</h3>
+
+<ul>
+<li>Gammes supplémentaires.</li>
+<li>Arpèges.</li>
+<li>Travail au métronome.</li>
+<li>Articulations différentes.</li>
+</ul>
+
+<h3>🔴 Niveau avancé</h3>
+
+<ul>
+<li>Vélocité.</li>
+<li>Octaves.</li>
+<li>Déplacements rapides.</li>
+<li>Nuances complexes.</li>
+</ul>
+
+<div class="success-box">
+🎯 Augmente toujours la difficulté progressivement.
+</div>
+
+`
+},
+
+20:{
+title:"Technique appliquée à la musique",
+html:`
+
+<h3>🎵 La technique au service de la musique</h3>
+
+<p>
+La technique n'est pas une fin en soi.
+Elle doit permettre de mieux interpréter la musique.
+</p>
+
+<h3>Application</h3>
+
+<ul>
+<li>Utilise les gammes dans les passages mélodiques.</li>
+<li>Utilise les arpèges dans les accompagnements.</li>
+<li>Utilise le legato pour les phrases chantantes.</li>
+<li>Utilise les nuances pour donner de l'expression.</li>
+</ul>
+
+<div class="tip">
+💡 Un pianiste techniquement solide doit également
+être capable de faire entendre une intention musicale.
+</div>
+
+`
+},
+
+21:{
+title:"Routine technique quotidienne",
+html:`
+
+<h3>⏰ Exemple de séance de 60 minutes</h3>
+
+<ul>
+<li><strong>10 min :</strong> échauffement.</li>
+<li><strong>10 min :</strong> indépendance des doigts.</li>
+<li><strong>10 min :</strong> gammes.</li>
+<li><strong>10 min :</strong> arpèges.</li>
+<li><strong>10 min :</strong> vélocité.</li>
+<li><strong>10 min :</strong> application musicale.</li>
+</ul>
+
+<h3>La régularité</h3>
+
+<p>
+Il est généralement plus efficace de pratiquer
+régulièrement pendant une durée raisonnable que de
+faire une très longue séance occasionnelle.
+</p>
+
+<div class="success-box">
+🏆 La constance construit la technique.
+</div>
+
+`
+},
+
+22:{
+title:"Les erreurs techniques à éviter",
+html:`
+
+<h3>❌ Erreurs fréquentes</h3>
+
+<ul>
+<li>Épaules constamment tendues.</li>
+<li>Poignets rigides.</li>
+<li>Doigts trop raides.</li>
+<li>Jouer trop vite.</li>
+<li>Négliger le métronome.</li>
+<li>Répéter des erreurs sans les corriger.</li>
+<li>Travailler trop longtemps sans pause.</li>
+</ul>
+
+<h3>Comment corriger ?</h3>
+
+<p>
+Ralentis, identifie le problème et recommence
+avec un mouvement plus simple.
+</p>
+
+<div class="warning">
+⚠️ Si une douleur apparaît, ne cherche pas à la
+forcer. Fais une pause et adapte ta pratique.
+</div>
+
+`
+},
+
+23:{
+title:"Programme de progression",
+html:`
+
+<h3>📈 Niveau 1 — Fondations</h3>
+
+<p>
+Posture, position des mains, doigts et relaxation.
+</p>
+
+<h3>Niveau 2 — Contrôle</h3>
+
+<p>
+Indépendance, égalité et articulation.
+</p>
+
+<h3>Niveau 3 — Mobilité</h3>
+
+<p>
+Gammes, arpèges et déplacements.
+</p>
+
+<h3>Niveau 4 — Vitesse</h3>
+
+<p>
+Vélocité et travail au métronome.
+</p>
+
+<h3>Niveau 5 — Maîtrise</h3>
+
+<p>
+Octaves, nuances, contrôle et application musicale.
+</p>
+
+<div class="success-box">
+🎯 Ne passe au niveau suivant que lorsque le niveau
+précédent est suffisamment stable.
+</div>
+
+`
+},
+
+24:{
+title:"Évaluation finale",
+html:`
+
+<h3>🏆 Vérifie tes compétences</h3>
+
+<ul>
+<li>Ma posture est-elle naturelle ?</li>
+<li>Mes épaules sont-elles détendues ?</li>
+<li>Mes doigts sont-ils indépendants ?</li>
+<li>Mes gammes sont-elles régulières ?</li>
+<li>Mes arpèges sont-ils contrôlés ?</li>
+<li>Mon articulation est-elle maîtrisée ?</li>
+<li>Puis-je accélérer sans perdre la précision ?</li>
+<li>Puis-je contrôler les nuances ?</li>
+<li>Puis-je appliquer ma technique à un morceau ?</li>
+</ul>
+
+<div class="exercise">
+
+<h4>🎯 Test final</h4>
+
+<p>
+Choisis une gamme, un arpège et un court passage
+musical. Joue-les lentement, puis augmente
+progressivement le tempo tout en conservant
+la précision et la détente.
+</p>
+
+<button onclick="showToast('Évaluation effectuée ✓')">
+✓ Terminer l'évaluation
+</button>
+
+</div>
+
+`
+},
+
+25:{
+title:"Glossaire technique",
+html:`
+
+<h3>📖 Les mots essentiels</h3>
+
+<p>
+Utilise ce glossaire comme référence pendant
+ton apprentissage.
+</p>
+
+<ul>
+<li><strong>Legato :</strong> notes liées.</li>
+<li><strong>Staccato :</strong> notes détachées.</li>
+<li><strong>Vélocité :</strong> rapidité contrôlée.</li>
+<li><strong>Articulation :</strong> manière d'attaquer les notes.</li>
+<li><strong>Dynamique :</strong> variation du volume.</li>
+<li><strong>Métronome :</strong> outil de contrôle du tempo.</li>
+<li><strong>Arpège :</strong> notes d'un accord jouées successivement.</li>
+<li><strong>Octave :</strong> intervalle entre deux notes de même nom.</li>
+<li><strong>Doigté :</strong> organisation des doigts.</li>
+<li><strong>Indépendance :</strong> contrôle individuel des doigts.</li>
+</ul>
+
+<div class="success-box">
+🎓 Tu possèdes maintenant les principaux concepts
+nécessaires pour développer ta technique pianistique.
+</div>
+
+`
+}
+
+};
+
+
+/* =====================================================
+   OUVRIR UNE LEÇON
+===================================================== */
+
+const reader =
+  document.getElementById("reader");
+
+const readerTitle =
+  document.getElementById("readerTitle");
+
+const lessonBody =
+  document.getElementById("lessonBody");
+
+
+function openLesson(number){
+
+  const lesson =
+    lessons[number];
+
+  if(!lesson){
+    return;
+  }
+
+  readerTitle.textContent =
+    lesson.title;
+
+  lessonBody.innerHTML =
+    lesson.html;
+
+  reader.classList.add("active");
+
+  reader.scrollIntoView({
+    behavior:"smooth",
+    block:"start"
+  });
+
+  markLessonCompleted(number);
+
+}
+
+
+/* =====================================================
+   FERMER
+===================================================== */
+
+function closeLesson(){
+
+  reader.classList.remove(
+    "active"
+  );
+
+}
+
+
+/* =====================================================
+   PROGRESSION
+===================================================== */
+
+function getCompleted(){
+
+  try{
+
+    return JSON.parse(
+      localStorage.getItem(
+        "pianoTechniqueCompleted"
+      ) || "[]"
+    );
+
+  }catch{
+
+    return [];
+
+  }
+
+}
+
+
+function markLessonCompleted(number){
+
+  let completed =
+    getCompleted();
+
+  if(!completed.includes(number)){
+
+    completed.push(number);
+
+    localStorage.setItem(
+      "pianoTechniqueCompleted",
+      JSON.stringify(completed)
+    );
+
+  }
+
+  updateProgress();
+
+}
+
+
+function updateProgress(){
+
+  const completed =
+    getCompleted();
+
+  const total =
+    Object.keys(lessons).length;
+
+  const percentage =
+    Math.round(
+      (completed.length / total) * 100
+    );
+
+  document.getElementById(
+    "progressFill"
+  ).style.width =
+    percentage + "%";
+
+  document.getElementById(
+    "progressText"
+  ).textContent =
+    percentage + "%";
+
+
+  document
+    .querySelectorAll(".lesson-card")
+    .forEach(card => {
+
+      const number =
+        Number(
+          card.dataset.lesson
+        );
+
+      if(
+        completed.includes(number)
+      ){
+
+        card.classList.add(
+          "completed"
+        );
+
+        const button =
+          card.querySelector(
+            ".lesson-button"
+          );
+
+        button.textContent =
+          "✓ Revoir le cours";
+
+      }
+
+    });
+
+}
+
+
+updateProgress();
+
+
+/* =====================================================
+   COURS TERMINÉ
+===================================================== */
+
+function completeCourse(){
+
+  localStorage.setItem(
+    "pianoTechniqueCourseCompleted",
+    "true"
+  );
+
+  showToast(
+    "🎓 Cours Technique pianistique terminé !"
+  );
+
+  setTimeout(
+    function(){
+
+      updateProgress();
+
+    },
+    300
+  );
+
+}
+
+
+/* =====================================================
+   TOAST
+===================================================== */
+
+function showToast(text){
+
+  const toast =
+    document.getElementById("toast");
+
+  toast.textContent =
+    text;
+
+  toast.classList.add(
+    "show"
+  );
+
+  setTimeout(
+    function(){
+
+      toast.classList.remove(
+        "show"
+      );
+
+    },
+    2200
+  );
+
+}
+
+
+/* =====================================================
+   RACCOURCI ÉCHAP
+===================================================== */
+
+document.addEventListener(
+  "keydown",
+  function(event){
+
+    if(
+      event.key === "Escape"
+    ){
+
+      closeLesson();
+
+    }
+
+  }
+);
+
+</script>
+
+</body>
+</html>
