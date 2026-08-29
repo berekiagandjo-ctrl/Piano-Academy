@@ -14,8 +14,40 @@
 
 <meta
   name="description"
-  content="Piano Academy — Apprenez le piano, développez votre technique et progressez à votre rythme."
+  content="Piano Academy — Apprends le piano étape par étape."
 >
+
+<!-- PWA / MANIFEST -->
+<link
+  rel="manifest"
+  href="./manifest.json"
+>
+
+<meta
+  name="theme-color"
+  content="#7c3aed"
+>
+
+<meta
+  name="mobile-web-app-capable"
+  content="yes"
+>
+
+<meta
+  name="apple-mobile-web-app-capable"
+  content="yes"
+>
+
+<meta
+  name="apple-mobile-web-app-status-bar-style"
+  content="default"
+>
+
+<meta
+  name="apple-mobile-web-app-title"
+  content="Piano Academy"
+>
+
 
 <style>
 
@@ -26,9 +58,12 @@
 }
 
 :root{
+
   --primary:#6c5ce7;
   --primary-dark:#5848d6;
+
   --secondary:#00cec9;
+
   --gold:#f5b942;
 
   --background:#f5f6fa;
@@ -38,9 +73,12 @@
   --muted:#777b8a;
 
   --border:#e2e4ec;
+
 }
 
+
 body{
+
   min-height:100vh;
 
   font-family:
@@ -58,27 +96,36 @@ body{
   color:var(--text);
 
   display:flex;
+
   align-items:center;
+
   justify-content:center;
 
   padding:20px;
+
 }
 
 
 /* CONTENEUR */
 
 .container{
+
   width:100%;
+
   max-width:520px;
+
 }
 
 
 /* CARTE */
 
 .card{
+
   background:var(--card);
 
-  border:1px solid var(--border);
+  border:
+    1px solid
+    var(--border);
 
   border-radius:28px;
 
@@ -89,16 +136,19 @@ body{
   box-shadow:
     0 20px 60px
     rgba(40,35,80,.12);
+
 }
 
 
 /* LOGO */
 
 .logo{
+
   width:75px;
   height:75px;
 
-  margin:0 auto 20px;
+  margin:
+    0 auto 20px;
 
   border-radius:20px;
 
@@ -112,7 +162,9 @@ body{
   color:white;
 
   display:flex;
+
   align-items:center;
+
   justify-content:center;
 
   font-size:38px;
@@ -120,24 +172,31 @@ body{
   box-shadow:
     0 12px 30px
     rgba(108,92,231,.25);
+
 }
 
 
 /* TITRE */
 
 h1{
+
   font-size:30px;
+
   margin-bottom:10px;
+
 }
 
 h1 span{
+
   color:var(--primary);
+
 }
 
 
 /* DESCRIPTION */
 
 .description{
+
   color:var(--muted);
 
   font-size:14px;
@@ -145,12 +204,14 @@ h1 span{
   line-height:1.7;
 
   margin-bottom:28px;
+
 }
 
 
-/* AVANTAGES */
+/* FONCTIONNALITÉS */
 
 .features{
+
   display:grid;
 
   grid-template-columns:
@@ -159,50 +220,69 @@ h1 span{
   gap:12px;
 
   margin-bottom:28px;
+
 }
 
+
 .feature{
+
   background:#fafbfe;
 
-  border:1px solid var(--border);
+  border:
+    1px solid
+    var(--border);
 
   border-radius:14px;
 
   padding:15px 10px;
+
 }
 
+
 .feature-icon{
+
   font-size:25px;
 
   margin-bottom:7px;
+
 }
 
+
 .feature strong{
+
   display:block;
 
   font-size:12px;
 
   margin-bottom:4px;
+
 }
 
+
 .feature span{
+
   color:var(--muted);
 
   font-size:10px;
+
 }
 
 
 /* BOUTONS */
 
 .buttons{
+
   display:flex;
 
   flex-direction:column;
 
   gap:12px;
+
 }
 
+
 .btn{
+
   width:100%;
 
   min-height:50px;
@@ -218,16 +298,22 @@ h1 span{
   cursor:pointer;
 
   transition:.2s;
+
 }
 
+
 .btn:hover{
-  transform:translateY(-2px);
+
+  transform:
+    translateY(-2px);
+
 }
 
 
 /* INSCRIPTION */
 
 .btn-primary{
+
   background:
     linear-gradient(
       135deg,
@@ -240,12 +326,14 @@ h1 span{
   box-shadow:
     0 10px 25px
     rgba(108,92,231,.25);
+
 }
 
 
 /* CONNEXION */
 
 .btn-secondary{
+
   background:#fafbfe;
 
   color:var(--primary);
@@ -253,12 +341,14 @@ h1 span{
   border:
     1px solid
     var(--border);
+
 }
 
 
 /* TEXTE */
 
 .bottom-text{
+
   margin-top:22px;
 
   color:var(--muted);
@@ -266,6 +356,7 @@ h1 span{
   font-size:11px;
 
   line-height:1.5;
+
 }
 
 
@@ -274,17 +365,23 @@ h1 span{
 @media(max-width:480px){
 
   .card{
+
     padding:32px 20px;
 
     border-radius:22px;
+
   }
 
   h1{
+
     font-size:27px;
+
   }
 
   .features{
+
     grid-template-columns:1fr;
+
   }
 
 }
@@ -312,8 +409,10 @@ h1 span{
     <!-- TITRE -->
 
     <h1>
+
       Bienvenue sur
       <span>Piano Academy</span>
+
     </h1>
 
 
@@ -321,15 +420,14 @@ h1 span{
 
     <p class="description">
 
-      Apprenez le piano progressivement,
-      développez votre technique et
-      améliorez votre musicalité grâce
-      à notre plateforme d'apprentissage.
+      Apprends le piano étape par étape,
+      développe ta technique et améliore
+      ta musicalité grâce à Piano Academy.
 
     </p>
 
 
-    <!-- AVANTAGES -->
+    <!-- FONCTIONNALITÉS -->
 
     <section class="features">
 
@@ -345,7 +443,7 @@ h1 span{
         </strong>
 
         <span>
-          Apprenez progressivement
+          Apprends progressivement
         </span>
 
       </div>
@@ -362,7 +460,7 @@ h1 span{
         </strong>
 
         <span>
-          Progressez à votre rythme
+          Progresse à ton rythme
         </span>
 
       </div>
@@ -379,7 +477,7 @@ h1 span{
         </strong>
 
         <span>
-          Suivez votre évolution
+          Suis ton évolution
         </span>
 
       </div>
@@ -396,7 +494,7 @@ h1 span{
         </strong>
 
         <span>
-          Accédez aux cours avancés
+          Accède aux cours avancés
         </span>
 
       </div>
@@ -435,7 +533,7 @@ h1 span{
 
     <p class="bottom-text">
 
-      Commencez votre apprentissage du piano
+      Commence ton apprentissage du piano
       dès maintenant avec Piano Academy.
 
     </p>
@@ -448,14 +546,14 @@ h1 span{
 
 <script>
 
-/* ================================
+/* ==========================================
    NAVIGATION
-================================ */
+========================================== */
 
 function goToInscription(){
 
   window.location.href =
-    "inscription.html";
+    "./inscription.html";
 
 }
 
@@ -463,7 +561,48 @@ function goToInscription(){
 function goToConnexion(){
 
   window.location.href =
-    "connexion.html";
+    "./connexion.html";
+
+}
+
+
+/* ==========================================
+   SERVICE WORKER
+========================================== */
+
+if(
+  "serviceWorker"
+  in navigator
+){
+
+  window.addEventListener(
+    "load",
+    function(){
+
+      navigator.serviceWorker
+        .register("./sw.js")
+        .then(
+          function(){
+
+            console.log(
+              "Piano Academy : Service Worker actif."
+            );
+
+          }
+        )
+        .catch(
+          function(error){
+
+            console.log(
+              "Service Worker non disponible :",
+              error
+            );
+
+          }
+        );
+
+    }
+  );
 
 }
 
