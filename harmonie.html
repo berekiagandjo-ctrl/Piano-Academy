@@ -9,11 +9,6 @@
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <style>
-
-/* =====================================================
-   VARIABLES
-===================================================== */
-
 :root{
     --bg:#ffffff;
     --surface:#ffffff;
@@ -21,15 +16,12 @@
     --text:#171725;
     --muted:#74758a;
     --border:#e8e8f0;
-
     --primary:#6c4df6;
     --primary-dark:#5538d9;
     --secondary:#8b5cf6;
-
     --success:#16a34a;
     --warning:#f59e0b;
     --danger:#dc2626;
-
     --shadow:0 12px 35px rgba(35,30,70,.08);
 }
 
@@ -50,66 +42,44 @@ body{
     min-height:100vh;
 }
 
-button,
-input{
+button,input{
     font-family:inherit;
 }
 
-/* =====================================================
-   PREMIUM CHECK
-===================================================== */
+/* PREMIUM CHECK */
 
 #premiumCheck{
     position:fixed;
     inset:0;
     z-index:99999;
-
     display:flex;
     align-items:center;
     justify-content:center;
-
     padding:20px;
-
     background:var(--bg);
 }
 
 .check-box{
     width:100%;
     max-width:430px;
-
     background:var(--surface);
-
     border:1px solid var(--border);
     border-radius:28px;
-
     padding:32px 24px;
-
     text-align:center;
-
     box-shadow:var(--shadow);
 }
 
 .check-icon{
     width:70px;
     height:70px;
-
     margin:0 auto 18px;
-
     border-radius:22px;
-
     display:flex;
     align-items:center;
     justify-content:center;
-
     font-size:35px;
-
-    background:
-        linear-gradient(
-            135deg,
-            var(--primary),
-            var(--secondary)
-        );
-
+    background:linear-gradient(135deg,var(--primary),var(--secondary));
     color:white;
 }
 
@@ -127,21 +97,15 @@ input{
 .spinner{
     width:40px;
     height:40px;
-
     border:4px solid var(--border);
     border-top-color:var(--primary);
-
     border-radius:50%;
-
     margin:22px auto 0;
-
     animation:spin .8s linear infinite;
 }
 
 @keyframes spin{
-    to{
-        transform:rotate(360deg);
-    }
+    to{transform:rotate(360deg);}
 }
 
 .check-error{
@@ -150,32 +114,17 @@ input{
 
 .check-button{
     width:100%;
-
     border:none;
-
     padding:14px;
-
     border-radius:14px;
-
     margin-top:12px;
-
     cursor:pointer;
-
     font-weight:bold;
-
     color:white;
-
-    background:
-        linear-gradient(
-            135deg,
-            var(--primary),
-            var(--secondary)
-        );
+    background:linear-gradient(135deg,var(--primary),var(--secondary));
 }
 
-/* =====================================================
-   APPLICATION
-===================================================== */
+/* APPLICATION */
 
 #app{
     display:none;
@@ -184,24 +133,17 @@ input{
 .container{
     width:100%;
     max-width:850px;
-
     margin:auto;
-
     padding:14px;
 }
 
-/* =====================================================
-   HEADER
-===================================================== */
+/* HEADER */
 
 .header{
     display:flex;
-
     align-items:center;
     justify-content:space-between;
-
     gap:10px;
-
     margin-bottom:15px;
 }
 
@@ -214,17 +156,12 @@ input{
 .header-btn{
     width:44px;
     height:44px;
-
     border:1px solid var(--border);
     border-radius:14px;
-
     background:var(--surface);
     color:var(--text);
-
     cursor:pointer;
-
     font-size:19px;
-
     display:flex;
     align-items:center;
     justify-content:center;
@@ -235,61 +172,37 @@ input{
     font-weight:800;
 }
 
-/* =====================================================
-   HERO
-===================================================== */
+/* HERO */
 
 .hero{
     position:relative;
-
     overflow:hidden;
-
     border-radius:28px;
-
     padding:27px;
-
     margin-bottom:15px;
-
     color:white;
-
-    background:
-        linear-gradient(
-            135deg,
-            #6c4df6,
-            #8b5cf6
-        );
-
+    background:linear-gradient(135deg,#6c4df6,#8b5cf6);
     box-shadow:var(--shadow);
 }
 
 .hero::before{
     content:"";
-
     position:absolute;
-
     width:260px;
     height:260px;
-
     border-radius:50%;
-
     background:rgba(255,255,255,.08);
-
     right:-90px;
     top:-110px;
 }
 
 .hero::after{
     content:"";
-
     position:absolute;
-
     width:130px;
     height:130px;
-
     border-radius:50%;
-
     background:rgba(255,255,255,.06);
-
     left:-50px;
     bottom:-60px;
 }
@@ -301,16 +214,11 @@ input{
 
 .premium-label{
     display:inline-flex;
-
     padding:7px 12px;
-
     border-radius:20px;
-
     background:rgba(255,255,255,.17);
-
     font-size:12px;
     font-weight:bold;
-
     margin-bottom:14px;
 }
 
@@ -328,131 +236,85 @@ input{
     color:#eeeaff;
     line-height:1.7;
     font-size:14px;
-
     max-width:650px;
 }
 
 .hero-sub{
     margin-top:14px;
-
     display:flex;
     flex-wrap:wrap;
-
     gap:8px;
 }
 
 .hero-tag{
     padding:7px 10px;
-
     border-radius:10px;
-
     background:rgba(255,255,255,.13);
-
     font-size:11px;
 }
 
-/* =====================================================
-   ACTIONS
-===================================================== */
+/* ACTIONS */
 
 .actions{
     display:grid;
     grid-template-columns:1fr 1fr;
-
     gap:10px;
-
     margin-bottom:15px;
 }
 
 .action-btn{
     border:1px solid var(--border);
-
     background:var(--surface);
     color:var(--text);
-
     border-radius:15px;
-
     padding:14px;
-
     cursor:pointer;
-
     font-weight:bold;
-
     font-size:13px;
 }
 
 .action-btn.primary{
     border:none;
-
     color:white;
-
-    background:
-        linear-gradient(
-            135deg,
-            var(--primary),
-            var(--secondary)
-        );
+    background:linear-gradient(135deg,var(--primary),var(--secondary));
 }
 
-/* =====================================================
-   PROGRESSION
-===================================================== */
+/* PROGRESSION */
 
 .progress-card{
     background:var(--surface);
-
     border:1px solid var(--border);
-
     border-radius:20px;
-
     padding:17px;
-
     margin-bottom:17px;
 }
 
 .progress-top{
     display:flex;
     justify-content:space-between;
-
     gap:10px;
-
     margin-bottom:10px;
-
     font-size:13px;
-
     font-weight:bold;
 }
 
 .progress-bar{
     width:100%;
     height:9px;
-
     overflow:hidden;
-
     background:var(--surface2);
-
     border-radius:20px;
 }
 
 .progress-fill{
     width:0%;
     height:100%;
-
     border-radius:20px;
-
-    background:
-        linear-gradient(
-            90deg,
-            var(--primary),
-            var(--secondary)
-        );
-
+    background:linear-gradient(90deg,var(--primary),var(--secondary));
     transition:.3s;
 }
 
-/* =====================================================
-   RECHERCHE
-===================================================== */
+/* RECHERCHE */
 
 .search{
     margin-bottom:17px;
@@ -460,35 +322,22 @@ input{
 
 .search input{
     width:100%;
-
     height:52px;
-
     border:1px solid var(--border);
-
     border-radius:16px;
-
     outline:none;
-
     padding:0 17px;
-
     font-size:14px;
-
     color:var(--text);
-
     background:var(--surface);
 }
 
 .search input:focus{
     border-color:var(--primary);
-
-    box-shadow:
-        0 0 0 3px
-        rgba(108,77,246,.12);
+    box-shadow:0 0 0 3px rgba(108,77,246,.12);
 }
 
-/* =====================================================
-   SECTION TITLE
-===================================================== */
+/* SECTION */
 
 .section-title{
     font-size:21px;
@@ -497,17 +346,12 @@ input{
 
 .section-description{
     color:var(--muted);
-
     font-size:13px;
-
     line-height:1.6;
-
     margin-bottom:15px;
 }
 
-/* =====================================================
-   MODULES
-===================================================== */
+/* MODULES */
 
 .modules{
     display:grid;
@@ -516,13 +360,9 @@ input{
 
 .module{
     background:var(--surface);
-
     border:1px solid var(--border);
-
     border-radius:19px;
-
     overflow:hidden;
-
     transition:.2s;
 }
 
@@ -532,39 +372,24 @@ input{
 
 .module-header{
     display:flex;
-
     align-items:center;
-
     gap:12px;
-
     padding:15px;
-
     cursor:pointer;
 }
 
 .module-number{
     width:45px;
     height:45px;
-
     flex-shrink:0;
-
     border-radius:14px;
-
     display:flex;
     align-items:center;
     justify-content:center;
-
     color:white;
-
     font-size:12px;
     font-weight:800;
-
-    background:
-        linear-gradient(
-            135deg,
-            var(--primary),
-            var(--secondary)
-        );
+    background:linear-gradient(135deg,var(--primary),var(--secondary));
 }
 
 .module-info{
@@ -574,15 +399,12 @@ input{
 .module-title{
     font-size:15px;
     font-weight:800;
-
     margin-bottom:4px;
 }
 
 .module-desc{
     color:var(--muted);
-
     font-size:12px;
-
     line-height:1.4;
 }
 
@@ -597,9 +419,7 @@ input{
 
 .module-content{
     display:none;
-
     border-top:1px solid var(--border);
-
     padding:15px;
 }
 
@@ -607,9 +427,7 @@ input{
     display:block;
 }
 
-/* =====================================================
-   LESSON
-===================================================== */
+/* LESSON */
 
 .lesson{
     display:none;
@@ -621,24 +439,17 @@ input{
 
 .lesson-top{
     display:flex;
-
     align-items:center;
-
     gap:10px;
-
     margin-bottom:14px;
 }
 
 .back-btn{
     border:1px solid var(--border);
-
     background:var(--surface);
     color:var(--text);
-
     border-radius:13px;
-
     padding:11px 14px;
-
     cursor:pointer;
 }
 
@@ -649,29 +460,21 @@ input{
 
 .lesson-card{
     background:var(--surface);
-
     border:1px solid var(--border);
-
     border-radius:23px;
-
     padding:21px;
-
     box-shadow:var(--shadow);
 }
 
 .lesson-card h2{
     font-size:25px;
-
     margin-bottom:8px;
 }
 
 .lesson-intro{
     color:var(--muted);
-
     line-height:1.7;
-
     font-size:14px;
-
     margin-bottom:20px;
 }
 
@@ -681,36 +484,24 @@ input{
 
 .lesson-section h3{
     color:var(--primary);
-
     font-size:18px;
-
     margin-bottom:9px;
 }
 
 .lesson-section p{
     font-size:14px;
-
     line-height:1.85;
 }
 
-/* =====================================================
-   DEFINITION
-===================================================== */
+/* DEFINITION */
 
 .definition{
     margin-top:12px;
-
     padding:15px;
-
     border-radius:14px;
-
     border-left:4px solid var(--primary);
-
-    background:
-        rgba(108,77,246,.08);
-
+    background:rgba(108,77,246,.08);
     line-height:1.7;
-
     font-size:14px;
 }
 
@@ -718,99 +509,65 @@ input{
     color:var(--primary);
 }
 
-/* =====================================================
-   CONSEIL
-===================================================== */
+/* CONSEIL */
 
 .tip{
     margin-top:12px;
-
     padding:15px;
-
     border-radius:14px;
-
     border-left:4px solid var(--success);
-
-    background:
-        rgba(22,163,74,.08);
-
+    background:rgba(22,163,74,.08);
     line-height:1.7;
-
     font-size:14px;
 }
 
-/* =====================================================
-   EXEMPLE
-===================================================== */
+/* EXEMPLE */
 
 .example{
     margin-top:12px;
-
     padding:16px;
-
     border-radius:15px;
-
     background:var(--surface2);
-
     border:1px solid var(--border);
 }
 
 .example-title{
     font-weight:800;
-
     margin-bottom:9px;
-
     color:var(--primary);
 }
 
 .notes{
     display:flex;
-
     flex-wrap:wrap;
-
     gap:7px;
-
     margin-top:10px;
 }
 
 .note{
     min-width:42px;
-
     padding:9px 11px;
-
     text-align:center;
-
     border-radius:10px;
-
     background:var(--surface);
-
     border:1px solid var(--border);
-
     font-weight:bold;
-
     font-size:13px;
 }
 
-/* =====================================================
-   ROMAN NUMERALS
-===================================================== */
+/* TABLE */
 
 .degree-table{
     width:100%;
-
     border-collapse:collapse;
-
     margin-top:12px;
-
     font-size:13px;
 }
 
 .degree-table th,
 .degree-table td{
     padding:11px 8px;
-
     text-align:left;
-
     border-bottom:1px solid var(--border);
 }
 
@@ -818,83 +575,53 @@ input{
     color:var(--primary);
 }
 
-/* =====================================================
-   PIANO VISUEL
-===================================================== */
+/* PIANO */
 
 .piano-box{
     margin-top:15px;
-
     overflow-x:auto;
-
     padding-bottom:5px;
 }
 
 .piano{
     display:flex;
-
     position:relative;
-
     min-width:490px;
-
     height:150px;
-
     margin-top:10px;
 }
 
 .white-key{
     position:relative;
-
     flex:1;
-
     min-width:42px;
-
     height:145px;
-
     background:white;
-
     border:1px solid #cfcfd8;
-
     border-radius:0 0 7px 7px;
-
     display:flex;
-
     align-items:flex-end;
-
     justify-content:center;
-
     padding-bottom:9px;
-
     color:#555;
-
     font-size:11px;
-
     font-weight:bold;
 }
 
 .white-key.active{
     background:#ddd4ff;
-
     border-color:var(--primary);
-
     color:var(--primary);
 }
 
 .black-key{
     position:absolute;
-
     z-index:2;
-
     width:28px;
-
     height:88px;
-
     top:0;
-
     background:#16161d;
-
     border-radius:0 0 6px 6px;
-
     box-shadow:0 4px 8px rgba(0,0,0,.22);
 }
 
@@ -904,39 +631,24 @@ input{
 
 .piano-label{
     color:var(--muted);
-
     font-size:12px;
-
     margin-bottom:7px;
 }
 
-/* =====================================================
-   EXERCICE
-===================================================== */
+/* EXERCICE */
 
 .exercise{
     margin-top:20px;
-
     padding:17px;
-
     border-radius:17px;
-
-    background:
-        linear-gradient(
-            135deg,
-            rgba(108,77,246,.08),
-            rgba(139,92,246,.04)
-        );
-
+    background:linear-gradient(135deg,rgba(108,77,246,.08),rgba(139,92,246,.04));
     border:1px solid rgba(108,77,246,.18);
 }
 
 .exercise-title{
     font-size:16px;
     font-weight:800;
-
     color:var(--primary);
-
     margin-bottom:10px;
 }
 
@@ -947,83 +659,47 @@ input{
 
 .answer{
     margin-top:10px;
-
     padding:11px;
-
     background:var(--surface);
-
     border-radius:11px;
-
     border:1px solid var(--border);
-
     color:var(--muted);
-
     font-size:13px;
 }
 
-/* =====================================================
-   LESSON NAV
-===================================================== */
+/* NAV LESSON */
 
 .lesson-nav{
     display:flex;
-
     gap:10px;
-
     margin-top:15px;
 }
 
 .nav-btn{
     flex:1;
-
     border:none;
-
     border-radius:14px;
-
     padding:14px;
-
     cursor:pointer;
-
     background:var(--surface2);
-
     color:var(--text);
-
     font-weight:bold;
 }
 
 .nav-btn.primary{
     color:white;
-
-    background:
-        linear-gradient(
-            135deg,
-            var(--primary),
-            var(--secondary)
-        );
+    background:linear-gradient(135deg,var(--primary),var(--secondary));
 }
 
 .complete-btn{
     width:100%;
-
     border:none;
-
     border-radius:14px;
-
     padding:15px;
-
     margin-top:11px;
-
     cursor:pointer;
-
     color:white;
-
-    background:
-        linear-gradient(
-            135deg,
-            var(--primary),
-            var(--secondary)
-        );
-
+    background:linear-gradient(135deg,var(--primary),var(--secondary));
     font-weight:bold;
 }
 
@@ -1031,57 +707,39 @@ input{
     background:var(--success);
 }
 
-/* =====================================================
-   GLOSSAIRE
-===================================================== */
+/* GLOSSAIRE */
 
 .glossary-overlay{
     display:none;
-
     position:fixed;
-
     inset:0;
-
     z-index:50000;
-
     padding:15px;
-
     background:rgba(0,0,0,.5);
 }
 
 .glossary-overlay.active{
     display:flex;
-
     align-items:center;
     justify-content:center;
 }
 
 .glossary{
     width:100%;
-
     max-width:650px;
-
     max-height:90vh;
-
     overflow:auto;
-
     background:var(--surface);
-
     border-radius:25px;
-
     padding:20px;
-
     box-shadow:0 20px 60px rgba(0,0,0,.25);
 }
 
 .glossary-header{
     display:flex;
-
     align-items:center;
     justify-content:space-between;
-
     gap:10px;
-
     margin-bottom:14px;
 }
 
@@ -1092,37 +750,23 @@ input{
 .close-glossary{
     width:42px;
     height:42px;
-
     border:1px solid var(--border);
-
     border-radius:12px;
-
     background:var(--surface);
-
     color:var(--text);
-
     cursor:pointer;
-
     font-size:20px;
 }
 
 .glossary-search{
     width:100%;
-
     height:48px;
-
     border:1px solid var(--border);
-
     border-radius:13px;
-
     padding:0 14px;
-
     outline:none;
-
     background:var(--surface2);
-
     color:var(--text);
-
     margin-bottom:14px;
 }
 
@@ -1133,49 +777,34 @@ input{
 
 .term{
     padding:14px;
-
     border:1px solid var(--border);
-
     border-radius:14px;
-
     background:var(--surface2);
 }
 
 .term-name{
     color:var(--primary);
-
     font-weight:800;
-
     margin-bottom:5px;
 }
 
 .term-definition{
     color:var(--muted);
-
     font-size:13px;
-
     line-height:1.65;
 }
 
-/* =====================================================
-   FOOTER
-===================================================== */
+/* FOOTER */
 
 .footer{
     text-align:center;
-
     color:var(--muted);
-
     font-size:12px;
-
     line-height:1.7;
-
     padding:30px 0 20px;
 }
 
-/* =====================================================
-   RESPONSIVE
-===================================================== */
+/* RESPONSIVE */
 
 @media(max-width:520px){
 
@@ -1202,17 +831,11 @@ input{
     .actions{
         grid-template-columns:1fr;
     }
-
 }
-
 </style>
 </head>
 
 <body>
-
-<!-- =====================================================
-     VÉRIFICATION PREMIUM
-===================================================== -->
 
 <div id="premiumCheck">
 
@@ -1220,13 +843,9 @@ input{
 
         <div id="checking">
 
-            <div class="check-icon">
-                🎼
-            </div>
+            <div class="check-icon">🎼</div>
 
-            <h2>
-                Vérification Premium
-            </h2>
+            <h2>Vérification Premium</h2>
 
             <p>
                 Nous vérifions votre accès au cours
@@ -1237,13 +856,9 @@ input{
 
         </div>
 
-        <div
-            id="checkError"
-            class="check-error">
+        <div id="checkError" class="check-error">
 
-            <div class="check-icon">
-                🔒
-            </div>
+            <div class="check-icon">🔒</div>
 
             <h2 id="errorTitle">
                 Accès Premium requis
@@ -1256,17 +871,13 @@ input{
             <button
                 class="check-button"
                 onclick="goPremium()">
-
                 ⭐ Voir Premium
-
             </button>
 
             <button
                 class="check-button"
                 onclick="goLogin()">
-
                 🔑 Se connecter
-
             </button>
 
         </div>
@@ -1274,11 +885,6 @@ input{
     </div>
 
 </div>
-
-
-<!-- =====================================================
-     APPLICATION
-===================================================== -->
 
 <div id="app">
 
@@ -1291,9 +897,7 @@ input{
         <button
             class="header-btn"
             onclick="goBack()">
-
             ←
-
         </button>
 
         <div class="header-title">
@@ -1305,17 +909,10 @@ input{
     <button
         class="header-btn"
         onclick="openGlossary()">
-
         📖
-
     </button>
 
 </header>
-
-
-<!-- =====================================================
-     HERO
-===================================================== -->
 
 <section class="hero">
 
@@ -1363,43 +960,27 @@ input{
 
 </section>
 
-
-<!-- =====================================================
-     ACTIONS
-===================================================== -->
-
 <div class="actions">
 
     <button
         class="action-btn"
         onclick="goBack()">
-
         ← Retour
-
     </button>
 
     <button
         class="action-btn primary"
         onclick="openModule(1)">
-
         ▶ Commencer le cours
-
     </button>
 
 </div>
-
-
-<!-- =====================================================
-     PROGRESSION
-===================================================== -->
 
 <div class="progress-card">
 
     <div class="progress-top">
 
-        <span>
-            🎓 Progression
-        </span>
+        <span>🎓 Progression</span>
 
         <span id="progressText">
             0 / 19
@@ -1418,11 +999,6 @@ input{
 
 </div>
 
-
-<!-- =====================================================
-     RECHERCHE
-===================================================== -->
-
 <div class="search">
 
     <input
@@ -1432,11 +1008,6 @@ input{
         oninput="searchModules()">
 
 </div>
-
-
-<!-- =====================================================
-     ACCUEIL MODULES
-===================================================== -->
 
 <section id="courseHome">
 
@@ -1452,18 +1023,13 @@ input{
 
 <div class="modules" id="modules">
 
-
-<!-- 01 -->
+<!-- MODULE 01 -->
 
 <div class="module open">
 
-<div
-class="module-header"
-onclick="toggleModule(this)">
+<div class="module-header" onclick="toggleModule(this)">
 
-<div class="module-number">
-01
-</div>
+<div class="module-number">01</div>
 
 <div class="module-info">
 
@@ -1477,9 +1043,7 @@ Comprendre ce qu'est l'harmonie et son rôle.
 
 </div>
 
-<div class="module-arrow">
-▼
-</div>
+<div class="module-arrow">▼</div>
 
 </div>
 
@@ -1489,17 +1053,14 @@ Comprendre ce qu'est l'harmonie et son rôle.
 class="nav-btn primary"
 style="width:100%;"
 onclick="openModule(1)">
-
 🎼 Commencer ce module
-
 </button>
 
 </div>
 
 </div>
 
-
-<!-- 02 -->
+<!-- MODULE 02 -->
 
 <div class="module">
 
@@ -1533,8 +1094,7 @@ I, II, III, IV, V, VI et VII.
 
 </div>
 
-
-<!-- 03 -->
+<!-- MODULE 03 -->
 
 <div class="module">
 
@@ -1568,8 +1128,7 @@ Tonique, sous-dominante et dominante.
 
 </div>
 
-
-<!-- 04 -->
+<!-- MODULE 04 -->
 
 <div class="module">
 
@@ -1603,8 +1162,7 @@ Comprendre les trois grandes fonctions.
 
 </div>
 
-
-<!-- 05 -->
+<!-- MODULE 05 -->
 
 <div class="module">
 
@@ -1638,8 +1196,7 @@ Construire et comprendre les enchaînements.
 
 </div>
 
-
-<!-- 06 -->
+<!-- MODULE 06 -->
 
 <div class="module">
 
@@ -1673,8 +1230,7 @@ Comprendre les différentes façons de conclure.
 
 </div>
 
-
-<!-- 07 -->
+<!-- MODULE 07 -->
 
 <div class="module">
 
@@ -1708,8 +1264,7 @@ Comprendre leur rôle dans une tonalité.
 
 </div>
 
-
-<!-- 08 -->
+<!-- MODULE 08 -->
 
 <div class="module">
 
@@ -1743,8 +1298,7 @@ Créer des tensions et des résolutions plus riches.
 
 </div>
 
-
-<!-- 09 -->
+<!-- MODULE 09 -->
 
 <div class="module">
 
@@ -1778,8 +1332,7 @@ Ajouter de nouvelles couleurs harmoniques.
 
 </div>
 
-
-<!-- 10 -->
+<!-- MODULE 10 -->
 
 <div class="module">
 
@@ -1813,8 +1366,7 @@ Apprendre à changer de tonalité.
 
 </div>
 
-
-<!-- 11 -->
+<!-- MODULE 11 -->
 
 <div class="module">
 
@@ -1848,8 +1400,7 @@ Trouver les accords adaptés à une mélodie.
 
 </div>
 
-
-<!-- 12 -->
+<!-- MODULE 12 -->
 
 <div class="module">
 
@@ -1883,8 +1434,7 @@ Basses, octaves et accompagnements.
 
 </div>
 
-
-<!-- 13 -->
+<!-- MODULE 13 -->
 
 <div class="module">
 
@@ -1918,8 +1468,7 @@ Enrichir une progression
 
 </div>
 
-
-<!-- 14 -->
+<!-- MODULE 14 -->
 
 <div class="module">
 
@@ -1953,8 +1502,7 @@ Disposer les notes intelligemment.
 
 </div>
 
-
-<!-- 15 -->
+<!-- MODULE 15 -->
 
 <div class="module">
 
@@ -1988,8 +1536,7 @@ Créer du mouvement et le résoudre.
 
 </div>
 
-
-<!-- 16 -->
+<!-- MODULE 16 -->
 
 <div class="module">
 
@@ -2023,8 +1570,7 @@ Analyser les accords d'un morceau.
 
 </div>
 
-
-<!-- 17 -->
+<!-- MODULE 17 -->
 
 <div class="module">
 
@@ -2058,8 +1604,7 @@ Classique, gospel, jazz, pop, R&B et afrobeat.
 
 </div>
 
-
-<!-- 18 -->
+<!-- MODULE 18 -->
 
 <div class="module">
 
@@ -2093,8 +1638,7 @@ Exercices progressifs d'harmonie.
 
 </div>
 
-
-<!-- 19 -->
+<!-- MODULE 19 -->
 
 <div class="module">
 
@@ -2132,29 +1676,19 @@ Créer et analyser sa propre progression.
 
 </section>
 
-
-<!-- =====================================================
-     LECTEUR
-===================================================== -->
-
-<section
-class="lesson"
-id="lesson">
+<section class="lesson" id="lesson">
 
 <div class="lesson-top">
 
 <button
 class="back-btn"
 onclick="closeLesson()">
-
 ← Modules
-
 </button>
 
 <span
 class="lesson-number"
 id="lessonNumber">
-
 </span>
 
 </div>
@@ -2169,17 +1703,13 @@ id="lessonContent">
 <button
 class="nav-btn"
 onclick="previousModule()">
-
 ← Précédent
-
 </button>
 
 <button
 class="nav-btn primary"
 onclick="nextModule()">
-
 Suivant →
-
 </button>
 
 </div>
@@ -2188,13 +1718,10 @@ Suivant →
 class="complete-btn"
 id="completeButton"
 onclick="completeModule()">
-
 ✓ Marquer le module comme terminé
-
 </button>
 
 </section>
-
 
 <footer class="footer">
 
@@ -2208,11 +1735,6 @@ Harmonie au piano • Apprends • Pratique • Progresse
 
 </div>
 
-
-<!-- =====================================================
-     GLOSSAIRE
-===================================================== -->
-
 <div
 class="glossary-overlay"
 id="glossaryOverlay"
@@ -2224,14 +1746,11 @@ onclick="event.stopPropagation()">
 
 <div class="glossary-header">
 
-<h2>
-📖 Glossaire de l'harmonie
-</h2>
+<h2>📖 Glossaire de l'harmonie</h2>
 
 <button
 class="close-glossary"
 onclick="closeGlossary()">
-
 ×
 </button>
 
@@ -2246,13 +1765,11 @@ oninput="searchGlossary()">
 <div
 class="glossary-list"
 id="glossaryList">
-
 </div>
 
 </div>
 
 </div>
-
 
 <script>
 
@@ -2282,14 +1799,10 @@ async function checkPremiumAccess(){
     try{
 
         const {
-            data:{
-                session
-            },
+            data:{session},
             error:sessionError
         } =
-        await supabaseClient
-        .auth
-        .getSession();
+        await supabaseClient.auth.getSession();
 
         if(sessionError){
             throw sessionError;
@@ -2305,8 +1818,7 @@ async function checkPremiumAccess(){
             return;
         }
 
-        const user =
-        session.user;
+        const user=session.user;
 
         const {
             data:profile,
@@ -2366,7 +1878,6 @@ async function checkPremiumAccess(){
         );
 
     }
-
 }
 
 
@@ -2385,7 +1896,6 @@ function openApp(){
     ).style.display="block";
 
     updateProgress();
-
 }
 
 
@@ -2393,10 +1903,7 @@ function openApp(){
    ERREUR
 ===================================================== */
 
-function showAccessError(
-    title,
-    message
-){
+function showAccessError(title,message){
 
     document.getElementById(
         "checking"
@@ -2413,7 +1920,6 @@ function showAccessError(
     document.getElementById(
         "errorMessage"
     ).textContent=message;
-
 }
 
 
@@ -2461,683 +1967,247 @@ const modulesData = {
 1:{
 title:"Introduction à l'harmonie",
 subtitle:"Comprendre comment les notes fonctionnent ensemble.",
-
 sections:[
-
-[
-"Qu'est-ce que l'harmonie ?",
-"L'harmonie est l'organisation des sons joués simultanément et des relations entre les accords. Elle permet de créer une sensation de stabilité, de mouvement, de tension ou de résolution."
+["Qu'est-ce que l'harmonie ?","L'harmonie est l'organisation des sons joués simultanément et des relations entre les accords. Elle permet de créer une sensation de stabilité, de mouvement, de tension ou de résolution."],
+["Pourquoi l'harmonie est importante","Lorsque tu joues une mélodie seule, tu entends principalement une succession de notes. Lorsque tu ajoutes des accords, tu crées une dimension harmonique qui accompagne et donne une couleur à cette mélodie."],
+["Fondamentale","La fondamentale est la note qui donne son nom à un accord. Par exemple, dans Do–Mi–Sol, la fondamentale est Do."]
 ],
-
-[
-"Pourquoi l'harmonie est importante",
-"Lorsque tu joues une mélodie seule, tu entends principalement une succession de notes. Lorsque tu ajoutes des accords, tu crées une dimension harmonique qui accompagne et donne une couleur à cette mélodie."
-],
-
-[
-"Fondamentale",
-"La fondamentale est la note qui donne son nom à un accord. Par exemple, dans Do–Mi–Sol, la fondamentale est Do."
-]
-
-],
-
-example:[
-"Exemple : Do majeur",
-"Do – Mi – Sol"
-],
-
+example:["Exemple : Do majeur","Do – Mi – Sol"],
 tip:"Écoute toujours la relation entre la mélodie et l'accord qui l'accompagne."
 },
 
 2:{
 title:"Les degrés d'une tonalité",
 subtitle:"Comprendre I, II, III, IV, V, VI et VII.",
-
 sections:[
-
-[
-"Définition",
-"Un degré représente la position d'une note dans une tonalité. Les degrés sont généralement écrits avec des chiffres romains."
+["Définition","Un degré représente la position d'une note dans une tonalité. Les degrés sont généralement écrits avec des chiffres romains."],
+["En Do majeur","Les sept degrés sont Do, Ré, Mi, Fa, Sol, La et Si."],
+["Pourquoi les degrés sont utiles","Au lieu de mémoriser uniquement des noms d'accords, tu peux comprendre leur fonction dans n'importe quelle tonalité."]
 ],
-
-[
-"En Do majeur",
-"Les sept degrés sont Do, Ré, Mi, Fa, Sol, La et Si."
-],
-
-[
-"Pourquoi les degrés sont utiles",
-"Au lieu de mémoriser uniquement des noms d'accords, tu peux comprendre leur fonction dans n'importe quelle tonalité."
-]
-
-],
-
 table:true,
-
 tip:"Apprends à penser en degrés : cela te permettra de transposer facilement une progression."
 },
 
 3:{
 title:"Les fonctions harmoniques",
 subtitle:"Comprendre le rôle de chaque famille d'accords.",
-
 sections:[
-
-[
-"Définition",
-"Une fonction harmonique décrit le rôle qu'un accord joue dans une tonalité."
+["Définition","Une fonction harmonique décrit le rôle qu'un accord joue dans une tonalité."],
+["Tonique","La tonique représente la stabilité et le point de repos principal."],
+["Sous-dominante","La sous-dominante crée généralement un mouvement qui éloigne du repos."],
+["Dominante","La dominante crée une tension qui cherche souvent à revenir vers la tonique."]
 ],
-
-[
-"Tonique",
-"La tonique représente la stabilité et le point de repos principal."
-],
-
-[
-"Sous-dominante",
-"La sous-dominante crée généralement un mouvement qui éloigne du repos."
-],
-
-[
-"Dominante",
-"La dominante crée une tension qui cherche souvent à revenir vers la tonique."
-]
-
-],
-
-example:[
-"En Do majeur",
-"Tonique = C | Sous-dominante = F | Dominante = G"
-],
-
+example:["En Do majeur","Tonique = C | Sous-dominante = F | Dominante = G"],
 tip:"Écoute la sensation produite par C, F puis G. Tu entendras progressivement stabilité, mouvement puis tension."
 },
 
 4:{
 title:"Tonique, dominante et sous-dominante",
 subtitle:"Maîtriser les trois fonctions fondamentales.",
-
 sections:[
-
-[
-"La tonique",
-"En Do majeur, la tonique est le degré I : Do majeur, Do–Mi–Sol."
+["La tonique","En Do majeur, la tonique est le degré I : Do majeur, Do–Mi–Sol."],
+["La sous-dominante","Le degré IV est Fa majeur : Fa–La–Do. Il crée un mouvement qui prépare souvent la dominante."],
+["La dominante","Le degré V est Sol majeur : Sol–Si–Ré. Il crée une forte sensation de tension vers Do."]
 ],
-
-[
-"La sous-dominante",
-"Le degré IV est Fa majeur : Fa–La–Do. Il crée un mouvement qui prépare souvent la dominante."
-],
-
-[
-"La dominante",
-"Le degré V est Sol majeur : Sol–Si–Ré. Il crée une forte sensation de tension vers Do."
-]
-
-],
-
-example:[
-"Progression fondamentale",
-"I → IV → V → I",
-],
-
+example:["Progression fondamentale","I → IV → V → I"],
 tip:"Joue lentement C → F → G → C et écoute comment G semble naturellement vouloir revenir vers C."
 },
 
 5:{
 title:"Les progressions d'accords",
 subtitle:"Construire et comprendre les enchaînements.",
-
 sections:[
-
-[
-"Définition",
-"Une progression d'accords est une succession organisée d'accords."
+["Définition","Une progression d'accords est une succession organisée d'accords."],
+["Progression I–IV–V","En Do majeur : C → F → G."],
+["Progression I–V–vi–IV","En Do majeur : C → G → Am → F. Cette progression est très utilisée dans de nombreux styles modernes."],
+["Créer une progression","Commence par choisir une tonalité, sélectionne quelques degrés puis écoute si les changements produisent une sensation musicale cohérente."]
 ],
-
-[
-"Progression I–IV–V",
-"En Do majeur : C → F → G."
-],
-
-[
-"Progression I–V–vi–IV",
-"En Do majeur : C → G → Am → F. Cette progression est très utilisée dans de nombreux styles modernes."
-],
-
-[
-"Créer une progression",
-"Commence par choisir une tonalité, sélectionne quelques degrés puis écoute si les changements produisent une sensation musicale cohérente."
-]
-
-],
-
 tip:"Ne cherche pas uniquement des progressions à mémoriser. Comprends pourquoi elles fonctionnent."
 },
 
 6:{
 title:"Les cadences",
 subtitle:"Comprendre les différentes façons de conclure.",
-
 sections:[
-
-[
-"Définition",
-"Une cadence est un enchaînement harmonique qui donne une sensation de conclusion, de repos ou de suspension."
+["Définition","Une cadence est un enchaînement harmonique qui donne une sensation de conclusion, de repos ou de suspension."],
+["Cadence parfaite","La cadence V → I produit une forte sensation de résolution. En Do majeur : G → C."],
+["Cadence plagale","La cadence IV → I donne une sensation de retour au repos. En Do majeur : F → C."],
+["Cadence rompue","La dominante ne revient pas directement vers la tonique. Par exemple : V → vi, soit G → Am en Do majeur."],
+["Cadence imparfaite","Une cadence peut aussi produire une conclusion moins définitive, selon le contexte et la position des accords."]
 ],
-
-[
-"Cadence parfaite",
-"La cadence V → I produit une forte sensation de résolution. En Do majeur : G → C."
-],
-
-[
-"Cadence plagale",
-"La cadence IV → I donne une sensation de retour au repos. En Do majeur : F → C."
-],
-
-[
-"Cadence rompue",
-"La dominante ne revient pas directement vers la tonique. Par exemple : V → vi, soit G → Am en Do majeur."
-],
-
-[
-"Cadence imparfaite",
-"Une cadence peut aussi produire une conclusion moins définitive, selon le contexte et la position des accords."
-]
-
-],
-
-example:[
-"Exemple",
-"G7 → Cmaj7"
-],
-
+example:["Exemple","G7 → Cmaj7"],
 tip:"Travaille chaque cadence lentement et écoute la sensation de fin créée."
 },
 
 7:{
 title:"Les accords de septième dans l'harmonie",
 subtitle:"Comprendre le rôle des accords enrichis.",
-
 sections:[
-
-[
-"Accord de septième",
-"Un accord de septième ajoute une quatrième note à une triade."
+["Accord de septième","Un accord de septième ajoute une quatrième note à une triade."],
+["Maj7","Un accord majeur septième possède une couleur douce et riche. Exemple : Cmaj7 = Do–Mi–Sol–Si."],
+["7","L'accord de dominante septième est particulièrement important. G7 = Sol–Si–Ré–Fa et il crée une forte tension vers C."],
+["m7","Un accord mineur septième possède une couleur plus douce. Am7 = La–Do–Mi–Sol."],
+["m7♭5","Cet accord, aussi appelé demi-diminué, apparaît notamment sur le degré VII dans certaines tonalités."]
 ],
-
-[
-"Maj7",
-"Un accord majeur septième possède une couleur douce et riche. Exemple : Cmaj7 = Do–Mi–Sol–Si."
-],
-
-[
-"7",
-"L'accord de dominante septième est particulièrement important. G7 = Sol–Si–Ré–Fa et il crée une forte tension vers C."
-],
-
-[
-"m7",
-"Un accord mineur septième possède une couleur plus douce. Am7 = La–Do–Mi–Sol."
-],
-
-[
-"m7♭5",
-"Cet accord, aussi appelé demi-diminué, apparaît notamment sur le degré VII dans certaines tonalités."
-]
-
-],
-
 tip:"Le cours précédent explique la construction des accords ; ici, concentre-toi sur leur fonction."
 },
 
 8:{
 title:"Les dominantes secondaires",
 subtitle:"Créer des tensions vers d'autres accords.",
-
 sections:[
-
-[
-"Définition",
-"Une dominante secondaire est un accord de dominante utilisé temporairement pour créer une tension vers un degré autre que la tonique."
+["Définition","Une dominante secondaire est un accord de dominante utilisé temporairement pour créer une tension vers un degré autre que la tonique."],
+["Exemple V/V","En Do majeur, G est la dominante principale. Pour créer une tension vers G, on peut utiliser D7. D7 → G → C."],
+["V/ii","Pour préparer le degré II, on peut utiliser A7 → Dm."],
+["Pourquoi les utiliser","Les dominantes secondaires permettent d'obtenir des progressions plus riches et plus expressives."]
 ],
-
-[
-"Exemple V/V",
-"En Do majeur, G est la dominante principale. Pour créer une tension vers G, on peut utiliser D7. D7 → G → C."
-],
-
-[
-"V/ii",
-"Pour préparer le degré II, on peut utiliser A7 → Dm."
-],
-
-[
-"Pourquoi les utiliser",
-"Les dominantes secondaires permettent d'obtenir des progressions plus riches et plus expressives."
-]
-
-],
-
-example:[
-"Exemple",
-"D7 → G7 → Cmaj7"
-],
-
+example:["Exemple","D7 → G7 → Cmaj7"],
 tip:"Écoute comment chaque dominante crée une petite tension avant l'accord qu'elle prépare."
 },
 
 9:{
 title:"Les accords empruntés",
 subtitle:"Ajouter des couleurs provenant d'autres modes.",
-
 sections:[
-
-[
-"Définition",
-"Un accord emprunté est un accord utilisé dans une tonalité mais provenant temporairement d'un mode ou d'une tonalité parallèle."
+["Définition","Un accord emprunté est un accord utilisé dans une tonalité mais provenant temporairement d'un mode ou d'une tonalité parallèle."],
+["Exemple en Do majeur","On peut utiliser Fm, l'accord iv mineur, alors que la tonalité principale est Do majeur."],
+["Effet musical","Les accords empruntés peuvent créer une couleur plus expressive, nostalgique, dramatique ou surprenante."]
 ],
-
-[
-"Exemple en Do majeur",
-"On peut utiliser Fm, l'accord iv mineur, alors que la tonalité principale est Do majeur."
-],
-
-[
-"Effet musical",
-"Les accords empruntés peuvent créer une couleur plus expressive, nostalgique, dramatique ou surprenante."
-]
-
-],
-
-example:[
-"Exemple",
-"C → Fm → C"
-],
-
+example:["Exemple","C → Fm → C"],
 tip:"Compare F majeur et F mineur dans une progression en Do. Observe le changement de couleur."
 },
 
 10:{
 title:"La modulation",
 subtitle:"Apprendre à changer de tonalité.",
-
 sections:[
-
-[
-"Définition",
-"La modulation est le changement de tonalité au cours d'une œuvre musicale."
+["Définition","La modulation est le changement de tonalité au cours d'une œuvre musicale."],
+["Pourquoi moduler","Une modulation peut donner une impression d'ouverture, de montée, de changement émotionnel ou de renouvellement."],
+["Accord pivot","Un accord pivot peut appartenir aux deux tonalités et servir de pont entre elles."],
+["Pratique","Commence par moduler entre des tonalités proches avant d'essayer des changements plus éloignés."]
 ],
-
-[
-"Pourquoi moduler",
-"Une modulation peut donner une impression d'ouverture, de montée, de changement émotionnel ou de renouvellement."
-],
-
-[
-"Accord pivot",
-"Un accord pivot peut appartenir aux deux tonalités et servir de pont entre elles."
-],
-
-[
-"Pratique",
-"Commence par moduler entre des tonalités proches avant d'essayer des changements plus éloignés."
-]
-
-],
-
-example:[
-"Idée",
-"Do majeur → Sol majeur"
-],
-
+example:["Idée","Do majeur → Sol majeur"],
 tip:"Travaille les changements de tonalité très lentement et identifie clairement le nouveau centre tonal."
 },
 
 11:{
 title:"Harmoniser une mélodie",
 subtitle:"Trouver les accords adaptés à une mélodie.",
-
 sections:[
-
-[
-"Étape 1",
-"Identifie la tonalité de la mélodie."
+["Étape 1","Identifie la tonalité de la mélodie."],
+["Étape 2","Repère les notes importantes, notamment celles qui tombent sur les temps forts."],
+["Étape 3","Recherche les accords de la tonalité qui contiennent ces notes."],
+["Étape 4","Teste plusieurs possibilités et choisis celle qui produit le meilleur mouvement harmonique."]
 ],
-
-[
-"Étape 2",
-"Repère les notes importantes, notamment celles qui tombent sur les temps forts."
-],
-
-[
-"Étape 3",
-"Recherche les accords de la tonalité qui contiennent ces notes."
-],
-
-[
-"Étape 4",
-"Teste plusieurs possibilités et choisis celle qui produit le meilleur mouvement harmonique."
-]
-
-],
-
-example:[
-"Mélodie simple",
-"Do – Ré – Mi – Sol",
-],
-
+example:["Mélodie simple","Do – Ré – Mi – Sol"],
 tip:"Une même note peut appartenir à plusieurs accords. C'est l'ensemble de la progression qui permet de choisir."
 },
 
 12:{
 title:"Harmonisation avec la main gauche",
 subtitle:"Créer une base harmonique solide.",
-
 sections:[
-
-[
-"Fondamentales",
-"Commence par jouer les fondamentales des accords avec la main gauche."
+["Fondamentales","Commence par jouer les fondamentales des accords avec la main gauche."],
+["Octaves","Les octaves permettent de donner plus de profondeur aux basses."],
+["Accords plaqués","Tu peux jouer les accords avec la main droite et les fondamentales ou octaves avec la main gauche."],
+["Basses alternées","Une basse peut être organisée de différentes manières afin de créer davantage de mouvement."]
 ],
-
-[
-"Octaves",
-"Les octaves permettent de donner plus de profondeur aux basses."
-],
-
-[
-"Accords plaqués",
-"Tu peux jouer les accords avec la main droite et les fondamentales ou octaves avec la main gauche."
-],
-
-[
-"Basses alternées",
-"Une basse peut être organisée de différentes manières afin de créer davantage de mouvement."
-]
-
-],
-
-example:[
-"Exemple",
-"Main gauche : Do → La → Fa → Sol",
-],
-
+example:["Exemple","Main gauche : Do → La → Fa → Sol"],
 tip:"Commence très lentement. La priorité est la régularité et la coordination."
 },
 
 13:{
 title:"Enrichir une progression",
 subtitle:"Passer d'accords simples à des harmonies plus riches.",
-
 sections:[
-
-[
-"Principe",
-"Un accord simple peut être enrichi avec des notes supplémentaires."
+["Principe","Un accord simple peut être enrichi avec des notes supplémentaires."],
+["Exemple","C peut devenir Cmaj7, C9 ou C6 selon le contexte musical."],
+["Les extensions","Les 7e, 9e, 11e et 13e ajoutent différentes couleurs."],
+["Attention","Un enrichissement doit servir la musique. Plus de notes ne signifie pas automatiquement meilleur accord."]
 ],
-
-[
-"Exemple",
-"C peut devenir Cmaj7, C9 ou C6 selon le contexte musical."
-],
-
-[
-"Les extensions",
-"Les 7e, 9e, 11e et 13e ajoutent différentes couleurs."
-],
-
-[
-"Attention",
-"Un enrichissement doit servir la musique. Plus de notes ne signifie pas automatiquement meilleur accord."
-]
-
-],
-
-example:[
-"Progression",
-"C → Am → F → G",
-
-],
-
+example:["Progression","C → Am → F → G"],
 tip:"Commence par ajouter les septièmes avant de travailler les extensions plus complexes."
 },
 
 14:{
 title:"Voicings et conduite des voix",
 subtitle:"Disposer les notes d'un accord intelligemment.",
-
 sections:[
-
-[
-"Voicing",
-"Le voicing est la manière dont les différentes notes d'un accord sont disposées."
+["Voicing","Le voicing est la manière dont les différentes notes d'un accord sont disposées."],
+["Conduite des voix","La conduite des voix consiste à déplacer les notes d'un accord vers le suivant avec des mouvements aussi fluides que possible."],
+["Notes communes","Lorsque deux accords partagent des notes, conserver ces notes peut rendre la transition plus naturelle."],
+["Objectif","Évite les déplacements inutiles de la main lorsque plusieurs accords peuvent être joués dans une position proche."]
 ],
-
-[
-"Conduite des voix",
-"La conduite des voix consiste à déplacer les notes d'un accord vers le suivant avec des mouvements aussi fluides que possible."
-],
-
-[
-"Notes communes",
-"Lorsque deux accords partagent des notes, conserver ces notes peut rendre la transition plus naturelle."
-],
-
-[
-"Objectif",
-"Évite les déplacements inutiles de la main lorsque plusieurs accords peuvent être joués dans une position proche."
-]
-
-],
-
-example:[
-"Idée",
-"Cmaj7 → Am7 → Fmaj7 → G7"
-],
-
+example:["Idée","Cmaj7 → Am7 → Fmaj7 → G7"],
 tip:"Cherche les positions qui permettent à tes doigts de bouger le moins possible."
 },
 
 15:{
 title:"Tension et résolution",
 subtitle:"Créer du mouvement musical.",
-
 sections:[
-
-[
-"Tension",
-"La tension est une sensation d'instabilité ou d'attente."
+["Tension","La tension est une sensation d'instabilité ou d'attente."],
+["Résolution","La résolution est le moment où cette tension se dirige vers une sensation plus stable."],
+["Dominante","La dominante est l'un des principaux outils permettant de créer une tension qui revient vers la tonique."],
+["Triton","Dans un accord de dominante septième, l'intervalle entre la tierce et la septième crée une tension caractéristique."]
 ],
-
-[
-"Résolution",
-"La résolution est le moment où cette tension se dirige vers une sensation plus stable."
-],
-
-[
-"Dominante",
-"La dominante est l'un des principaux outils permettant de créer une tension qui revient vers la tonique."
-],
-
-[
-"Triton",
-"Dans un accord de dominante septième, l'intervalle entre la tierce et la septième crée une tension caractéristique."
-]
-
-],
-
-example:[
-"Exemple",
-"G7 → Cmaj7"
-],
-
+example:["Exemple","G7 → Cmaj7"],
 tip:"Joue G7 puis arrête-toi. Ensuite joue Cmaj7. Compare les deux sensations."
 },
 
 16:{
 title:"Analyse harmonique",
 subtitle:"Apprendre à analyser un morceau.",
-
 sections:[
-
-[
-"Étape 1",
-"Trouve la tonalité principale."
+["Étape 1","Trouve la tonalité principale."],
+["Étape 2","Identifie les accords utilisés."],
+["Étape 3","Transforme les accords en degrés romains."],
+["Étape 4","Identifie les fonctions : tonique, sous-dominante et dominante."],
+["Étape 5","Repère les cadences, dominantes secondaires et éventuelles modulations."]
 ],
-
-[
-"Étape 2",
-"Identifie les accords utilisés."
-],
-
-[
-"Étape 3",
-"Transforme les accords en degrés romains."
-],
-
-[
-"Étape 4",
-"Identifie les fonctions : tonique, sous-dominante et dominante."
-],
-
-[
-"Étape 5",
-"Repère les cadences, dominantes secondaires et éventuelles modulations."
-]
-
-],
-
-example:[
-"Exemple",
-"C → F → G → C",
-"Analyse : I → IV → V → I"
-],
-
+example:["Exemple","C → F → G → C"],
 tip:"L'analyse harmonique permet de comprendre la logique musicale derrière un morceau."
 },
 
 17:{
 title:"Harmonie et styles musicaux",
 subtitle:"Découvrir différentes approches harmoniques.",
-
 sections:[
-
-[
-"Classique",
-"L'harmonie classique utilise des fonctions très structurées et une forte attention à la conduite des voix."
+["Classique","L'harmonie classique utilise des fonctions très structurées et une forte attention à la conduite des voix."],
+["Gospel","Le gospel utilise fréquemment des accords enrichis, des dominantes secondaires et des mouvements de basse expressifs."],
+["Jazz","Le jazz utilise largement les accords de septième, extensions, substitutions et progressions comme ii–V–I."],
+["Pop et R&B","Ces styles utilisent souvent des progressions répétitives enrichies par des voicings et des extensions."],
+["Afrobeat","L'harmonie peut être organisée autour de progressions simples mais efficaces, avec un fort rôle du rythme et de la basse."]
 ],
-
-[
-"Gospel",
-"Le gospel utilise fréquemment des accords enrichis, des dominantes secondaires et des mouvements de basse expressifs."
-],
-
-[
-"Jazz",
-"Le jazz utilise largement les accords de septième, extensions, substitutions et progressions comme ii–V–I."
-],
-
-[
-"Pop et R&B",
-"Ces styles utilisent souvent des progressions répétitives enrichies par des voicings et des extensions."
-],
-
-[
-"Afrobeat",
-"L'harmonie peut être organisée autour de progressions simples mais efficaces, avec un fort rôle du rythme et de la basse."
-]
-
-],
-
 tip:"Un même principe harmonique peut prendre une couleur très différente selon le style."
 },
 
 18:{
 title:"Atelier pratique",
 subtitle:"Mettre les connaissances en application.",
-
 sections:[
-
-[
-"Exercice 1",
-"En Do majeur, joue I → IV → V → I."
+["Exercice 1","En Do majeur, joue I → IV → V → I."],
+["Exercice 2","Joue ii → V → I : Dm7 → G7 → Cmaj7."],
+["Exercice 3","Transforme C → Am → F → G en utilisant des accords de septième."],
+["Exercice 4","Crée une progression de quatre accords dans une tonalité de ton choix."],
+["Exercice 5","Essaie d'ajouter une dominante secondaire à ta progression."]
 ],
-
-[
-"Exercice 2",
-"Joue ii → V → I : Dm7 → G7 → Cmaj7."
-],
-
-[
-"Exercice 3",
-"Transforme C → Am → F → G en utilisant des accords de septième."
-],
-
-[
-"Exercice 4",
-"Crée une progression de quatre accords dans une tonalité de ton choix."
-],
-
-[
-"Exercice 5",
-"Essaie d'ajouter une dominante secondaire à ta progression."
-]
-
-],
-
 tip:"Enregistre-toi si possible et réécoute tes progressions. L'écoute est essentielle pour progresser en harmonie."
 },
 
 19:{
 title:"Projet final — Maîtrise de l'harmonie",
 subtitle:"Créer ta propre progression harmonique.",
-
 sections:[
-
-[
-"Étape 1 — Choisir une tonalité",
-"Choisis une tonalité majeure ou mineure."
+["Étape 1 — Choisir une tonalité","Choisis une tonalité majeure ou mineure."],
+["Étape 2 — Construire la progression","Crée une progression d'au moins quatre accords."],
+["Étape 3 — Ajouter des fonctions","Identifie les accords de tonique, sous-dominante et dominante."],
+["Étape 4 — Enrichir","Ajoute éventuellement des septièmes ou extensions adaptées."],
+["Étape 5 — Travailler les voicings","Choisis des positions permettant des transitions fluides."],
+["Étape 6 — Ajouter une mélodie","Crée une petite mélodie qui fonctionne avec ta progression."],
+["Objectif final","Tu dois être capable d'expliquer pourquoi tes accords fonctionnent ensemble et de jouer ta progression de manière fluide."]
 ],
-
-[
-"Étape 2 — Construire la progression",
-"Crée une progression d'au moins quatre accords."
-],
-
-[
-"Étape 3 — Ajouter des fonctions",
-"Identifie les accords de tonique, sous-dominante et dominante."
-],
-
-[
-"Étape 4 — Enrichir",
-"Ajoute éventuellement des septièmes ou extensions adaptées."
-],
-
-[
-"Étape 5 — Travailler les voicings",
-"Choisis des positions permettant des transitions fluides."
-],
-
-[
-"Étape 6 — Ajouter une mélodie",
-"Crée une petite mélodie qui fonctionne avec ta progression."
-],
-
-[
-"Objectif final",
-"Tu dois être capable d'expliquer pourquoi tes accords fonctionnent ensemble et de jouer ta progression de manière fluide."
-]
-
-],
-
-example:[
-"Projet exemple",
-"Cmaj7 → Am7 → Dm7 → G7 → Cmaj7"
-],
-
+example:["Projet exemple","Cmaj7 → Am7 → Dm7 → G7 → Cmaj7"],
 tip:"Félicitations ! Si tu peux créer, expliquer et jouer ta progression, tu as construit une véritable base d'harmonie au piano."
 }
 
@@ -3148,9 +2218,9 @@ tip:"Félicitations ! Si tu peux créer, expliquer et jouer ta progression, tu a
    ÉTAT
 ===================================================== */
 
-let currentModule = 0;
+let currentModule=0;
 
-let completed =
+let completed=
 JSON.parse(
     localStorage.getItem(
         "pianoHarmonieProgress"
@@ -3170,40 +2240,20 @@ function openModule(number){
 
     currentModule=number;
 
-    const data =
-    modulesData[number];
+    const data=modulesData[number];
 
-    document.getElementById(
-        "courseHome"
-    ).style.display="none";
+    document.getElementById("courseHome").style.display="none";
+    document.querySelector(".search").style.display="none";
+    document.querySelector(".progress-card").style.display="none";
+    document.querySelector(".actions").style.display="none";
+    document.querySelector(".hero").style.display="none";
 
-    document.querySelector(
-        ".search"
-    ).style.display="none";
-
-    document.querySelector(
-        ".progress-card"
-    ).style.display="none";
-
-    document.querySelector(
-        ".actions"
-    ).style.display="none";
-
-    document.querySelector(
-        ".hero"
-    ).style.display="none";
-
-    const lesson =
-    document.getElementById("lesson");
+    const lesson=document.getElementById("lesson");
 
     lesson.classList.add("active");
 
-    document.getElementById(
-        "lessonNumber"
-    ).textContent=
-        "Module " +
-        number +
-        " / 19";
+    document.getElementById("lessonNumber").textContent=
+        "Module "+number+" / 19";
 
     let html="";
 
@@ -3215,27 +2265,19 @@ function openModule(number){
         </div>
     `;
 
+    data.sections.forEach(section=>{
 
-    data.sections.forEach(
-        section=>{
+        html+=`
+            <div class="lesson-section">
 
-            html+=`
-                <div class="lesson-section">
+                <h3>${section[0]}</h3>
 
-                    <h3>
-                        ${section[0]}
-                    </h3>
+                <p>${section[1]}</p>
 
-                    <p>
-                        ${section[1]}
-                    </p>
+            </div>
+        `;
 
-                </div>
-            `;
-
-        }
-    );
-
+    });
 
     if(data.table){
 
@@ -3262,54 +2304,13 @@ function openModule(number){
 
                 <tbody>
 
-                    <tr>
-                        <td>I</td>
-                        <td>Do</td>
-                        <td>C</td>
-                        <td>Tonique</td>
-                    </tr>
-
-                    <tr>
-                        <td>II</td>
-                        <td>Ré</td>
-                        <td>Dm</td>
-                        <td>Pré-dominante</td>
-                    </tr>
-
-                    <tr>
-                        <td>III</td>
-                        <td>Mi</td>
-                        <td>Em</td>
-                        <td>Médiante</td>
-                    </tr>
-
-                    <tr>
-                        <td>IV</td>
-                        <td>Fa</td>
-                        <td>F</td>
-                        <td>Sous-dominante</td>
-                    </tr>
-
-                    <tr>
-                        <td>V</td>
-                        <td>Sol</td>
-                        <td>G</td>
-                        <td>Dominante</td>
-                    </tr>
-
-                    <tr>
-                        <td>VI</td>
-                        <td>La</td>
-                        <td>Am</td>
-                        <td>Relative</td>
-                    </tr>
-
-                    <tr>
-                        <td>VII</td>
-                        <td>Si</td>
-                        <td>Bdim</td>
-                        <td>Sensible</td>
-                    </tr>
+                    <tr><td>I</td><td>Do</td><td>C</td><td>Tonique</td></tr>
+                    <tr><td>II</td><td>Ré</td><td>Dm</td><td>Pré-dominante</td></tr>
+                    <tr><td>III</td><td>Mi</td><td>Em</td><td>Médiante</td></tr>
+                    <tr><td>IV</td><td>Fa</td><td>F</td><td>Sous-dominante</td></tr>
+                    <tr><td>V</td><td>Sol</td><td>G</td><td>Dominante</td></tr>
+                    <tr><td>VI</td><td>La</td><td>Am</td><td>Relative</td></tr>
+                    <tr><td>VII</td><td>Si</td><td>Bdim</td><td>Sensible</td></tr>
 
                 </tbody>
 
@@ -3317,9 +2318,7 @@ function openModule(number){
 
         </div>
         `;
-
     }
-
 
     if(data.example){
 
@@ -3338,30 +2337,26 @@ function openModule(number){
             <div class="notes">
         `;
 
-        if(
-            typeof data.example[1] === "string"
-        ){
+        if(typeof data.example[1]==="string"){
 
-            const parts =
+            const parts=
             data.example[1]
             .split("–")
             .map(x=>x.trim());
 
-            parts.forEach(
-                note=>{
+            parts.forEach(note=>{
 
-                    if(note){
+                if(note){
 
-                        html+=`
-                            <span class="note">
-                                ${note}
-                            </span>
-                        `;
-
-                    }
+                    html+=`
+                        <span class="note">
+                            ${note}
+                        </span>
+                    `;
 
                 }
-            );
+
+            });
 
         }
 
@@ -3369,9 +2364,7 @@ function openModule(number){
             </div>
         </div>
         `;
-
     }
-
 
     html+=`
 
@@ -3402,7 +2395,6 @@ function openModule(number){
     </div>
     `;
 
-
     if(data.tip){
 
         html+=`
@@ -3414,9 +2406,7 @@ function openModule(number){
 
         </div>
         `;
-
     }
-
 
     html+=`
 
@@ -3440,10 +2430,7 @@ function openModule(number){
     </div>
     `;
 
-
-    document.getElementById(
-        "lessonContent"
-    ).innerHTML=html;
+    document.getElementById("lessonContent").innerHTML=html;
 
     updateCompleteButton();
 
@@ -3451,135 +2438,81 @@ function openModule(number){
         top:0,
         behavior:"smooth"
     });
-
 }
 
 
-/* =====================================================
-   FERMER MODULE
-===================================================== */
+/* FERMER MODULE */
 
 function closeLesson(){
 
     currentModule=0;
 
-    document.getElementById(
-        "lesson"
-    ).classList.remove("active");
-
-    document.getElementById(
-        "courseHome"
-    ).style.display="block";
-
-    document.querySelector(
-        ".search"
-    ).style.display="block";
-
-    document.querySelector(
-        ".progress-card"
-    ).style.display="block";
-
-    document.querySelector(
-        ".actions"
-    ).style.display="grid";
-
-    document.querySelector(
-        ".hero"
-    ).style.display="block";
+    document.getElementById("lesson").classList.remove("active");
+    document.getElementById("courseHome").style.display="block";
+    document.querySelector(".search").style.display="block";
+    document.querySelector(".progress-card").style.display="block";
+    document.querySelector(".actions").style.display="grid";
+    document.querySelector(".hero").style.display="block";
 
     window.scrollTo({
         top:0,
         behavior:"smooth"
     });
-
 }
 
 
-/* =====================================================
-   MODULE SUIVANT
-===================================================== */
+/* SUIVANT */
 
 function nextModule(){
 
-    if(currentModule < 19){
-
-        openModule(
-            currentModule+1
-        );
-
+    if(currentModule<19){
+        openModule(currentModule+1);
     }
-
 }
 
 
-/* =====================================================
-   MODULE PRÉCÉDENT
-===================================================== */
+/* PRÉCÉDENT */
 
 function previousModule(){
 
-    if(currentModule > 1){
-
-        openModule(
-            currentModule-1
-        );
-
+    if(currentModule>1){
+        openModule(currentModule-1);
     }
-
 }
 
 
-/* =====================================================
-   TERMINER
-===================================================== */
+/* TERMINER */
 
 function completeModule(){
 
     if(
         currentModule &&
-        !completed.includes(
-            currentModule
-        )
+        !completed.includes(currentModule)
     ){
 
-        completed.push(
-            currentModule
-        );
+        completed.push(currentModule);
 
         localStorage.setItem(
             "pianoHarmonieProgress",
             JSON.stringify(completed)
         );
-
     }
 
     updateProgress();
-
     updateCompleteButton();
-
 }
 
 
-/* =====================================================
-   BOUTON TERMINÉ
-===================================================== */
+/* BOUTON TERMINÉ */
 
 function updateCompleteButton(){
 
-    const button =
-    document.getElementById(
-        "completeButton"
-    );
+    const button=
+    document.getElementById("completeButton");
 
-    if(
-        completed.includes(
-            currentModule
-        )
-    ){
+    if(completed.includes(currentModule)){
 
-        button.textContent=
-            "✓ Module terminé";
-
+        button.textContent="✓ Module terminé";
         button.classList.add("done");
 
     }else{
@@ -3588,19 +2521,15 @@ function updateCompleteButton(){
             "✓ Marquer le module comme terminé";
 
         button.classList.remove("done");
-
     }
-
 }
 
 
-/* =====================================================
-   PROGRESSION
-===================================================== */
+/* PROGRESSION */
 
 function updateProgress(){
 
-    completed =
+    completed=
     completed.filter(
         number=>
             Number.isInteger(number) &&
@@ -3608,84 +2537,59 @@ function updateProgress(){
             number<=19
     );
 
-    completed =
-    [...new Set(completed)];
+    completed=[...new Set(completed)];
 
-    const count =
-    completed.length;
+    const count=completed.length;
 
-    const percent =
-    (count/19)*100;
+    const percent=(count/19)*100;
 
-    document.getElementById(
-        "progressText"
-    ).textContent=
+    document.getElementById("progressText").textContent=
         count+" / 19";
 
-    document.getElementById(
-        "progressFill"
-    ).style.width=
+    document.getElementById("progressFill").style.width=
         percent+"%";
-
 }
 
 
-/* =====================================================
-   OUVERTURE / FERMETURE MODULES
-===================================================== */
+/* MODULES */
 
 function toggleModule(header){
 
-    const module =
-    header.parentElement;
+    const module=header.parentElement;
 
-    module.classList.toggle(
-        "open"
-    );
-
+    module.classList.toggle("open");
 }
 
 
-/* =====================================================
-   RECHERCHE MODULES
-===================================================== */
+/* RECHERCHE */
 
 function searchModules(){
 
-    const query =
-    document.getElementById(
-        "searchInput"
-    )
+    const query=
+    document.getElementById("searchInput")
     .value
     .toLowerCase()
     .trim();
 
     document
     .querySelectorAll(".module")
-    .forEach(
-        module=>{
+    .forEach(module=>{
 
-            const text =
-            module.textContent
-            .toLowerCase();
+        const text=
+        module.textContent.toLowerCase();
 
-            module.style.display =
-                !query ||
-                text.includes(query)
-                ? "block"
-                : "none";
-
-        }
-    );
-
+        module.style.display=
+            !query ||
+            text.includes(query)
+            ? "block"
+            : "none";
+    });
 }
 
 
-/* =====================================================
-   GLOSSAIRE
-===================================================== */
+/* GLOSSAIRE */
 
-const glossary = [
+const glossary=[
 
 {
 letter:"A",
@@ -3804,137 +2708,98 @@ definition:"Organisation d'une œuvre autour d'une note principale appelée toni
 ];
 
 
-/* =====================================================
-   AFFICHER GLOSSAIRE
-===================================================== */
+/* AFFICHER GLOSSAIRE */
 
 function openGlossary(){
 
     document
-    .getElementById(
-        "glossaryOverlay"
-    )
+    .getElementById("glossaryOverlay")
     .classList
     .add("active");
 
-    renderGlossary(
-        glossary
-    );
+    renderGlossary(glossary);
 
     document
-    .getElementById(
-        "glossarySearch"
-    )
+    .getElementById("glossarySearch")
     .value="";
-
 }
 
 
-/* =====================================================
-   FERMER GLOSSAIRE
-===================================================== */
+/* FERMER */
 
 function closeGlossary(){
 
     document
-    .getElementById(
-        "glossaryOverlay"
-    )
+    .getElementById("glossaryOverlay")
     .classList
     .remove("active");
-
 }
 
 
 function closeGlossaryOutside(event){
 
-    if(
-        event.target.id ===
-        "glossaryOverlay"
-    ){
-
+    if(event.target.id==="glossaryOverlay"){
         closeGlossary();
-
     }
-
 }
 
 
-/* =====================================================
-   AFFICHER TERMES
-===================================================== */
+/* AFFICHER TERMES */
 
 function renderGlossary(items){
 
-    const list =
-    document.getElementById(
-        "glossaryList"
-    );
+    const list=
+    document.getElementById("glossaryList");
 
     list.innerHTML="";
 
-    items.forEach(
-        item=>{
+    items.forEach(item=>{
 
-            const div =
-            document.createElement("div");
+        const div=
+        document.createElement("div");
 
-            div.className="term";
+        div.className="term";
 
-            div.innerHTML=`
+        div.innerHTML=`
 
-                <div class="term-name">
-                    ${item.letter} — ${item.term}
-                </div>
+            <div class="term-name">
+                ${item.letter} — ${item.term}
+            </div>
 
-                <div class="term-definition">
-                    ${item.definition}
-                </div>
+            <div class="term-definition">
+                ${item.definition}
+            </div>
 
-            `;
+        `;
 
-            list.appendChild(div);
-
-        }
-    );
-
+        list.appendChild(div);
+    });
 }
 
 
-/* =====================================================
-   RECHERCHE GLOSSAIRE
-===================================================== */
+/* RECHERCHE GLOSSAIRE */
 
 function searchGlossary(){
 
-    const query =
-    document.getElementById(
-        "glossarySearch"
-    )
+    const query=
+    document.getElementById("glossarySearch")
     .value
     .toLowerCase()
     .trim();
 
-    const results =
+    const results=
     glossary.filter(
         item=>
-            item.term
-            .toLowerCase()
-            .includes(query)
+            item.term.toLowerCase().includes(query)
             ||
-            item.definition
-            .toLowerCase()
-            .includes(query)
+            item.definition.toLowerCase().includes(query)
     );
 
     renderGlossary(results);
-
 }
 
 
-/* =====================================================
-   DÉMARRAGE
-===================================================== */
+/* DÉMARRAGE */
 
 checkPremiumAccess();
 
