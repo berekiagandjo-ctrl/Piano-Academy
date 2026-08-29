@@ -1,0 +1,3612 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Coordination des deux mains — Piano Academy</title>
+
+<meta
+  name="description"
+  content="Cours Premium Piano Academy — Coordination des deux mains."
+>
+
+<style>
+
+/* =====================================================
+   RESET
+===================================================== */
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+:root{
+
+  --primary:#6c5ce7;
+  --primary-dark:#5848d6;
+  --secondary:#00cec9;
+
+  --gold:#f5b942;
+  --gold-dark:#d99a20;
+
+  --background:#f5f6fa;
+  --card:#ffffff;
+  --soft:#fafbfe;
+
+  --text:#1e1e2f;
+  --muted:#777b8a;
+
+  --border:#e2e4ec;
+
+  --success:#00b894;
+  --danger:#e74c3c;
+
+  --shadow:
+    0 12px 35px rgba(25,25,50,.08);
+}
+
+body.dark{
+
+  --background:#11121a;
+  --card:#1b1d28;
+  --soft:#222531;
+
+  --text:#f5f5fa;
+  --muted:#a7a9b7;
+  --border:#303342;
+
+  --shadow:
+    0 12px 35px rgba(0,0,0,.25);
+}
+
+body{
+
+  min-height:100vh;
+
+  font-family:
+    Arial,
+    Helvetica,
+    sans-serif;
+
+  background:var(--background);
+  color:var(--text);
+
+  transition:.25s;
+}
+
+button{
+  font-family:inherit;
+  cursor:pointer;
+}
+
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+.header{
+
+  position:sticky;
+  top:0;
+  z-index:100;
+
+  height:70px;
+
+  background:var(--card);
+
+  border-bottom:
+    1px solid var(--border);
+}
+
+.header-inner{
+
+  width:100%;
+  max-width:1100px;
+
+  height:100%;
+
+  margin:auto;
+  padding:0 20px;
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+
+.header-left{
+
+  display:flex;
+  align-items:center;
+  gap:13px;
+}
+
+.back-button,
+.theme-button{
+
+  width:42px;
+  height:42px;
+
+  border:none;
+  border-radius:11px;
+
+  background:var(--soft);
+  color:var(--text);
+
+  font-size:19px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.back-button:hover,
+.theme-button:hover{
+
+  background:#eeeaff;
+  color:var(--primary);
+}
+
+.brand{
+
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.brand-icon{
+
+  width:40px;
+  height:40px;
+
+  border-radius:11px;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--primary),
+      var(--primary-dark)
+    );
+
+  color:white;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  font-size:20px;
+}
+
+.brand-name{
+
+  font-size:17px;
+  font-weight:800;
+}
+
+
+/* =====================================================
+   CONTAINER
+===================================================== */
+
+.container{
+
+  width:100%;
+  max-width:1050px;
+
+  margin:auto;
+
+  padding:30px 20px 70px;
+}
+
+
+/* =====================================================
+   PREMIUM HERO
+===================================================== */
+
+.hero{
+
+  position:relative;
+  overflow:hidden;
+
+  border-radius:24px;
+
+  padding:40px 32px;
+
+  color:white;
+
+  background:
+    linear-gradient(
+      135deg,
+      #6c5ce7,
+      #4834b4
+    );
+
+  box-shadow:
+    0 18px 45px
+    rgba(108,92,231,.25);
+
+  margin-bottom:25px;
+}
+
+.hero::before{
+
+  content:"";
+
+  position:absolute;
+
+  width:280px;
+  height:280px;
+
+  border-radius:50%;
+
+  background:
+    rgba(255,255,255,.07);
+
+  top:-150px;
+  right:-80px;
+}
+
+.hero::after{
+
+  content:"";
+
+  position:absolute;
+
+  width:220px;
+  height:220px;
+
+  border-radius:50%;
+
+  background:
+    rgba(0,206,201,.08);
+
+  bottom:-140px;
+  left:-60px;
+}
+
+.hero-content{
+
+  position:relative;
+  z-index:2;
+
+  max-width:760px;
+}
+
+.premium-badge{
+
+  display:inline-flex;
+
+  align-items:center;
+  gap:7px;
+
+  padding:8px 13px;
+
+  border-radius:30px;
+
+  background:
+    rgba(255,255,255,.14);
+
+  border:
+    1px solid
+    rgba(255,255,255,.16);
+
+  font-size:12px;
+  font-weight:800;
+
+  margin-bottom:17px;
+}
+
+.hero h1{
+
+  font-size:39px;
+  line-height:1.15;
+
+  margin-bottom:14px;
+}
+
+.hero h1 span{
+  color:#ffe29a;
+}
+
+.hero p{
+
+  color:
+    rgba(255,255,255,.86);
+
+  line-height:1.7;
+
+  font-size:14px;
+
+  max-width:700px;
+}
+
+.hero-meta{
+
+  display:flex;
+
+  flex-wrap:wrap;
+
+  gap:10px;
+
+  margin-top:22px;
+}
+
+.meta-item{
+
+  padding:8px 12px;
+
+  border-radius:20px;
+
+  background:
+    rgba(255,255,255,.12);
+
+  border:
+    1px solid
+    rgba(255,255,255,.13);
+
+  font-size:11px;
+}
+
+
+/* =====================================================
+   PROGRESS
+===================================================== */
+
+.progress-card{
+
+  background:var(--card);
+
+  border:
+    1px solid var(--border);
+
+  border-radius:18px;
+
+  padding:20px;
+
+  box-shadow:var(--shadow);
+
+  margin-bottom:25px;
+}
+
+.progress-top{
+
+  display:flex;
+
+  justify-content:space-between;
+
+  align-items:center;
+
+  gap:15px;
+
+  margin-bottom:12px;
+}
+
+.progress-title{
+
+  font-size:14px;
+  font-weight:800;
+}
+
+.progress-percent{
+
+  font-size:13px;
+  font-weight:900;
+
+  color:var(--primary);
+}
+
+.progress-bar{
+
+  width:100%;
+  height:10px;
+
+  border-radius:20px;
+
+  background:var(--soft);
+
+  overflow:hidden;
+}
+
+.progress-fill{
+
+  width:0%;
+
+  height:100%;
+
+  border-radius:20px;
+
+  background:
+    linear-gradient(
+      90deg,
+      var(--primary),
+      var(--secondary)
+    );
+
+  transition:.3s;
+}
+
+
+/* =====================================================
+   SECTION
+===================================================== */
+
+.section-title{
+
+  margin:32px 0 18px;
+}
+
+.section-title h2{
+
+  font-size:24px;
+
+  margin-bottom:6px;
+}
+
+.section-title p{
+
+  color:var(--muted);
+
+  font-size:13px;
+
+  line-height:1.6;
+}
+
+
+/* =====================================================
+   INTRO
+===================================================== */
+
+.intro-card{
+
+  background:var(--card);
+
+  border:
+    1px solid var(--border);
+
+  border-radius:18px;
+
+  padding:24px;
+
+  box-shadow:var(--shadow);
+}
+
+.intro-card p{
+
+  color:var(--muted);
+
+  font-size:13px;
+
+  line-height:1.8;
+
+  margin-bottom:13px;
+}
+
+.intro-card p:last-child{
+  margin-bottom:0;
+}
+
+.highlight{
+
+  padding:15px;
+
+  border-radius:12px;
+
+  background:
+    rgba(108,92,231,.08);
+
+  border:
+    1px solid
+    rgba(108,92,231,.15);
+
+  color:var(--text);
+
+  font-size:13px;
+
+  line-height:1.7;
+
+  margin-top:15px;
+}
+
+
+/* =====================================================
+   FUNDAMENTALS
+===================================================== */
+
+.fundamentals{
+
+  display:grid;
+
+  grid-template-columns:
+    repeat(2,1fr);
+
+  gap:15px;
+}
+
+.fundamental-card{
+
+  background:var(--card);
+
+  border:
+    1px solid var(--border);
+
+  border-radius:16px;
+
+  padding:20px;
+
+  box-shadow:var(--shadow);
+}
+
+.fundamental-icon{
+
+  width:45px;
+  height:45px;
+
+  border-radius:12px;
+
+  background:
+    rgba(108,92,231,.10);
+
+  display:flex;
+
+  align-items:center;
+  justify-content:center;
+
+  font-size:22px;
+
+  margin-bottom:12px;
+}
+
+.fundamental-card h3{
+
+  font-size:15px;
+
+  margin-bottom:7px;
+}
+
+.fundamental-card p{
+
+  color:var(--muted);
+
+  font-size:12px;
+
+  line-height:1.6;
+}
+
+
+/* =====================================================
+   LEVELS
+===================================================== */
+
+.levels{
+
+  display:grid;
+
+  gap:15px;
+}
+
+.level-card{
+
+  background:var(--card);
+
+  border:
+    1px solid var(--border);
+
+  border-radius:18px;
+
+  overflow:hidden;
+
+  box-shadow:var(--shadow);
+}
+
+.level-header{
+
+  padding:18px 20px;
+
+  display:flex;
+
+  align-items:center;
+
+  gap:15px;
+
+  cursor:pointer;
+}
+
+.level-number{
+
+  width:45px;
+  height:45px;
+
+  flex-shrink:0;
+
+  border-radius:13px;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--primary),
+      var(--primary-dark)
+    );
+
+  color:white;
+
+  display:flex;
+
+  align-items:center;
+  justify-content:center;
+
+  font-weight:900;
+
+  font-size:14px;
+}
+
+.level-info{
+
+  flex:1;
+}
+
+.level-info h3{
+
+  font-size:15px;
+
+  margin-bottom:4px;
+}
+
+.level-info p{
+
+  color:var(--muted);
+
+  font-size:11px;
+}
+
+.level-status{
+
+  width:32px;
+  height:32px;
+
+  border-radius:50%;
+
+  background:var(--soft);
+
+  color:var(--muted);
+
+  display:flex;
+
+  align-items:center;
+  justify-content:center;
+
+  font-size:13px;
+
+  transition:.2s;
+}
+
+.level-card.open
+.level-status{
+
+  transform:rotate(180deg);
+
+  color:var(--primary);
+}
+
+.level-content{
+
+  display:none;
+
+  padding:0 20px 22px;
+
+  border-top:
+    1px solid var(--border);
+}
+
+.level-card.open
+.level-content{
+  display:block;
+}
+
+.level-content-inner{
+
+  padding-top:18px;
+}
+
+.objective{
+
+  padding:14px;
+
+  border-radius:12px;
+
+  background:var(--soft);
+
+  margin-bottom:15px;
+}
+
+.objective strong{
+
+  display:block;
+
+  font-size:12px;
+
+  margin-bottom:5px;
+}
+
+.objective span{
+
+  color:var(--muted);
+
+  font-size:12px;
+
+  line-height:1.6;
+}
+
+.exercise-list{
+
+  display:grid;
+
+  gap:10px;
+
+  margin-top:13px;
+}
+
+.exercise{
+
+  display:flex;
+
+  align-items:flex-start;
+
+  gap:10px;
+
+  padding:12px;
+
+  border-radius:11px;
+
+  background:
+    rgba(0,184,148,.06);
+
+  border:
+    1px solid
+    rgba(0,184,148,.12);
+}
+
+.exercise-number{
+
+  width:25px;
+  height:25px;
+
+  flex-shrink:0;
+
+  border-radius:50%;
+
+  background:
+    rgba(0,184,148,.15);
+
+  color:var(--success);
+
+  display:flex;
+
+  align-items:center;
+  justify-content:center;
+
+  font-size:11px;
+
+  font-weight:900;
+}
+
+.exercise-text{
+
+  font-size:12px;
+
+  line-height:1.6;
+}
+
+.exercise-text strong{
+  display:block;
+  margin-bottom:2px;
+}
+
+.exercise-text span{
+  color:var(--muted);
+}
+
+.complete-button{
+
+  margin-top:17px;
+
+  width:100%;
+
+  height:44px;
+
+  border:none;
+
+  border-radius:10px;
+
+  background:var(--primary);
+
+  color:white;
+
+  font-size:12px;
+
+  font-weight:800;
+}
+
+.complete-button.completed{
+
+  background:
+    var(--success);
+}
+
+
+/* =====================================================
+   TIPS
+===================================================== */
+
+.tips-grid{
+
+  display:grid;
+
+  grid-template-columns:
+    repeat(3,1fr);
+
+  gap:14px;
+}
+
+.tip-card{
+
+  background:var(--card);
+
+  border:
+    1px solid var(--border);
+
+  border-radius:16px;
+
+  padding:18px;
+
+  box-shadow:var(--shadow);
+}
+
+.tip-icon{
+
+  font-size:25px;
+
+  margin-bottom:10px;
+}
+
+.tip-card h3{
+
+  font-size:13px;
+
+  margin-bottom:6px;
+}
+
+.tip-card p{
+
+  color:var(--muted);
+
+  font-size:11px;
+
+  line-height:1.6;
+}
+
+
+/* =====================================================
+   FINAL CHALLENGE
+===================================================== */
+
+.challenge{
+
+  margin-top:30px;
+
+  padding:27px;
+
+  border-radius:20px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(245,185,66,.13),
+      rgba(108,92,231,.09)
+    );
+
+  border:
+    1px solid
+    rgba(245,185,66,.28);
+}
+
+.challenge-badge{
+
+  display:inline-block;
+
+  padding:6px 11px;
+
+  border-radius:20px;
+
+  background:
+    rgba(245,185,66,.16);
+
+  color:
+    var(--gold-dark);
+
+  font-size:10px;
+
+  font-weight:900;
+
+  margin-bottom:12px;
+}
+
+.challenge h2{
+
+  font-size:23px;
+
+  margin-bottom:8px;
+}
+
+.challenge > p{
+
+  color:var(--muted);
+
+  font-size:12px;
+
+  line-height:1.7;
+
+  margin-bottom:18px;
+}
+
+.challenge-list{
+
+  display:grid;
+
+  gap:10px;
+}
+
+.challenge-item{
+
+  display:flex;
+
+  align-items:center;
+
+  gap:10px;
+
+  padding:12px;
+
+  border-radius:11px;
+
+  background:var(--card);
+
+  border:
+    1px solid var(--border);
+}
+
+.challenge-item input{
+
+  width:18px;
+  height:18px;
+
+  accent-color:var(--primary);
+}
+
+.challenge-item span{
+
+  font-size:12px;
+}
+
+.final-result{
+
+  display:none;
+
+  margin-top:18px;
+
+  padding:16px;
+
+  border-radius:12px;
+
+  background:
+    rgba(0,184,148,.10);
+
+  border:
+    1px solid
+    rgba(0,184,148,.20);
+
+  color:var(--success);
+
+  font-size:13px;
+
+  font-weight:800;
+
+  text-align:center;
+}
+
+
+/* =====================================================
+   GLOSSAIRE
+===================================================== */
+
+.glossary{
+
+  display:grid;
+
+  grid-template-columns:
+    repeat(3,1fr);
+
+  gap:12px;
+}
+
+.glossary-item{
+
+  background:var(--card);
+
+  border:
+    1px solid var(--border);
+
+  border-radius:14px;
+
+  padding:16px;
+
+  box-shadow:var(--shadow);
+}
+
+.glossary-letter{
+
+  width:32px;
+  height:32px;
+
+  border-radius:9px;
+
+  background:
+    rgba(108,92,231,.12);
+
+  color:var(--primary);
+
+  display:flex;
+
+  align-items:center;
+  justify-content:center;
+
+  font-weight:900;
+
+  margin-bottom:9px;
+}
+
+.glossary-item h3{
+
+  font-size:13px;
+
+  margin-bottom:5px;
+}
+
+.glossary-item p{
+
+  color:var(--muted);
+
+  font-size:11px;
+
+  line-height:1.5;
+}
+
+
+/* =====================================================
+   NAVIGATION BOTTOM
+===================================================== */
+
+.bottom-navigation{
+
+  display:flex;
+
+  justify-content:space-between;
+
+  align-items:center;
+
+  gap:12px;
+
+  margin-top:30px;
+}
+
+.nav-button{
+
+  min-height:48px;
+
+  padding:0 18px;
+
+  border:none;
+
+  border-radius:11px;
+
+  background:var(--card);
+
+  border:
+    1px solid var(--border);
+
+  color:var(--text);
+
+  font-size:12px;
+
+  font-weight:800;
+}
+
+.nav-button.primary{
+
+  background:var(--primary);
+
+  color:white;
+
+  border:none;
+}
+
+.nav-button:hover{
+
+  transform:translateY(-1px);
+}
+
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+.footer{
+
+  text-align:center;
+
+  color:var(--muted);
+
+  font-size:11px;
+
+  margin-top:35px;
+
+  line-height:1.6;
+}
+
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media(max-width:800px){
+
+  .fundamentals{
+    grid-template-columns:1fr;
+  }
+
+  .tips-grid{
+    grid-template-columns:1fr;
+  }
+
+  .glossary{
+    grid-template-columns:
+      repeat(2,1fr);
+  }
+
+  .hero h1{
+    font-size:33px;
+  }
+
+}
+
+@media(max-width:500px){
+
+  .container{
+    padding:22px 15px 55px;
+  }
+
+  .hero{
+    padding:30px 22px;
+  }
+
+  .hero h1{
+    font-size:28px;
+  }
+
+  .hero p{
+    font-size:13px;
+  }
+
+  .glossary{
+    grid-template-columns:1fr;
+  }
+
+  .bottom-navigation{
+    flex-direction:column;
+  }
+
+  .nav-button{
+    width:100%;
+  }
+
+  .brand-name{
+    font-size:15px;
+  }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
+<header class="header">
+
+  <div class="header-inner">
+
+    <div class="header-left">
+
+      <button
+        class="back-button"
+        onclick="goBack()">
+
+        ←
+
+      </button>
+
+      <div class="brand">
+
+        <div class="brand-icon">
+          🎹
+        </div>
+
+        <div class="brand-name">
+          Piano Academy
+        </div>
+
+      </div>
+
+    </div>
+
+    <button
+      class="theme-button"
+      id="themeButton">
+
+      🌙
+
+    </button>
+
+  </div>
+
+</header>
+
+
+<!-- =====================================================
+     MAIN
+===================================================== -->
+
+<main class="container">
+
+
+<!-- =====================================================
+     HERO
+===================================================== -->
+
+<section class="hero">
+
+  <div class="hero-content">
+
+    <div class="premium-badge">
+
+      ⭐ COURS PREMIUM
+
+    </div>
+
+    <h1>
+
+      Coordination
+      <span>des deux mains</span>
+
+    </h1>
+
+    <p>
+
+      Apprends progressivement à faire travailler
+      ta main droite et ta main gauche ensemble,
+      à maintenir le rythme, à accompagner une mélodie
+      et à jouer avec plus de fluidité.
+
+    </p>
+
+    <div class="hero-meta">
+
+      <span class="meta-item">
+        🎹 10 niveaux
+      </span>
+
+      <span class="meta-item">
+        🎯 Exercices progressifs
+      </span>
+
+      <span class="meta-item">
+        ⏱️ Travail au métronome
+      </span>
+
+      <span class="meta-item">
+        🏆 Défi final
+      </span>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =====================================================
+     PROGRESSION
+===================================================== -->
+
+<section class="progress-card">
+
+  <div class="progress-top">
+
+    <div class="progress-title">
+      Progression du cours
+    </div>
+
+    <div
+      class="progress-percent"
+      id="progressPercent">
+
+      0%
+
+    </div>
+
+  </div>
+
+  <div class="progress-bar">
+
+    <div
+      class="progress-fill"
+      id="progressFill">
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =====================================================
+     INTRODUCTION
+===================================================== -->
+
+<div class="section-title">
+
+  <h2>
+    1. Comprendre la coordination
+  </h2>
+
+  <p>
+    Avant de commencer les exercices,
+    comprends ce que tu dois réellement travailler.
+  </p>
+
+</div>
+
+
+<section class="intro-card">
+
+  <p>
+
+    Jouer du piano avec deux mains ne signifie pas
+    simplement faire jouer deux mains en même temps.
+    Chaque main doit pouvoir effectuer une action
+    différente tout en restant synchronisée avec l'autre.
+
+  </p>
+
+  <p>
+
+    La coordination repose sur plusieurs éléments :
+    le rythme, l'indépendance des doigts, la mémoire
+    musculaire, l'écoute et la capacité à maintenir
+    un tempo régulier.
+
+  </p>
+
+  <p>
+
+    La meilleure méthode consiste à commencer très lentement.
+    Lorsque le mouvement devient naturel, tu peux augmenter
+    progressivement la vitesse.
+
+  </p>
+
+  <div class="highlight">
+
+    💡 <strong>Règle Premium :</strong>
+    si tu fais des erreurs à un tempo donné,
+    ralentis. La vitesse doit venir après la précision,
+    jamais avant.
+
+  </div>
+
+</section>
+
+
+<!-- =====================================================
+     FONDAMENTAUX
+===================================================== -->
+
+<div class="section-title">
+
+  <h2>
+    2. Les fondamentaux
+  </h2>
+
+  <p>
+    Les principes indispensables avant de réunir les deux mains.
+  </p>
+
+</div>
+
+
+<section class="fundamentals">
+
+
+  <article class="fundamental-card">
+
+    <div class="fundamental-icon">
+      ✋
+    </div>
+
+    <h3>
+      Position des mains
+    </h3>
+
+    <p>
+
+      Garde les mains détendues, les doigts légèrement
+      courbés et les poignets souples.
+
+    </p>
+
+  </article>
+
+
+  <article class="fundamental-card">
+
+    <div class="fundamental-icon">
+      🔢
+    </div>
+
+    <h3>
+      Numérotation des doigts
+    </h3>
+
+    <p>
+
+      Pouce = 1, index = 2, majeur = 3,
+      annulaire = 4 et auriculaire = 5.
+
+    </p>
+
+  </article>
+
+
+  <article class="fundamental-card">
+
+    <div class="fundamental-icon">
+      🥁
+    </div>
+
+    <h3>
+      Sens du rythme
+    </h3>
+
+    <p>
+
+      Compte régulièrement les temps.
+      Le métronome devient ton repère.
+
+    </p>
+
+  </article>
+
+
+  <article class="fundamental-card">
+
+    <div class="fundamental-icon">
+      🧠
+    </div>
+
+    <h3>
+      Indépendance
+    </h3>
+
+    <p>
+
+      Chaque main doit progressivement pouvoir
+      effectuer son propre mouvement sans perturber l'autre.
+
+    </p>
+
+  </article>
+
+
+</section>
+
+
+<!-- =====================================================
+     NIVEAUX
+===================================================== -->
+
+<div class="section-title">
+
+  <h2>
+    3. Parcours progressif
+  </h2>
+
+  <p>
+    Avance niveau par niveau et valide chaque étape.
+  </p>
+
+</div>
+
+
+<section class="levels" id="levels">
+
+
+<!-- NIVEAU 1 -->
+
+<article class="level-card">
+
+  <div
+    class="level-header"
+    onclick="toggleLevel(this)">
+
+    <div class="level-number">
+      01
+    </div>
+
+    <div class="level-info">
+
+      <h3>
+        Jouer ensemble
+      </h3>
+
+      <p>
+        Synchroniser les deux mains.
+      </p>
+
+    </div>
+
+    <div class="level-status">
+      ▼
+    </div>
+
+  </div>
+
+  <div class="level-content">
+
+    <div class="level-content-inner">
+
+      <div class="objective">
+
+        <strong>
+          🎯 Objectif
+        </strong>
+
+        <span>
+
+          Apprendre à jouer des notes simultanément
+          avec les deux mains sans perdre le tempo.
+
+        </span>
+
+      </div>
+
+      <div class="exercise-list">
+
+        <div class="exercise">
+
+          <div class="exercise-number">
+            1
+          </div>
+
+          <div class="exercise-text">
+
+            <strong>
+              Cinq doigts
+            </strong>
+
+            <span>
+              Joue Do-Ré-Mi-Fa-Sol avec la main droite
+              et Do-Ré-Mi-Fa-Sol avec la main gauche,
+              lentement et simultanément.
+            </span>
+
+          </div>
+
+        </div>
+
+        <div class="exercise">
+
+          <div class="exercise-number">
+            2
+          </div>
+
+          <div class="exercise-text">
+
+            <strong>
+              Notes simultanées
+            </strong>
+
+            <span>
+              Joue une note avec chaque main au même moment.
+              Compte 1-2-3-4 régulièrement.
+            </span>
+
+          </div>
+
+        </div>
+
+        <div class="exercise">
+
+          <div class="exercise-number">
+            3
+          </div>
+
+          <div class="exercise-text">
+
+            <strong>
+              Métronome
+            </strong>
+
+            <span>
+              Commence à 50 BPM puis augmente seulement
+              lorsque le mouvement devient précis.
+            </span>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <button
+        class="complete-button"
+        onclick="completeLevel(this)">
+
+        ✓ Marquer le niveau comme terminé
+
+      </button>
+
+    </div>
+
+  </div>
+
+</article>
+
+
+<!-- NIVEAU 2 -->
+
+<article class="level-card">
+
+  <div
+    class="level-header"
+    onclick="toggleLevel(this)">
+
+    <div class="level-number">
+      02
+    </div>
+
+    <div class="level-info">
+
+      <h3>
+        Rythmes différents
+      </h3>
+
+      <p>
+        Faire des actions différentes avec chaque main.
+      </p>
+
+    </div>
+
+    <div class="level-status">
+      ▼
+    </div>
+
+  </div>
+
+  <div class="level-content">
+
+    <div class="level-content-inner">
+
+      <div class="objective">
+
+        <strong>
+          🎯 Objectif
+        </strong>
+
+        <span>
+          Habituer chaque main à suivre son propre rythme.
+        </span>
+
+      </div>
+
+      <div class="exercise-list">
+
+        <div class="exercise">
+
+          <div class="exercise-number">
+            1
+          </div>
+
+          <div class="exercise-text">
+
+            <strong>
+              Noire contre blanche
+            </strong>
+
+            <span>
+              Une main joue régulièrement des noires
+              pendant que l'autre tient une blanche.
+            </span>
+
+          </div>
+
+        </div>
+
+        <div class="exercise">
+
+          <div class="exercise-number">
+            2
+          </div>
+
+          <div class="exercise-text">
+
+            <strong>
+              Attente
+            </strong>
+
+            <span>
+              Fais jouer une main pendant que l'autre
+              reste silencieuse.
+            </span>
+
+          </div>
+
+        </div>
+
+        <div class="exercise">
+
+          <div class="exercise-number">
+            3
+          </div>
+
+          <div class="exercise-text">
+
+            <strong>
+              Croches
+            </strong>
+
+            <span>
+              Une main joue des noires pendant que l'autre
+              joue deux croches par temps.
+            </span>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <button
+        class="complete-button"
+        onclick="completeLevel(this)">
+
+        ✓ Marquer le niveau comme terminé
+
+      </button>
+
+    </div>
+
+  </div>
+
+</article>
+
+
+<!-- NIVEAU 3 -->
+
+<article class="level-card">
+
+  <div
+    class="level-header"
+    onclick="toggleLevel(this)">
+
+    <div class="level-number">
+      03
+    </div>
+
+    <div class="level-info">
+
+      <h3>
+        Mélodie + accompagnement
+      </h3>
+
+      <p>
+        Donner un rôle différent à chaque main.
+      </p>
+
+    </div>
+
+    <div class="level-status">
+      ▼
+    </div>
+
+  </div>
+
+  <div class="level-content">
+
+    <div class="level-content-inner">
+
+      <div class="objective">
+
+        <strong>
+          🎯 Objectif
+        </strong>
+
+        <span>
+          Faire jouer une mélodie à la main droite
+          pendant que la main gauche accompagne.
+        </span>
+
+      </div>
+
+      <div class="exercise-list">
+
+        <div class="exercise">
+
+          <div class="exercise-number">
+            1
+          </div>
+
+          <div class="exercise-text">
+
+            <strong>
+              Mélodie simple
+            </strong>
+
+            <span>
+              Joue Do-Ré-Mi-Fa-Sol avec la main droite.
+            </span>
+
+          </div>
+
+        </div>
+
+        <div class="exercise">
+
+          <div class="exercise-number">
+            2
+          </div>
+
+          <div class="exercise-text">
+
+            <strong>
+              Basse
+            </strong>
+
+            <span>
+              Ajoute une basse simple avec la main gauche.
+            </span>
+
+          </div>
+
+        </div>
+
+        <div class="exercise">
+
+          <div class="exercise-number">
+            3
+          </div>
+
+          <div class="exercise-text">
+
+            <strong>
+              Mélodie + accord
+            </strong>
+
+            <span>
+              Main droite : mélodie.
+              Main gauche : accords simples.
+            </span>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <button
+        class="complete-button"
+        onclick="completeLevel(this)">
+
+        ✓ Marquer le niveau comme terminé
+
+      </button>
+
+    </div>
+
+  </div>
+
+</article>
+
+
+<!-- NIVEAU 4 -->
+
+<article class="level-card">
+
+  <div
+    class="level-header"
+    onclick="toggleLevel(this)">
+
+    <div class="level-number">
+      04
+    </div>
+
+    <div class="level-info">
+
+      <h3>
+        Indépendance des mains
+      </h3>
+
+      <p>
+        Mouvements différents et directions opposées.
+      </p>
+
+    </div>
+
+    <div class="level-status">
+      ▼
+    </div>
+
+  </div>
+
+  <div class="level-content">
+
+    <div class="level-content-inner">
+
+      <div class="objective">
+
+        <strong>
+          🎯 Objectif
+        </strong>
+
+        <span>
+          Développer la capacité à contrôler chaque main
+          indépendamment.
+        </span>
+
+      </div>
+
+      <div class="exercise-list">
+
+        <div class="exercise">
+
+          <div class="exercise-number">
+            1
+          </div>
+
+          <div class="exercise-text">
+
+            <strong>
+              Mouvement contraire
+            </strong>
+
+            <span>
+              Une main monte pendant que l'autre descend.
+            </span>
+
+          </div>
+
+        </div>
+
+        <div class="exercise">
+
+          <div class="exercise-number">
+            2
+          </div>
+
+          <div class="exercise-text">
+
+            <strong>
+              Doigts différents
+            </strong>
+
+            <span>
+              Utilise des doigtés différents simultanément.
+            </span>
+
+          </div>
+
+        </div>
+
+        <div class="exercise">
+
+          <div class="exercise-number">
+            3
+          </div>
+
+          <div class="exercise-text">
+
+            <strong>
+              Changement de position
+            </strong>
+
+            <span>
+              Déplace une main pendant que l'autre conserve
+              son motif.
+            </span>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <button
+        class="complete-button"
+        onclick="completeLevel(this)">
+
+        ✓ Marquer le niveau comme terminé
+
+      </button>
+
+    </div>
+
+  </div>
+
+</article>
+
+
+<!-- NIVEAU 5 -->
+
+<article class="level-card">
+
+  <div
+    class="level-header"
+    onclick="toggleLevel(this)">
+
+    <div class="level-number">
+      05
+    </div>
+
+    <div class="level-info">
+
+      <h3>
+        Coordination avec les accords
+      </h3>
+
+      <p>
+        Mélodie, basse et accords.
+      </p>
+
+    </div>
+
+    <div class="level-status">
+      ▼
+    </div>
+
+  </div>
+
+  <div class="level-content">
+
+    <div class="level-content-inner">
+
+      <div class="objective">
+
+        <strong>
+          🎯 Objectif
+        </strong>
+
+        <span>
+          Utiliser les connaissances des accords
+          avec les deux mains.
+        </span>
+
+      </div>
+
+      <div class="exercise-list">
+
+        <div class="exercise">
+
+          <div class="exercise-number">
+            1
+          </div>
+
+          <div class="exercise-text">
+
+            <strong>
+              Basse + accord
+            </strong>
+
+            <span>
+              Main gauche : basse puis accord.
+            </span>
+
+          </div>
+
+        </div>
+
+        <div class="exercise">
+
+          <div class="exercise-number">
+            2
+          </div>
+
+          <div class="exercise-text">
+
+            <strong>
+              Progression I-IV-V-I
+            </strong>
+
+            <span>
+              Travaille une progression simple en Do majeur.
+            </span>
+
+          </div>
+
+        </div>
+
+        <div class="exercise">
+
+          <div class="exercise-number">
+            3
+          </div>
+
+          <div class="exercise-text">
+
+            <strong>
+              Mélodie + progression
+            </strong>
+
+            <span>
+              Ajoute une mélodie simple à la progression.
+            </span>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <button
+        class="complete-button"
+        onclick="completeLevel(this)">
+
+        ✓ Marquer le niveau comme terminé
+
+      </button>
+
+    </div>
+
+  </div>
+
+</article>
+
+
+<!-- NIVEAU 6 -->
+
+<article class="level-card">
+
+  <div
+    class="level-header"
+    onclick="toggleLevel(this)">
+
+    <div class="level-number">
+      06
+    </div>
+
+    <div class="level-info">
+
+      <h3>
+        Coordination rythmique avancée
+      </h3>
+
+      <p>
+        Syncopes, contretemps et accents.
+      </p>
+
+    </div>
+
+    <div class="level-status">
+      ▼
+    </div>
+
+  </div>
+
+  <div class="level-content">
+
+    <div class="level-content-inner">
+
+      <div class="objective">
+
+        <strong>
+          🎯 Objectif
+        </strong>
+
+        <span>
+          Développer une coordination plus précise
+          sur des rythmes variés.
+        </span>
+
+      </div>
+
+      <div class="exercise-list">
+
+        <div class="exercise">
+
+          <div class="exercise-number">
+            1
+          </div>
+
+          <div class="exercise-text">
+
+            <strong>
+              Syncope
+            </strong>
+
+            <span>
+              Travaille des notes qui commencent ou
+              se prolongent sur des temps faibles.
+            </span>
+
+          </div>
+
+        </div>
+
+        <div class="exercise">
+
+          <div class="exercise-number">
+            2
+          </div>
+
+          <div class="exercise-text">
+
+            <strong>
+              Contretemps
+            </strong>
+
+            <span>
+              Accentue certains espaces entre les temps.
+            </span>
+
+          </div>
+
+        </div>
+
+        <div class="exercise">
+
+          <div class="exercise-number">
+            3
+          </div>
+
+          <div class="exercise-text">
+
+            <strong>
+              Accents
+            </strong>
+
+            <span>
+              Joue certaines notes plus fortes sans accélérer.
+            </span>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <button
+        class="complete-button"
+        onclick="completeLevel(this)">
+
+        ✓ Marquer le niveau comme terminé
+
+      </button>
+
+    </div>
+
+  </div>
+
+</article>
+
+
+<!-- NIVEAU 7 -->
+
+<article class="level-card">
+
+  <div
+    class="level-header"
+    onclick="toggleLevel(this)">
+
+    <div class="level-number">
+      07
+    </div>
+
+    <div class="level-info">
+
+      <h3>
+        Patterns d'accompagnement
+      </h3>
+
+      <p>
+        Construire des accompagnements plus professionnels.
+      </p>
+
+    </div>
+
+    <div class="level-status">
+      ▼
+    </div>
+
+  </div>
+
+  <div class="level-content">
+
+    <div class="level-content-inner">
+
+      <div class="objective">
+
+        <strong>
+          🎯 Objectif
+        </strong>
+
+        <span>
+          Apprendre plusieurs modèles d'accompagnement
+          utilisés au piano.
+        </span>
+
+      </div>
+
+      <div class="exercise-list">
+
+        <div class="exercise">
+
+          <div class="exercise-number">
+            1
+          </div>
+
+          <div class="exercise-text">
+
+            <strong>
+              Alberti bass
+            </strong>
+
+            <span>
+              Travaille une basse brisée régulière.
+            </span>
+
+          </div>
+
+        </div>
+
+        <div class="exercise">
+
+          <div class="exercise-number">
+            2
+          </div>
+
+          <div class="exercise-text">
+
+            <strong>
+              Accords brisés
+            </strong>
+
+            <span>
+              Transforme un accord en notes jouées
+              successivement.
+            </span>
+
+          </div>
+
+        </div>
+
+        <div class="exercise">
+
+          <div class="exercise-number">
+            3
+          </div>
+
+          <div class="exercise-text">
+
+            <strong>
+              Ostinato
+            </strong>
+
+            <span>
+              Répète un motif stable pendant qu'une
+              autre main joue la mélodie.
+            </span>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <button
+        class="complete-button"
+        onclick="completeLevel(this)">
+
+        ✓ Marquer le niveau comme terminé
+
+      </button>
+
+    </div>
+
+  </div>
+
+</article>
+
+
+<!-- NIVEAU 8 -->
+
+<article class="level-card">
+
+  <div
+    class="level-header"
+    onclick="toggleLevel(this)">
+
+    <div class="level-number">
+      08
+    </div>
+
+    <div class="level-info">
+
+      <h3>
+        Coordination et gammes
+      </h3>
+
+      <p>
+        Jouer les gammes avec les deux mains.
+      </p>
+
+    </div>
+
+    <div class="level-status">
+      ▼
+    </div>
+
+  </div>
+
+  <div class="level-content">
+
+    <div class="level-content-inner">
+
+      <div class="objective">
+
+        <strong>
+          🎯 Objectif
+        </strong>
+
+        <span>
+          Développer la fluidité et la régularité
+          grâce aux gammes.
+        </span>
+
+      </div>
+
+      <div class="exercise-list">
+
+        <div class="exercise">
+
+          <div class="exercise-number">
+            1
+          </div>
+
+          <div class="exercise-text">
+
+            <strong>
+              Do majeur
+            </strong>
+
+            <span>
+              Travaille la gamme de Do majeur séparément,
+              puis avec les deux mains.
+            </span>
+
+          </div>
+
+        </div>
+
+        <div class="exercise">
+
+          <div class="exercise-number">
+            2
+          </div>
+
+          <div class="exercise-text">
+
+            <strong>
+              Mouvement parallèle
+            </strong>
+
+            <span>
+              Les deux mains avancent dans la même direction.
+            </span>
+
+          </div>
+
+        </div>
+
+        <div class="exercise">
+
+          <div class="exercise-number">
+            3
+          </div>
+
+          <div class="exercise-text">
+
+            <strong>
+              Mouvement contraire
+            </strong>
+
+            <span>
+              Les mains partent dans des directions opposées.
+            </span>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <button
+        class="complete-button"
+        onclick="completeLevel(this)">
+
+        ✓ Marquer le niveau comme terminé
+
+      </button>
+
+    </div>
+
+  </div>
+
+</article>
+
+
+<!-- NIVEAU 9 -->
+
+<article class="level-card">
+
+  <div
+    class="level-header"
+    onclick="toggleLevel(this)">
+
+    <div class="level-number">
+      09
+    </div>
+
+    <div class="level-info">
+
+      <h3>
+        Coordination dans les morceaux
+      </h3>
+
+      <p>
+        Appliquer la méthode à un vrai morceau.
+      </p>
+
+    </div>
+
+    <div class="level-status">
+      ▼
+    </div>
+
+  </div>
+
+  <div class="level-content">
+
+    <div class="level-content-inner">
+
+      <div class="objective">
+
+        <strong>
+          🎯 Objectif
+        </strong>
+
+        <span>
+          Apprendre à réunir progressivement les deux mains
+          lorsqu'on étudie un morceau.
+        </span>
+
+      </div>
+
+      <div class="exercise-list">
+
+        <div class="exercise">
+
+          <div class="exercise-number">
+            1
+          </div>
+
+          <div class="exercise-text">
+
+            <strong>
+              Découpage
+            </strong>
+
+            <span>
+              Découpe le morceau en petites mesures.
+            </span>
+
+          </div>
+
+        </div>
+
+        <div class="exercise">
+
+          <div class="exercise-number">
+            2
+          </div>
+
+          <div class="exercise-text">
+
+            <strong>
+              Mains séparées
+            </strong>
+
+            <span>
+              Travaille chaque main jusqu'à connaître
+              son mouvement.
+            </span>
+
+          </div>
+
+        </div>
+
+        <div class="exercise">
+
+          <div class="exercise-number">
+            3
+          </div>
+
+          <div class="exercise-text">
+
+            <strong>
+              Réunion
+            </strong>
+
+            <span>
+              Réunis les deux mains très lentement,
+              puis augmente progressivement le tempo.
+            </span>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <button
+        class="complete-button"
+        onclick="completeLevel(this)">
+
+        ✓ Marquer le niveau comme terminé
+
+      </button>
+
+    </div>
+
+  </div>
+
+</article>
+
+
+<!-- NIVEAU 10 -->
+
+<article class="level-card">
+
+  <div
+    class="level-header"
+    onclick="toggleLevel(this)">
+
+    <div class="level-number">
+      10
+    </div>
+
+    <div class="level-info">
+
+      <h3>
+        Maîtrise de la coordination
+      </h3>
+
+      <p>
+        Fluidité, expression et automatisation.
+      </p>
+
+    </div>
+
+    <div class="level-status">
+      ▼
+    </div>
+
+  </div>
+
+  <div class="level-content">
+
+    <div class="level-content-inner">
+
+      <div class="objective">
+
+        <strong>
+          🎯 Objectif
+        </strong>
+
+        <span>
+          Passer d'une coordination consciente à une
+          coordination plus naturelle et automatique.
+        </span>
+
+      </div>
+
+      <div class="exercise-list">
+
+        <div class="exercise">
+
+          <div class="exercise-number">
+            1
+          </div>
+
+          <div class="exercise-text">
+
+            <strong>
+              Sans regarder constamment les mains
+            </strong>
+
+            <span>
+              Développe progressivement ta perception
+              du clavier.
+            </span>
+
+          </div>
+
+        </div>
+
+        <div class="exercise">
+
+          <div class="exercise-number">
+            2
+          </div>
+
+          <div class="exercise-text">
+
+            <strong>
+              Dynamique
+            </strong>
+
+            <span>
+              Ajoute des nuances sans perdre la précision.
+            </span>
+
+          </div>
+
+        </div>
+
+        <div class="exercise">
+
+          <div class="exercise-number">
+            3
+          </div>
+
+          <div class="exercise-text">
+
+            <strong>
+              Fluidité
+            </strong>
+
+            <span>
+              Cherche un jeu régulier, détendu et naturel.
+            </span>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <button
+        class="complete-button"
+        onclick="completeLevel(this)">
+
+        ✓ Marquer le niveau comme terminé
+
+      </button>
+
+    </div>
+
+  </div>
+
+</article>
+
+
+</section>
+
+
+<!-- =====================================================
+     CONSEILS
+===================================================== -->
+
+<div class="section-title">
+
+  <h2>
+    4. Conseils de pratique
+  </h2>
+
+  <p>
+    Utilise ces règles pendant tes séances.
+  </p>
+
+</div>
+
+
+<section class="tips-grid">
+
+
+<article class="tip-card">
+
+  <div class="tip-icon">
+    🐢
+  </div>
+
+  <h3>
+    Commence lentement
+  </h3>
+
+  <p>
+    La précision doit toujours passer avant la vitesse.
+  </p>
+
+</article>
+
+
+<article class="tip-card">
+
+  <div class="tip-icon">
+    ⏱️
+  </div>
+
+  <h3>
+    Utilise un métronome
+  </h3>
+
+  <p>
+    Il t'aide à maintenir un tempo stable.
+  </p>
+
+</article>
+
+
+<article class="tip-card">
+
+  <div class="tip-icon">
+    🎧
+  </div>
+
+  <h3>
+    Écoute les deux mains
+  </h3>
+
+  <p>
+    Apprends à entendre la mélodie et l'accompagnement
+    simultanément.
+  </p>
+
+</article>
+
+
+<article class="tip-card">
+
+  <div class="tip-icon">
+    🔁
+  </div>
+
+  <h3>
+    Répète intelligemment
+  </h3>
+
+  <p>
+    Répète les passages difficiles plutôt que
+    tout le morceau sans interruption.
+  </p>
+
+</article>
+
+
+<article class="tip-card">
+
+  <div class="tip-icon">
+    🧘
+  </div>
+
+  <h3>
+    Reste détendu
+  </h3>
+
+  <p>
+    Une tension excessive ralentit les mouvements
+    et fatigue les mains.
+  </p>
+
+</article>
+
+
+<article class="tip-card">
+
+  <div class="tip-icon">
+    📈
+  </div>
+
+  <h3>
+    Augmente progressivement
+  </h3>
+
+  <p>
+    Monte le tempo seulement lorsque tu maîtrises
+    parfaitement le niveau précédent.
+  </p>
+
+</article>
+
+
+</section>
+
+
+<!-- =====================================================
+     DÉFI FINAL
+===================================================== -->
+
+<section class="challenge">
+
+  <div class="challenge-badge">
+    🏆 DÉFI FINAL PREMIUM
+  </div>
+
+  <h2>
+    Teste ta coordination
+  </h2>
+
+  <p>
+
+    Coche chaque compétence lorsque tu es capable
+    de l'exécuter correctement sans perdre le tempo.
+
+  </p>
+
+
+  <div class="challenge-list">
+
+
+    <label class="challenge-item">
+
+      <input
+        type="checkbox"
+        class="challenge-check">
+
+      <span>
+        🎹 Jouer une mélodie avec une basse simple.
+      </span>
+
+    </label>
+
+
+    <label class="challenge-item">
+
+      <input
+        type="checkbox"
+        class="challenge-check">
+
+      <span>
+        🎼 Jouer une mélodie avec des accords.
+      </span>
+
+    </label>
+
+
+    <label class="challenge-item">
+
+      <input
+        type="checkbox"
+        class="challenge-check">
+
+      <span>
+        🥁 Jouer deux rythmes différents avec les mains.
+      </span>
+
+    </label>
+
+
+    <label class="challenge-item">
+
+      <input
+        type="checkbox"
+        class="challenge-check">
+
+      <span>
+        🎹 Jouer une gamme avec les deux mains.
+      </span>
+
+    </label>
+
+
+    <label class="challenge-item">
+
+      <input
+        type="checkbox"
+        class="challenge-check">
+
+      <span>
+        ⭐ Jouer un morceau complet avec les deux mains.
+      </span>
+
+    </label>
+
+
+  </div>
+
+
+  <div
+    class="final-result"
+    id="finalResult">
+
+    🏆 Félicitations ! Tu as terminé le défi
+    de coordination des deux mains.
+
+  </div>
+
+</section>
+
+
+<!-- =====================================================
+     GLOSSAIRE
+===================================================== -->
+
+<div class="section-title">
+
+  <h2>
+    5. Glossaire
+  </h2>
+
+  <p>
+    Les principaux termes utilisés dans ce cours.
+  </p>
+
+</div>
+
+
+<section class="glossary">
+
+
+<article class="glossary-item">
+
+  <div class="glossary-letter">
+    A
+  </div>
+
+  <h3>
+    Arpège
+  </h3>
+
+  <p>
+    Notes d'un accord jouées successivement.
+  </p>
+
+</article>
+
+
+<article class="glossary-item">
+
+  <div class="glossary-letter">
+    C
+  </div>
+
+  <h3>
+    Coordination
+  </h3>
+
+  <p>
+    Capacité à faire travailler plusieurs mouvements
+    ensemble de manière précise.
+  </p>
+
+</article>
+
+
+<article class="glossary-item">
+
+  <div class="glossary-letter">
+    I
+  </div>
+
+  <h3>
+    Indépendance
+  </h3>
+
+  <p>
+    Capacité d'une main à effectuer un mouvement
+    différent de l'autre.
+  </p>
+
+</article>
+
+
+<article class="glossary-item">
+
+  <div class="glossary-letter">
+    M
+  </div>
+
+  <h3>
+    Métronome
+  </h3>
+
+  <p>
+    Outil qui produit des battements réguliers
+    pour contrôler le tempo.
+  </p>
+
+</article>
+
+
+<article class="glossary-item">
+
+  <div class="glossary-letter">
+    O
+  </div>
+
+  <h3>
+    Ostinato
+  </h3>
+
+  <p>
+    Motif musical répété régulièrement.
+  </p>
+
+</article>
+
+
+<article class="glossary-item">
+
+  <div class="glossary-letter">
+    R
+  </div>
+
+  <h3>
+    Rythme
+  </h3>
+
+  <p>
+    Organisation des durées et des accents
+    dans la musique.
+  </p>
+
+</article>
+
+
+<article class="glossary-item">
+
+  <div class="glossary-letter">
+    S
+  </div>
+
+  <h3>
+    Syncope
+  </h3>
+
+  <p>
+    Effet rythmique qui met en avant une partie
+    normalement faible du temps.
+  </p>
+
+</article>
+
+
+<article class="glossary-item">
+
+  <div class="glossary-letter">
+    T
+  </div>
+
+  <h3>
+    Tempo
+  </h3>
+
+  <p>
+    Vitesse à laquelle une musique est jouée.
+  </p>
+
+</article>
+
+
+</section>
+
+
+<!-- =====================================================
+     NAVIGATION
+===================================================== -->
+
+<div class="bottom-navigation">
+
+  <button
+    class="nav-button"
+    onclick="goBack()">
+
+    ← Retour aux cours Premium
+
+  </button>
+
+  <button
+    class="nav-button primary"
+    onclick="window.scrollTo({top:0,behavior:'smooth'})">
+
+    ↑ Retour en haut
+
+  </button>
+
+</div>
+
+
+<div class="footer">
+
+  🎹 Piano Academy Premium<br>
+  Continue à pratiquer régulièrement pour progresser.
+
+</div>
+
+
+</main>
+
+
+<script>
+
+/* =====================================================
+   THÈME
+===================================================== */
+
+const themeButton =
+  document.getElementById(
+    "themeButton"
+  );
+
+
+function applyTheme(){
+
+  const theme =
+    localStorage.getItem(
+      "pianoAcademyTheme"
+    );
+
+
+  if(theme === "dark"){
+
+    document.body.classList.add(
+      "dark"
+    );
+
+    themeButton.textContent =
+      "☀️";
+
+  }else{
+
+    document.body.classList.remove(
+      "dark"
+    );
+
+    themeButton.textContent =
+      "🌙";
+
+  }
+
+}
+
+
+themeButton.addEventListener(
+  "click",
+  function(){
+
+    const dark =
+      document.body.classList.contains(
+        "dark"
+      );
+
+
+    if(dark){
+
+      document.body.classList.remove(
+        "dark"
+      );
+
+      localStorage.setItem(
+        "pianoAcademyTheme",
+        "light"
+      );
+
+      themeButton.textContent =
+        "🌙";
+
+    }else{
+
+      document.body.classList.add(
+        "dark"
+      );
+
+      localStorage.setItem(
+        "pianoAcademyTheme",
+        "dark"
+      );
+
+      themeButton.textContent =
+        "☀️";
+
+    }
+
+  }
+);
+
+
+applyTheme();
+
+
+/* =====================================================
+   RETOUR
+===================================================== */
+
+function goBack(){
+
+  window.location.href =
+    "premium.html";
+
+}
+
+
+/* =====================================================
+   OUVERTURE DES NIVEAUX
+===================================================== */
+
+function toggleLevel(header){
+
+  const card =
+    header.parentElement;
+
+  card.classList.toggle(
+    "open"
+  );
+
+}
+
+
+/* =====================================================
+   PROGRESSION
+===================================================== */
+
+const STORAGE_KEY =
+  "pianoAcademyCoordinationProgress";
+
+
+function getCompletedLevels(){
+
+  try{
+
+    const data =
+      localStorage.getItem(
+        STORAGE_KEY
+      );
+
+    return data
+      ? JSON.parse(data)
+      : [];
+
+  }catch(error){
+
+    return [];
+
+  }
+
+}
+
+
+function saveCompletedLevels(
+  levels
+){
+
+  localStorage.setItem(
+    STORAGE_KEY,
+    JSON.stringify(levels)
+  );
+
+}
+
+
+function updateProgress(){
+
+  const completed =
+    getCompletedLevels();
+
+  const total =
+    document.querySelectorAll(
+      ".level-card"
+    ).length;
+
+  const percent =
+    total > 0
+      ? Math.round(
+          (completed.length / total) * 100
+        )
+      : 0;
+
+
+  document.getElementById(
+    "progressPercent"
+  ).textContent =
+    percent + "%";
+
+
+  document.getElementById(
+    "progressFill"
+  ).style.width =
+    percent + "%";
+
+
+  const buttons =
+    document.querySelectorAll(
+      ".complete-button"
+    );
+
+
+  buttons.forEach(
+    function(button,index){
+
+      if(
+        completed.includes(index)
+      ){
+
+        button.classList.add(
+          "completed"
+        );
+
+        button.textContent =
+          "✓ Niveau terminé";
+
+      }
+
+    }
+  );
+
+}
+
+
+/* =====================================================
+   TERMINER UN NIVEAU
+===================================================== */
+
+function completeLevel(button){
+
+  const card =
+    button.closest(
+      ".level-card"
+    );
+
+  const cards =
+    Array.from(
+      document.querySelectorAll(
+        ".level-card"
+      )
+    );
+
+  const index =
+    cards.indexOf(card);
+
+
+  let completed =
+    getCompletedLevels();
+
+
+  if(
+    completed.includes(index)
+  ){
+
+    return;
+
+  }
+
+
+  completed.push(index);
+
+  completed.sort(
+    function(a,b){
+      return a-b;
+    }
+  );
+
+
+  saveCompletedLevels(
+    completed
+  );
+
+
+  button.classList.add(
+    "completed"
+  );
+
+  button.textContent =
+    "✓ Niveau terminé";
+
+
+  updateProgress();
+
+}
+
+
+/* =====================================================
+   DÉFI FINAL
+===================================================== */
+
+const challengeChecks =
+  document.querySelectorAll(
+    ".challenge-check"
+  );
+
+const finalResult =
+  document.getElementById(
+    "finalResult"
+  );
+
+
+function updateChallenge(){
+
+  let checked = 0;
+
+
+  challengeChecks.forEach(
+    function(check){
+
+      if(check.checked){
+        checked++;
+      }
+
+    }
+  );
+
+
+  if(
+    checked ===
+    challengeChecks.length
+  ){
+
+    finalResult.style.display =
+      "block";
+
+  }else{
+
+    finalResult.style.display =
+      "none";
+
+  }
+
+}
+
+
+challengeChecks.forEach(
+  function(check){
+
+    check.addEventListener(
+      "change",
+      updateChallenge
+    );
+
+  }
+);
+
+
+/* =====================================================
+   DÉMARRAGE
+===================================================== */
+
+updateProgress();
+
+</script>
+
+</body>
+</html>
