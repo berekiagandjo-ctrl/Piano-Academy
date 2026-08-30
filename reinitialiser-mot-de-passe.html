@@ -1,0 +1,1619 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0"
+>
+
+<title>Nouveau mot de passe — Piano Academy</title>
+
+<meta
+  name="description"
+  content="Crée un nouveau mot de passe pour ton compte Piano Academy."
+>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<style>
+
+/* =====================================================
+   RESET
+===================================================== */
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+:root{
+
+  --primary:#6c5ce7;
+  --primary-dark:#5848d6;
+
+  --secondary:#00cec9;
+
+  --bg:#f5f6fa;
+  --card:#ffffff;
+  --soft:#fafbfe;
+
+  --text:#1e1e2f;
+  --muted:#777b8a;
+
+  --border:#e2e4ec;
+
+  --success:#00b894;
+  --danger:#e74c3c;
+
+  --shadow:
+    0 15px 45px rgba(25,25,50,.10);
+
+}
+
+body.dark{
+
+  --bg:#11121a;
+  --card:#1b1d28;
+  --soft:#222531;
+
+  --text:#f5f5fa;
+  --muted:#a7a9b7;
+
+  --border:#303342;
+
+  --shadow:
+    0 15px 45px rgba(0,0,0,.28);
+
+}
+
+body{
+
+  min-height:100vh;
+
+  font-family:
+    Arial,
+    Helvetica,
+    sans-serif;
+
+  background:
+    radial-gradient(
+      circle at top right,
+      rgba(108,92,231,.10),
+      transparent 35%
+    ),
+    var(--bg);
+
+  color:var(--text);
+
+  display:flex;
+
+  flex-direction:column;
+
+  transition:.25s;
+
+}
+
+button,
+input{
+
+  font-family:inherit;
+
+}
+
+button{
+
+  cursor:pointer;
+
+}
+
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+.header{
+
+  height:70px;
+
+  background:var(--card);
+
+  border-bottom:
+    1px solid var(--border);
+
+}
+
+.header-inner{
+
+  max-width:1100px;
+
+  width:100%;
+
+  height:100%;
+
+  margin:auto;
+
+  padding:0 20px;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:space-between;
+
+}
+
+.header-left{
+
+  display:flex;
+
+  align-items:center;
+
+  gap:12px;
+
+}
+
+.theme-button{
+
+  width:42px;
+  height:42px;
+
+  border:none;
+
+  border-radius:11px;
+
+  background:var(--soft);
+
+  color:var(--text);
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  font-size:20px;
+
+}
+
+.theme-button:hover{
+
+  background:#eeeaff;
+
+  color:var(--primary);
+
+}
+
+.brand{
+
+  display:flex;
+
+  align-items:center;
+
+  gap:10px;
+
+}
+
+.brand-icon{
+
+  width:40px;
+  height:40px;
+
+  border-radius:11px;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--primary),
+      var(--primary-dark)
+    );
+
+  color:white;
+
+  display:flex;
+
+  align-items:center;
+  justify-content:center;
+
+  font-size:20px;
+
+}
+
+.brand-name{
+
+  font-size:17px;
+
+  font-weight:800;
+
+}
+
+
+/* =====================================================
+   PAGE
+===================================================== */
+
+.page{
+
+  flex:1;
+
+  width:100%;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  padding:40px 20px 60px;
+
+}
+
+
+/* =====================================================
+   CARD
+===================================================== */
+
+.card{
+
+  width:100%;
+
+  max-width:470px;
+
+  background:var(--card);
+
+  border:
+    1px solid var(--border);
+
+  border-radius:22px;
+
+  padding:35px;
+
+  box-shadow:var(--shadow);
+
+}
+
+
+/* =====================================================
+   ICON
+===================================================== */
+
+.icon{
+
+  width:68px;
+  height:68px;
+
+  margin:0 auto 20px;
+
+  border-radius:18px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(108,92,231,.15),
+      rgba(0,206,201,.12)
+    );
+
+  display:flex;
+
+  align-items:center;
+  justify-content:center;
+
+  font-size:31px;
+
+}
+
+
+/* =====================================================
+   TITLE
+===================================================== */
+
+.title{
+
+  text-align:center;
+
+  margin-bottom:27px;
+
+}
+
+.title h1{
+
+  font-size:26px;
+
+  margin-bottom:9px;
+
+}
+
+.title p{
+
+  color:var(--muted);
+
+  font-size:13px;
+
+  line-height:1.65;
+
+}
+
+
+/* =====================================================
+   FORM
+===================================================== */
+
+.form-group{
+
+  margin-bottom:18px;
+
+}
+
+.label{
+
+  display:block;
+
+  font-size:13px;
+
+  font-weight:800;
+
+  margin-bottom:8px;
+
+}
+
+.input-wrapper{
+
+  position:relative;
+
+}
+
+.input{
+
+  width:100%;
+
+  height:52px;
+
+  padding:
+    0 50px 0 15px;
+
+  border:
+    1px solid var(--border);
+
+  border-radius:12px;
+
+  outline:none;
+
+  background:var(--soft);
+
+  color:var(--text);
+
+  font-size:14px;
+
+  transition:.2s;
+
+}
+
+.input:focus{
+
+  border-color:var(--primary);
+
+  background:var(--card);
+
+  box-shadow:
+    0 0 0 4px
+    rgba(108,92,231,.09);
+
+}
+
+.input::placeholder{
+
+  color:var(--muted);
+
+}
+
+.show-password{
+
+  position:absolute;
+
+  right:8px;
+
+  top:50%;
+
+  transform:translateY(-50%);
+
+  width:38px;
+  height:38px;
+
+  border:none;
+
+  border-radius:9px;
+
+  background:transparent;
+
+  color:var(--muted);
+
+  font-size:18px;
+
+}
+
+.show-password:hover{
+
+  background:var(--soft);
+
+  color:var(--primary);
+
+}
+
+.help{
+
+  display:block;
+
+  margin-top:7px;
+
+  color:var(--muted);
+
+  font-size:11px;
+
+}
+
+
+/* =====================================================
+   STRENGTH
+===================================================== */
+
+.password-strength{
+
+  margin-top:8px;
+
+}
+
+.strength-bar{
+
+  height:5px;
+
+  border-radius:10px;
+
+  background:var(--border);
+
+  overflow:hidden;
+
+}
+
+.strength-fill{
+
+  width:0%;
+
+  height:100%;
+
+  border-radius:10px;
+
+  transition:.25s;
+
+}
+
+.strength-text{
+
+  margin-top:5px;
+
+  color:var(--muted);
+
+  font-size:10px;
+
+}
+
+
+/* =====================================================
+   BUTTON
+===================================================== */
+
+.submit-button{
+
+  width:100%;
+
+  height:52px;
+
+  margin-top:5px;
+
+  border:none;
+
+  border-radius:12px;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--primary),
+      var(--primary-dark)
+    );
+
+  color:white;
+
+  font-size:14px;
+
+  font-weight:800;
+
+  box-shadow:
+    0 8px 20px
+    rgba(108,92,231,.22);
+
+  transition:.2s;
+
+}
+
+.submit-button:hover{
+
+  transform:translateY(-1px);
+
+}
+
+.submit-button:disabled{
+
+  opacity:.65;
+
+  cursor:not-allowed;
+
+  transform:none;
+
+}
+
+
+/* =====================================================
+   MESSAGE
+===================================================== */
+
+.message{
+
+  display:none;
+
+  margin-top:18px;
+
+  padding:14px;
+
+  border-radius:11px;
+
+  font-size:12px;
+
+  line-height:1.6;
+
+}
+
+.message.success{
+
+  display:block;
+
+  background:#edfff8;
+
+  color:#008f70;
+
+  border:
+    1px solid #c9f5e6;
+
+}
+
+.message.error{
+
+  display:block;
+
+  background:#fff0ef;
+
+  color:#c0392b;
+
+  border:
+    1px solid #ffd5d1;
+
+}
+
+
+/* =====================================================
+   SUCCESS SCREEN
+===================================================== */
+
+.success-screen{
+
+  display:none;
+
+  text-align:center;
+
+}
+
+.success-screen.show{
+
+  display:block;
+
+}
+
+.success-icon{
+
+  width:70px;
+  height:70px;
+
+  margin:0 auto 18px;
+
+  border-radius:50%;
+
+  background:
+    rgba(0,184,148,.13);
+
+  color:var(--success);
+
+  display:flex;
+
+  align-items:center;
+  justify-content:center;
+
+  font-size:32px;
+
+}
+
+.success-screen h2{
+
+  font-size:23px;
+
+  margin-bottom:10px;
+
+}
+
+.success-screen p{
+
+  color:var(--muted);
+
+  font-size:13px;
+
+  line-height:1.7;
+
+  margin-bottom:22px;
+
+}
+
+.login-button{
+
+  display:flex;
+
+  align-items:center;
+  justify-content:center;
+
+  width:100%;
+
+  height:48px;
+
+  border-radius:11px;
+
+  background:var(--primary);
+
+  color:white;
+
+  text-decoration:none;
+
+  font-size:13px;
+
+  font-weight:800;
+
+}
+
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media(max-width:500px){
+
+  .header-inner{
+
+    padding:0 12px;
+
+  }
+
+  .brand-name{
+
+    font-size:15px;
+
+  }
+
+  .page{
+
+    padding:
+      25px 15px 45px;
+
+  }
+
+  .card{
+
+    padding:27px 21px;
+
+    border-radius:18px;
+
+  }
+
+  .title h1{
+
+    font-size:23px;
+
+  }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
+<header class="header">
+
+  <div class="header-inner">
+
+    <div class="header-left">
+
+      <div class="brand">
+
+        <div class="brand-icon">
+
+          🎹
+
+        </div>
+
+        <div class="brand-name">
+
+          Piano Academy
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <button
+      class="theme-button"
+      id="themeButton"
+      aria-label="Changer de thème">
+
+      🌙
+
+    </button>
+
+  </div>
+
+</header>
+
+
+<!-- =====================================================
+     PAGE
+===================================================== -->
+
+<main class="page">
+
+
+<section class="card">
+
+
+<!-- =====================================================
+     FORMULAIRE
+===================================================== -->
+
+<div id="resetContainer">
+
+
+  <div class="icon">
+
+    🔑
+
+  </div>
+
+
+  <div class="title">
+
+    <h1>
+      Créer un nouveau mot de passe
+    </h1>
+
+    <p>
+
+      Choisis un nouveau mot de passe
+      sécurisé pour protéger ton compte
+      Piano Academy.
+
+    </p>
+
+  </div>
+
+
+  <form
+    id="resetForm"
+    class="form"
+  >
+
+
+    <!-- NOUVEAU MOT DE PASSE -->
+
+    <div class="form-group">
+
+      <label
+        class="label"
+        for="password">
+
+        Nouveau mot de passe
+
+      </label>
+
+
+      <div class="input-wrapper">
+
+        <input
+          class="input"
+          type="password"
+          id="password"
+          placeholder="Nouveau mot de passe"
+          autocomplete="new-password"
+          minlength="6"
+          required
+        >
+
+
+        <button
+          type="button"
+          class="show-password"
+          id="showPassword"
+          aria-label="Afficher le mot de passe">
+
+          👁️
+
+        </button>
+
+      </div>
+
+
+      <span class="help">
+
+        Utilise au moins 6 caractères.
+
+      </span>
+
+
+      <div class="password-strength">
+
+        <div class="strength-bar">
+
+          <div
+            class="strength-fill"
+            id="strengthFill">
+          </div>
+
+        </div>
+
+        <div
+          class="strength-text"
+          id="strengthText">
+
+          Entrez un mot de passe.
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- CONFIRMATION -->
+
+    <div class="form-group">
+
+      <label
+        class="label"
+        for="confirmPassword">
+
+        Confirmer le mot de passe
+
+      </label>
+
+
+      <div class="input-wrapper">
+
+        <input
+          class="input"
+          type="password"
+          id="confirmPassword"
+          placeholder="Confirme ton mot de passe"
+          autocomplete="new-password"
+          minlength="6"
+          required
+        >
+
+
+        <button
+          type="button"
+          class="show-password"
+          id="showConfirmPassword"
+          aria-label="Afficher le mot de passe">
+
+          👁️
+
+        </button>
+
+      </div>
+
+    </div>
+
+
+    <button
+      type="submit"
+      class="submit-button"
+      id="submitButton">
+
+      Modifier mon mot de passe
+
+    </button>
+
+
+  </form>
+
+
+  <div
+    class="message"
+    id="message">
+  </div>
+
+</div>
+
+
+<!-- =====================================================
+     SUCCÈS
+===================================================== -->
+
+<div
+  class="success-screen"
+  id="successScreen">
+
+
+  <div class="success-icon">
+
+    ✓
+
+  </div>
+
+
+  <h2>
+    Mot de passe modifié !
+  </h2>
+
+
+  <p>
+
+    Ton nouveau mot de passe a été
+    enregistré avec succès.
+    Tu peux maintenant te connecter
+    à ton compte Piano Academy.
+
+  </p>
+
+
+  <a
+    href="connexion.html"
+    class="login-button">
+
+    Se connecter
+
+  </a>
+
+
+</div>
+
+
+</section>
+
+</main>
+
+
+<script>
+
+/* =====================================================
+   SUPABASE
+===================================================== */
+
+const SUPABASE_URL =
+  "https://swsvnzjeipcobodntajs.supabase.co";
+
+const SUPABASE_KEY =
+  "sb_publishable_JrPeCn1LhCNHY3BJZ5iCEQ_mc2iqLpf";
+
+const supabaseClient =
+  window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+  );
+
+
+/* =====================================================
+   ELEMENTS
+===================================================== */
+
+const resetForm =
+  document.getElementById(
+    "resetForm"
+  );
+
+const resetContainer =
+  document.getElementById(
+    "resetContainer"
+  );
+
+const successScreen =
+  document.getElementById(
+    "successScreen"
+  );
+
+const passwordInput =
+  document.getElementById(
+    "password"
+  );
+
+const confirmPasswordInput =
+  document.getElementById(
+    "confirmPassword"
+  );
+
+const submitButton =
+  document.getElementById(
+    "submitButton"
+  );
+
+const message =
+  document.getElementById(
+    "message"
+  );
+
+
+/* =====================================================
+   MESSAGE
+===================================================== */
+
+function showMessage(
+  text,
+  type
+){
+
+  message.textContent =
+    text;
+
+  message.className =
+    "message " + type;
+
+}
+
+function clearMessage(){
+
+  message.textContent =
+    "";
+
+  message.className =
+    "message";
+
+}
+
+
+/* =====================================================
+   AFFICHER / MASQUER MOT DE PASSE
+===================================================== */
+
+function togglePassword(
+  input,
+  button
+){
+
+  if(
+    input.type === "password"
+  ){
+
+    input.type =
+      "text";
+
+    button.textContent =
+      "🙈";
+
+  }else{
+
+    input.type =
+      "password";
+
+    button.textContent =
+      "👁️";
+
+  }
+
+}
+
+
+document
+  .getElementById("showPassword")
+  .addEventListener(
+    "click",
+    function(){
+
+      togglePassword(
+        passwordInput,
+        this
+      );
+
+    }
+  );
+
+
+document
+  .getElementById("showConfirmPassword")
+  .addEventListener(
+    "click",
+    function(){
+
+      togglePassword(
+        confirmPasswordInput,
+        this
+      );
+
+    }
+  );
+
+
+/* =====================================================
+   FORCE MOT DE PASSE
+===================================================== */
+
+const strengthFill =
+  document.getElementById(
+    "strengthFill"
+  );
+
+const strengthText =
+  document.getElementById(
+    "strengthText"
+  );
+
+
+passwordInput.addEventListener(
+  "input",
+  function(){
+
+    const password =
+      this.value;
+
+    let score = 0;
+
+
+    if(password.length >= 6)
+      score++;
+
+
+    if(password.length >= 10)
+      score++;
+
+
+    if(/[A-Z]/.test(password))
+      score++;
+
+
+    if(/[0-9]/.test(password))
+      score++;
+
+
+    if(/[^A-Za-z0-9]/.test(password))
+      score++;
+
+
+    let width = 0;
+    let text =
+      "Entrez un mot de passe.";
+
+
+    if(!password){
+
+      width = 0;
+
+      text =
+        "Entrez un mot de passe.";
+
+    }else if(score <= 1){
+
+      width = 25;
+
+      text =
+        "Mot de passe faible.";
+
+    }else if(score === 2){
+
+      width = 45;
+
+      text =
+        "Mot de passe moyen.";
+
+    }else if(score === 3){
+
+      width = 65;
+
+      text =
+        "Mot de passe correct.";
+
+    }else if(score >= 4){
+
+      width = 100;
+
+      text =
+        "Mot de passe fort ✓";
+
+    }
+
+
+    strengthFill.style.width =
+      width + "%";
+
+    strengthText.textContent =
+      text;
+
+  }
+);
+
+
+/* =====================================================
+   VÉRIFICATION SESSION DE RÉINITIALISATION
+===================================================== */
+
+let recoverySessionReady =
+  false;
+
+
+/*
+ * Lorsque Supabase ouvre cette page
+ * après le clic sur le lien reçu par email,
+ * une session de récupération doit être disponible.
+ */
+
+supabaseClient.auth.onAuthStateChange(
+  function(event, session){
+
+    console.log(
+      "Supabase Auth event :",
+      event
+    );
+
+
+    if(
+      event === "PASSWORD_RECOVERY"
+    ){
+
+      recoverySessionReady =
+        true;
+
+    }
+
+
+    if(session){
+
+      /*
+       * La session peut également être
+       * déjà disponible avant l'événement.
+       */
+
+      recoverySessionReady =
+        true;
+
+    }
+
+  }
+);
+
+
+/* =====================================================
+   VÉRIFICATION AU CHARGEMENT
+===================================================== */
+
+async function checkRecoverySession(){
+
+  try{
+
+    const {
+      data,
+      error
+    } =
+      await supabaseClient.auth.getSession();
+
+
+    if(error){
+
+      console.warn(
+        "Session :",
+        error
+      );
+
+    }
+
+
+    if(
+      data &&
+      data.session
+    ){
+
+      recoverySessionReady =
+        true;
+
+    }
+
+  }catch(error){
+
+    console.error(
+      error
+    );
+
+  }
+
+}
+
+
+checkRecoverySession();
+
+
+/* =====================================================
+   RÉINITIALISATION
+===================================================== */
+
+resetForm.addEventListener(
+  "submit",
+  async function(event){
+
+    event.preventDefault();
+
+    clearMessage();
+
+
+    const password =
+      passwordInput.value;
+
+    const confirmPassword =
+      confirmPasswordInput.value;
+
+
+    /* VALIDATION */
+
+    if(password.length < 6){
+
+      showMessage(
+        "Le mot de passe doit contenir au moins 6 caractères.",
+        "error"
+      );
+
+      passwordInput.focus();
+
+      return;
+
+    }
+
+
+    if(
+      password !==
+      confirmPassword
+    ){
+
+      showMessage(
+        "Les deux mots de passe ne correspondent pas.",
+        "error"
+      );
+
+      confirmPasswordInput.focus();
+
+      return;
+
+    }
+
+
+    submitButton.disabled =
+      true;
+
+    submitButton.textContent =
+      "Modification en cours...";
+
+
+    try{
+
+
+      /*
+       * Supabase vérifie automatiquement
+       * la session de récupération créée
+       * par le lien envoyé par email.
+       */
+
+      const {
+        data,
+        error
+      } =
+        await supabaseClient.auth
+          .updateUser({
+
+            password:
+              password
+
+          });
+
+
+      if(error){
+
+        throw error;
+
+      }
+
+
+      console.log(
+        "Mot de passe modifié :",
+        data
+      );
+
+
+      resetContainer.style.display =
+        "none";
+
+
+      successScreen.classList.add(
+        "show"
+      );
+
+
+    }catch(error){
+
+      console.error(
+        "Erreur nouveau mot de passe :",
+        error
+      );
+
+
+      let text =
+        "Impossible de modifier le mot de passe.";
+
+
+      if(
+        error &&
+        error.message
+      ){
+
+        text =
+          error.message;
+
+      }
+
+
+      /*
+       * Messages plus compréhensibles
+       */
+
+      if(
+        text.toLowerCase()
+          .includes("session")
+      ){
+
+        text =
+          "Le lien de réinitialisation est invalide ou a expiré. Demande un nouveau lien depuis « Mot de passe oublié ? ».";
+
+      }
+
+
+      if(
+        text.toLowerCase()
+          .includes("expired")
+      ){
+
+        text =
+          "Ce lien de réinitialisation a expiré. Demande un nouveau lien.";
+
+      }
+
+
+      showMessage(
+        text,
+        "error"
+      );
+
+
+      submitButton.disabled =
+        false;
+
+      submitButton.textContent =
+        "Modifier mon mot de passe";
+
+    }
+
+  }
+);
+
+
+/* =====================================================
+   THÈME
+===================================================== */
+
+const themeButton =
+  document.getElementById(
+    "themeButton"
+  );
+
+
+function applyTheme(){
+
+  const theme =
+    localStorage.getItem(
+      "pianoAcademyTheme"
+    );
+
+
+  if(theme === "dark"){
+
+    document.body.classList.add(
+      "dark"
+    );
+
+    themeButton.textContent =
+      "☀️";
+
+  }else{
+
+    document.body.classList.remove(
+      "dark"
+    );
+
+    themeButton.textContent =
+      "🌙";
+
+  }
+
+}
+
+
+themeButton.addEventListener(
+  "click",
+  function(){
+
+    const dark =
+      document.body.classList.contains(
+        "dark"
+      );
+
+
+    if(dark){
+
+      document.body.classList.remove(
+        "dark"
+      );
+
+      localStorage.setItem(
+        "pianoAcademyTheme",
+        "light"
+      );
+
+      themeButton.textContent =
+        "🌙";
+
+    }else{
+
+      document.body.classList.add(
+        "dark"
+      );
+
+      localStorage.setItem(
+        "pianoAcademyTheme",
+        "dark"
+      );
+
+      themeButton.textContent =
+        "☀️";
+
+    }
+
+  }
+);
+
+
+applyTheme();
+
+
+</script>
+
+</body>
+
+</html>
