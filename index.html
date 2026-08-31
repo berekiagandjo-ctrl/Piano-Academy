@@ -389,6 +389,7 @@ h1 span{
 
 /* =====================================================
    INTRODUCTION INTERACTIVE
+   AJOUTÉE SANS MODIFIER L'INDEX ORIGINAL
 ===================================================== */
 
 #pianoIntro{
@@ -430,8 +431,8 @@ h1 span{
   visibility:visible;
 
   transition:
-    opacity .7s ease,
-    visibility .7s ease;
+    opacity .6s ease,
+    visibility .6s ease;
 
 }
 
@@ -447,9 +448,7 @@ h1 span{
 }
 
 
-/* =====================================================
-   LUMIÈRES
-===================================================== */
+/* LUMIÈRES */
 
 .intro-light{
 
@@ -517,7 +516,7 @@ h1 span{
 
 
 /* =====================================================
-   PIANO FILIGRANE
+   PIANO FILIGRANE ANIMÉ
 ===================================================== */
 
 .intro-piano{
@@ -534,7 +533,7 @@ h1 span{
   transform:
     translate(-50%,-50%)
     rotate(-7deg)
-    scale(.90);
+    scale(.82);
 
   opacity:.20;
 
@@ -542,10 +541,10 @@ h1 span{
     blur(.4px)
     brightness(.75);
 
-  animation:
-    introPianoZoom 5s ease-in-out infinite;
+  z-index:1;
 
-  pointer-events:none;
+  animation:
+    introPianoZoom 6s ease-in-out infinite alternate;
 
 }
 
@@ -559,6 +558,8 @@ h1 span{
       rotate(-7deg)
       scale(.82);
 
+    opacity:.10;
+
   }
 
   50%{
@@ -566,7 +567,9 @@ h1 span{
     transform:
       translate(-50%,-50%)
       rotate(-7deg)
-      scale(1.06);
+      scale(1.04);
+
+    opacity:.22;
 
   }
 
@@ -575,7 +578,9 @@ h1 span{
     transform:
       translate(-50%,-50%)
       rotate(-7deg)
-      scale(.90);
+      scale(.92);
+
+    opacity:.15;
 
   }
 
@@ -637,6 +642,8 @@ h1 span{
 }
 
 
+/* TOUCHES BLANCHES */
+
 .intro-white-keys{
 
   position:absolute;
@@ -676,10 +683,13 @@ h1 span{
     0 0 5px 5px;
 
   box-shadow:
-    inset 0 -10px 15px rgba(0,0,0,.10);
+    inset 0 -10px 15px
+    rgba(0,0,0,.10);
 
 }
 
+
+/* TOUCHES NOIRES */
 
 .intro-black-keys{
 
@@ -716,7 +726,8 @@ h1 span{
     );
 
   box-shadow:
-    0 10px 12px rgba(0,0,0,.7);
+    0 10px 12px
+    rgba(0,0,0,.7);
 
 }
 
@@ -766,23 +777,51 @@ h1 span{
 
   position:relative;
 
-  z-index:20;
+  z-index:10;
 
   width:100%;
 
-  max-width:700px;
+  max-width:650px;
 
-  padding:20px;
+  padding:25px 20px;
 
   text-align:center;
 
-  color:white;
+}
 
-  text-shadow:
-    0 4px 25px rgba(0,0,0,.55);
+
+.intro-brand{
+
+  animation:
+    introContentAppear .8s ease forwards;
 
 }
 
+
+@keyframes introContentAppear{
+
+  from{
+
+    opacity:0;
+
+    transform:
+      translateY(15px);
+
+  }
+
+  to{
+
+    opacity:1;
+
+    transform:
+      translateY(0);
+
+  }
+
+}
+
+
+/* LOGO */
 
 .intro-logo{
 
@@ -840,9 +879,7 @@ h1 span{
 }
 
 
-/* =====================================================
-   TITRE INTRO
-===================================================== */
+/* TITRE */
 
 .intro-title{
 
@@ -859,6 +896,9 @@ h1 span{
 
   margin-bottom:12px;
 
+  text-shadow:
+    0 5px 30px rgba(0,0,0,.45);
+
 }
 
 
@@ -869,9 +909,7 @@ h1 span{
 }
 
 
-/* =====================================================
-   SOUS-TITRE
-===================================================== */
+/* SOUS TITRE */
 
 .intro-subtitle{
 
@@ -906,35 +944,83 @@ h1 span{
 }
 
 
+.intro-text{
+
+  color:
+    rgba(255,255,255,.68);
+
+  font-size:13px;
+
+  line-height:1.6;
+
+}
+
+
 /* =====================================================
    QUESTIONS
 ===================================================== */
 
-.intro-question{
+.intro-questions{
 
   position:relative;
 
-  z-index:25;
+  z-index:20;
 
   width:100%;
 
-  max-width:700px;
+  max-width:620px;
 
   padding:
-    10px 20px 80px;
+    20px;
+
+  display:none;
 
   text-align:center;
 
-  color:white;
+}
+
+
+.intro-questions.active{
+
+  display:block;
+
+}
+
+
+.question{
+
+  animation:
+    questionIn .55s ease forwards;
+
+}
+
+
+@keyframes questionIn{
+
+  from{
+
+    opacity:0;
+
+    transform:
+      translateX(35px)
+      scale(.97);
+
+  }
+
+  to{
+
+    opacity:1;
+
+    transform:
+      translateX(0)
+      scale(1);
+
+  }
 
 }
 
 
 .question-number{
-
-  display:inline-block;
-
-  margin-bottom:16px;
 
   color:#f5c84f;
 
@@ -944,43 +1030,28 @@ h1 span{
 
   letter-spacing:2px;
 
-  text-transform:uppercase;
+  margin-bottom:14px;
 
 }
 
 
 .question-title{
 
+  color:white;
+
   font-size:
     clamp(25px,6vw,42px);
 
-  line-height:1.15;
-
   font-weight:900;
 
-  margin-bottom:10px;
+  margin-bottom:25px;
 
   text-shadow:
-    0 4px 25px rgba(0,0,0,.65);
+    0 5px 25px
+    rgba(0,0,0,.5);
 
 }
 
-
-.question-help{
-
-  color:
-    rgba(255,255,255,.65);
-
-  font-size:13px;
-
-  margin-bottom:24px;
-
-}
-
-
-/* =====================================================
-   CHOIX
-===================================================== */
 
 .question-options{
 
@@ -990,50 +1061,40 @@ h1 span{
 
   justify-content:center;
 
-  gap:10px;
-
-  max-width:650px;
-
-  margin:
-    0 auto;
+  gap:12px;
 
 }
 
 
 .question-option{
 
-  position:relative;
-
-  min-width:135px;
-
-  min-height:50px;
-
-  padding:
-    13px 18px;
-
-  border-radius:14px;
-
   border:
     1px solid
-    rgba(255,255,255,.20);
+    rgba(255,255,255,.22);
 
   background:
-    rgba(4,6,12,.42);
+    rgba(5,7,13,.50);
 
   color:white;
 
-  font-size:13px;
+  border-radius:15px;
+
+  padding:
+    14px 20px;
+
+  min-width:125px;
+
+  font-size:14px;
 
   font-weight:800;
 
   cursor:pointer;
 
-  backdrop-filter:blur(8px);
-
-  -webkit-backdrop-filter:blur(8px);
+  backdrop-filter:
+    blur(8px);
 
   transition:
-    .2s ease;
+    .25s;
 
 }
 
@@ -1041,13 +1102,13 @@ h1 span{
 .question-option:hover{
 
   transform:
-    translateY(-2px);
+    translateY(-3px);
 
   border-color:
-    rgba(245,185,66,.65);
+    rgba(245,200,79,.8);
 
   background:
-    rgba(245,185,66,.10);
+    rgba(245,200,79,.12);
 
 }
 
@@ -1055,50 +1116,41 @@ h1 span{
 .question-option.selected{
 
   background:
-    rgba(108,92,231,.75);
+    rgba(245,200,79,.18);
 
   border-color:
     #f5c84f;
-
-  box-shadow:
-    0 0 25px
-    rgba(108,92,231,.30);
-
-  transform:
-    scale(1.02);
-
-}
-
-
-.question-option.selected::after{
-
-  content:"✓";
-
-  margin-left:7px;
 
   color:#f5c84f;
 
 }
 
 
-/* =====================================================
-   CONTINUER
-===================================================== */
+/*
+  Questions à choix multiples.
+*/
+
+.question.multiple .question-option.selected{
+
+  box-shadow:
+    0 0 20px
+    rgba(245,200,79,.15);
+
+}
+
+
+/* BOUTON CONTINUER POUR MULTI */
 
 .question-next{
 
-  margin-top:20px;
-
-  min-width:170px;
-
-  min-height:48px;
+  margin-top:22px;
 
   padding:
-    12px 22px;
+    12px 25px;
 
   border:none;
 
-  border-radius:13px;
+  border-radius:12px;
 
   background:
     linear-gradient(
@@ -1115,103 +1167,14 @@ h1 span{
 
   cursor:pointer;
 
-  box-shadow:
-    0 10px 30px
-    rgba(245,185,66,.20);
-
-  transition:
-    .2s ease;
+  display:none;
 
 }
 
 
-.question-next:hover{
+.question-next.show{
 
-  transform:
-    translateY(-2px);
-
-}
-
-
-.question-next:disabled{
-
-  opacity:.35;
-
-  cursor:not-allowed;
-
-  transform:none;
-
-  box-shadow:none;
-
-}
-
-
-/* =====================================================
-   TRANSITION QUESTION
-===================================================== */
-
-.question-screen{
-
-  animation:
-    questionAppear .45s ease;
-
-}
-
-
-.question-screen.leaving{
-
-  animation:
-    questionLeave .28s ease forwards;
-
-}
-
-
-@keyframes questionAppear{
-
-  from{
-
-    opacity:0;
-
-    transform:
-      translateY(25px)
-      scale(.97);
-
-  }
-
-  to{
-
-    opacity:1;
-
-    transform:
-      translateY(0)
-      scale(1);
-
-  }
-
-}
-
-
-@keyframes questionLeave{
-
-  from{
-
-    opacity:1;
-
-    transform:
-      translateY(0)
-      scale(1);
-
-  }
-
-  to{
-
-    opacity:0;
-
-    transform:
-      translateY(-20px)
-      scale(.98);
-
-  }
+  display:inline-block;
 
 }
 
@@ -1227,21 +1190,21 @@ h1 span{
   right:22px;
   bottom:22px;
 
-  z-index:100;
+  z-index:50;
 
   border:
     1px solid
     rgba(245,185,66,.45);
 
   background:
-    rgba(5,7,13,.62);
+    rgba(5,7,13,.70);
 
   color:white;
 
   border-radius:12px;
 
   padding:
-    10px 17px;
+    10px 16px;
 
   font-size:12px;
 
@@ -1250,9 +1213,6 @@ h1 span{
   cursor:pointer;
 
   backdrop-filter:
-    blur(8px);
-
-  -webkit-backdrop-filter:
     blur(8px);
 
   transition:
@@ -1276,84 +1236,7 @@ h1 span{
 
 
 /* =====================================================
-   INDICATEUR
-===================================================== */
-
-.question-progress{
-
-  position:absolute;
-
-  left:50%;
-
-  bottom:27px;
-
-  z-index:50;
-
-  transform:
-    translateX(-50%);
-
-  display:flex;
-
-  gap:7px;
-
-}
-
-
-.progress-dot{
-
-  width:7px;
-  height:7px;
-
-  border-radius:50%;
-
-  background:
-    rgba(255,255,255,.25);
-
-  transition:
-    .3s ease;
-
-}
-
-
-.progress-dot.active{
-
-  width:22px;
-
-  border-radius:10px;
-
-  background:#f5c84f;
-
-}
-
-
-.progress-dot.done{
-
-  background:
-    rgba(245,200,79,.70);
-
-}
-
-
-/* =====================================================
-   MESSAGE ERREUR
-===================================================== */
-
-.question-error{
-
-  min-height:18px;
-
-  margin-top:10px;
-
-  color:
-    #ffb4b4;
-
-  font-size:11px;
-
-}
-
-
-/* =====================================================
-   MOBILE INTRO
+   INTRO MOBILE
 ===================================================== */
 
 @media(max-width:600px){
@@ -1363,8 +1246,6 @@ h1 span{
     width:850px;
 
     height:280px;
-
-    opacity:.16;
 
   }
 
@@ -1420,58 +1301,38 @@ h1 span{
 
   }
 
-  .question-title{
-
-    font-size:27px;
-
-  }
-
-  .question-help{
+  .intro-text{
 
     font-size:12px;
 
-    margin-bottom:18px;
-
   }
 
-  .question-options{
+  .question-title{
 
-    gap:8px;
+    font-size:28px;
 
   }
 
   .question-option{
 
-    min-width:
-      calc(50% - 8px);
+    min-width:110px;
 
     padding:
-      12px 8px;
-
-    font-size:11px;
+      12px 15px;
 
   }
 
   .intro-skip{
 
     right:15px;
-
     bottom:15px;
-
-  }
-
-  .question-progress{
-
-    bottom:21px;
 
   }
 
 }
 
 
-/* =====================================================
-   PETIT ÉCRAN
-===================================================== */
+/* PETIT ÉCRAN */
 
 @media(max-height:650px){
 
@@ -1504,9 +1365,9 @@ h1 span{
 
   }
 
-  .question-number{
+  .intro-text{
 
-    margin-bottom:9px;
+    font-size:11px;
 
   }
 
@@ -1514,30 +1375,7 @@ h1 span{
 
     font-size:25px;
 
-    margin-bottom:7px;
-
-  }
-
-  .question-help{
-
-    margin-bottom:13px;
-
-  }
-
-  .question-option{
-
-    min-height:43px;
-
-    padding:
-      10px 12px;
-
-  }
-
-  .question-next{
-
-    margin-top:12px;
-
-    min-height:43px;
+    margin-bottom:18px;
 
   }
 
@@ -1578,14 +1416,13 @@ h1 span{
 
 <div id="pianoIntro">
 
+
   <div class="intro-light one"></div>
 
   <div class="intro-light two"></div>
 
 
-  <!-- =================================================
-       PIANO FILIGRANE
-  ================================================== -->
+  <!-- PIANO FILIGRANE -->
 
   <div class="intro-piano">
 
@@ -1637,103 +1474,164 @@ h1 span{
 
 
   <!-- =================================================
-       ÉCRAN D'ACCUEIL DE L'INTRO
+       MARQUE INTRO
   ================================================== -->
 
   <div
     class="intro-content"
-    id="introWelcome"
+    id="introBrand"
   >
 
-    <div class="intro-logo">
-      🎹
+    <div class="intro-brand">
+
+      <div class="intro-logo">
+        🎹
+      </div>
+
+
+      <h1 class="intro-title">
+
+        <span>Piano</span> Academy
+
+      </h1>
+
+
+      <div class="intro-subtitle">
+
+        Apprenez. Jouez. Maîtrisez.
+
+      </div>
+
+
+      <div class="intro-line"></div>
+
+
+      <p class="intro-text">
+
+        Votre parcours musical commence ici.
+
+      </p>
+
     </div>
-
-
-    <h1 class="intro-title">
-
-      <span>Piano</span> Academy
-
-    </h1>
-
-
-    <div class="intro-subtitle">
-
-      Apprenez. Jouez. Maîtrisez.
-
-    </div>
-
-
-    <div class="intro-line"></div>
-
-
-    <p
-      class="intro-text"
-      style="
-        color:rgba(255,255,255,.68);
-        font-size:13px;
-        line-height:1.6;
-      "
-    >
-
-      Votre parcours musical commence ici.
-
-    </p>
 
   </div>
 
 
   <!-- =================================================
-       QUESTIONS
+       QUESTION 1
   ================================================== -->
 
   <div
-    class="intro-question"
-    id="questionContainer"
-    style="display:none;"
+    class="intro-questions"
+    id="question1"
   >
 
-    <div class="question-screen" id="questionScreen">
+    <div class="question">
 
-      <div
-        class="question-number"
-        id="questionNumber"
-      ></div>
+      <div class="question-number">
+        QUESTION 1 / 4
+      </div>
+
+      <div class="question-title">
+        Quel est ton niveau ?
+      </div>
+
+      <div class="question-options">
+
+        <button
+          type="button"
+          class="question-option"
+          onclick="singleAnswer(1,'Débutant')"
+        >
+          🎹 Débutant
+        </button>
+
+        <button
+          type="button"
+          class="question-option"
+          onclick="singleAnswer(1,'Intermédiaire')"
+        >
+          🎵 Intermédiaire
+        </button>
+
+        <button
+          type="button"
+          class="question-option"
+          onclick="singleAnswer(1,'Avancé')"
+        >
+          🎼 Avancé
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
 
 
-      <h2
-        class="question-title"
-        id="questionTitle"
-      ></h2>
+  <!-- =================================================
+       QUESTION 2
+  ================================================== -->
 
+  <div
+    class="intro-questions"
+    id="question2"
+  >
 
-      <p
-        class="question-help"
-        id="questionHelp"
-      ></p>
+    <div class="question multiple">
 
+      <div class="question-number">
+        QUESTION 2 / 4
+      </div>
 
-      <div
-        class="question-options"
-        id="questionOptions"
-      ></div>
+      <div class="question-title">
+        Quel est ton objectif ?
+      </div>
 
+      <div class="question-options">
 
-      <div
-        class="question-error"
-        id="questionError"
-      ></div>
+        <button
+          type="button"
+          class="question-option multi2"
+          onclick="toggleMultiple(this)"
+        >
+          🎯 Améliorer ma technique
+        </button>
+
+        <button
+          type="button"
+          class="question-option multi2"
+          onclick="toggleMultiple(this)"
+        >
+          🎵 Jouer des chansons
+        </button>
+
+        <button
+          type="button"
+          class="question-option multi2"
+          onclick="toggleMultiple(this)"
+        >
+          📖 Apprendre le solfège
+        </button>
+
+        <button
+          type="button"
+          class="question-option multi2"
+          onclick="toggleMultiple(this)"
+        >
+          ⭐ Devenir meilleur
+        </button>
+
+      </div>
 
 
       <button
         type="button"
         class="question-next"
-        id="questionNext"
-        disabled
+        id="next2"
+        onclick="goNext(2)"
       >
-
         Continuer →
-
       </button>
 
     </div>
@@ -1742,35 +1640,159 @@ h1 span{
 
 
   <!-- =================================================
-       PROGRESSION
+       QUESTION 3
   ================================================== -->
 
   <div
-    class="question-progress"
-    id="questionProgress"
-    style="display:none;"
+    class="intro-questions"
+    id="question3"
   >
 
-    <span class="progress-dot active"></span>
-    <span class="progress-dot"></span>
-    <span class="progress-dot"></span>
-    <span class="progress-dot"></span>
+    <div class="question">
+
+      <div class="question-number">
+        QUESTION 3 / 4
+      </div>
+
+      <div class="question-title">
+        Combien de temps peux-tu pratiquer ?
+      </div>
+
+      <div class="question-options">
+
+        <button
+          type="button"
+          class="question-option"
+          onclick="singleAnswer(3,'10 minutes')"
+        >
+          ⏱️ 10 minutes
+        </button>
+
+        <button
+          type="button"
+          class="question-option"
+          onclick="singleAnswer(3,'20 minutes')"
+        >
+          ⏱️ 20 minutes
+        </button>
+
+        <button
+          type="button"
+          class="question-option"
+          onclick="singleAnswer(3,'30 minutes')"
+        >
+          ⏱️ 30 minutes
+        </button>
+
+        <button
+          type="button"
+          class="question-option"
+          onclick="singleAnswer(3,'1 heure ou plus')"
+        >
+          🔥 1 heure ou plus
+        </button>
+
+      </div>
+
+    </div>
 
   </div>
 
 
   <!-- =================================================
-       PASSER
+       QUESTION 4
   ================================================== -->
+
+  <div
+    class="intro-questions"
+    id="question4"
+  >
+
+    <div class="question multiple">
+
+      <div class="question-number">
+        QUESTION 4 / 4
+      </div>
+
+      <div class="question-title">
+        Que veux-tu apprendre en priorité ?
+      </div>
+
+      <div class="question-options">
+
+        <button
+          type="button"
+          class="question-option multi4"
+          onclick="toggleMultiple(this)"
+        >
+          🎹 Les notes
+        </button>
+
+        <button
+          type="button"
+          class="question-option multi4"
+          onclick="toggleMultiple(this)"
+        >
+          🎼 Les accords
+        </button>
+
+        <button
+          type="button"
+          class="question-option multi4"
+          onclick="toggleMultiple(this)"
+        >
+          🎵 Les chansons
+        </button>
+
+        <button
+          type="button"
+          class="question-option multi4"
+          onclick="toggleMultiple(this)"
+        >
+          📚 Le solfège
+        </button>
+
+        <button
+          type="button"
+          class="question-option multi4"
+          onclick="toggleMultiple(this)"
+        >
+          ✋ La technique
+        </button>
+
+        <button
+          type="button"
+          class="question-option multi4"
+          onclick="toggleMultiple(this)"
+        >
+          🎧 L'oreille musicale
+        </button>
+
+      </div>
+
+
+      <button
+        type="button"
+        class="question-next"
+        id="next4"
+        onclick="finishQuestions()"
+      >
+        Terminer ✓
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <!-- PASSER -->
 
   <button
     type="button"
     class="intro-skip"
     id="introSkip"
   >
-
     Passer
-
   </button>
 
 </div>
@@ -1943,61 +1965,32 @@ h1 span{
   const intro =
     document.getElementById("pianoIntro");
 
-  const welcome =
-    document.getElementById("introWelcome");
-
-  const questionContainer =
-    document.getElementById("questionContainer");
-
-  const questionScreen =
-    document.getElementById("questionScreen");
-
-  const questionNumber =
-    document.getElementById("questionNumber");
-
-  const questionTitle =
-    document.getElementById("questionTitle");
-
-  const questionHelp =
-    document.getElementById("questionHelp");
-
-  const questionOptions =
-    document.getElementById("questionOptions");
-
-  const questionNext =
-    document.getElementById("questionNext");
-
-  const questionError =
-    document.getElementById("questionError");
-
   const skipButton =
     document.getElementById("introSkip");
 
-  const progress =
-    document.getElementById("questionProgress");
-
-  const progressDots =
-    document.querySelectorAll(
-      ".progress-dot"
-    );
+  const introBrand =
+    document.getElementById("introBrand");
 
 
-  /* ===================================================
-     MÉMOIRE
-  =================================================== */
+  /*
+    On vérifie si l'utilisateur a déjà
+    terminé les questions.
+  */
 
-  const introCompleted =
+  const questionnaireCompleted =
     localStorage.getItem(
-      "pianoAcademyIntroCompleted"
+      "pianoAcademyQuestionnaireCompleted"
     );
 
 
   /*
-    Si les 4 questions ont déjà été
-    terminées, aucune introduction.
+    Si le questionnaire est terminé,
+    l'introduction ne revient plus.
   */
 
-  if(introCompleted === "true"){
+  if(
+    questionnaireCompleted === "true"
+  ){
 
     intro.classList.add("hide");
 
@@ -2006,421 +1999,291 @@ h1 span{
   }
 
 
-  /* ===================================================
-     QUESTIONS
-  =================================================== */
-
-  const questions = [
-
-    {
-      title:
-        "Quel est ton niveau ?",
-
-      help:
-        "Choisis ton niveau actuel.",
-
-      multiple:
-        false,
-
-      options: [
-
-        "Débutant",
-
-        "Intermédiaire",
-
-        "Avancé",
-
-        "Expert"
-
-      ]
-
-    },
-
-
-    {
-      title:
-        "Quel est ton objectif ?",
-
-      help:
-        "Tu peux choisir plusieurs objectifs.",
-
-      multiple:
-        true,
-
-      options: [
-
-        "Améliorer ma technique",
-
-        "Jouer des chansons",
-
-        "Apprendre le solfège",
-
-        "Improviser"
-
-      ]
-
-    },
-
-
-    {
-      title:
-        "Combien de temps peux-tu pratiquer ?",
-
-      help:
-        "Choisis le temps que tu peux consacrer au piano.",
-
-      multiple:
-        false,
-
-      options: [
-
-        "10 minutes",
-
-        "20 minutes",
-
-        "30 minutes",
-
-        "1 heure ou plus"
-
-      ]
-
-    },
-
-
-    {
-      title:
-        "Que veux-tu apprendre en priorité ?",
-
-      help:
-        "Tu peux sélectionner toutes les catégories qui t'intéressent.",
-
-      multiple:
-        true,
-
-      options: [
-
-        "🎹 Piano",
-
-        "🎼 Solfège",
-
-        "🎵 Accords",
-
-        "🎶 Mélodies",
-
-        "🎤 Accompagnement",
-
-        "⭐ Technique"
-
-      ]
-
-    }
-
-  ];
-
+  /*
+    On affiche d'abord le titre
+    Piano Academy.
+  */
 
   let currentQuestion = 0;
 
-  let selectedAnswers = [];
+  let introAnswers = {};
 
 
-  /* ===================================================
-     AFFICHER QUESTION
-  =================================================== */
+  /*
+    Après 4 secondes, on passe automatiquement
+    à la première question.
+  */
 
-  function showQuestion(index){
+  const questionTimer =
+    setTimeout(
+      function(){
 
-    currentQuestion = index;
+        showQuestion(1);
 
-    selectedAnswers = [];
-
-
-    questionScreen.classList.remove(
-      "leaving"
+      },
+      4000
     );
 
 
-    questionScreen.classList.remove(
-      "question-screen"
-    );
+  /*
+    Afficher une question.
+  */
 
+  window.showQuestion =
+    function(number){
 
-    void questionScreen.offsetWidth;
+      introBrand.style.display =
+        "none";
 
-
-    questionScreen.classList.add(
-      "question-screen"
-    );
-
-
-    const question =
-      questions[index];
-
-
-    questionNumber.textContent =
-      "Question " +
-      (index + 1) +
-      " sur " +
-      questions.length;
-
-
-    questionTitle.textContent =
-      question.title;
-
-
-    questionHelp.textContent =
-      question.help;
-
-
-    questionError.textContent =
-      "";
-
-
-    questionOptions.innerHTML =
-      "";
-
-
-    questionNext.disabled =
-      true;
-
-
-    question.options.forEach(
-      function(option){
-
-        const button =
-          document.createElement(
-            "button"
-          );
-
-
-        button.type =
-          "button";
-
-        button.className =
-          "question-option";
-
-        button.textContent =
-          option;
-
-
-        button.addEventListener(
-          "click",
-          function(){
-
-            selectOption(
-              button,
-              option,
-              question.multiple
-            );
-
-          }
-        );
-
-
-        questionOptions.appendChild(
-          button
-        );
-
-      }
-    );
-
-
-    progressDots.forEach(
-      function(dot, dotIndex){
-
-        dot.classList.remove(
-          "active"
-        );
-
-        dot.classList.remove(
-          "done"
-        );
-
-
-        if(dotIndex < index){
-
-          dot.classList.add(
-            "done"
-          );
-
-        }
-
-
-        if(dotIndex === index){
-
-          dot.classList.add(
-            "active"
-          );
-
-        }
-
-      }
-    );
-
-  }
-
-
-  /* ===================================================
-     SÉLECTION
-  =================================================== */
-
-  function selectOption(
-    button,
-    option,
-    multiple
-  ){
-
-    questionError.textContent =
-      "";
-
-
-    if(multiple){
-
-      /*
-        Plusieurs réponses possibles.
-      */
-
-      if(
-        button.classList.contains(
-          "selected"
-        )
-      ){
-
-        button.classList.remove(
-          "selected"
-        );
-
-
-        selectedAnswers =
-          selectedAnswers.filter(
-            function(item){
-
-              return item !== option;
-
-            }
-          );
-
-      }else{
-
-        button.classList.add(
-          "selected"
-        );
-
-
-        selectedAnswers.push(
-          option
-        );
-
-      }
-
-    }else{
-
-      /*
-        Une seule réponse possible.
-      */
 
       document
-        .querySelectorAll(
-          ".question-option"
-        )
+        .querySelectorAll(".intro-questions")
         .forEach(
-          function(item){
+          function(element){
 
-            item.classList.remove(
-              "selected"
-            );
+            element.classList.remove("active");
 
           }
         );
 
 
-      button.classList.add(
-        "selected"
-      );
-
-
-      selectedAnswers =
-        [option];
-
-    }
-
-
-    questionNext.disabled =
-      selectedAnswers.length === 0;
-
-  }
-
-
-  /* ===================================================
-     CONTINUER
-  =================================================== */
-
-  questionNext.addEventListener(
-    "click",
-    function(){
-
-      if(
-        selectedAnswers.length === 0
-      ){
-
-        questionError.textContent =
-          "Choisis au moins une réponse pour continuer.";
-
-        return;
-
-      }
-
-
-      /*
-        Dernière question terminée.
-      */
-
-      if(
-        currentQuestion ===
-        questions.length - 1
-      ){
-
-        localStorage.setItem(
-          "pianoAcademyIntroCompleted",
-          "true"
+      const question =
+        document.getElementById(
+          "question" + number
         );
 
 
-        closeIntro();
+      if(question){
 
-        return;
+        question.classList.add("active");
+
+        currentQuestion = number;
 
       }
 
+    };
+
+
+  /*
+    Question à réponse unique.
+  */
+
+  window.singleAnswer =
+    function(number,answer){
+
+      introAnswers[
+        "question" + number
+      ] = answer;
+
 
       /*
-        Animation de sortie.
+        Petit délai visuel pour donner
+        l'effet de passage vidéo.
       */
 
-      questionScreen.classList.add(
-        "leaving"
-      );
+      const current =
+        document.getElementById(
+          "question" + number
+        );
+
+      current.style.opacity = "0";
+
+      current.style.transform =
+        "translateX(-30px)";
 
 
       setTimeout(
         function(){
 
+          current.style.opacity = "";
+
+          current.style.transform = "";
+
+          if(number < 4){
+
+            showQuestion(number + 1);
+
+          }
+
+        },
+        250
+      );
+
+    };
+
+
+  /*
+    Questions à choix multiples.
+  */
+
+  window.toggleMultiple =
+    function(button){
+
+      button.classList.toggle(
+        "selected"
+      );
+
+
+      const parent =
+        button.closest(".question");
+
+
+      const selected =
+        parent.querySelectorAll(
+          ".question-option.selected"
+        );
+
+
+      const next =
+        parent.querySelector(
+          ".question-next"
+        );
+
+
+      if(
+        selected.length > 0
+      ){
+
+        next.classList.add("show");
+
+      }else{
+
+        next.classList.remove("show");
+
+      }
+
+    };
+
+
+  /*
+    Continuer après une question
+    à choix multiples.
+  */
+
+  window.goNext =
+    function(number){
+
+      const current =
+        document.getElementById(
+          "question" + number
+        );
+
+
+      const selected =
+        current.querySelectorAll(
+          ".question-option.selected"
+        );
+
+
+      introAnswers[
+        "question" + number
+      ] =
+        Array.from(selected)
+        .map(
+          function(button){
+
+            return button.innerText.trim();
+
+          }
+        );
+
+
+      current.style.opacity = "0";
+
+      current.style.transform =
+        "translateX(-30px)";
+
+
+      setTimeout(
+        function(){
+
+          current.style.opacity = "";
+
+          current.style.transform = "";
+
           showQuestion(
-            currentQuestion + 1
+            number + 1
           );
 
         },
-        280
+        250
       );
 
-    }
-  );
+    };
 
 
-  /* ===================================================
-     FERMER INTRODUCTION
-  =================================================== */
+  /*
+    Terminer le questionnaire.
+  */
+
+  window.finishQuestions =
+    function(){
+
+      const current =
+        document.getElementById(
+          "question4"
+        );
+
+
+      const selected =
+        current.querySelectorAll(
+          ".question-option.selected"
+        );
+
+
+      if(
+        selected.length === 0
+      ){
+
+        return;
+
+      }
+
+
+      introAnswers.question4 =
+        Array.from(selected)
+        .map(
+          function(button){
+
+            return button.innerText.trim();
+
+          }
+        );
+
+
+      /*
+        Sauvegarde des réponses.
+      */
+
+      localStorage.setItem(
+        "pianoAcademyAnswers",
+        JSON.stringify(
+          introAnswers
+        )
+      );
+
+
+      localStorage.setItem(
+        "pianoAcademyQuestionnaireCompleted",
+        "true"
+      );
+
+
+      closeIntro();
+
+    };
+
+
+  /*
+    Fermer l'introduction.
+  */
 
   function closeIntro(){
+
+    clearTimeout(
+      questionTimer
+    );
+
 
     intro.classList.add(
       "hide"
@@ -2429,50 +2292,23 @@ h1 span{
   }
 
 
-  /* ===================================================
-     BOUTON PASSER
-  =================================================== */
+  /*
+    Bouton PASSER.
+    
+    Si l'utilisateur passe sans répondre,
+    le questionnaire n'est PAS considéré
+    comme terminé.
+
+    Il reviendra donc au prochain lancement.
+  */
 
   skipButton.addEventListener(
     "click",
     function(){
 
-      /*
-        IMPORTANT :
-        On ne mémorise PAS la validation.
-        L'introduction reviendra donc
-        lors d'une prochaine ouverture.
-      */
-
       closeIntro();
 
     }
-  );
-
-
-  /* ===================================================
-     DÉMARRAGE
-  =================================================== */
-
-  setTimeout(
-    function(){
-
-      welcome.style.display =
-        "none";
-
-
-      questionContainer.style.display =
-        "block";
-
-
-      progress.style.display =
-        "flex";
-
-
-      showQuestion(0);
-
-    },
-    2500
   );
 
 
