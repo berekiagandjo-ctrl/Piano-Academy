@@ -17,6 +17,7 @@
   content="Piano Academy — Apprends le piano étape par étape."
 >
 
+<!-- PWA / MANIFEST -->
 <link
   rel="manifest"
   href="./manifest.json"
@@ -49,10 +50,6 @@
 
 
 <style>
-
-/* =====================================================
-   INDEX ORIGINAL
-===================================================== */
 
 *{
   margin:0;
@@ -391,7 +388,8 @@ h1 span{
 
 
 /* =====================================================
-   INTRODUCTION
+   INTRODUCTION INTERACTIVE
+   AJOUTÉE SANS MODIFIER L'INDEX ORIGINAL
 ===================================================== */
 
 #pianoIntro{
@@ -450,9 +448,7 @@ h1 span{
 }
 
 
-/* =====================================================
-   LUMIÈRES
-===================================================== */
+/* LUMIÈRES */
 
 .intro-light{
 
@@ -520,7 +516,7 @@ h1 span{
 
 
 /* =====================================================
-   FILIGRANE PIANO
+   PIANO FILIGRANE ANIMÉ
 ===================================================== */
 
 .intro-piano{
@@ -537,7 +533,7 @@ h1 span{
   transform:
     translate(-50%,-50%)
     rotate(-7deg)
-    scale(.92);
+    scale(.82);
 
   opacity:.20;
 
@@ -545,8 +541,10 @@ h1 span{
     blur(.4px)
     brightness(.75);
 
+  z-index:1;
+
   animation:
-    introPianoZoom 4s ease-in-out forwards;
+    introPianoZoom 6s ease-in-out infinite alternate;
 
 }
 
@@ -564,14 +562,14 @@ h1 span{
 
   }
 
-  45%{
+  50%{
 
     transform:
       translate(-50%,-50%)
       rotate(-7deg)
-      scale(1.02);
+      scale(1.04);
 
-    opacity:.20;
+    opacity:.22;
 
   }
 
@@ -580,29 +578,22 @@ h1 span{
     transform:
       translate(-50%,-50%)
       rotate(-7deg)
-      scale(.94);
+      scale(.92);
 
-    opacity:.16;
+    opacity:.15;
 
   }
 
 }
 
 
-/* =====================================================
-   CORPS DU PIANO
-===================================================== */
-
 .intro-piano-body{
 
   position:absolute;
 
-  left:0;
-  right:0;
+  inset:0;
 
-  bottom:0;
-
-  height:230px;
+  bottom:35px;
 
   border-radius:25px;
 
@@ -624,8 +615,6 @@ h1 span{
 }
 
 
-/* REFLET */
-
 .intro-piano-body::before{
 
   content:"";
@@ -634,7 +623,6 @@ h1 span{
 
   left:30px;
   right:30px;
-
   top:18px;
 
   height:4px;
@@ -654,9 +642,7 @@ h1 span{
 }
 
 
-/* =====================================================
-   TOUCHES BLANCHES
-===================================================== */
+/* TOUCHES BLANCHES */
 
 .intro-white-keys{
 
@@ -667,7 +653,7 @@ h1 span{
 
   bottom:18px;
 
-  height:175px;
+  height:170px;
 
   display:flex;
 
@@ -703,9 +689,7 @@ h1 span{
 }
 
 
-/* =====================================================
-   TOUCHES NOIRES — PROPORTION RÉALISTE
-===================================================== */
+/* TOUCHES NOIRES */
 
 .intro-black-keys{
 
@@ -714,95 +698,79 @@ h1 span{
   left:30px;
   right:30px;
 
-  top:18px;
+  top:25px;
 
-  height:175px;
+  height:100%;
 
   pointer-events:none;
 
 }
 
 
-/*
-   Les touches noires sont :
-   - plus étroites
-   - plus courtes
-   - environ à mi-hauteur
-     des touches blanches
-*/
-
 .intro-black-key{
 
   position:absolute;
 
-  width:30px;
-
-  height:92px;
+  width:48px;
+  height:108px;
 
   border-radius:
-    0 0 6px 6px;
+    0 0 7px 7px;
 
   background:
     linear-gradient(
       90deg,
-      #010204,
+      #020307,
       #171b25 50%,
       #020307
     );
 
   box-shadow:
-    0 8px 12px
-    rgba(0,0,0,.75);
-
-  z-index:5;
+    0 10px 12px
+    rgba(0,0,0,.7);
 
 }
 
 
-/* =====================================================
-   DISPOSITION RÉELLE DU CLAVIER
-   MOTIF : 2 NOIRE / ESPACE / 3 NOIRE
-===================================================== */
-
 .intro-black-key:nth-child(1){
-  left:5.5%;
+  left:6%;
 }
 
 .intro-black-key:nth-child(2){
-  left:12.5%;
+  left:14%;
 }
 
 .intro-black-key:nth-child(3){
-  left:26%;
+  left:28%;
 }
 
 .intro-black-key:nth-child(4){
-  left:33%;
+  left:36%;
 }
 
 .intro-black-key:nth-child(5){
-  left:40%;
+  left:44%;
 }
 
 .intro-black-key:nth-child(6){
-  left:54%;
+  left:59%;
 }
 
 .intro-black-key:nth-child(7){
-  left:61%;
+  left:67%;
 }
 
 .intro-black-key:nth-child(8){
-  left:74.5%;
+  left:81%;
 }
 
 .intro-black-key:nth-child(9){
-  left:81.5%;
+  left:89%;
 }
 
 
 /* =====================================================
-   CONTENU INTRODUCTION
+   CONTENU INTRO
 ===================================================== */
 
 .intro-content{
@@ -819,8 +787,13 @@ h1 span{
 
   text-align:center;
 
+}
+
+
+.intro-brand{
+
   animation:
-    introContentAppear 1s ease forwards;
+    introContentAppear .8s ease forwards;
 
 }
 
@@ -848,9 +821,7 @@ h1 span{
 }
 
 
-/* =====================================================
-   LOGO INTRO
-===================================================== */
+/* LOGO */
 
 .intro-logo{
 
@@ -865,7 +836,6 @@ h1 span{
   display:flex;
 
   align-items:center;
-
   justify-content:center;
 
   background:
@@ -909,9 +879,7 @@ h1 span{
 }
 
 
-/* =====================================================
-   TITRE PIANO ACADEMY
-===================================================== */
+/* TITRE */
 
 .intro-title{
 
@@ -929,8 +897,7 @@ h1 span{
   margin-bottom:12px;
 
   text-shadow:
-    0 5px 30px
-    rgba(0,0,0,.45);
+    0 5px 30px rgba(0,0,0,.45);
 
 }
 
@@ -942,9 +909,7 @@ h1 span{
 }
 
 
-/* =====================================================
-   SOUS-TITRE
-===================================================== */
+/* SOUS TITRE */
 
 .intro-subtitle{
 
@@ -958,10 +923,6 @@ h1 span{
 
 }
 
-
-/* =====================================================
-   LIGNE
-===================================================== */
 
 .intro-line{
 
@@ -983,10 +944,6 @@ h1 span{
 }
 
 
-/* =====================================================
-   TEXTE
-===================================================== */
-
 .intro-text{
 
   color:
@@ -1000,7 +957,230 @@ h1 span{
 
 
 /* =====================================================
-   BOUTON PASSER
+   QUESTIONS
+===================================================== */
+
+.intro-questions{
+
+  position:relative;
+
+  z-index:20;
+
+  width:100%;
+
+  max-width:620px;
+
+  padding:
+    20px;
+
+  display:none;
+
+  text-align:center;
+
+}
+
+
+.intro-questions.active{
+
+  display:block;
+
+}
+
+
+.question{
+
+  animation:
+    questionIn .55s ease forwards;
+
+}
+
+
+@keyframes questionIn{
+
+  from{
+
+    opacity:0;
+
+    transform:
+      translateX(35px)
+      scale(.97);
+
+  }
+
+  to{
+
+    opacity:1;
+
+    transform:
+      translateX(0)
+      scale(1);
+
+  }
+
+}
+
+
+.question-number{
+
+  color:#f5c84f;
+
+  font-size:11px;
+
+  font-weight:900;
+
+  letter-spacing:2px;
+
+  margin-bottom:14px;
+
+}
+
+
+.question-title{
+
+  color:white;
+
+  font-size:
+    clamp(25px,6vw,42px);
+
+  font-weight:900;
+
+  margin-bottom:25px;
+
+  text-shadow:
+    0 5px 25px
+    rgba(0,0,0,.5);
+
+}
+
+
+.question-options{
+
+  display:flex;
+
+  flex-wrap:wrap;
+
+  justify-content:center;
+
+  gap:12px;
+
+}
+
+
+.question-option{
+
+  border:
+    1px solid
+    rgba(255,255,255,.22);
+
+  background:
+    rgba(5,7,13,.50);
+
+  color:white;
+
+  border-radius:15px;
+
+  padding:
+    14px 20px;
+
+  min-width:125px;
+
+  font-size:14px;
+
+  font-weight:800;
+
+  cursor:pointer;
+
+  backdrop-filter:
+    blur(8px);
+
+  transition:
+    .25s;
+
+}
+
+
+.question-option:hover{
+
+  transform:
+    translateY(-3px);
+
+  border-color:
+    rgba(245,200,79,.8);
+
+  background:
+    rgba(245,200,79,.12);
+
+}
+
+
+.question-option.selected{
+
+  background:
+    rgba(245,200,79,.18);
+
+  border-color:
+    #f5c84f;
+
+  color:#f5c84f;
+
+}
+
+
+/*
+  Questions à choix multiples.
+*/
+
+.question.multiple .question-option.selected{
+
+  box-shadow:
+    0 0 20px
+    rgba(245,200,79,.15);
+
+}
+
+
+/* BOUTON CONTINUER POUR MULTI */
+
+.question-next{
+
+  margin-top:22px;
+
+  padding:
+    12px 25px;
+
+  border:none;
+
+  border-radius:12px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #f7cf5c,
+      #d99b20
+    );
+
+  color:#080a0f;
+
+  font-size:13px;
+
+  font-weight:900;
+
+  cursor:pointer;
+
+  display:none;
+
+}
+
+
+.question-next.show{
+
+  display:inline-block;
+
+}
+
+
+/* =====================================================
+   PASSER
 ===================================================== */
 
 .intro-skip{
@@ -1010,7 +1190,7 @@ h1 span{
   right:22px;
   bottom:22px;
 
-  z-index:30;
+  z-index:50;
 
   border:
     1px solid
@@ -1035,7 +1215,8 @@ h1 span{
   backdrop-filter:
     blur(8px);
 
-  transition:.2s;
+  transition:
+    .2s;
 
 }
 
@@ -1066,50 +1247,36 @@ h1 span{
 
     height:280px;
 
-    opacity:.14;
-
   }
 
-
   .intro-piano-body{
-
-    height:200px;
 
     border-radius:18px;
 
   }
-
 
   .intro-white-keys{
 
     left:20px;
     right:20px;
 
-    height:145px;
+    height:140px;
 
   }
-
 
   .intro-black-keys{
 
     left:20px;
     right:20px;
 
-    top:18px;
-
-    height:145px;
-
   }
-
 
   .intro-black-key{
 
-    width:24px;
-
-    height:76px;
+    width:34px;
+    height:82px;
 
   }
-
 
   .intro-logo{
 
@@ -1122,13 +1289,11 @@ h1 span{
 
   }
 
-
   .intro-title{
 
     font-size:40px;
 
   }
-
 
   .intro-subtitle{
 
@@ -1136,13 +1301,26 @@ h1 span{
 
   }
 
-
   .intro-text{
 
     font-size:12px;
 
   }
 
+  .question-title{
+
+    font-size:28px;
+
+  }
+
+  .question-option{
+
+    min-width:110px;
+
+    padding:
+      12px 15px;
+
+  }
 
   .intro-skip{
 
@@ -1154,9 +1332,7 @@ h1 span{
 }
 
 
-/* =====================================================
-   PETIT ÉCRAN INTRO
-===================================================== */
+/* PETIT ÉCRAN */
 
 @media(max-height:650px){
 
@@ -1171,13 +1347,11 @@ h1 span{
 
   }
 
-
   .intro-title{
 
     font-size:36px;
 
   }
-
 
   .intro-subtitle{
 
@@ -1185,17 +1359,44 @@ h1 span{
 
   }
 
-
   .intro-line{
 
     margin:12px auto;
 
   }
 
-
   .intro-text{
 
     font-size:11px;
+
+  }
+
+  .question-title{
+
+    font-size:25px;
+
+    margin-bottom:18px;
+
+  }
+
+}
+
+
+/* =====================================================
+   ACCESSIBILITÉ
+===================================================== */
+
+@media(prefers-reduced-motion:reduce){
+
+  *,
+  *::before,
+  *::after{
+
+    animation-duration:.01ms !important;
+
+    animation-iteration-count:1 !important;
+
+    scroll-behavior:auto !important;
 
   }
 
@@ -1210,7 +1411,7 @@ h1 span{
 
 
 <!-- =====================================================
-     INTRODUCTION
+     INTRODUCTION INTERACTIVE
 ===================================================== -->
 
 <div id="pianoIntro">
@@ -1221,16 +1422,11 @@ h1 span{
   <div class="intro-light two"></div>
 
 
-  <!-- =================================================
-       FILIGRANE PIANO
-  ================================================== -->
+  <!-- PIANO FILIGRANE -->
 
   <div class="intro-piano">
 
     <div class="intro-piano-body">
-
-
-      <!-- TOUCHES BLANCHES -->
 
       <div class="intro-white-keys">
 
@@ -1258,8 +1454,6 @@ h1 span{
       </div>
 
 
-      <!-- TOUCHES NOIRES -->
-
       <div class="intro-black-keys">
 
         <div class="intro-black-key"></div>
@@ -1274,6 +1468,49 @@ h1 span{
 
       </div>
 
+    </div>
+
+  </div>
+
+
+  <!-- =================================================
+       MARQUE INTRO
+  ================================================== -->
+
+  <div
+    class="intro-content"
+    id="introBrand"
+  >
+
+    <div class="intro-brand">
+
+      <div class="intro-logo">
+        🎹
+      </div>
+
+
+      <h1 class="intro-title">
+
+        <span>Piano</span> Academy
+
+      </h1>
+
+
+      <div class="intro-subtitle">
+
+        Apprenez. Jouez. Maîtrisez.
+
+      </div>
+
+
+      <div class="intro-line"></div>
+
+
+      <p class="intro-text">
+
+        Votre parcours musical commence ici.
+
+      </p>
 
     </div>
 
@@ -1281,40 +1518,269 @@ h1 span{
 
 
   <!-- =================================================
-       CONTENU INTRO
+       QUESTION 1
   ================================================== -->
 
-  <div class="intro-content">
+  <div
+    class="intro-questions"
+    id="question1"
+  >
 
+    <div class="question">
 
-    <div class="intro-logo">
-      🎹
+      <div class="question-number">
+        QUESTION 1 / 4
+      </div>
+
+      <div class="question-title">
+        Quel est ton niveau ?
+      </div>
+
+      <div class="question-options">
+
+        <button
+          type="button"
+          class="question-option"
+          onclick="singleAnswer(1,'Débutant')"
+        >
+          🎹 Débutant
+        </button>
+
+        <button
+          type="button"
+          class="question-option"
+          onclick="singleAnswer(1,'Intermédiaire')"
+        >
+          🎵 Intermédiaire
+        </button>
+
+        <button
+          type="button"
+          class="question-option"
+          onclick="singleAnswer(1,'Avancé')"
+        >
+          🎼 Avancé
+        </button>
+
+      </div>
+
     </div>
 
-
-    <h1 class="intro-title">
-
-      <span>Piano</span> Academy
-
-    </h1>
+  </div>
 
 
-    <div class="intro-subtitle">
+  <!-- =================================================
+       QUESTION 2
+  ================================================== -->
 
-      Apprenez. Jouez. Maîtrisez.
+  <div
+    class="intro-questions"
+    id="question2"
+  >
+
+    <div class="question multiple">
+
+      <div class="question-number">
+        QUESTION 2 / 4
+      </div>
+
+      <div class="question-title">
+        Quel est ton objectif ?
+      </div>
+
+      <div class="question-options">
+
+        <button
+          type="button"
+          class="question-option multi2"
+          onclick="toggleMultiple(this)"
+        >
+          🎯 Améliorer ma technique
+        </button>
+
+        <button
+          type="button"
+          class="question-option multi2"
+          onclick="toggleMultiple(this)"
+        >
+          🎵 Jouer des chansons
+        </button>
+
+        <button
+          type="button"
+          class="question-option multi2"
+          onclick="toggleMultiple(this)"
+        >
+          📖 Apprendre le solfège
+        </button>
+
+        <button
+          type="button"
+          class="question-option multi2"
+          onclick="toggleMultiple(this)"
+        >
+          ⭐ Devenir meilleur
+        </button>
+
+      </div>
+
+
+      <button
+        type="button"
+        class="question-next"
+        id="next2"
+        onclick="goNext(2)"
+      >
+        Continuer →
+      </button>
 
     </div>
 
+  </div>
 
-    <div class="intro-line"></div>
+
+  <!-- =================================================
+       QUESTION 3
+  ================================================== -->
+
+  <div
+    class="intro-questions"
+    id="question3"
+  >
+
+    <div class="question">
+
+      <div class="question-number">
+        QUESTION 3 / 4
+      </div>
+
+      <div class="question-title">
+        Combien de temps peux-tu pratiquer ?
+      </div>
+
+      <div class="question-options">
+
+        <button
+          type="button"
+          class="question-option"
+          onclick="singleAnswer(3,'10 minutes')"
+        >
+          ⏱️ 10 minutes
+        </button>
+
+        <button
+          type="button"
+          class="question-option"
+          onclick="singleAnswer(3,'20 minutes')"
+        >
+          ⏱️ 20 minutes
+        </button>
+
+        <button
+          type="button"
+          class="question-option"
+          onclick="singleAnswer(3,'30 minutes')"
+        >
+          ⏱️ 30 minutes
+        </button>
+
+        <button
+          type="button"
+          class="question-option"
+          onclick="singleAnswer(3,'1 heure ou plus')"
+        >
+          🔥 1 heure ou plus
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
 
 
-    <p class="intro-text">
+  <!-- =================================================
+       QUESTION 4
+  ================================================== -->
 
-      Votre parcours musical commence ici.
+  <div
+    class="intro-questions"
+    id="question4"
+  >
 
-    </p>
+    <div class="question multiple">
 
+      <div class="question-number">
+        QUESTION 4 / 4
+      </div>
+
+      <div class="question-title">
+        Que veux-tu apprendre en priorité ?
+      </div>
+
+      <div class="question-options">
+
+        <button
+          type="button"
+          class="question-option multi4"
+          onclick="toggleMultiple(this)"
+        >
+          🎹 Les notes
+        </button>
+
+        <button
+          type="button"
+          class="question-option multi4"
+          onclick="toggleMultiple(this)"
+        >
+          🎼 Les accords
+        </button>
+
+        <button
+          type="button"
+          class="question-option multi4"
+          onclick="toggleMultiple(this)"
+        >
+          🎵 Les chansons
+        </button>
+
+        <button
+          type="button"
+          class="question-option multi4"
+          onclick="toggleMultiple(this)"
+        >
+          📚 Le solfège
+        </button>
+
+        <button
+          type="button"
+          class="question-option multi4"
+          onclick="toggleMultiple(this)"
+        >
+          ✋ La technique
+        </button>
+
+        <button
+          type="button"
+          class="question-option multi4"
+          onclick="toggleMultiple(this)"
+        >
+          🎧 L'oreille musicale
+        </button>
+
+      </div>
+
+
+      <button
+        type="button"
+        class="question-next"
+        id="next4"
+        onclick="finishQuestions()"
+      >
+        Terminer ✓
+      </button>
+
+    </div>
 
   </div>
 
@@ -1326,19 +1792,17 @@ h1 span{
     class="intro-skip"
     id="introSkip"
   >
-
     Passer
-
   </button>
-
 
 </div>
 
 
 <!-- =====================================================
-     CONTENU ORIGINAL
+     TON INDEX ORIGINAL
      CONSERVÉ
 ===================================================== -->
+
 
 <div class="container">
 
@@ -1493,7 +1957,7 @@ h1 span{
 <script>
 
 /* =====================================================
-   INTRODUCTION
+   INTRODUCTION INTERACTIVE
 ===================================================== */
 
 (function(){
@@ -1504,25 +1968,28 @@ h1 span{
   const skipButton =
     document.getElementById("introSkip");
 
+  const introBrand =
+    document.getElementById("introBrand");
+
 
   /*
-    Vérifie si l'utilisateur a déjà
-    terminé l'introduction.
+    On vérifie si l'utilisateur a déjà
+    terminé les questions.
   */
 
-  const introAlreadySeen =
+  const questionnaireCompleted =
     localStorage.getItem(
-      "pianoAcademyIntroSeen"
+      "pianoAcademyQuestionnaireCompleted"
     );
 
 
   /*
-    Si l'introduction a déjà été terminée,
-    elle ne s'affiche plus.
+    Si le questionnaire est terminé,
+    l'introduction ne revient plus.
   */
 
   if(
-    introAlreadySeen === "true"
+    questionnaireCompleted === "true"
   ){
 
     intro.classList.add("hide");
@@ -1533,57 +2000,324 @@ h1 span{
 
 
   /*
+    On affiche d'abord le titre
+    Piano Academy.
+  */
+
+  let currentQuestion = 0;
+
+  let introAnswers = {};
+
+
+  /*
+    Après 4 secondes, on passe automatiquement
+    à la première question.
+  */
+
+  const questionTimer =
+    setTimeout(
+      function(){
+
+        showQuestion(1);
+
+      },
+      4000
+    );
+
+
+  /*
+    Afficher une question.
+  */
+
+  window.showQuestion =
+    function(number){
+
+      introBrand.style.display =
+        "none";
+
+
+      document
+        .querySelectorAll(".intro-questions")
+        .forEach(
+          function(element){
+
+            element.classList.remove("active");
+
+          }
+        );
+
+
+      const question =
+        document.getElementById(
+          "question" + number
+        );
+
+
+      if(question){
+
+        question.classList.add("active");
+
+        currentQuestion = number;
+
+      }
+
+    };
+
+
+  /*
+    Question à réponse unique.
+  */
+
+  window.singleAnswer =
+    function(number,answer){
+
+      introAnswers[
+        "question" + number
+      ] = answer;
+
+
+      /*
+        Petit délai visuel pour donner
+        l'effet de passage vidéo.
+      */
+
+      const current =
+        document.getElementById(
+          "question" + number
+        );
+
+      current.style.opacity = "0";
+
+      current.style.transform =
+        "translateX(-30px)";
+
+
+      setTimeout(
+        function(){
+
+          current.style.opacity = "";
+
+          current.style.transform = "";
+
+          if(number < 4){
+
+            showQuestion(number + 1);
+
+          }
+
+        },
+        250
+      );
+
+    };
+
+
+  /*
+    Questions à choix multiples.
+  */
+
+  window.toggleMultiple =
+    function(button){
+
+      button.classList.toggle(
+        "selected"
+      );
+
+
+      const parent =
+        button.closest(".question");
+
+
+      const selected =
+        parent.querySelectorAll(
+          ".question-option.selected"
+        );
+
+
+      const next =
+        parent.querySelector(
+          ".question-next"
+        );
+
+
+      if(
+        selected.length > 0
+      ){
+
+        next.classList.add("show");
+
+      }else{
+
+        next.classList.remove("show");
+
+      }
+
+    };
+
+
+  /*
+    Continuer après une question
+    à choix multiples.
+  */
+
+  window.goNext =
+    function(number){
+
+      const current =
+        document.getElementById(
+          "question" + number
+        );
+
+
+      const selected =
+        current.querySelectorAll(
+          ".question-option.selected"
+        );
+
+
+      introAnswers[
+        "question" + number
+      ] =
+        Array.from(selected)
+        .map(
+          function(button){
+
+            return button.innerText.trim();
+
+          }
+        );
+
+
+      current.style.opacity = "0";
+
+      current.style.transform =
+        "translateX(-30px)";
+
+
+      setTimeout(
+        function(){
+
+          current.style.opacity = "";
+
+          current.style.transform = "";
+
+          showQuestion(
+            number + 1
+          );
+
+        },
+        250
+      );
+
+    };
+
+
+  /*
+    Terminer le questionnaire.
+  */
+
+  window.finishQuestions =
+    function(){
+
+      const current =
+        document.getElementById(
+          "question4"
+        );
+
+
+      const selected =
+        current.querySelectorAll(
+          ".question-option.selected"
+        );
+
+
+      if(
+        selected.length === 0
+      ){
+
+        return;
+
+      }
+
+
+      introAnswers.question4 =
+        Array.from(selected)
+        .map(
+          function(button){
+
+            return button.innerText.trim();
+
+          }
+        );
+
+
+      /*
+        Sauvegarde des réponses.
+      */
+
+      localStorage.setItem(
+        "pianoAcademyAnswers",
+        JSON.stringify(
+          introAnswers
+        )
+      );
+
+
+      localStorage.setItem(
+        "pianoAcademyQuestionnaireCompleted",
+        "true"
+      );
+
+
+      closeIntro();
+
+    };
+
+
+  /*
     Fermer l'introduction.
   */
 
   function closeIntro(){
 
-    if(
-      intro.classList.contains("hide")
-    ){
-
-      return;
-
-    }
-
-
-    localStorage.setItem(
-      "pianoAcademyIntroSeen",
-      "true"
+    clearTimeout(
+      questionTimer
     );
 
 
-    intro.classList.add("hide");
+    intro.classList.add(
+      "hide"
+    );
 
   }
 
 
   /*
-    BOUTON PASSER
+    Bouton PASSER.
+    
+    Si l'utilisateur passe sans répondre,
+    le questionnaire n'est PAS considéré
+    comme terminé.
+
+    Il reviendra donc au prochain lancement.
   */
 
   skipButton.addEventListener(
     "click",
-    closeIntro
-  );
+    function(){
 
+      closeIntro();
 
-  /*
-    Fermeture automatique après 4 secondes.
-  */
-
-  setTimeout(
-    closeIntro,
-    4000
+    }
   );
 
 
 })();
 
 
-/* =====================================================
+/* ==========================================
    NAVIGATION
-===================================================== */
+========================================== */
 
 function goToInscription(){
 
@@ -1601,9 +2335,9 @@ function goToConnexion(){
 }
 
 
-/* =====================================================
+/* ==========================================
    SERVICE WORKER
-===================================================== */
+========================================== */
 
 if(
   "serviceWorker"
