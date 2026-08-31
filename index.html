@@ -1406,9 +1406,8 @@ h1 span{
   */
 
   const introAlreadySeen =
-    localStorage.getItem(
-      "pianoAcademyIntroSeen"
-    );
+    localStorage.removeItem("pianoAcademyIntroSeen");
+location.reload();
 
 
   /*
