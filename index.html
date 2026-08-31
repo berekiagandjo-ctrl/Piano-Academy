@@ -386,12 +386,853 @@ h1 span{
 
 }
 
+
+/* =====================================================
+   INTRODUCTION AJOUTÉE UNIQUEMENT
+===================================================== */
+
+#pianoIntro{
+
+  position:fixed;
+
+  inset:0;
+
+  z-index:99999;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  overflow:hidden;
+
+  background:
+    radial-gradient(
+      circle at 50% 45%,
+      rgba(108,92,231,.18),
+      transparent 35%
+    ),
+    radial-gradient(
+      circle at 20% 80%,
+      rgba(245,185,66,.08),
+      transparent 30%
+    ),
+    linear-gradient(
+      135deg,
+      #03050a,
+      #0b101b 48%,
+      #020308
+    );
+
+  opacity:1;
+
+  visibility:visible;
+
+  transition:
+    opacity .6s ease,
+    visibility .6s ease;
+
+}
+
+
+#pianoIntro.hide{
+
+  opacity:0;
+
+  visibility:hidden;
+
+  pointer-events:none;
+
+}
+
+
+.intro-light{
+
+  position:absolute;
+
+  width:500px;
+  height:500px;
+
+  border-radius:50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(245,185,66,.12),
+      rgba(245,185,66,.03) 35%,
+      transparent 70%
+    );
+
+  filter:blur(5px);
+
+  animation:
+    introLightMove 7s ease-in-out infinite
+    alternate;
+
+}
+
+
+.intro-light.one{
+
+  top:-250px;
+  left:-200px;
+
+}
+
+
+.intro-light.two{
+
+  right:-220px;
+  bottom:-250px;
+
+  animation-delay:2s;
+
+}
+
+
+@keyframes introLightMove{
+
+  0%{
+
+    transform:
+      scale(.9)
+      translate(0,0);
+
+  }
+
+  100%{
+
+    transform:
+      scale(1.15)
+      translate(30px,-20px);
+
+  }
+
+}
+
+
+/* PIANO */
+
+.intro-piano{
+
+  position:absolute;
+
+  width:min(1000px,90vw);
+
+  height:330px;
+
+  left:50%;
+  top:50%;
+
+  transform:
+    translate(-50%,-50%)
+    rotate(-7deg)
+    scale(.92);
+
+  opacity:.20;
+
+  filter:
+    blur(.4px)
+    brightness(.75);
+
+  animation:
+    introPianoZoom 4s ease-in-out forwards;
+
+}
+
+
+@keyframes introPianoZoom{
+
+  0%{
+
+    transform:
+      translate(-50%,-50%)
+      rotate(-7deg)
+      scale(.82);
+
+    opacity:.10;
+
+  }
+
+  45%{
+
+    transform:
+      translate(-50%,-50%)
+      rotate(-7deg)
+      scale(1.02);
+
+    opacity:.20;
+
+  }
+
+  100%{
+
+    transform:
+      translate(-50%,-50%)
+      rotate(-7deg)
+      scale(.94);
+
+    opacity:.16;
+
+  }
+
+}
+
+
+.intro-piano-body{
+
+  position:absolute;
+
+  inset:0;
+
+  bottom:35px;
+
+  border-radius:25px;
+
+  background:
+    linear-gradient(
+      160deg,
+      #171c27,
+      #05070b 55%,
+      #121722
+    );
+
+  border:
+    1px solid
+    rgba(255,255,255,.08);
+
+  box-shadow:
+    0 35px 80px rgba(0,0,0,.75);
+
+}
+
+
+.intro-piano-body::before{
+
+  content:"";
+
+  position:absolute;
+
+  left:30px;
+  right:30px;
+  top:18px;
+
+  height:4px;
+
+  border-radius:10px;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      #f5c84f,
+      transparent
+    );
+
+  opacity:.8;
+
+}
+
+
+.intro-white-keys{
+
+  position:absolute;
+
+  left:30px;
+  right:30px;
+  bottom:18px;
+
+  height:170px;
+
+  display:flex;
+
+}
+
+
+.intro-white-key{
+
+  position:relative;
+
+  flex:1;
+
+  height:100%;
+
+  background:
+    linear-gradient(
+      90deg,
+      #dce1e8,
+      #ffffff 45%,
+      #c9ced6
+    );
+
+  border-right:
+    1px solid #8c929c;
+
+  border-radius:
+    0 0 5px 5px;
+
+  box-shadow:
+    inset 0 -10px 15px rgba(0,0,0,.10);
+
+}
+
+
+.intro-black-keys{
+
+  position:absolute;
+
+  left:30px;
+  right:30px;
+
+  top:25px;
+
+  height:100%;
+
+  pointer-events:none;
+
+}
+
+
+.intro-black-key{
+
+  position:absolute;
+
+  width:48px;
+  height:108px;
+
+  border-radius:
+    0 0 7px 7px;
+
+  background:
+    linear-gradient(
+      90deg,
+      #020307,
+      #171b25 50%,
+      #020307
+    );
+
+  box-shadow:
+    0 10px 12px rgba(0,0,0,.7);
+
+}
+
+
+.intro-black-key:nth-child(1){
+  left:6%;
+}
+
+.intro-black-key:nth-child(2){
+  left:14%;
+}
+
+.intro-black-key:nth-child(3){
+  left:28%;
+}
+
+.intro-black-key:nth-child(4){
+  left:36%;
+}
+
+.intro-black-key:nth-child(5){
+  left:44%;
+}
+
+.intro-black-key:nth-child(6){
+  left:59%;
+}
+
+.intro-black-key:nth-child(7){
+  left:67%;
+}
+
+.intro-black-key:nth-child(8){
+  left:81%;
+}
+
+.intro-black-key:nth-child(9){
+  left:89%;
+}
+
+
+/* CONTENU INTRO */
+
+.intro-content{
+
+  position:relative;
+
+  z-index:10;
+
+  width:100%;
+
+  max-width:650px;
+
+  padding:25px 20px;
+
+  text-align:center;
+
+  animation:
+    introContentAppear 1s ease forwards;
+
+}
+
+
+@keyframes introContentAppear{
+
+  from{
+
+    opacity:0;
+
+    transform:
+      translateY(15px);
+
+  }
+
+  to{
+
+    opacity:1;
+
+    transform:
+      translateY(0);
+
+  }
+
+}
+
+
+.intro-logo{
+
+  width:82px;
+  height:82px;
+
+  margin:
+    0 auto 18px;
+
+  border-radius:23px;
+
+  display:flex;
+
+  align-items:center;
+  justify-content:center;
+
+  background:
+    linear-gradient(
+      135deg,
+      #f7c94e,
+      #c98c13
+    );
+
+  color:#080a0f;
+
+  font-size:43px;
+
+  box-shadow:
+    0 15px 45px
+    rgba(245,185,66,.25);
+
+  animation:
+    introLogoFloat 3s ease-in-out infinite;
+
+}
+
+
+@keyframes introLogoFloat{
+
+  0%,
+  100%{
+
+    transform:
+      translateY(0);
+
+  }
+
+  50%{
+
+    transform:
+      translateY(-5px);
+
+  }
+
+}
+
+
+.intro-title{
+
+  color:white;
+
+  font-size:
+    clamp(38px,8vw,68px);
+
+  font-weight:900;
+
+  letter-spacing:-2px;
+
+  line-height:1;
+
+  margin-bottom:12px;
+
+  text-shadow:
+    0 5px 30px rgba(0,0,0,.45);
+
+}
+
+
+.intro-title span{
+
+  color:#f5c84f;
+
+}
+
+
+.intro-subtitle{
+
+  color:
+    rgba(255,255,255,.88);
+
+  font-size:
+    clamp(15px,3vw,21px);
+
+  letter-spacing:2px;
+
+}
+
+
+.intro-line{
+
+  width:230px;
+
+  height:1px;
+
+  margin:
+    18px auto;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      #f5c84f,
+      transparent
+    );
+
+}
+
+
+.intro-text{
+
+  color:
+    rgba(255,255,255,.68);
+
+  font-size:13px;
+
+  line-height:1.6;
+
+}
+
+
+.intro-skip{
+
+  position:absolute;
+
+  right:22px;
+  bottom:22px;
+
+  z-index:30;
+
+  border:
+    1px solid
+    rgba(245,185,66,.45);
+
+  background:
+    rgba(5,7,13,.70);
+
+  color:white;
+
+  border-radius:12px;
+
+  padding:
+    10px 16px;
+
+  font-size:12px;
+
+  font-weight:800;
+
+  cursor:pointer;
+
+  backdrop-filter:
+    blur(8px);
+
+  transition:
+    .2s;
+
+}
+
+
+.intro-skip:hover{
+
+  background:
+    rgba(245,185,66,.12);
+
+  border-color:
+    rgba(245,185,66,.8);
+
+  transform:
+    translateY(-2px);
+
+}
+
+
+/* INTRO MOBILE */
+
+@media(max-width:600px){
+
+  .intro-piano{
+
+    width:850px;
+
+    height:280px;
+
+    opacity:.14;
+
+  }
+
+  .intro-piano-body{
+
+    border-radius:18px;
+
+  }
+
+  .intro-white-keys{
+
+    left:20px;
+    right:20px;
+
+    height:140px;
+
+  }
+
+  .intro-black-keys{
+
+    left:20px;
+    right:20px;
+
+  }
+
+  .intro-black-key{
+
+    width:34px;
+    height:82px;
+
+  }
+
+  .intro-logo{
+
+    width:70px;
+    height:70px;
+
+    font-size:36px;
+
+    border-radius:20px;
+
+  }
+
+  .intro-title{
+
+    font-size:40px;
+
+  }
+
+  .intro-subtitle{
+
+    font-size:15px;
+
+  }
+
+  .intro-text{
+
+    font-size:12px;
+
+  }
+
+  .intro-skip{
+
+    right:15px;
+    bottom:15px;
+
+  }
+
+}
+
+
+/* PETIT ÉCRAN INTRO */
+
+@media(max-height:650px){
+
+  .intro-logo{
+
+    width:60px;
+    height:60px;
+
+    font-size:30px;
+
+    margin-bottom:10px;
+
+  }
+
+  .intro-title{
+
+    font-size:36px;
+
+  }
+
+  .intro-subtitle{
+
+    font-size:14px;
+
+  }
+
+  .intro-line{
+
+    margin:12px auto;
+
+  }
+
+  .intro-text{
+
+    font-size:11px;
+
+  }
+
+}
+
+
 </style>
 
 </head>
 
 
 <body>
+
+
+<!-- =====================================================
+     INTRODUCTION AJOUTÉE
+     
+     Elle apparaît seulement au premier lancement.
+     Après 4 secondes, elle disparaît automatiquement.
+     Le bouton "Passer" permet de la fermer immédiatement.
+===================================================== -->
+
+<div id="pianoIntro">
+
+  <div class="intro-light one"></div>
+
+  <div class="intro-light two"></div>
+
+
+  <!-- PIANO ANIMÉ -->
+
+  <div class="intro-piano">
+
+    <div class="intro-piano-body">
+
+      <div class="intro-white-keys">
+
+        <div class="intro-white-key"></div>
+        <div class="intro-white-key"></div>
+        <div class="intro-white-key"></div>
+        <div class="intro-white-key"></div>
+        <div class="intro-white-key"></div>
+        <div class="intro-white-key"></div>
+        <div class="intro-white-key"></div>
+        <div class="intro-white-key"></div>
+        <div class="intro-white-key"></div>
+        <div class="intro-white-key"></div>
+        <div class="intro-white-key"></div>
+        <div class="intro-white-key"></div>
+        <div class="intro-white-key"></div>
+        <div class="intro-white-key"></div>
+        <div class="intro-white-key"></div>
+        <div class="intro-white-key"></div>
+        <div class="intro-white-key"></div>
+        <div class="intro-white-key"></div>
+        <div class="intro-white-key"></div>
+        <div class="intro-white-key"></div>
+
+      </div>
+
+
+      <div class="intro-black-keys">
+
+        <div class="intro-black-key"></div>
+        <div class="intro-black-key"></div>
+        <div class="intro-black-key"></div>
+        <div class="intro-black-key"></div>
+        <div class="intro-black-key"></div>
+        <div class="intro-black-key"></div>
+        <div class="intro-black-key"></div>
+        <div class="intro-black-key"></div>
+        <div class="intro-black-key"></div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- CONTENU INTRO -->
+
+  <div class="intro-content">
+
+    <div class="intro-logo">
+      🎹
+    </div>
+
+
+    <h1 class="intro-title">
+
+      <span>Piano</span> Academy
+
+    </h1>
+
+
+    <div class="intro-subtitle">
+
+      Apprenez. Jouez. Maîtrisez.
+
+    </div>
+
+
+    <div class="intro-line"></div>
+
+
+    <p class="intro-text">
+
+      Votre parcours musical commence ici.
+
+    </p>
+
+  </div>
+
+
+  <!-- BOUTON PASSER -->
+
+  <button
+    type="button"
+    class="intro-skip"
+    id="introSkip"
+  >
+
+    Passer
+
+  </button>
+
+</div>
+
+
+<!-- =====================================================
+     TON INDEX ORIGINAL
+     RIEN N'EST MODIFIÉ ICI
+===================================================== -->
 
 
 <div class="container">
@@ -545,6 +1386,89 @@ h1 span{
 
 
 <script>
+
+/* =====================================================
+   INTRODUCTION
+===================================================== */
+
+(function(){
+
+  const intro =
+    document.getElementById("pianoIntro");
+
+  const skipButton =
+    document.getElementById("introSkip");
+
+
+  /*
+    On utilise localStorage pour mémoriser
+    que l'utilisateur a déjà vu l'introduction.
+  */
+
+  const introAlreadySeen =
+    localStorage.getItem(
+      "pianoAcademyIntroSeen"
+    );
+
+
+  /*
+    Si l'utilisateur a déjà vu l'introduction,
+    on la supprime immédiatement.
+  */
+
+  if(introAlreadySeen === "true"){
+
+    intro.classList.add("hide");
+
+    return;
+
+  }
+
+
+  /*
+    Fonction qui ferme l'introduction.
+  */
+
+  function closeIntro(){
+
+    if(intro.classList.contains("hide")){
+      return;
+    }
+
+
+    localStorage.setItem(
+      "pianoAcademyIntroSeen",
+      "true"
+    );
+
+
+    intro.classList.add("hide");
+
+  }
+
+
+  /*
+    Bouton PASSER
+  */
+
+  skipButton.addEventListener(
+    "click",
+    closeIntro
+  );
+
+
+  /*
+    Disparition automatique après 4 secondes.
+  */
+
+  setTimeout(
+    closeIntro,
+    4000
+  );
+
+
+})();
+
 
 /* ==========================================
    NAVIGATION
