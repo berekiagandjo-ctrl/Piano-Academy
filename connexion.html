@@ -1313,6 +1313,82 @@
 
 
     /* =====================================================
+       VÉRIFICATION DE LA SESSION EXISTANTE
+    ===================================================== */
+
+    async function checkExistingSession() {
+
+      try {
+
+        const {
+
+          data,
+          error
+
+        } = await supabaseClient.auth.getSession();
+
+
+        if (error) {
+
+          console.error(
+            "Erreur lors de la récupération de la session :",
+            error
+          );
+
+          return;
+
+        }
+
+
+        /* ================================================
+           L'UTILISATEUR EST DÉJÀ CONNECTÉ
+        ================================================= */
+
+        if (
+
+          data &&
+
+          data.session &&
+
+          data.session.user
+
+        ) {
+
+
+          /*
+            L'utilisateur n'a pas fait "Déconnexion".
+            Sa session Supabase existe toujours.
+
+            On l'envoie directement vers son dashboard.
+          */
+
+
+          window.location.href =
+            "dashboard.html";
+
+
+        }
+
+      } catch (error) {
+
+        console.error(
+          "Erreur session :",
+          error
+        );
+
+      }
+
+    }
+
+
+    /*
+      Vérification dès l'ouverture de connexion.html
+    */
+
+    checkExistingSession();
+
+
+    /* =====================================================
        AFFICHER / MASQUER MOT DE PASSE
     ===================================================== */
 
@@ -1529,279 +1605,539 @@
         submitButton.textContent =
           "Connexion...";
 
+<script>
 
-        /* =================================================
-           CONNEXION SUPABASE
-        ================================================= */
+/* =====================================================
+   CONNEXION SUPABASE
+===================================================== */
 
 
-        try {
+/* =====================================================
+   VÉRIFICATION DE LA SESSION EXISTANTE
+===================================================== */
 
+async function checkExistingSession() {
 
-          const {
+  try {
 
-            data,
+    const {
+      data,
+      error
+    } = await supabaseClient.auth.getSession();
 
-            error
 
-          } =
+    if (error) {
 
-            await supabaseClient.auth.signInWithPassword({
+      console.error(
+        "Erreur lors de la récupération de la session :",
+        error
+      );
 
-              email:
-                email,
+      return;
 
-              password:
-                password
+    }
 
-            });
 
+    /* ================================================
+       UTILISATEUR DÉJÀ CONNECTÉ
+    ================================================= */
 
-          /* =========================
-             ERREUR SUPABASE
-          ========================== */
+    if (
 
+      data &&
+      data.session &&
+      data.session.user
 
-          if (error) {
+    ) {
 
-            throw error;
+      /*
+        L'utilisateur revient sur Piano Academy
+        sans avoir fait "Déconnexion".
 
-          }
+        Sa session Supabase existe toujours.
 
+        Il est donc envoyé directement
+        vers son espace.
+      */
 
-          /* =========================
-             VÉRIFICATION SESSION
-          ========================== */
+      window.location.href =
+        "dashboard.html";
 
+    }
 
-          if (
+  } catch (error) {
 
-            !data ||
+    console.error(
+      "Erreur session :",
+      error
+    );
 
-            !data.user
+  }
 
-          ) {
+}
 
 
-            throw new Error(
+/*
+  Vérification dès l'ouverture de connexion.html
+*/
 
-              "Impossible de récupérer votre compte."
+checkExistingSession();
 
-            );
 
+/* =====================================================
+   AFFICHER / MASQUER MOT DE PASSE
+===================================================== */
 
-          }
+togglePassword.addEventListener(
 
+  "click",
 
-          /* =========================
-             SUCCÈS
-          ========================== */
+  function () {
 
 
-          submitButton.textContent =
-            "Connexion réussie ✓";
+    if (
 
+      passwordInput.type ===
+      "password"
 
-          showMessage(
+    ) {
 
-            "Connexion réussie ! Redirection vers votre espace...",
 
-            "success"
+      passwordInput.type =
+        "text";
 
-          );
 
+      togglePassword.textContent =
+        "🙈";
 
-          setTimeout(
 
-            function () {
+    } else {
 
 
-              window.location.href =
-                "dashboard.html";
+      passwordInput.type =
+        "password";
 
 
-            },
+      togglePassword.textContent =
+        "👁️";
 
-            1000
 
-          );
+    }
 
 
-        }
+  }
 
+);
 
-        catch (error) {
 
+/* =====================================================
+   MESSAGE
+===================================================== */
 
-          console.error(
+function showMessage(
 
-            "Erreur connexion Supabase:",
+  text,
 
-            error
+  type
 
-          );
+) {
 
 
-          let errorMessage =
+  message.textContent =
+    text;
 
-            "Une erreur est survenue lors de la connexion.";
 
+  message.className =
+    "message " + type;
 
-          const errorText =
 
-            String(
+  message.scrollIntoView({
 
-              error?.message ||
+    behavior: "smooth",
 
-              ""
+    block: "nearest"
 
-            ).toLowerCase();
+  });
 
 
-          /* =========================
-             MAUVAIS IDENTIFIANTS
-          ========================== */
+}
 
 
-          if (
+function clearMessage() {
 
-            errorText.includes(
 
-              "invalid login credentials"
+  message.textContent =
+    "";
 
-            )
 
-          ) {
+  message.className =
+    "message";
 
 
-            errorMessage =
+}
 
-              "Email ou mot de passe incorrect.";
 
+/* =====================================================
+   EMAIL
+===================================================== */
 
-          }
+function isValidEmail(
 
+  email
 
-          /* =========================
-             EMAIL NON CONFIRMÉ
-          ========================== */
+) {
 
 
-          else if (
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
-            errorText.includes(
+    .test(email);
 
-              "email not confirmed"
 
-            )
+}
 
-          ) {
 
+/* =====================================================
+   CONNEXION
+===================================================== */
 
-            errorMessage =
+form.addEventListener(
 
-              "Votre adresse email n'est pas encore confirmée. Vérifiez votre boîte email.";
+  "submit",
 
+  async function (event) {
 
-          }
 
+    event.preventDefault();
 
-          /* =========================
-             CONNEXION
-          ========================== */
 
+    clearMessage();
 
-          else if (
 
-            errorText.includes(
+    const email =
 
-              "failed to fetch"
+      emailInput.value
+        .trim()
+        .toLowerCase();
 
-            )
 
-          ) {
+    const password =
 
+      passwordInput.value;
 
-            errorMessage =
 
-              "Impossible de contacter Supabase. Vérifiez votre connexion Internet.";
+    /* =========================
+       VALIDATION EMAIL
+    ========================== */
 
+    if (
 
-          }
+      !isValidEmail(email)
 
+    ) {
 
-          /* =========================
-             CLÉ API
-          ========================== */
 
+      showMessage(
 
-          else if (
+        "Veuillez entrer une adresse email valide.",
 
-            errorText.includes(
+        "error"
 
-              "api key"
+      );
 
-            )
 
-          ) {
+      emailInput.focus();
 
 
-            errorMessage =
+      return;
 
-              "La clé Supabase utilisée est incorrecte.";
 
+    }
 
-          }
 
+    /* =========================
+       VALIDATION MOT DE PASSE
+    ========================== */
 
-          /* =========================
-             AUTRE ERREUR
-          ========================== */
+    if (
 
+      !password
 
-          else if (
+    ) {
 
-            error.message
 
-          ) {
+      showMessage(
 
+        "Veuillez entrer votre mot de passe.",
 
-            errorMessage =
+        "error"
 
-              "Erreur Supabase : " +
+      );
 
-              error.message;
 
+      passwordInput.focus();
 
-          }
 
+      return;
 
-          showMessage(
 
-            errorMessage,
+    }
 
-            "error"
 
-          );
+    /* =========================
+       BOUTON
+    ========================== */
 
+    submitButton.disabled =
+      true;
 
-          submitButton.disabled =
-            false;
 
+    submitButton.textContent =
+      "Connexion...";
 
-          submitButton.textContent =
-            "Se connecter";
 
+    /* =================================================
+       CONNEXION SUPABASE
+    ================================================= */
 
-        }
+    try {
+
+
+      const {
+
+        data,
+
+        error
+
+      } =
+
+        await supabaseClient.auth.signInWithPassword({
+
+          email:
+            email,
+
+          password:
+            password
+
+        });
+
+
+      /* =========================
+         ERREUR SUPABASE
+      ========================== */
+
+      if (error) {
+
+        throw error;
+
+      }
+
+
+      /* =========================
+         VÉRIFICATION SESSION
+      ========================== */
+
+      if (
+
+        !data ||
+
+        !data.user ||
+
+        !data.session
+
+      ) {
+
+
+        throw new Error(
+
+          "Impossible de récupérer votre session."
+
+        );
 
 
       }
 
-    );
+
+      /* =========================
+         SUCCÈS
+      ========================== */
+
+      submitButton.textContent =
+        "Connexion réussie ✓";
 
 
-  </script>
+      showMessage(
+
+        "Connexion réussie ! Redirection vers votre espace...",
+
+        "success"
+
+      );
+
+
+      setTimeout(
+
+        function () {
+
+
+          window.location.href =
+            "dashboard.html";
+
+
+        },
+
+        1000
+
+      );
+
+
+    } catch (error) {
+
+
+      /* =================================================
+         GESTION DES ERREURS
+      ================================================= */
+
+      console.error(
+
+        "Erreur de connexion :",
+
+        error
+
+      );
+
+
+      let errorMessage =
+        "Une erreur est survenue lors de la connexion.";
+
+
+      const errorText =
+
+        (
+
+          error &&
+          error.message
+
+        )
+
+          ? error.message.toLowerCase()
+
+          : "";
+
+
+      /* =========================
+         IDENTIFIANTS INCORRECTS
+      ========================== */
+
+      if (
+
+        errorText.includes(
+
+          "invalid login credentials"
+
+        )
+
+      ) {
+
+
+        errorMessage =
+          "Email ou mot de passe incorrect.";
+
+
+      }
+
+
+      /* =========================
+         EMAIL NON CONFIRMÉ
+      ========================== */
+
+      else if (
+
+        errorText.includes(
+
+          "email not confirmed"
+
+        )
+
+      ) {
+
+
+        errorMessage =
+          "Veuillez confirmer votre adresse email avant de vous connecter.";
+
+
+      }
+
+
+      /* =========================
+         CLÉ API
+      ========================== */
+
+      else if (
+
+        errorText.includes(
+
+          "api key"
+
+        )
+
+      ) {
+
+
+        errorMessage =
+          "La clé Supabase utilisée est incorrecte.";
+
+
+      }
+
+
+      /* =========================
+         AUTRE ERREUR SUPABASE
+      ========================== */
+
+      else if (
+
+        error &&
+        error.message
+
+      ) {
+
+
+        errorMessage =
+
+          "Erreur Supabase : " +
+
+          error.message;
+
+
+      }
+
+
+      showMessage(
+
+        errorMessage,
+
+        "error"
+
+      );
+
+
+      submitButton.disabled =
+        false;
+
+
+      submitButton.textContent =
+        "Se connecter";
+
+
+    }
+
+
+  }
+
+);
+
+
+</script>
 
 
 </body>
