@@ -654,6 +654,45 @@
         font-size: 26px;
       }
     }
+
+.svg-icon {
+  display: inline-block;
+  width: 1.3em;
+  height: 1.3em;
+  vertical-align: -0.25em;
+  flex-shrink: 0;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.brand svg,
+button svg,
+a svg {
+  vertical-align: middle;
+}
+
+.form-icon {
+  color: #6c5ce7;
+}
+
+.password-toggle svg {
+  width: 20px;
+  height: 20px;
+}
+/* Correction de la couleur du logo Piano Academy */
+.brand svg,
+.brand .svg-icon,
+.logo svg,
+.logo .svg-icon,
+.brand-logo svg,
+.brand-logo .svg-icon {
+  color: #ffffff !important;
+  stroke: #ffffff !important;
+  fill: none;
+}
   </style>
 </head>
 
@@ -1685,6 +1724,96 @@
 
       }
     );
+
+(() => {
+  const svgIcons = {
+    "🎹": '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="M7 5v8m4-8v8m6-8v8M3 13h18M7 13v6m5-6v6m5-6v6"/>',
+    "👤": '<circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/>',
+    "📧": '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/>',
+    "🔒": '<rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/><circle cx="12" cy="15" r="1"/>',
+    "🔐": '<rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/><circle cx="12" cy="15" r="1"/>',
+    "🚀": '<path d="M5 15c-2 1-2 5-2 5s4 0 5-2M9 14 5 10c3-5 7-7 14-7 0 7-2 11-7 14z"/><circle cx="14.5" cy="9.5" r="2"/>',
+    "⭐": '<path d="m12 3 2.8 5.7 6.2.9-4.5 4.4 1.1 6.2-5.6-3-5.6 3 1.1-6.2L3 9.6l6.2-.9z"/>',
+    "✅": '<circle cx="12" cy="12" r="9"/><path d="m8 12 3 3 5-6"/>',
+    "🎓": '<path d="m2 9 10-5 10 5-10 5z"/><path d="M6 11v6c4 3 8 3 12 0v-6"/>'
+  };
+
+  function remplacer() {
+    const walker = document.createTreeWalker(
+      document.body,
+      NodeFilter.SHOW_TEXT
+    );
+
+    const nodes = [];
+    while (walker.nextNode()) {
+      const node = walker.currentNode;
+      if (
+        node.parentElement &&
+        !node.parentElement.closest(
+          'script,style,textarea,input,svg,.svg-icon'
+        )
+      ) {
+        nodes.push(node);
+      }
+    }
+
+    nodes.forEach(node => {
+      let texte = node.nodeValue;
+      const fragment = document.createDocumentFragment();
+      let modifie = false;
+
+      while (texte.length) {
+        let index = -1;
+        let emoji = null;
+
+        for (const symbole of Object.keys(svgIcons)) {
+          const position = texte.indexOf(symbole);
+          if (position !== -1 &&
+              (index === -1 || position < index)) {
+            index = position;
+            emoji = symbole;
+          }
+        }
+
+        if (index === -1) {
+          fragment.appendChild(document.createTextNode(texte));
+          break;
+        }
+
+        modifie = true;
+
+        if (index > 0) {
+          fragment.appendChild(
+            document.createTextNode(texte.slice(0, index))
+          );
+        }
+
+        const svg = document.createElementNS(
+          "http://www.w3.org/2000/svg",
+          "svg"
+        );
+
+        svg.setAttribute("viewBox", "0 0 24 24");
+        svg.setAttribute("class", "svg-icon");
+        svg.setAttribute("aria-hidden", "true");
+        svg.innerHTML = svgIcons[emoji];
+
+        fragment.appendChild(svg);
+        texte = texte.slice(index + emoji.length);
+      }
+
+      if (modifie && node.parentNode) {
+        node.parentNode.replaceChild(fragment, node);
+      }
+    });
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", remplacer);
+  } else {
+    remplacer();
+  }
+})();
 
   </script>
 
