@@ -1013,6 +1013,30 @@ a .pa-svg-icon {
   color: inherit;
 }
 
+/* Icônes SVG colorées */
+.pa-svg-icon {
+  display: inline-block;
+  width: 1.3em;
+  height: 1.3em;
+  min-width: 1.3em;
+  vertical-align: -0.25em;
+  flex-shrink: 0;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* Couleurs des icônes selon leur fonction */
+.pa-icon-purple { color: #8b5cf6 !important; }
+.pa-icon-blue   { color: #3b82f6 !important; }
+.pa-icon-teal   { color: #00cec9 !important; }
+.pa-icon-gold   { color: #f5b731 !important; }
+.pa-icon-green  { color: #22c55e !important; }
+.pa-icon-pink   { color: #ec4899 !important; }
+.pa-icon-orange { color: #f97316 !important; }
+.pa-icon-red    { color: #ef4444 !important; }
 </style>
 </head>
 
@@ -2860,7 +2884,44 @@ loadDashboard();
         );
 
         svg.setAttribute("viewBox", "0 0 24 24");
-        svg.setAttribute("class", "pa-svg-icon");
+        const couleurs = {
+  "🎹": "#8b5cf6",
+  "🏠": "#3b82f6",
+  "👤": "#00cec9",
+  "📚": "#f5b731",
+  "📖": "#8b5cf6",
+  "🎵": "#ec4899",
+  "🎯": "#f97316",
+  "📈": "#22c55e",
+  "📊": "#3b82f6",
+  "⭐": "#f5b731",
+  "🌟": "#f59e0b",
+  "👑": "#f5b731",
+  "🏆": "#f5b731",
+  "🔔": "#f97316",
+  "⚙️": "#64748b",
+  "🔒": "#8b5cf6",
+  "🔐": "#8b5cf6",
+  "▶️": "#22c55e",
+  "✅": "#22c55e",
+  "💡": "#f5b731",
+  "📝": "#3b82f6",
+  "📅": "#ec4899",
+  "⏱️": "#00cec9",
+  "🎧": "#8b5cf6",
+  "💎": "#3b82f6",
+  "🚀": "#f97316",
+  "❤️": "#ef4444",
+  "🔥": "#f97316",
+  "🌙": "#8b5cf6",
+  "☀️": "#f5b731",
+  "🔊": "#00cec9",
+  "🎮": "#ec4899",
+  "👁️": "#3b82f6"
+};
+
+svg.setAttribute("class", "pa-svg-icon");
+svg.style.color = couleurs[emojiChoisi] || "#6c5ce7";
         svg.setAttribute("aria-hidden", "true");
         svg.innerHTML = icones[emojiChoisi];
 
