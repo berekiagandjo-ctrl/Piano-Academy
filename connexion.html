@@ -45,6 +45,18 @@ button[type=submit]:disabled{opacity:.7;cursor:not-allowed;transform:none;box-sh
 .home{text-align:center;margin-top:16px;font-size:14px}
 @media(max-width:850px){.page{grid-template-columns:1fr}.presentation{min-height:390px;padding:40px 25px}.form-section{padding:25px 16px 40px}}
 @media(max-width:520px){.presentation{min-height:340px;padding:30px 20px}.presentation h1{font-size:34px}.presentation p{font-size:16px}.form-card{padding:28px 20px;border-radius:20px}.form-card h2{font-size:26px}}
+
+.benefit-icon svg{
+  width:22px;
+  height:22px;
+  display:block;
+  fill:none;
+  stroke:currentColor;
+  stroke-width:1.9;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+}
+
 </style>
 </head>
 <body>
@@ -208,6 +220,57 @@ form.addEventListener("submit",async function(event){
     submitButton.textContent="Se connecter";
   }
 });
+
+/* ICÔNES COLORÉES — CONNEXION */
+
+document.querySelectorAll(".benefit-icon").forEach(function(element){
+
+  const emoji = element.textContent.trim();
+
+  let color = "";
+  let svg = "";
+
+  if(emoji === "🎵"){
+    color = "#ec4899";
+
+    svg = `
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M9 18V5l10-2v13"/>
+        <circle cx="6" cy="18" r="3"/>
+        <circle cx="16" cy="16" r="3"/>
+      </svg>
+    `;
+  }
+
+  if(emoji === "📈"){
+    color = "#22c55e";
+
+    svg = `
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M4 19V5"/>
+        <path d="M4 19h16"/>
+        <path d="M7 15l4-4 3 2 6-7"/>
+      </svg>
+    `;
+  }
+
+  if(emoji === "⭐"){
+    color = "#f5b731";
+
+    svg = `
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M12 3l2.8 5.7 6.2.9-4.5 4.4 1.1 6.2L12 18.3l-5.6 2.9 1.1-6.2L3 9.6l6.2-.9L12 3z"/>
+      </svg>
+    `;
+  }
+
+  if(svg){
+    element.style.color = color;
+    element.innerHTML = svg;
+  }
+
+});
+
 </script>
 </body>
 </html>
