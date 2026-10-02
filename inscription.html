@@ -1789,175 +1789,110 @@ a svg {
 })();
 
 /* =====================================================
-   YEUX SVG — MOT DE PASSE + CONFIRMATION
-===================================================== */
-
-function setPasswordEye(button, visible){
-
-  if(!button) return;
-
-  if(visible){
-
-    button.innerHTML = `
-      <svg viewBox="0 0 24 24" aria-hidden="true">
-        <path d="M3 3l18 18"/>
-        <path d="M10.6 10.6a2 2 0 0 0 2.8 2.8"/>
-        <path d="M9.9 5.2A10.8 10.8 0 0 1 12 5c7 0 10 7 10 7a17.4 17.4 0 0 1-3.1 4.1"/>
-        <path d="M6.2 6.2C3.6 8.1 2 12 2 12s3.6 7 10 7a10.8 10.8 0 0 0 3-.4"/>
-      </svg>
-    `;
-
-  }else{
-
-    button.innerHTML = `
-      <svg viewBox="0 0 24 24" aria-hidden="true">
-        <path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12Z"/>
-        <circle cx="12" cy="12" r="3"/>
-      </svg>
-    `;
-
-  }
-
-}
-
-
-/* MOT DE PASSE */
-
-const passwordField =
-  document.getElementById("password");
-
-const passwordToggle =
-  document.getElementById("togglePassword");
-
-if(passwordField && passwordToggle){
-
-  setPasswordEye(passwordToggle, false);
-
-  passwordToggle.addEventListener("click", function(){
-
-    const visible =
-      passwordField.type === "text";
-
-    passwordField.type =
-      visible ? "password" : "text";
-
-    setPasswordEye(
-      passwordToggle,
-      !visible
-    );
-
-    passwordToggle.setAttribute(
-      "aria-label",
-      !visible
-        ? "Masquer le mot de passe"
-        : "Afficher le mot de passe"
-    );
-
-  });
-
-}
-
-
-/* CONFIRMATION DU MOT DE PASSE */
-
-const confirmPasswordField =
-  document.getElementById("confirmPassword");
-
-const confirmPasswordToggle =
-  document.getElementById("toggleConfirmPassword");
-
-if(confirmPasswordField && confirmPasswordToggle){
-
-  setPasswordEye(
-    confirmPasswordToggle,
-    false
-  );
-
-  confirmPasswordToggle.addEventListener(
-    "click",
-    function(){
-
-      const visible =
-        confirmPasswordField.type === "text";
-
-      confirmPasswordField.type =
-        visible ? "password" : "text";
-
-      setPasswordEye(
-        confirmPasswordToggle,
-        !visible
-      );
-
-      confirmPasswordToggle.setAttribute(
-        "aria-label",
-        !visible
-          ? "Masquer la confirmation du mot de passe"
-          : "Afficher la confirmation du mot de passe"
-      );
-
-    }
-  );
-
-/* =====================================================
-   CORRECTION DEFINITIVE DES YEUX
-   MOT DE PASSE + CONFIRMATION
+   YEUX — MOT DE PASSE + CONFIRMATION
 ===================================================== */
 
 (function () {
 
-  const password = document.getElementById("password");
-  const confirmPassword = document.getElementById("confirmPassword");
+  const passwordField =
+    document.getElementById("password");
 
-  const eyePassword = document.getElementById("togglePassword");
-  const eyeConfirm = document.getElementById("toggleConfirmPassword");
+  const confirmPasswordField =
+    document.getElementById("confirmPassword");
 
-  function setupEye(button, input, labelShow, labelHide) {
+  const passwordToggle =
+    document.getElementById("togglePassword");
 
-    if (!button || !input) return;
+  const confirmPasswordToggle =
+    document.getElementById("toggleConfirmPassword");
 
-    /* On garde l'ancien œil */
-    button.innerHTML = "👁️";
 
-    button.addEventListener("click", function (event) {
+  /* =========================
+     MOT DE PASSE
+  ========================= */
 
-      /* Bloque les anciens systèmes d'œil */
-      event.preventDefault();
-      event.stopImmediatePropagation();
+  if (
+    passwordField &&
+    passwordToggle
+  ) {
 
-      /* Afficher / masquer */
-      if (input.type === "password") {
+    passwordToggle.innerHTML = "👁️";
 
-        input.type = "text";
+    passwordToggle.onclick = function () {
 
-        button.innerHTML = "👁️";
-        button.setAttribute("aria-label", labelHide);
+      if (
+        passwordField.type === "password"
+      ) {
+
+        passwordField.type = "text";
+
+        passwordToggle.innerHTML = "👁️";
+
+        passwordToggle.setAttribute(
+          "aria-label",
+          "Masquer le mot de passe"
+        );
 
       } else {
 
-        input.type = "password";
+        passwordField.type = "password";
 
-        button.innerHTML = "👁️";
-        button.setAttribute("aria-label", labelShow);
+        passwordToggle.innerHTML = "👁️";
+
+        passwordToggle.setAttribute(
+          "aria-label",
+          "Afficher le mot de passe"
+        );
 
       }
 
-    }, true);
+    };
 
   }
 
-  setupEye(
-    eyePassword,
-    password,
-    "Afficher le mot de passe",
-    "Masquer le mot de passe"
-  );
 
-  setupEye(
-    eyeConfirm,
-    confirmPassword,
-    "Afficher la confirmation du mot de passe",
-    "Masquer la confirmation du mot de passe"
-  );
+  /* =========================
+     CONFIRMATION
+  ========================= */
+
+  if (
+    confirmPasswordField &&
+    confirmPasswordToggle
+  ) {
+
+    confirmPasswordToggle.innerHTML = "👁️";
+
+    confirmPasswordToggle.onclick = function () {
+
+      if (
+        confirmPasswordField.type === "password"
+      ) {
+
+        confirmPasswordField.type = "text";
+
+        confirmPasswordToggle.innerHTML = "👁️";
+
+        confirmPasswordToggle.setAttribute(
+          "aria-label",
+          "Masquer la confirmation du mot de passe"
+        );
+
+      } else {
+
+        confirmPasswordField.type = "password";
+
+        confirmPasswordToggle.innerHTML = "👁️";
+
+        confirmPasswordToggle.setAttribute(
+          "aria-label",
+          "Afficher la confirmation du mot de passe"
+        );
+
+      }
+
+    };
+
+  }
 
 })();
   </script>
