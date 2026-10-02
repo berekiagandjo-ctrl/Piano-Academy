@@ -1804,109 +1804,139 @@ a svg {
    YEUX — MOT DE PASSE + CONFIRMATION
 ===================================================== */
 
-(function () {
+function setPasswordEye(button, visible) {
 
-  const passwordField =
-    document.getElementById("password");
+  if (!button) return;
 
-  const confirmPasswordField =
-    document.getElementById("confirmPassword");
+  if (visible) {
 
-  const passwordToggle =
-    document.getElementById("togglePassword");
+    /* OEIL BARRÉ = MOT DE PASSE VISIBLE */
 
-  const confirmPasswordToggle =
-    document.getElementById("toggleConfirmPassword");
+    button.innerHTML = `
+      <svg
+        viewBox="0 0 24 24"
+        aria-hidden="true"
+        class="password-eye-svg"
+      >
+        <path d="M3 3l18 18"></path>
+        <path d="M10.6 10.6a2 2 0 0 0 2.8 2.8"></path>
+        <path d="M9.9 5.2A10.8 10.8 0 0 1 12 5c7 0 10 7 10 7"></path>
+        <path d="M18.9 16.1C17.2 17.8 14.9 19 12 19c-6.4 0-10-7-10-7s1.7-3.3 4.8-5.7"></path>
+      </svg>
+    `;
 
+  } else {
 
-  /* =========================
-     MOT DE PASSE
-  ========================= */
+    /* OEIL NORMAL = MOT DE PASSE MASQUÉ */
 
-  if (
-    passwordField &&
-    passwordToggle
-  ) {
-
-    passwordToggle.innerHTML = "👁️";
-
-    passwordToggle.onclick = function () {
-
-      if (
-        passwordField.type === "password"
-      ) {
-
-        passwordField.type = "text";
-
-        passwordToggle.innerHTML = "👁️";
-
-        passwordToggle.setAttribute(
-          "aria-label",
-          "Masquer le mot de passe"
-        );
-
-      } else {
-
-        passwordField.type = "password";
-
-        passwordToggle.innerHTML = "👁️";
-
-        passwordToggle.setAttribute(
-          "aria-label",
-          "Afficher le mot de passe"
-        );
-
-      }
-
-    };
+    button.innerHTML = `
+      <svg
+        viewBox="0 0 24 24"
+        aria-hidden="true"
+        class="password-eye-svg"
+      >
+        <path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12Z"></path>
+        <circle cx="12" cy="12" r="3"></circle>
+      </svg>
+    `;
 
   }
 
+}
 
-  /* =========================
-     CONFIRMATION
-  ========================= */
 
-  if (
-    confirmPasswordField &&
-    confirmPasswordToggle
-  ) {
+/* =====================================================
+   MOT DE PASSE
+===================================================== */
 
-    confirmPasswordToggle.innerHTML = "👁️";
+const passwordField =
+  document.getElementById("password");
 
-    confirmPasswordToggle.onclick = function () {
+const passwordToggle =
+  document.getElementById("togglePassword");
 
-      if (
-        confirmPasswordField.type === "password"
-      ) {
+if (passwordField && passwordToggle) {
 
-        confirmPasswordField.type = "text";
+  setPasswordEye(
+    passwordToggle,
+    false
+  );
 
-        confirmPasswordToggle.innerHTML = "👁️";
+  passwordToggle.onclick = function () {
 
-        confirmPasswordToggle.setAttribute(
-          "aria-label",
-          "Masquer la confirmation du mot de passe"
-        );
+    const visible =
+      passwordField.type === "text";
 
-      } else {
+    passwordField.type =
+      visible
+        ? "password"
+        : "text";
 
-        confirmPasswordField.type = "password";
+    setPasswordEye(
+      passwordToggle,
+      !visible
+    );
 
-        confirmPasswordToggle.innerHTML = "👁️";
+    passwordToggle.setAttribute(
+      "aria-label",
+      !visible
+        ? "Masquer le mot de passe"
+        : "Afficher le mot de passe"
+    );
 
-        confirmPasswordToggle.setAttribute(
-          "aria-label",
-          "Afficher la confirmation du mot de passe"
-        );
+  };
 
-      }
+}
+
+
+/* =====================================================
+   CONFIRMATION DU MOT DE PASSE
+===================================================== */
+
+const confirmPasswordField =
+  document.getElementById("confirmPassword");
+
+const confirmPasswordToggle =
+  document.getElementById(
+    "toggleConfirmPassword"
+  );
+
+if (
+  confirmPasswordField &&
+  confirmPasswordToggle
+) {
+
+  setPasswordEye(
+    confirmPasswordToggle,
+    false
+  );
+
+  confirmPasswordToggle.onclick =
+    function () {
+
+      const visible =
+        confirmPasswordField.type === "text";
+
+      confirmPasswordField.type =
+        visible
+          ? "password"
+          : "text";
+
+      setPasswordEye(
+        confirmPasswordToggle,
+        !visible
+      );
+
+      confirmPasswordToggle.setAttribute(
+        "aria-label",
+        !visible
+          ? "Masquer la confirmation du mot de passe"
+          : "Afficher la confirmation du mot de passe"
+      );
 
     };
 
-  }
-
-})();
+}
 
 /* ICÔNE OEIL PROFESSIONNELLE */
 
