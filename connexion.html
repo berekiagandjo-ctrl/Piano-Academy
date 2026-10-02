@@ -57,6 +57,18 @@ button[type=submit]:disabled{opacity:.7;cursor:not-allowed;transform:none;box-sh
   stroke-linejoin:round;
 }
 
+
+.toggle-password svg{
+  width:21px;
+  height:21px;
+  display:block;
+  fill:none;
+  stroke:#6c5ce7;
+  stroke-width:1.8;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+}
+
 </style>
 </head>
 <body>
@@ -269,6 +281,49 @@ document.querySelectorAll(".benefit-icon").forEach(function(element){
     element.innerHTML = svg;
   }
 
+});
+
+/* ICÔNE OEIL PROFESSIONNELLE */
+
+function updatePasswordIcon(){
+
+  const icon=document.getElementById("togglePassword");
+  const password=document.getElementById("password");
+
+  if(!icon || !password) return;
+
+  const isVisible=password.type==="text";
+
+  if(isVisible){
+
+    icon.innerHTML=`
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M3 3l18 18"/>
+        <path d="M10.6 10.6a2 2 0 0 0 2.8 2.8"/>
+        <path d="M9.9 5.2A10.8 10.8 0 0 1 12 5c7 0 10 7 10 7a17.4 17.4 0 0 1-3.1 4.1"/>
+        <path d="M6.2 6.2C3.6 8.1 2 12 2 12s3.6 7 10 7a10.8 10.8 0 0 0 3-.4"/>
+      </svg>
+    `;
+
+  }else{
+
+    icon.innerHTML=`
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12Z"/>
+        <circle cx="12" cy="12" r="3"/>
+      </svg>
+    `;
+
+  }
+
+}
+
+/* Remplace immédiatement 👁️ */
+updatePasswordIcon();
+
+/* Met à jour l'icône après le clic existant */
+togglePassword.addEventListener("click",function(){
+  updatePasswordIcon();
 });
 
 </script>
