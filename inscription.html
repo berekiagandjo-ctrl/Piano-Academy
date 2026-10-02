@@ -1898,6 +1898,68 @@ if(confirmPasswordField && confirmPasswordToggle){
     }
   );
 
+/* =====================================================
+   CORRECTION DEFINITIVE DES YEUX
+   MOT DE PASSE + CONFIRMATION
+===================================================== */
+
+(function () {
+
+  const password = document.getElementById("password");
+  const confirmPassword = document.getElementById("confirmPassword");
+
+  const eyePassword = document.getElementById("togglePassword");
+  const eyeConfirm = document.getElementById("toggleConfirmPassword");
+
+  function setupEye(button, input, labelShow, labelHide) {
+
+    if (!button || !input) return;
+
+    /* On garde l'ancien œil */
+    button.innerHTML = "👁️";
+
+    button.addEventListener("click", function (event) {
+
+      /* Bloque les anciens systèmes d'œil */
+      event.preventDefault();
+      event.stopImmediatePropagation();
+
+      /* Afficher / masquer */
+      if (input.type === "password") {
+
+        input.type = "text";
+
+        button.innerHTML = "👁️";
+        button.setAttribute("aria-label", labelHide);
+
+      } else {
+
+        input.type = "password";
+
+        button.innerHTML = "👁️";
+        button.setAttribute("aria-label", labelShow);
+
+      }
+
+    }, true);
+
+  }
+
+  setupEye(
+    eyePassword,
+    password,
+    "Afficher le mot de passe",
+    "Masquer le mot de passe"
+  );
+
+  setupEye(
+    eyeConfirm,
+    confirmPassword,
+    "Afficher la confirmation du mot de passe",
+    "Masquer la confirmation du mot de passe"
+  );
+
+})();
   </script>
 
 </body>
