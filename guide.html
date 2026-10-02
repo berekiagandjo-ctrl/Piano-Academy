@@ -2208,6 +2208,20 @@ a .pa-svg-icon {
   height:20px;
 }
 
+/* SVG COLORÉS */
+.pa-svg-icon{
+    width:1.3em;
+    height:1.3em;
+    display:inline-block;
+    vertical-align:-0.2em;
+    flex-shrink:0;
+    fill:none;
+    stroke:currentColor;
+    stroke-width:2;
+    stroke-linecap:round;
+    stroke-linejoin:round;
+}
+
 </style>
 
 </head>
@@ -5476,8 +5490,6 @@ const couleurs = {
   "👁️": "#3b82f6"
 };
 
-svg.setAttribute("class", "pa-svg-icon");
-svg.style.color = couleurs[emojiChoisi] || "#6c5ce7";
 
 /* =====================================================
    ICÔNES SVG COLORÉES — GUIDE PIANO ACADEMY
