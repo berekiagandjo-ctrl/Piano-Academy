@@ -713,6 +713,22 @@ a svg {
   justify-content:center;
 }
 
+.password-toggle{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.password-eye-svg{
+  width:20px;
+  height:20px;
+  display:block;
+  fill:none;
+  stroke:currentColor;
+  stroke-width:1.8;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+}
   </style>
 </head>
 
@@ -1174,69 +1190,6 @@ a svg {
       document.getElementById(
         "strengthText"
       );
-
-
-    /* =====================================================
-       AFFICHER / MASQUER MOT DE PASSE
-    ===================================================== */
-
-    togglePassword.addEventListener(
-      "click",
-      function () {
-
-        if (
-          passwordInput.type ===
-          "password"
-        ) {
-
-          passwordInput.type =
-            "text";
-
-          togglePassword.textContent =
-            "🙈";
-
-        } else {
-
-          passwordInput.type =
-            "password";
-
-          togglePassword.textContent =
-            "👁️";
-
-        }
-
-      }
-    );
-
-
-    toggleConfirmPassword.addEventListener(
-      "click",
-      function () {
-
-        if (
-          confirmPasswordInput.type ===
-          "password"
-        ) {
-
-          confirmPasswordInput.type =
-            "text";
-
-          toggleConfirmPassword.textContent =
-            "🙈";
-
-        } else {
-
-          confirmPasswordInput.type =
-            "password";
-
-          toggleConfirmPassword.textContent =
-            "👁️";
-
-        }
-
-      }
-    );
-
 
     /* =====================================================
        FORCE DU MOT DE PASSE
@@ -1946,6 +1899,113 @@ if(confirmPasswordField && confirmPasswordToggle){
   );
 
 }
+
+/* =====================================================
+   YEUX SVG — MOT DE PASSE + CONFIRMATION
+   Le fonctionnement existant est conservé
+===================================================== */
+
+function eyeIcon(visible) {
+
+  if (visible) {
+
+    return `
+      <svg
+        viewBox="0 0 24 24"
+        class="password-eye-svg"
+        aria-hidden="true"
+      >
+        <path d="M3 3l18 18"/>
+        <path d="M10.6 10.6a2 2 0 0 0 2.8 2.8"/>
+        <path d="M9.9 5.2A10.8 10.8 0 0 1 12 5c7 0 10 7 10 7a17.4 17.4 0 0 1-3.1 4.1"/>
+        <path d="M6.2 6.2C3.6 8.1 2 12 2 12s3.6 7 10 7a10.8 10.8 0 0 0 3-.4"/>
+      </svg>
+    `;
+
+  }
+
+  return `
+    <svg
+      viewBox="0 0 24 24"
+      class="password-eye-svg"
+      aria-hidden="true"
+    >
+      <path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12Z"/>
+      <circle cx="12" cy="12" r="3"/>
+    </svg>
+  `;
+}
+
+
+/* =====================================================
+   MOT DE PASSE
+===================================================== */
+
+togglePassword.addEventListener(
+  "click",
+  function () {
+
+    const visible =
+      passwordInput.type === "text";
+
+    passwordInput.type =
+      visible
+        ? "password"
+        : "text";
+
+    togglePassword.innerHTML =
+      eyeIcon(!visible);
+
+    togglePassword.setAttribute(
+      "aria-label",
+      !visible
+        ? "Masquer le mot de passe"
+        : "Afficher le mot de passe"
+    );
+
+  }
+);
+
+
+/* =====================================================
+   CONFIRMATION DU MOT DE PASSE
+===================================================== */
+
+toggleConfirmPassword.addEventListener(
+  "click",
+  function () {
+
+    const visible =
+      confirmPasswordInput.type === "text";
+
+    confirmPasswordInput.type =
+      visible
+        ? "password"
+        : "text";
+
+    toggleConfirmPassword.innerHTML =
+      eyeIcon(!visible);
+
+    toggleConfirmPassword.setAttribute(
+      "aria-label",
+      !visible
+        ? "Masquer la confirmation du mot de passe"
+        : "Afficher la confirmation du mot de passe"
+    );
+
+  }
+);
+
+
+/* =====================================================
+   ICÔNES INITIALES
+===================================================== */
+
+togglePassword.innerHTML =
+  eyeIcon(false);
+
+toggleConfirmPassword.innerHTML =
+  eyeIcon(false);
 
   </script>
 
