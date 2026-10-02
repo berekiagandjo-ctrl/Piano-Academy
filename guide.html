@@ -5420,6 +5420,8 @@ checkPremiumAccess();
         svg.setAttribute("viewBox", "0 0 24 24");
         svg.setAttribute("class", "pa-svg-icon");
         svg.setAttribute("aria-hidden", "true");
+svg.style.color = couleurs[emojiChoisi] || "#6c5ce7";
+
         svg.innerHTML = icones[emojiChoisi];
 
         fragment.appendChild(svg);
