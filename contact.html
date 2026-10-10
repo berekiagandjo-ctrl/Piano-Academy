@@ -1396,12 +1396,126 @@ document.getElementById("contactForm").addEventListener(
             return;
         }
 
-        showStatus(
-            "Le formulaire est prêt, mais l'envoi des messages n'est pas encore activé. Une connexion sécurisée au service d'e-mail doit être configurée.",
-            "error"
-        );
+        showStatus
+       })
+(() => {
+  const SUPABASE_URL = "https://TON-PROJET.supabase.co";
+  const SUPABASE_ANON_KEY = "COLLE_TA_CLE_PUBLIQUE_SUPABASE";
+
+  const form = document.querySelector("form");
+
+  if (!form) {
+    console.error("Formulaire de contact introuvable.");
+    return;
+  }
+
+  // Crée une zone de message sans modifier le design existant.
+  let status = document.getElementById("contactSendStatus");
+
+  if (!status) {
+    status = document.createElement("div");
+    status.id = "contactSendStatus";
+    status.setAttribute("role", "status");
+    status.setAttribute("aria-live", "polite");
+    status.style.marginTop = "15px";
+    form.appendChild(status);
+  }
+
+  form.addEventListener("submit", async (event) => {
+    event.preventDefault();
+
+    const name = form.elements.namedItem("name");
+    const email = form.elements.namedItem("email");
+    const category = form.elements.namedItem("category");
+    const subject = form.elements.namedItem("subject");
+    const message = form.elements.namedItem("message");
+
+    if (!name || !email || !category || !subject || !message) {
+      status.textContent =
+        "Erreur : vérifie les noms des champs du formulaire.";
+      return;
     }
-);
+
+    const payload = {
+      name: name.value.trim(),
+      email: email.value.trim(),
+      category: category.value.trim(),
+      subject: subject.value.trim(),
+      message: message.value.trim()
+    };
+
+    if (
+      !payload.name ||
+      !payload.email ||
+      !payload.category ||
+      !payload.subject ||
+      !payload.message
+    ) {
+      status.textContent = "Veuillez remplir tous les champs.";
+      return;
+    }
+
+    const submitButton = form.querySelector(
+      'button[type="submit"], input[type="submit"]'
+    );
+
+    const originalText = submitButton
+      ? submitButton.textContent
+      : "";
+
+    if (submitButton) {
+      submitButton.disabled = true;
+      if (submitButton.tagName === "BUTTON") {
+        submitButton.textContent = "Envoi en cours...";
+      }
+    }
+
+    status.textContent = "Envoi de votre message en cours...";
+
+    try {
+      const response = await fetch(
+        SUPABASE_URL + "/functions/v1/send-contact-email",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "apikey": SUPABASE_ANON_KEY,
+            "Authorization": "Bearer " + SUPABASE_ANON_KEY
+          },
+          body: JSON.stringify(payload)
+        }
+      );
+
+      const result = await response.json().catch(() => ({}));
+
+      if (!response.ok || !result.success) {
+        throw new Error(
+          result.error || "Le service n'a pas accepté le message."
+        );
+      }
+
+      status.textContent =
+        "✅ Votre message a été envoyé avec succès !";
+
+      form.reset();
+
+    } catch (error) {
+      console.error("Erreur d'envoi :", error);
+
+      status.textContent =
+        "❌ L'envoi a échoué. Vérifiez la configuration Supabase et Resend, puis réessayez.";
+
+    } finally {
+      if (submitButton) {
+        submitButton.disabled = false;
+
+        if (submitButton.tagName === "BUTTON") {
+          submitButton.textContent = originalText;
+        }
+      }
+    }
+  });
+})();
 </script>
 
 </body>
