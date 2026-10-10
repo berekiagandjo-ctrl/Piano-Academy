@@ -1,0 +1,1408 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Contactez-nous — Piano Academy</title>
+
+<meta name="theme-color" content="#6c5ce7">
+<meta name="description" content="Contactez l'assistance Piano Academy pour toute question concernant votre apprentissage, votre compte ou votre abonnement Premium.">
+
+<style>
+:root {
+    --primary: #6c5ce7;
+    --primary-dark: #5848d6;
+    --secondary: #00cec9;
+    --background: #f7f8fc;
+    --surface: #ffffff;
+    --text: #252541;
+    --muted: #77778e;
+    --border: #e7e7f1;
+    --success: #159957;
+    --danger: #d64545;
+    --shadow: 0 12px 35px rgba(44, 36, 100, .08);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont,
+                 "Segoe UI", sans-serif;
+    background: var(--background);
+    color: var(--text);
+    line-height: 1.6;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+button, input, select, textarea {
+    font: inherit;
+}
+
+button, a {
+    -webkit-tap-highlight-color: transparent;
+}
+
+svg {
+    display: block;
+    flex-shrink: 0;
+}
+
+/* =========================
+   EN-TÊTE
+========================= */
+
+.header {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 20;
+}
+
+.header-inner {
+    max-width: 1100px;
+    min-height: 76px;
+    margin: auto;
+    padding: 12px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    min-width: 0;
+}
+
+.brand-logo {
+    width: 48px;
+    height: 48px;
+    border-radius: 15px;
+    display: grid;
+    place-items: center;
+    background: linear-gradient(135deg, var(--primary), #8d7cf8);
+    box-shadow: 0 5px 14px rgba(108, 92, 231, .2);
+}
+
+.brand-logo svg {
+    width: 35px;
+    height: 35px;
+}
+
+.brand-name {
+    font-size: 19px;
+    font-weight: 850;
+    letter-spacing: -.6px;
+    line-height: 1.2;
+}
+
+.brand-name span {
+    color: var(--primary);
+}
+
+.brand-subtitle {
+    font-size: 11px;
+    color: var(--muted);
+    margin-top: 3px;
+}
+
+.back-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    padding: 10px 14px;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    background: white;
+    color: var(--text);
+    font-weight: 650;
+    font-size: 13px;
+    white-space: nowrap;
+    transition: .2s;
+}
+
+.back-button svg {
+    width: 17px;
+    height: 17px;
+}
+
+.back-button:hover {
+    border-color: var(--primary);
+    color: var(--primary);
+}
+
+/* =========================
+   INTRODUCTION
+========================= */
+
+.hero {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(125deg, #5848d6, #7967ef 65%, #00bdb8);
+    color: white;
+    padding: 55px 20px 65px;
+}
+
+.hero::before {
+    content: "";
+    position: absolute;
+    width: 260px;
+    height: 260px;
+    border-radius: 50%;
+    border: 45px solid rgba(255,255,255,.07);
+    right: -100px;
+    top: -110px;
+}
+
+.hero::after {
+    content: "";
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background: rgba(255,255,255,.06);
+    left: -65px;
+    bottom: -90px;
+}
+
+.hero-inner {
+    max-width: 850px;
+    margin: auto;
+    position: relative;
+    z-index: 1;
+    text-align: center;
+}
+
+.hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 7px 13px;
+    border: 1px solid rgba(255,255,255,.25);
+    background: rgba(255,255,255,.12);
+    border-radius: 30px;
+    font-size: 12px;
+    font-weight: 700;
+    margin-bottom: 17px;
+}
+
+.hero-badge svg {
+    width: 17px;
+    height: 17px;
+}
+
+.hero h1 {
+    font-size: clamp(29px, 5vw, 43px);
+    line-height: 1.18;
+    letter-spacing: -1.1px;
+    margin-bottom: 15px;
+}
+
+.hero p {
+    max-width: 580px;
+    margin: auto;
+    color: rgba(255,255,255,.91);
+    font-size: 15px;
+}
+
+.hero-decoration {
+    display: flex;
+    justify-content: center;
+    margin-top: 25px;
+}
+
+.hero-decoration svg {
+    width: 66px;
+    height: 66px;
+    padding: 13px;
+    border-radius: 22px;
+    background: rgba(255,255,255,.13);
+    border: 1px solid rgba(255,255,255,.2);
+}
+
+/* =========================
+   CONTENU PRINCIPAL
+========================= */
+
+.main {
+    width: 100%;
+    max-width: 1050px;
+    margin: -24px auto 0;
+    padding: 0 20px 55px;
+    position: relative;
+    z-index: 2;
+}
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: .85fr 1.35fr;
+    gap: 22px;
+    align-items: start;
+}
+
+/* =========================
+   CARTES
+========================= */
+
+.card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 21px;
+    box-shadow: var(--shadow);
+}
+
+.info-card {
+    padding: 25px 22px;
+}
+
+.card-title {
+    font-size: 20px;
+    font-weight: 800;
+    margin-bottom: 7px;
+    letter-spacing: -.4px;
+}
+
+.card-description {
+    color: var(--muted);
+    font-size: 13px;
+    margin-bottom: 23px;
+}
+
+.support-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 13px;
+    padding: 15px 0;
+    border-bottom: 1px solid var(--border);
+}
+
+.support-item:last-of-type {
+    border-bottom: none;
+}
+
+.icon-box {
+    width: 43px;
+    height: 43px;
+    flex: 0 0 43px;
+    border-radius: 13px;
+    display: grid;
+    place-items: center;
+    background: #f0edff;
+    color: var(--primary);
+}
+
+.icon-box svg {
+    width: 23px;
+    height: 23px;
+}
+
+.icon-box.turquoise {
+    background: #e3fbfa;
+    color: #009f9a;
+}
+
+.icon-box.pink {
+    background: #fff0f5;
+    color: #d94b85;
+}
+
+.icon-box.gold {
+    background: #fff7e4;
+    color: #b77b08;
+}
+
+.support-item h3 {
+    font-size: 14px;
+    font-weight: 750;
+    margin-bottom: 3px;
+}
+
+.support-item p {
+    color: var(--muted);
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+.email-box {
+    margin-top: 20px;
+    background: linear-gradient(135deg, #f2efff, #e8fbfa);
+    border-radius: 15px;
+    padding: 15px;
+}
+
+.email-box small {
+    display: block;
+    color: var(--muted);
+    font-size: 11px;
+    margin-bottom: 4px;
+}
+
+.email-box strong {
+    font-size: 12px;
+    color: var(--primary-dark);
+    overflow-wrap: anywhere;
+}
+
+/* =========================
+   FORMULAIRE
+========================= */
+
+.form-card {
+    padding: 29px;
+}
+
+.form-heading {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    margin-bottom: 25px;
+}
+
+.form-heading .icon-box {
+    width: 49px;
+    height: 49px;
+    flex-basis: 49px;
+}
+
+.form-heading .icon-box svg {
+    width: 26px;
+    height: 26px;
+}
+
+.form-heading h2 {
+    font-size: 21px;
+    font-weight: 850;
+    line-height: 1.3;
+}
+
+.form-heading p {
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 4px;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.field {
+    margin-bottom: 18px;
+    min-width: 0;
+}
+
+.field label {
+    display: block;
+    font-size: 13px;
+    font-weight: 750;
+    margin-bottom: 8px;
+}
+
+.required {
+    color: #df4663;
+}
+
+.field input,
+.field select,
+.field textarea {
+    width: 100%;
+    border: 1px solid #dedeea;
+    border-radius: 12px;
+    padding: 13px 14px;
+    color: var(--text);
+    background: #fcfcff;
+    outline: none;
+    transition: border-color .2s, box-shadow .2s;
+    font-size: 14px;
+}
+
+.field input,
+.field select {
+    min-height: 49px;
+}
+
+.field textarea {
+    min-height: 145px;
+    resize: vertical;
+    line-height: 1.6;
+}
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(108,92,231,.11);
+    background: white;
+}
+
+.field input::placeholder,
+.field textarea::placeholder {
+    color: #a2a2b4;
+}
+
+.field select {
+    cursor: pointer;
+}
+
+.char-count {
+    display: flex;
+    justify-content: flex-end;
+    font-size: 11px;
+    color: var(--muted);
+    margin-top: 5px;
+}
+
+.privacy-note {
+    display: flex;
+    align-items: flex-start;
+    gap: 9px;
+    background: #f4f3ff;
+    color: #625a91;
+    padding: 13px;
+    border-radius: 12px;
+    font-size: 11px;
+    margin-bottom: 20px;
+}
+
+.privacy-note svg {
+    width: 19px;
+    height: 19px;
+    margin-top: 1px;
+}
+
+.submit-button {
+    width: 100%;
+    border: none;
+    border-radius: 13px;
+    min-height: 52px;
+    background: linear-gradient(110deg, var(--primary), #7967ef);
+    color: white;
+    font-weight: 800;
+    font-size: 14px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    box-shadow: 0 7px 18px rgba(108,92,231,.2);
+    transition: transform .2s, box-shadow .2s;
+}
+
+.submit-button svg {
+    width: 19px;
+    height: 19px;
+}
+
+.submit-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 23px rgba(108,92,231,.28);
+}
+
+.submit-button:active {
+    transform: scale(.99);
+}
+
+.submit-button:disabled {
+    opacity: .65;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.form-status {
+    display: none;
+    padding: 13px 15px;
+    border-radius: 12px;
+    font-size: 13px;
+    margin-bottom: 18px;
+    overflow-wrap: anywhere;
+}
+
+.form-status.visible {
+    display: block;
+}
+
+.form-status.error {
+    background: #fff0f0;
+    color: #a82e2e;
+    border: 1px solid #ffd5d5;
+}
+
+.form-status.success {
+    background: #eafaf1;
+    color: #147b45;
+    border: 1px solid #c7f0d8;
+}
+
+/* =========================
+   FAQ
+========================= */
+
+.faq-section {
+    margin-top: 36px;
+}
+
+.faq-heading {
+    text-align: center;
+    margin-bottom: 22px;
+}
+
+.faq-heading h2 {
+    font-size: 24px;
+    font-weight: 850;
+    margin-bottom: 6px;
+}
+
+.faq-heading p {
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.faq-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+}
+
+.faq-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 17px;
+    padding: 20px;
+}
+
+.faq-card .icon-box {
+    margin-bottom: 14px;
+}
+
+.faq-card h3 {
+    font-size: 14px;
+    margin-bottom: 7px;
+}
+
+.faq-card p {
+    color: var(--muted);
+    font-size: 12px;
+    line-height: 1.7;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+.footer {
+    background: #211d43;
+    color: white;
+    padding: 35px 20px 20px;
+}
+
+.footer-inner {
+    max-width: 1050px;
+    margin: auto;
+}
+
+.footer-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 25px;
+    padding-bottom: 27px;
+}
+
+.footer-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.footer-brand .brand-logo {
+    width: 43px;
+    height: 43px;
+    border-radius: 13px;
+}
+
+.footer-brand .brand-name {
+    font-size: 17px;
+}
+
+.footer-brand .brand-name span {
+    color: #aaa0ff;
+}
+
+.footer-description {
+    color: #c6c2e1;
+    font-size: 12px;
+    margin-top: 9px;
+    max-width: 290px;
+}
+
+.footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 20px;
+    font-size: 12px;
+    color: #dddaf3;
+}
+
+.footer-links a {
+    transition: color .2s;
+}
+
+.footer-links a:hover {
+    color: var(--secondary);
+}
+
+.footer-bottom {
+    border-top: 1px solid rgba(255,255,255,.13);
+    padding-top: 18px;
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+    color: #bdb8da;
+    font-size: 11px;
+}
+
+.footer-bottom strong {
+    color: white;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 760px) {
+    .header-inner {
+        min-height: 68px;
+        padding: 10px 14px;
+    }
+
+    .brand-logo {
+        width: 42px;
+        height: 42px;
+        border-radius: 13px;
+    }
+
+    .brand-logo svg {
+        width: 31px;
+        height: 31px;
+    }
+
+    .brand-name {
+        font-size: 16px;
+    }
+
+    .brand-subtitle {
+        font-size: 10px;
+    }
+
+    .back-button {
+        padding: 9px 10px;
+        font-size: 12px;
+    }
+
+    .hero {
+        padding: 43px 18px 53px;
+    }
+
+    .hero h1 {
+        font-size: 31px;
+    }
+
+    .hero p {
+        font-size: 13px;
+    }
+
+    .main {
+        padding: 0 13px 40px;
+    }
+
+    .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 17px;
+    }
+
+    .form-card {
+        padding: 22px 17px;
+    }
+
+    .info-card {
+        padding: 21px 18px;
+    }
+
+    .faq-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .faq-card {
+        padding: 17px;
+    }
+
+    .footer-top {
+        flex-direction: column;
+        gap: 23px;
+    }
+
+    .footer-links {
+        gap: 12px 17px;
+    }
+
+    .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+        align-items: center;
+    }
+}
+
+@media (max-width: 400px) {
+    .brand {
+        gap: 8px;
+    }
+
+    .brand-name {
+        font-size: 14px;
+    }
+
+    .brand-subtitle {
+        font-size: 9px;
+    }
+
+    .back-button {
+        gap: 4px;
+        font-size: 11px;
+        padding: 8px;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+
+    .hero h1 {
+        font-size: 27px;
+    }
+
+    .form-heading h2 {
+        font-size: 19px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        scroll-behavior: auto !important;
+        transition: none !important;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- =========================
+     ICÔNES SVG
+========================= -->
+
+<!-- LOGO PIANO SVG -->
+<svg xmlns="http://www.w3.org/2000/svg"
+     style="position:absolute;width:0;height:0;overflow:hidden"
+     aria-hidden="true">
+
+    <symbol id="icon-piano" viewBox="0 0 100 100">
+        <path d="M19 14 H81 Q86 14 86 20 V75 H14 V20 Q14 14 19 14Z"
+              fill="#ffffff" stroke="#ffffff" stroke-width="2"/>
+
+        <path d="M14 75 H86 L79 86 H21Z"
+              fill="#d9d3ff"/>
+
+        <path d="M23 14 V66 M34 14 V66 M45 14 V66
+                 M56 14 V66 M67 14 V66 M78 14 V66"
+              stroke="#6c5ce7" stroke-width="1.5"/>
+
+        <path d="M29 14 H37 V43 H29Z
+                 M40 14 H48 V43 H40Z
+                 M62 14 H70 V43 H62Z
+                 M73 14 H81 V43 H73Z"
+              fill="#30265f"/>
+
+        <path d="M18 70 H82"
+              stroke="#00cec9" stroke-width="4"
+              stroke-linecap="round"/>
+
+        <path d="M25 86 V92 M75 86 V92"
+              stroke="#ffffff" stroke-width="4"
+              stroke-linecap="round"/>
+
+        <path d="M19 20 Q50 7 81 20"
+              fill="none" stroke="#ffffff"
+              stroke-width="2" opacity=".7"/>
+    </symbol>
+
+    <symbol id="icon-arrow-left" viewBox="0 0 24 24">
+        <path d="M19 12H5 M12 19l-7-7 7-7"
+              fill="none" stroke="currentColor"
+              stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round"/>
+    </symbol>
+
+    <symbol id="icon-mail" viewBox="0 0 24 24">
+        <rect x="3" y="5" width="18" height="14" rx="3"
+              fill="none" stroke="currentColor" stroke-width="1.8"/>
+        <path d="m4 7 8 6 8-6"
+              fill="none" stroke="currentColor"
+              stroke-width="1.8" stroke-linecap="round"
+              stroke-linejoin="round"/>
+    </symbol>
+
+    <symbol id="icon-user" viewBox="0 0 24 24">
+        <circle cx="12" cy="8" r="4"
+                fill="none" stroke="currentColor" stroke-width="1.8"/>
+        <path d="M4 21c0-4.1 3.6-7 8-7s8 2.9 8 7"
+              fill="none" stroke="currentColor"
+              stroke-width="1.8" stroke-linecap="round"/>
+    </symbol>
+
+    <symbol id="icon-book" viewBox="0 0 24 24">
+        <path d="M4 5.5A3.5 3.5 0 0 1 7.5 2H20v17H7.5A3.5 3.5 0 0 0 4 22Z"
+              fill="none" stroke="currentColor"
+              stroke-width="1.8" stroke-linejoin="round"/>
+        <path d="M4 5.5v13A3.5 3.5 0 0 1 7.5 15H20"
+              fill="none" stroke="currentColor" stroke-width="1.8"/>
+    </symbol>
+
+    <symbol id="icon-gem" viewBox="0 0 24 24">
+        <path d="m3 9 4-6h10l4 6-9 12Z"
+              fill="none" stroke="currentColor"
+              stroke-width="1.8" stroke-linejoin="round"/>
+        <path d="M3 9h18M7 3l5 18 5-18M3 9l4 0"
+              fill="none" stroke="currentColor" stroke-width="1.4"/>
+    </symbol>
+
+    <symbol id="icon-card" viewBox="0 0 24 24">
+        <rect x="2" y="4" width="20" height="16" rx="3"
+              fill="none" stroke="currentColor" stroke-width="1.8"/>
+        <path d="M2 9h20M6 15h5"
+              fill="none" stroke="currentColor"
+              stroke-width="1.8" stroke-linecap="round"/>
+    </symbol>
+
+    <symbol id="icon-shield" viewBox="0 0 24 24">
+        <path d="M12 22s8-4 8-11V5l-8-3-8 3v6c0 7 8 11 8 11Z"
+              fill="none" stroke="currentColor"
+              stroke-width="1.8" stroke-linejoin="round"/>
+        <path d="m9 12 2 2 4-4"
+              fill="none" stroke="currentColor"
+              stroke-width="1.8" stroke-linecap="round"
+              stroke-linejoin="round"/>
+    </symbol>
+
+    <symbol id="icon-send" viewBox="0 0 24 24">
+        <path d="m22 2-7 20-4-9-9-4Z"
+              fill="none" stroke="currentColor"
+              stroke-width="1.8" stroke-linejoin="round"/>
+        <path d="M22 2 11 13"
+              fill="none" stroke="currentColor" stroke-width="1.8"/>
+    </symbol>
+
+    <symbol id="icon-clock" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="9"
+                fill="none" stroke="currentColor" stroke-width="1.8"/>
+        <path d="M12 7v5l3 2"
+              fill="none" stroke="currentColor"
+              stroke-width="1.8" stroke-linecap="round"/>
+    </symbol>
+
+    <symbol id="icon-help" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="9"
+                fill="none" stroke="currentColor" stroke-width="1.8"/>
+        <path d="M9.5 9a2.6 2.6 0 1 1 4.4 1.9c-1.2 1-1.9 1.5-1.9 3"
+              fill="none" stroke="currentColor"
+              stroke-width="1.8" stroke-linecap="round"/>
+        <circle cx="12" cy="17" r="1" fill="currentColor"/>
+    </symbol>
+
+</svg>
+
+<!-- =========================
+     EN-TÊTE
+========================= -->
+
+<header class="header">
+    <div class="header-inner">
+
+        <a href="dashboard.html" class="brand"
+           aria-label="Piano Academy, tableau de bord">
+
+            <div class="brand-logo">
+                <svg viewBox="0 0 100 100" aria-hidden="true">
+                    <use href="#icon-piano"></use>
+                </svg>
+            </div>
+
+            <div>
+                <div class="brand-name">
+                    Piano <span>Academy</span>
+                </div>
+                <div class="brand-subtitle">
+                    Apprenez à votre rythme
+                </div>
+            </div>
+        </a>
+
+        <a href="dashboard.html" class="back-button">
+            <svg aria-hidden="true">
+                <use href="#icon-arrow-left"></use>
+            </svg>
+            <span>Retour</span>
+        </a>
+
+    </div>
+</header>
+
+<!-- =========================
+     INTRODUCTION
+========================= -->
+
+<section class="hero">
+    <div class="hero-inner">
+
+        <div class="hero-badge">
+            <svg aria-hidden="true">
+                <use href="#icon-mail"></use>
+            </svg>
+            SERVICE D'ASSISTANCE
+        </div>
+
+        <h1>Comment pouvons-nous vous aider ?</h1>
+
+        <p>
+            Une question sur vos leçons, votre compte ou votre abonnement ?
+            Notre équipe est là pour vous accompagner dans votre apprentissage.
+        </p>
+
+        <div class="hero-decoration">
+            <svg aria-hidden="true">
+                <use href="#icon-piano"></use>
+            </svg>
+        </div>
+
+    </div>
+</section>
+
+<!-- =========================
+     CONTENU
+========================= -->
+
+<main class="main">
+
+    <div class="contact-grid">
+
+        <!-- INFORMATIONS -->
+        <aside class="card info-card">
+
+            <h2 class="card-title">Nous sommes à votre écoute</h2>
+
+            <p class="card-description">
+                Choisissez le sujet qui correspond à votre demande.
+            </p>
+
+                        <div class="support-item">
+                <div class="icon-box">
+                    <svg aria-hidden="true">
+                        <use href="#icon-book"></use>
+                    </svg>
+                </div>
+
+                <div>
+                    <h3>Apprentissage du piano</h3>
+                    <p>
+                        Une difficulté avec une leçon, un exercice ou votre progression ?
+                    </p>
+                </div>
+            </div>
+
+            <div class="support-item">
+                <div class="icon-box turquoise">
+                    <svg aria-hidden="true">
+                        <use href="#icon-user"></use>
+                    </svg>
+                </div>
+
+                <div>
+                    <h3>Compte utilisateur</h3>
+                    <p>
+                        Besoin d'aide pour vous connecter ou gérer votre profil ?
+                    </p>
+                </div>
+            </div>
+
+            <div class="support-item">
+                <div class="icon-box pink">
+                    <svg aria-hidden="true">
+                        <use href="#icon-gem"></use>
+                    </svg>
+                </div>
+
+                <div>
+                    <h3>Premium et paiement</h3>
+                    <p>
+                        Une question sur votre abonnement ou un paiement ?
+                    </p>
+                </div>
+            </div>
+
+            <div class="support-item">
+                <div class="icon-box gold">
+                    <svg aria-hidden="true">
+                        <use href="#icon-help"></use>
+                    </svg>
+                </div>
+
+                <div>
+                    <h3>Autre demande</h3>
+                    <p>
+                        Vous pouvez également nous écrire pour toute autre question.
+                    </p>
+                </div>
+            </div>
+
+            <div class="email-box">
+                <small>Adresse de contact</small>
+                <strong>berekiagandjo@gmail.com</strong>
+            </div>
+
+        </aside>
+
+        <!-- FORMULAIRE -->
+        <section class="card form-card">
+
+            <div class="form-heading">
+                <div class="icon-box">
+                    <svg aria-hidden="true">
+                        <use href="#icon-mail"></use>
+                    </svg>
+                </div>
+
+                <div>
+                    <h2>Envoyez-nous un message</h2>
+                    <p>Les champs marqués d'un * sont obligatoires.</p>
+                </div>
+            </div>
+
+            <div id="formStatus"
+                 class="form-status"
+                 role="status"
+                 aria-live="polite"></div>
+
+            <form id="contactForm">
+
+                <div class="form-row">
+
+                    <div class="field">
+                        <label for="name">
+                            Votre nom <span class="required">*</span>
+                        </label>
+
+                        <input
+                            type="text"
+                            id="name"
+                            name="name"
+                            placeholder="Votre nom"
+                            autocomplete="name"
+                            maxlength="100"
+                            required>
+                    </div>
+
+                    <div class="field">
+                        <label for="email">
+                            Votre adresse e-mail <span class="required">*</span>
+                        </label>
+
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            placeholder="vous@exemple.com"
+                            autocomplete="email"
+                            maxlength="254"
+                            required>
+                    </div>
+
+                </div>
+
+                <div class="field">
+                    <label for="category">
+                        Sujet de votre demande <span class="required">*</span>
+                    </label>
+
+                    <select id="category" name="category" required>
+                        <option value="">Choisissez une catégorie</option>
+                        <option value="Apprentissage du piano">Apprentissage du piano</option>
+                        <option value="Compte utilisateur">Compte utilisateur</option>
+                        <option value="Abonnement Premium">Abonnement Premium</option>
+                        <option value="Paiement">Paiement</option>
+                        <option value="Autre demande">Autre demande</option>
+                    </select>
+                </div>
+
+                <div class="field">
+                    <label for="subject">
+                        Objet du message <span class="required">*</span>
+                    </label>
+
+                    <input
+                        type="text"
+                        id="subject"
+                        name="subject"
+                        placeholder="Résumez votre demande"
+                        maxlength="150"
+                        required>
+                </div>
+
+                <div class="field">
+                    <label for="message">
+                        Votre message <span class="required">*</span>
+                    </label>
+
+                    <textarea
+                        id="message"
+                        name="message"
+                        placeholder="Écrivez votre message ici..."
+                        minlength="10"
+                        maxlength="3000"
+                        required></textarea>
+
+                    <div class="char-count">
+                        <span id="charCount">0</span> / 3000 caractères
+                    </div>
+                </div>
+
+                <div class="privacy-note">
+                    <svg aria-hidden="true">
+                        <use href="#icon-shield"></use>
+                    </svg>
+
+                    <span>
+                        N'indiquez jamais votre mot de passe ni vos
+                        informations bancaires dans ce formulaire.
+                    </span>
+                </div>
+
+                <button type="submit"
+                        class="submit-button"
+                        id="submitButton">
+
+                    <svg aria-hidden="true">
+                        <use href="#icon-send"></use>
+                    </svg>
+
+                    Envoyer mon message
+                </button>
+
+            </form>
+
+        </section>
+    <!-- QUESTIONS FRÉQUENTES -->
+
+    <section class="faq-section">
+
+        <div class="faq-heading">
+            <h2>Besoin d'aide ?</h2>
+            <p>
+                Voici les principaux sujets pour lesquels nous pouvons vous aider.
+            </p>
+        </div>
+
+        <div class="faq-grid">
+
+            <article class="faq-card">
+                <div class="icon-box">
+                    <svg aria-hidden="true">
+                        <use href="#icon-book"></use>
+                    </svg>
+                </div>
+
+                <h3>Mes leçons de piano</h3>
+
+                <p>
+                    Une difficulté avec une leçon ou un exercice ?
+                    Décrivez votre problème dans le formulaire de contact.
+                </p>
+            </article>
+
+            <article class="faq-card">
+                <div class="icon-box turquoise">
+                    <svg aria-hidden="true">
+                        <use href="#icon-user"></use>
+                    </svg>
+                </div>
+
+                <h3>Mon compte</h3>
+
+                <p>
+                    Pour un problème d'inscription, de connexion ou de profil,
+                    choisissez la catégorie Compte utilisateur.
+                </p>
+            </article>
+
+            <article class="faq-card">
+                <div class="icon-box pink">
+                    <svg aria-hidden="true">
+                        <use href="#icon-card"></use>
+                    </svg>
+                </div>
+
+                <h3>Premium et paiement</h3>
+
+                <p>
+                    Pour une question sur votre abonnement ou un paiement,
+                    sélectionnez la catégorie correspondante.
+                </p>
+            </article>
+
+        </div>
+
+    </section>
+
+</main>
+
+<!-- FOOTER -->
+
+<footer class="footer">
+
+    <div class="footer-inner">
+
+        <div class="footer-top">
+
+            <div>
+                <a href="dashboard.html" class="footer-brand">
+
+                    <div class="brand-logo">
+                        <svg viewBox="0 0 100 100" aria-hidden="true">
+                            <use href="#icon-piano"></use>
+                        </svg>
+                    </div>
+
+                    <div class="brand-name">
+                        Piano <span>Academy</span>
+                    </div>
+
+                </a>
+
+                <p class="footer-description">
+                    Apprenez le piano à votre rythme et développez
+                    votre passion pour la musique.
+                </p>
+            </div>
+
+            <nav class="footer-links" aria-label="Liens de pied de page">
+                <a href="dashboard.html">Accueil</a>
+                <a href="guide.html">Guide du piano</a>
+                <a href="contact.html">Contactez-nous</a>
+            </nav>
+
+        </div>
+
+        <div class="footer-bottom">
+            <span>
+                © <span id="currentYear">2026</span>
+                <strong>Piano Academy</strong>. Tous droits réservés.
+            </span>
+
+            <span>Conçu pour les passionnés de piano.</span>
+        </div>
+
+    </div>
+
+</footer>
+
+<!-- JAVASCRIPT -->
+
+<script>
+"use strict";
+
+// Année automatique du footer
+document.getElementById("currentYear").textContent =
+    new Date().getFullYear();
+
+// Compteur de caractères
+const messageField = document.getElementById("message");
+const charCount = document.getElementById("charCount");
+
+messageField.addEventListener("input", function () {
+    charCount.textContent = this.value.length;
+});
+
+// Affichage des messages
+function showStatus(message, type) {
+    const status = document.getElementById("formStatus");
+
+    status.textContent = message;
+    status.className = "form-status visible " + type;
+
+    status.scrollIntoView({
+        behavior: "smooth",
+        block: "nearest"
+    });
+}
+
+// Vérification du formulaire
+document.getElementById("contactForm").addEventListener(
+    "submit",
+    function (event) {
+        event.preventDefault();
+
+        const name =
+            document.getElementById("name").value.trim();
+
+        const email =
+            document.getElementById("email").value.trim();
+
+        const category =
+            document.getElementById("category").value;
+
+        const subject =
+            document.getElementById("subject").value.trim();
+
+        const message =
+            messageField.value.trim();
+
+        if (!name || !email || !category || !subject || !message) {
+            showStatus(
+                "Veuillez remplir tous les champs obligatoires.",
+                "error"
+            );
+            return;
+        }
+
+        if (message.length < 10) {
+            showStatus(
+                "Votre message doit contenir au moins 10 caractères.",
+                "error"
+            );
+            return;
+        }
+
+        showStatus(
+            "Le formulaire est prêt, mais l'envoi des messages n'est pas encore activé. Une connexion sécurisée au service d'e-mail doit être configurée.",
+            "error"
+        );
+    }
+);
+</script>
+
+</body>
+</html>
