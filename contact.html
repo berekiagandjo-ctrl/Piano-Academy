@@ -1334,189 +1334,238 @@ svg {
 <script>
 "use strict";
 
-// Année automatique du footer
-document.getElementById("currentYear").textContent =
+/* CONFIGURATION SUPABASE */
+
+const SUPABASE_URL =
+  "https://swsvnzjeipcobodntajs.supabase.co";
+
+const SUPABASE_ANON_KEY =
+  "sb_publishable_JrPeCn1LhCNHY3BJZ5iCEQ_mc2iqLpf";
+
+/* ÉLÉMENTS */
+
+const contactForm =
+  document.getElementById("contactForm");
+
+const messageField =
+  document.getElementById("message");
+
+const charCount =
+  document.getElementById("charCount");
+
+const currentYear =
+  document.getElementById("currentYear");
+
+/* ANNÉE AUTOMATIQUE */
+
+if (currentYear) {
+  currentYear.textContent =
     new Date().getFullYear();
-
-// Compteur de caractères
-const messageField = document.getElementById("message");
-const charCount = document.getElementById("charCount");
-
-messageField.addEventListener("input", function () {
-    charCount.textContent = this.value.length;
-});
-
-// Affichage des messages
-function showStatus(message, type) {
-    const status = document.getElementById("formStatus");
-
-    status.textContent = message;
-    status.className = "form-status visible " + type;
-
-    status.scrollIntoView({
-        behavior: "smooth",
-        block: "nearest"
-    });
 }
 
-// Vérification du formulaire
-document.getElementById("contactForm").addEventListener(
-    "submit",
-    function (event) {
-        event.preventDefault();
+/* COMPTEUR DE CARACTÈRES */
 
-        const name =
-            document.getElementById("name").value.trim();
+if (messageField && charCount) {
 
-        const email =
-            document.getElementById("email").value.trim();
+  charCount.textContent =
+    messageField.value.length;
 
-        const category =
-            document.getElementById("category").value;
+  messageField.addEventListener("input", function () {
 
-        const subject =
-            document.getElementById("subject").value.trim();
+    charCount.textContent =
+      this.value.length;
 
-        const message =
-            messageField.value.trim();
+  });
 
-        if (!name || !email || !category || !subject || !message) {
-            showStatus(
-                "Veuillez remplir tous les champs obligatoires.",
-                "error"
-            );
-            return;
-        }
+}
 
-        if (message.length < 10) {
-            showStatus(
-                "Votre message doit contenir au moins 10 caractères.",
-                "error"
-            );
-            return;
-        }
+/* AFFICHAGE DES MESSAGES */
 
-        showStatus
-       })
-(() => {
-  const SUPABASE_URL = "https://swsvnzjeipcobodntajs.supabase.co";
-  const SUPABASE_ANON_KEY = "sb_publishable_JrPeCn1LhCNHY3BJZ5iCEQ_mc2iqLpf";
+function showStatus(message, type) {
 
-  const form = document.querySelector("form");
+  const status =
+    document.getElementById("formStatus");
 
-  if (!form) {
-    console.error("Formulaire de contact introuvable.");
+  if (!status) {
+    console.error(message);
     return;
   }
 
-  // Crée une zone de message sans modifier le design existant.
-  let status = document.getElementById("contactSendStatus");
+  status.textContent = message;
 
-  if (!status) {
-    status = document.createElement("div");
-    status.id = "contactSendStatus";
-    status.setAttribute("role", "status");
-    status.setAttribute("aria-live", "polite");
-    status.style.marginTop = "15px";
-    form.appendChild(status);
-  }
+  status.className =
+    "form-status visible " + type;
 
-  form.addEventListener("submit", async (event) => {
-    event.preventDefault();
+  status.scrollIntoView({
+    behavior: "smooth",
+    block: "nearest"
+  });
 
-    const name = form.elements.namedItem("name");
-    const email = form.elements.namedItem("email");
-    const category = form.elements.namedItem("category");
-    const subject = form.elements.namedItem("subject");
-    const message = form.elements.namedItem("message");
+}
 
-    if (!name || !email || !category || !subject || !message) {
-      status.textContent =
-        "Erreur : vérifie les noms des champs du formulaire.";
-      return;
-    }
+/* ENVOI DU FORMULAIRE */
 
-    const payload = {
-      name: name.value.trim(),
-      email: email.value.trim(),
-      category: category.value.trim(),
-      subject: subject.value.trim(),
-      message: message.value.trim()
-    };
+if (contactForm) {
 
-    if (
-      !payload.name ||
-      !payload.email ||
-      !payload.category ||
-      !payload.subject ||
-      !payload.message
-    ) {
-      status.textContent = "Veuillez remplir tous les champs.";
-      return;
-    }
+  contactForm.addEventListener(
+    "submit",
+    async function (event) {
 
-    const submitButton = form.querySelector(
-      'button[type="submit"], input[type="submit"]'
-    );
+      event.preventDefault();
 
-    const originalText = submitButton
-      ? submitButton.textContent
-      : "";
+      const name =
+        document.getElementById("name").value.trim();
 
-    if (submitButton) {
-      submitButton.disabled = true;
-      if (submitButton.tagName === "BUTTON") {
-        submitButton.textContent = "Envoi en cours...";
+      const email =
+        document.getElementById("email").value.trim();
+
+      const category =
+        document.getElementById("category").value;
+
+      const subject =
+        document.getElementById("subject").value.trim();
+
+      const message =
+        messageField.value.trim();
+
+      /* VÉRIFICATION DES CHAMPS */
+
+      if (
+        !name ||
+        !email ||
+        !category ||
+        !subject ||
+        !message
+      ) {
+
+        showStatus(
+          "Veuillez remplir tous les champs obligatoires.",
+          "error"
+        );
+
+        return;
       }
-    }
 
-    status.textContent = "Envoi de votre message en cours...";
+      if (message.length < 10) {
 
-    try {
-      const response = await fetch(
-        SUPABASE_URL + "/functions/v1/send-contact-email",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            "apikey": SUPABASE_ANON_KEY,
-            "Authorization": "Bearer " + SUPABASE_ANON_KEY
-          },
-          body: JSON.stringify(payload)
-        }
+        showStatus(
+          "Votre message doit contenir au moins 10 caractères.",
+          "error"
+        );
+
+        return;
+      }
+
+      /* BOUTON D'ENVOI */
+
+      const submitButton =
+        contactForm.querySelector(
+          'button[type="submit"]'
+        );
+
+      const originalHTML =
+        submitButton ? submitButton.innerHTML : "";
+
+      if (submitButton) {
+
+        submitButton.disabled = true;
+
+        submitButton.textContent =
+          "Envoi en cours...";
+
+      }
+
+      showStatus(
+        "Envoi de votre message en cours...",
+        "info"
       );
 
-      const result = await response.json().catch(() => ({}));
+      /* PRÉPARATION DU MESSAGE */
 
-      if (!response.ok || !result.success) {
-        throw new Error(
-          result.error || "Le service n'a pas accepté le message."
+      const payload = {
+        name: name,
+        email: email,
+        category: category,
+        subject: subject,
+        message: message
+      };
+
+      /* CONNEXION SUPABASE */
+
+      try {
+
+        const response = await fetch(
+          SUPABASE_URL +
+          "/functions/v1/send-contact-email",
+          {
+            method: "POST",
+
+            headers: {
+              "Content-Type": "application/json",
+              "apikey": SUPABASE_ANON_KEY,
+              "Authorization":
+                "Bearer " + SUPABASE_ANON_KEY
+            },
+
+            body: JSON.stringify(payload)
+          }
         );
-      }
 
-      status.textContent =
-        "✅ Votre message a été envoyé avec succès !";
+        const result =
+          await response.json().catch(() => ({}));
 
-      form.reset();
+        if (!response.ok || !result.success) {
 
-    } catch (error) {
-      console.error("Erreur d'envoi :", error);
+          throw new Error(
+            result.error ||
+            "Le serveur n'a pas accepté le message."
+          );
 
-      status.textContent =
-        "❌ L'envoi a échoué. Vérifiez la configuration Supabase et Resend, puis réessayez.";
-
-    } finally {
-      if (submitButton) {
-        submitButton.disabled = false;
-
-        if (submitButton.tagName === "BUTTON") {
-          submitButton.textContent = originalText;
         }
-      }
-    }
-  });
-})();
-</script>
 
+        /* SUCCÈS */
+
+        showStatus(
+          "Votre message a été envoyé avec succès !",
+          "success"
+        );
+
+        contactForm.reset();
+
+        if (charCount) {
+          charCount.textContent = "0";
+        }
+
+      } catch (error) {
+
+        console.error(
+          "Erreur Piano Academy Contact :",
+          error
+        );
+
+        showStatus(
+          "Impossible d'envoyer le message : " +
+          error.message,
+          "error"
+        );
+
+      } finally {
+
+        if (submitButton) {
+
+          submitButton.disabled = false;
+
+          submitButton.innerHTML = originalHTML;
+
+        }
+
+      }
+
+    }
+  );
+
+}
+
+</script>
 </body>
 </html>
