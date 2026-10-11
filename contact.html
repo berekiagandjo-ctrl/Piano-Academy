@@ -1495,8 +1495,10 @@ if (contactForm) {
       try {
 
         const response = await fetch(
-          SUPABASE_URL +
-          "/functions/v1/send-contact-email",
+  SUPABASE_URL +
+  "/functions/v1/clever-processor",
+         
+         
           {
             method: "POST",
 
