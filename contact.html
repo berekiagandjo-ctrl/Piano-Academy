@@ -1334,13 +1334,10 @@ svg {
 <script>
 "use strict";
 
-/* CONFIGURATION SUPABASE */
+/* CONFIGURATION FORMSPREE */
 
-const SUPABASE_URL =
-  "https://swsvnzjeipcobodntajs.supabase.co";
-
-const SUPABASE_ANON_KEY =
-  "sb_publishable_JrPeCn1LhCNHY3BJZ5iCEQ_mc2iqLpf";
+const FORMSPREE_URL =
+  "https://formspree.io/f/xbggrqna";
 
 /* ÉLÉMENTS */
 
@@ -1371,10 +1368,7 @@ if (messageField && charCount) {
     messageField.value.length;
 
   messageField.addEventListener("input", function () {
-
-    charCount.textContent =
-      this.value.length;
-
+    charCount.textContent = this.value.length;
   });
 
 }
@@ -1428,7 +1422,7 @@ if (contactForm) {
       const message =
         messageField.value.trim();
 
-      /* VÉRIFICATION DES CHAMPS */
+      /* VÉRIFICATION */
 
       if (
         !name ||
@@ -1456,7 +1450,7 @@ if (contactForm) {
         return;
       }
 
-      /* BOUTON D'ENVOI */
+      /* BOUTON */
 
       const submitButton =
         contactForm.querySelector(
@@ -1467,12 +1461,8 @@ if (contactForm) {
         submitButton ? submitButton.innerHTML : "";
 
       if (submitButton) {
-
         submitButton.disabled = true;
-
-        submitButton.textContent =
-          "Envoi en cours...";
-
+        submitButton.textContent = "Envoi en cours...";
       }
 
       showStatus(
@@ -1480,54 +1470,46 @@ if (contactForm) {
         "info"
       );
 
-      /* PRÉPARATION DU MESSAGE */
+      /* PRÉPARATION DES DONNÉES */
 
-      const payload = {
-        name: name,
-        email: email,
-        category: category,
-        subject: subject,
-        message: message
-      };
+      const formData = new FormData();
 
-      /* CONNEXION SUPABASE */
+      formData.append("name", name);
+      formData.append("email", email);
+      formData.append("category", category);
+      formData.append("subject", subject);
+      formData.append("message", message);
+
+      /* ENVOI FORMSPREE */
 
       try {
 
         const response = await fetch(
-SUPABASE_URL +
-"https://swsvnzjeipcobodntajs.supabase.co/functions/v1/super-processor",
-  
-  
-
-  
-         
-         
+          FORMSPREE_URL,
           {
             method: "POST",
 
             headers: {
-  "Content-Type": "application/json"
-},
-           
-             
-             
-             
-       
+              "Accept": "application/json"
+            },
 
-            body: JSON.stringify(payload)
+            body: formData
           }
         );
 
         const result =
           await response.json().catch(() => ({}));
 
-        if (!response.ok || !result.success) {
+        if (!response.ok) {
 
-          throw new Error(
+          const errorMessage =
+            result.errors?.map(
+              item => item.message
+            ).join(", ") ||
             result.error ||
-            "Le serveur n'a pas accepté le message."
-          );
+            "Le service n'a pas accepté le message.";
+
+          throw new Error(errorMessage);
 
         }
 
@@ -1560,11 +1542,8 @@ SUPABASE_URL +
       } finally {
 
         if (submitButton) {
-
           submitButton.disabled = false;
-
           submitButton.innerHTML = originalHTML;
-
         }
 
       }
@@ -1573,7 +1552,6 @@ SUPABASE_URL +
   );
 
 }
-
 </script>
 </body>
 </html>
