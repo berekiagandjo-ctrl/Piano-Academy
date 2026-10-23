@@ -1038,6 +1038,10 @@ a .pa-svg-icon {
 .pa-icon-orange { color: #f97316 !important; }
 .pa-icon-red    { color: #ef4444 !important; }
 </style>
+
+<!-- Thème global Piano Academy -->
+<link rel="stylesheet" href="theme.css">
+<script src="theme.js"></script>
 </head>
 
 
@@ -2066,82 +2070,6 @@ function goTo(page){
   window.location.href = page;
 
 }
-
-
-/* =====================================================
-   MODE SOMBRE
-===================================================== */
-
-const themeButton =
-  document.getElementById("themeButton");
-
-
-function applyTheme(){
-
-  const theme =
-    localStorage.getItem(
-      "pianoAcademyTheme"
-    );
-
-
-  if(theme === "dark"){
-
-    document.body.classList.add("dark");
-
-    themeButton.textContent =
-      "☀️";
-
-  }else{
-
-    document.body.classList.remove("dark");
-
-    themeButton.textContent =
-      "🌙";
-
-  }
-
-}
-
-
-themeButton.addEventListener(
-  "click",
-  function(){
-
-    const isDark =
-      document.body.classList.contains("dark");
-
-
-    if(isDark){
-
-      document.body.classList.remove("dark");
-
-      localStorage.setItem(
-        "pianoAcademyTheme",
-        "light"
-      );
-
-      themeButton.textContent =
-        "🌙";
-
-    }else{
-
-      document.body.classList.add("dark");
-
-      localStorage.setItem(
-        "pianoAcademyTheme",
-        "dark"
-      );
-
-      themeButton.textContent =
-        "☀️";
-
-    }
-
-  }
-);
-
-
-applyTheme();
 
 
 /* =====================================================
