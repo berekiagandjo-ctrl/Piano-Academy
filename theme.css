@@ -1,0 +1,53 @@
+/* =====================================
+   PIANO ACADEMY — THÈME GLOBAL
+===================================== */
+
+:root,
+[data-theme="light"] {
+    color-scheme: light;
+
+    --pa-bg: #f5f6fa;
+    --pa-surface: #ffffff;
+    --pa-text: #2d3436;
+    --pa-muted: #636e72;
+    --pa-border: #e5e7eb;
+
+    --pa-primary: #6c5ce7;
+    --pa-secondary: #00cec9;
+}
+
+[data-theme="dark"] {
+    color-scheme: dark;
+
+    --pa-bg: #11131c;
+    --pa-surface: #1c2030;
+    --pa-text: #f5f6fa;
+    --pa-muted: #aeb6c5;
+    --pa-border: #34394b;
+
+    --pa-primary: #a29bfe;
+    --pa-secondary: #00cec9;
+}
+
+/* Éléments généraux */
+
+body {
+    background-color: var(--pa-bg);
+    color: var(--pa-text);
+    transition: background-color .25s, color .25s;
+}
+
+/* Champs de formulaire */
+
+[data-theme="dark"] input,
+[data-theme="dark"] textarea,
+[data-theme="dark"] select {
+    background-color: var(--pa-surface);
+    color: var(--pa-text);
+    border-color: var(--pa-border);
+}
+
+[data-theme="dark"] input::placeholder,
+[data-theme="dark"] textarea::placeholder {
+    color: var(--pa-muted);
+}
