@@ -902,6 +902,397 @@ body{
 
 }
 
+<!-- ==========================================
+     PIANO ACADEMY
+     CORRECTION MODE SOMBRE — COURS GRATUITS
+========================================== -->
+
+
+/* VARIABLES DU MODE SOMBRE */
+
+html[data-theme="dark"],
+html.dark {
+
+    --bg: #10131d;
+    --card: #1c2232;
+
+    --soft: #252039;
+    --soft2: #202b43;
+
+    --text: #f5f7ff;
+    --muted: #b3bfd2;
+
+    --border: #343d51;
+
+    --primary: #a78bfa;
+    --primary2: #60a5fa;
+
+    --success: #34d399;
+    --warning: #fbbf24;
+    --danger: #fb7185;
+
+    --shadow: 0 8px 25px rgba(0,0,0,.20);
+
+    color-scheme: dark;
+}
+
+
+/* ARRIÈRE-PLAN */
+
+html[data-theme="dark"] body,
+html.dark body {
+
+    background: var(--bg);
+    color: var(--text);
+
+}
+
+
+/* VÉRIFICATION DU COMPTE */
+
+html[data-theme="dark"] #accessCheck,
+html.dark #accessCheck {
+
+    background: var(--bg);
+
+}
+
+html[data-theme="dark"] .check-card,
+html.dark .check-card {
+
+    background: var(--card);
+    color: var(--text);
+    border-color: var(--border);
+
+}
+
+
+/* BOUTON RETOUR */
+
+html[data-theme="dark"] .header-button,
+html.dark .header-button {
+
+    background: var(--card);
+    color: var(--text);
+    border-color: var(--border);
+
+}
+
+
+/* GRANDE CARTE D'INTRODUCTION */
+
+html[data-theme="dark"] .hero,
+html.dark .hero {
+
+    background: linear-gradient(
+        135deg,
+        #7138df,
+        #3159d8
+    );
+
+    color: #ffffff;
+
+}
+
+html[data-theme="dark"] .hero h1,
+html.dark .hero h1 {
+
+    color: #ffffff;
+
+}
+
+html[data-theme="dark"] .hero p,
+html.dark .hero p {
+
+    color: #ede9fe;
+
+}
+
+
+/* BADGE COURS GRATUITS */
+
+html[data-theme="dark"] .free-badge,
+html.dark .free-badge {
+
+    background: rgba(255,255,255,.94);
+    color: #374151;
+
+}
+
+
+/* CARTE VERSION GRATUITE */
+
+html[data-theme="dark"] .info-card,
+html.dark .info-card {
+
+    background: var(--soft);
+    border-color: #514276;
+
+}
+
+html[data-theme="dark"] .info-card strong,
+html.dark .info-card strong {
+
+    color: #c4b5fd;
+
+}
+
+html[data-theme="dark"] .info-card p,
+html.dark .info-card p {
+
+    color: var(--muted);
+
+}
+
+
+/* CARTE DE PROGRESSION */
+
+html[data-theme="dark"] .progress-card,
+html.dark .progress-card {
+
+    background: var(--card);
+    border-color: var(--border);
+    color: var(--text);
+
+}
+
+html[data-theme="dark"] .progress-top,
+html.dark .progress-top {
+
+    color: var(--text);
+
+}
+
+html[data-theme="dark"] .progress-bar,
+html.dark .progress-bar {
+
+    background: #374151;
+
+}
+
+
+/* TITRES DES SECTIONS */
+
+html[data-theme="dark"] .section-title,
+html.dark .section-title {
+
+    color: var(--text);
+
+}
+
+
+/* CARTES DES 10 COURS */
+
+html[data-theme="dark"] .course,
+html.dark .course {
+
+    background: var(--card);
+    color: var(--text);
+
+    border-color: var(--border);
+
+    box-shadow: 0 4px 18px rgba(0,0,0,.15);
+
+}
+
+html[data-theme="dark"] .course-title,
+html.dark .course-title {
+
+    color: #f8fafc;
+
+}
+
+html[data-theme="dark"] .course-description,
+html.dark .course-description {
+
+    color: var(--muted);
+
+}
+
+html[data-theme="dark"] .course-arrow,
+html.dark .course-arrow {
+
+    color: #c4b5fd;
+
+}
+
+html[data-theme="dark"] .course-content,
+html.dark .course-content {
+
+    border-top-color: var(--border);
+
+}
+
+
+/* CONTENU DES LEÇONS */
+
+html[data-theme="dark"] .lesson-box,
+html.dark .lesson-box {
+
+    background: #242b3c;
+    color: var(--text);
+
+    border-color: var(--border);
+
+}
+
+html[data-theme="dark"] .lesson-box h3,
+html.dark .lesson-box h3 {
+
+    color: #c4b5fd;
+
+}
+
+html[data-theme="dark"] .lesson-box p,
+html[data-theme="dark"] .lesson-box li,
+html.dark .lesson-box p,
+html.dark .lesson-box li {
+
+    color: #e2e8f0;
+
+}
+
+
+/* SYMBOLES MUSICAUX */
+
+html[data-theme="dark"] .music-symbol,
+html.dark .music-symbol {
+
+    background: linear-gradient(
+        135deg,
+        #29213f,
+        #202d48
+    );
+
+    border-color: #514276;
+
+    color: #c4b5fd;
+
+}
+
+html[data-theme="dark"] .symbol-card,
+html.dark .symbol-card {
+
+    background: #242b3c;
+    border-color: var(--border);
+
+}
+
+html[data-theme="dark"] .symbol-card .symbol,
+html.dark .symbol-card .symbol {
+
+    color: #c4b5fd;
+
+}
+
+
+/* CONSEILS */
+
+html[data-theme="dark"] .tip,
+html.dark .tip {
+
+    background: #12382e;
+    color: #d1fae5;
+
+    border-left-color: #34d399;
+
+}
+
+
+/* EXERCICES */
+
+html[data-theme="dark"] .exercise,
+html.dark .exercise {
+
+    background: #3b2b19;
+    color: #ffedd5;
+
+    border-left-color: #fbbf24;
+
+}
+
+html[data-theme="dark"] .exercise strong,
+html.dark .exercise strong {
+
+    color: #fcd34d;
+
+}
+
+
+/* ENCART PREMIUM */
+
+html[data-theme="dark"] .premium-box,
+html.dark .premium-box {
+
+    background: linear-gradient(
+        135deg,
+        #29213f,
+        #202d48
+    );
+
+    border-color: #514276;
+
+}
+
+html[data-theme="dark"] .premium-box h3,
+html.dark .premium-box h3 {
+
+    color: #c4b5fd;
+
+}
+
+html[data-theme="dark"] .premium-box p,
+html.dark .premium-box p {
+
+    color: #cbd5e1;
+
+}
+
+
+/* CLAVIER PIANO :
+   CONSERVER LES TOUCHES BLANCHES ET NOIRES */
+
+html[data-theme="dark"] .piano-demo,
+html.dark .piano-demo {
+
+    background: #0b1020;
+
+}
+
+html[data-theme="dark"] .white-key,
+html.dark .white-key {
+
+    background: #ffffff;
+    color: #334155;
+
+}
+
+html[data-theme="dark"] .black-key,
+html.dark .black-key {
+
+    background: #111827;
+
+}
+
+
+/* TRANSITIONS DOUCES */
+
+body,
+.course,
+.progress-card,
+.info-card,
+.lesson-box,
+.symbol-card,
+.premium-box,
+.header-button {
+
+    transition:
+        background-color .25s ease,
+        color .25s ease,
+        border-color .25s ease;
+
+}
+
 </style>
 <!-- Thème global Piano Academy -->
 <link rel="stylesheet" href="theme.css">
